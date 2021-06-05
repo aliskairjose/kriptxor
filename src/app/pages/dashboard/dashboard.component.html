@@ -1,0 +1,108 @@
+<div>
+  <app-header></app-header>
+  <div class="fir_chart_container">
+    <div class="circle_chart">
+      <div class="chartjs-container">
+        <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [options]="doughnutChartOptions"
+          [colors]="doughnutColors" [chartType]="doughnutChartType">
+        </canvas>
+        <div></div>
+      </div>
+      <div class="btc_desc">
+        <div class="btc_desc_row" *ngFor="let currency of currencies; let i=index">
+          <div class="btc_desc_row_left">
+            <img class="hbg_btn" src="assets/img/{{currency.symbol}}_logo.svg" width="30px" height="30px" alt="">
+            <div class="btc-title">{{ currency.name }}</div>
+          </div>
+          <div class="btc_desc_row_right">
+            <div class="btc_desc_price" *ngIf="currency.name === 'Bitcoin' ">
+              {{ currency.dolar_value | currency }}
+            </div>
+            <div class="btc_desc_price color-half-red" *ngIf="currency.name === 'Etherum' ">
+              {{ currency.dolar_value | currency }}
+            </div>
+            <div class="btc_desc_price color-half-yellow" *ngIf="currency.name === 'Litecoin' ">
+              {{ currency.dolar_value | currency }}
+            </div>
+            <div class="desc-bottom">Valor del día {{ currency.symbol }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="next_chart">
+      <div class="btc_total_pag" *ngFor="let currency of currencies; let i=index">
+        <div class="total_pag_desc">
+          <img class="hbg_btn margin-bottom-10" src="assets/img/{{currency.symbol}}_logo.svg" width="30px" height="30px"
+            alt="">
+          <div class="desc-bottom">Valor del día {{ currency.symbol }}</div>
+          <div class="btc_desc_price color-half-green" *ngIf="currency.name === 'Bitcoin' ">
+            {{ currency.dolar_value | currency }}
+          </div>
+          <div class="btc_desc_price color-half-red" *ngIf="currency.name === 'Etherum' ">
+            {{ currency.dolar_value | currency }}
+          </div>
+          <div class="btc_desc_price color-half-yellow" *ngIf="currency.name === 'Litecoin' ">
+            {{ currency.dolar_value | currency }}
+          </div>
+        </div>
+        <img class="hbg_btn back-graph" src="assets/img/btc_graph.svg" width="100%" height="auto" alt="">
+      </div>
+    </div>
+
+
+  </div>
+  <div class="sec_chart_container">
+    <div class="scc_first">
+
+      <table mat-table [dataSource]="transactions" matSort class="mat-elevation-z8">
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+          <td mat-cell *matCellDef="let element"> {{element.created_at | date }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+          <td mat-cell *matCellDef="let element">
+            <ng-container *ngIf="element.image; else elseTemplate">
+              <img class="hbg_btn margin-right-10" src="{{element.image}}" width="30px" height="30px" alt="">
+            </ng-container>
+            <ng-template #elseTemplate>
+              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+            </ng-template>
+            {{element.user?.first_name}} {{ element.user?.last_name}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo </th>
+          <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="currency">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Moneda </th>
+          <td mat-cell *matCellDef="let element"> USD </td>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Transacción </th>
+          <td mat-cell *matCellDef="let element"> {{element.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+          <td mat-cell *matCellDef="let element"> {{element.amount | currency}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="0" [pageSize]="10" showFirstLastButtons>
+      </mat-paginator>
+
+    </div>
+  </div>
+
+
+</div>

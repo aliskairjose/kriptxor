@@ -1,0 +1,296 @@
+<div>
+  <app-header></app-header>
+  <div id="user_page">
+    <div class="user_title">
+      Transacciones<br>
+      <a><span>Home</span>&nbsp;&nbsp;>&nbsp;&nbsp;Historico</a>
+    </div>
+    <div class="btn-group nav_btn">
+      <button class="tablinks active col-4" onclick="openTap(event, 'Intercambio')">Intercambio</button>
+      <button class="tablinks col-4" onclick="openTap(event, 'Compra')">Compra</button>
+      <button class="tablinks col-4" onclick="openTap(event, 'discharge')">Deposito</button>
+    </div>
+
+    <div id="Intercambio" class="tabcontent">
+      <div class="sec_chart_container">
+        <div class="scc_first">
+
+          <table>
+            <thead>
+              <tr>
+                <th colspan="8" class="table-title title_th">
+                  <div class="menus_top">
+                    <div>Gestión de Transacciones</div>
+                    <div>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+          </table>
+
+          <table mat-table [dataSource]="trades" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="created_at">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+              <td mat-cell *matCellDef="let trade"> {{trade.created_at}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="user">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario </th>
+              <td mat-cell *matCellDef="let trade"> {{trade.user.first_name}} {{ trade.user.last_name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> # Transacción </th>
+              <td mat-cell *matCellDef="let trade"> {{trade.id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="destination">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Desde </th>
+              <td mat-cell *matCellDef="let trade">
+                <div *ngIf="trade.currency_destination">
+                  {{trade.currency_destination.symbol }}
+                </div>
+                <div *ngIf="!trade.currency_destination">
+                  ltc
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hasta </th>
+              <td mat-cell *matCellDef="let trade"> {{trade.currency.symbol }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="cantidad">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+              <td mat-cell *matCellDef="let trade"> {{trade.amount }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="state">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+              <td mat-cell *matCellDef="let trade"> Approved</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="tradeColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: tradeColumns;"></tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="0" [pageSize]="10" showFirstLastButtons>
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+
+    <div id="Compra" class="tabcontent" style="display: none;">
+      <div class="sec_chart_container">
+        <div class="scc_first">
+
+          <table>
+            <thead>
+              <tr>
+                <th colspan="8" class="table-title title_th">
+                  <div class="menus_top">
+                    <div>Gestión de Transacciones</div>
+                    <div>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+          </table>
+
+          <table mat-table [dataSource]="buys" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="created_at">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+              <td mat-cell *matCellDef="let buy"> {{buy.created_at}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="user">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario </th>
+              <td mat-cell *matCellDef="let buy"> {{buy.user.first_name}} {{ buy.user.last_name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> # Transacción </th>
+              <td mat-cell *matCellDef="let buy"> {{buy.id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Moneda </th>
+              <td mat-cell *matCellDef="let buy"> {{buy.currency.symbol }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="cantidad">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+              <td mat-cell *matCellDef="let buy"> {{buy.amount }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="state">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+              <td mat-cell *matCellDef="let buy"> Approved</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="buyColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: buyColumns;"></tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="0" [pageSize]="10" showFirstLastButtons>
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+
+    <div id="discharge" class="tabcontent" style="display: none;">
+      <div class="sec_chart_container">
+        <div class="scc_first">
+          <table>
+            <thead>
+              <tr>
+                <th colspan="8" class="table-title title_th">
+                  <div class="menus_top">
+                    <div>Gestión de Transacciones</div>
+                    <div>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+          </table>
+
+          <table mat-table [dataSource]="discharges" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="created_at">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+              <td mat-cell *matCellDef="let discharge"> {{discharge.created_at}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="user">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario </th>
+              <td mat-cell *matCellDef="let discharge"> {{discharge.user.first_name}} {{ discharge.user.last_name}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> # Transacción </th>
+              <td mat-cell *matCellDef="let discharge"> {{discharge.id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Moneda </th>
+              <td mat-cell *matCellDef="let discharge"> {{discharge.currency.symbol }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="cantidad">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+              <td mat-cell *matCellDef="let discharge"> {{discharge.amount }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="state">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+              <td mat-cell *matCellDef="let discharge"> Approved</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="buyColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: buyColumns;"></tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="0" [pageSize]="10" showFirstLastButtons>
+          </mat-paginator>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="Pendientes" class="tabcontent" style="display: none;">
+      <div class="sec_chart_container">
+        <div class="scc_first">
+          <table>
+            <thead>
+              <tr>
+                <th colspan="8" class="table-title title_th">
+                  <div class="menus_top">
+                    <div>Gestión de administradores</div>
+                    <div>
+                      <div>Fecha inicial&nbsp;&nbsp;<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M15.875 3.49995C15.875 2.90321 15.6379 2.33092 15.216 1.90896C14.794 1.487 14.2217 1.24995 13.625 1.24995H13.0625V0.703269C13.0625 0.400574 12.8298 0.140769 12.5271 0.125652C12.451 0.121987 12.375 0.133802 12.3037 0.160381C12.2323 0.18696 12.1671 0.227749 12.112 0.280276C12.0568 0.332804 12.0129 0.395976 11.983 0.465966C11.953 0.535956 11.9375 0.611305 11.9375 0.687449V1.24995H4.0625V0.703269C4.0625 0.400574 3.82977 0.140769 3.52707 0.125652C3.45102 0.121987 3.37501 0.133802 3.30365 0.160381C3.2323 0.18696 3.16708 0.227749 3.11196 0.280276C3.05684 0.332804 3.01295 0.395976 2.98296 0.465966C2.95297 0.535956 2.93751 0.611305 2.9375 0.687449V1.24995H2.375C1.77826 1.24995 1.20597 1.487 0.78401 1.90896C0.362053 2.33092 0.125 2.90321 0.125 3.49995V3.92182C0.125 3.95912 0.139816 3.99489 0.166188 4.02126C0.19256 4.04763 0.228329 4.06245 0.265625 4.06245H15.7344C15.7717 4.06245 15.8074 4.04763 15.8338 4.02126C15.8602 3.99489 15.875 3.95912 15.875 3.92182V3.49995ZM0.125 13.6249C0.125 14.2217 0.362053 14.794 0.78401 15.2159C1.20597 15.6379 1.77826 15.8749 2.375 15.8749H13.625C14.2217 15.8749 14.794 15.6379 15.216 15.2159C15.6379 14.794 15.875 14.2217 15.875 13.6249V5.32807C15.875 5.29078 15.8602 5.25501 15.8338 5.22864C15.8074 5.20226 15.7717 5.18745 15.7344 5.18745H0.265625C0.228329 5.18745 0.19256 5.20226 0.166188 5.22864C0.139816 5.25501 0.125 5.29078 0.125 5.32807V13.6249Z"
+                            fill="#36A9E1" />
+                        </svg>
+                      </div>
+                      <div>Fecha final&nbsp;&nbsp;<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M15.875 3.49995C15.875 2.90321 15.6379 2.33092 15.216 1.90896C14.794 1.487 14.2217 1.24995 13.625 1.24995H13.0625V0.703269C13.0625 0.400574 12.8298 0.140769 12.5271 0.125652C12.451 0.121987 12.375 0.133802 12.3037 0.160381C12.2323 0.18696 12.1671 0.227749 12.112 0.280276C12.0568 0.332804 12.0129 0.395976 11.983 0.465966C11.953 0.535956 11.9375 0.611305 11.9375 0.687449V1.24995H4.0625V0.703269C4.0625 0.400574 3.82977 0.140769 3.52707 0.125652C3.45102 0.121987 3.37501 0.133802 3.30365 0.160381C3.2323 0.18696 3.16708 0.227749 3.11196 0.280276C3.05684 0.332804 3.01295 0.395976 2.98296 0.465966C2.95297 0.535956 2.93751 0.611305 2.9375 0.687449V1.24995H2.375C1.77826 1.24995 1.20597 1.487 0.78401 1.90896C0.362053 2.33092 0.125 2.90321 0.125 3.49995V3.92182C0.125 3.95912 0.139816 3.99489 0.166188 4.02126C0.19256 4.04763 0.228329 4.06245 0.265625 4.06245H15.7344C15.7717 4.06245 15.8074 4.04763 15.8338 4.02126C15.8602 3.99489 15.875 3.95912 15.875 3.92182V3.49995ZM0.125 13.6249C0.125 14.2217 0.362053 14.794 0.78401 15.2159C1.20597 15.6379 1.77826 15.8749 2.375 15.8749H13.625C14.2217 15.8749 14.794 15.6379 15.216 15.2159C15.6379 14.794 15.875 14.2217 15.875 13.6249V5.32807C15.875 5.29078 15.8602 5.25501 15.8338 5.22864C15.8074 5.20226 15.7717 5.18745 15.7344 5.18745H0.265625C0.228329 5.18745 0.19256 5.20226 0.166188 5.22864C0.139816 5.25501 0.125 5.29078 0.125 5.32807V13.6249Z"
+                            fill="#36A9E1" />
+                        </svg>
+                      </div>
+                      <div>Usuario&nbsp;&nbsp;<svg width="10" height="5" viewBox="0 0 10 5" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 0L5 5L10 0H0Z" fill="#36A9E1" />
+                        </svg>
+                      </div>
+                      <div>Estado&nbsp;&nbsp;<svg width="10" height="5" viewBox="0 0 10 5" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 0L5 5L10 0H0Z" fill="#36A9E1" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+              <tr class="table-title">
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>N° Transacción</th>
+                <th>Moneda</th>
+                <th>Montov</th>
+                <th>Aprobación finanzas</th>
+                <th>Aprobación seguridad</th>
+                <th>Aprobación general</th>
+              </tr>
+
+            </thead>
+            <tbody id="transaction_history">
+              <tr *ngFor="let each_row of table_content">
+                <td>{{each_row.date}}</td>
+                <td><img class="hbg_btn margin-right-10" src="{{each_row.img_src}}" width="30px" height="30px"
+                    alt="">{{each_row.user}}</td>
+                <td>{{each_row.noTransaction}}</td>
+                <td>{{each_row.currency}}</td>
+                <td>{{each_row.quantity}}</td>
+                <td><label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+                <td><label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                </td>
+                <td style="position: relative;"><label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                  </label>
+                  <svg class="detail_ch" width="4" height="12" viewBox="0 0 4 12" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2 3C2.825 3 3.5 2.325 3.5 1.5C3.5 0.675 2.825 0 2 0C1.175 0 0.5 0.675 0.5 1.5C0.5 2.325 1.175 3 2 3ZM2 4.5C1.175 4.5 0.5 5.175 0.5 6C0.5 6.825 1.175 7.5 2 7.5C2.825 7.5 3.5 6.825 3.5 6C3.5 5.175 2.825 4.5 2 4.5ZM2 9C1.175 9 0.5 9.675 0.5 10.5C0.5 11.325 1.175 12 2 12C2.825 12 3.5 11.325 3.5 10.5C3.5 9.675 2.825 9 2 9Z"
+                      fill="#36A9E1" />
+                  </svg>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

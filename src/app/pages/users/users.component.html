@@ -1,0 +1,114 @@
+<app-header></app-header>
+<div class="sec_chart_container">
+  <div class="scc_first">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="3" class="table-title">
+            <div class="menus_top">
+              <div>Gestión de Usuarios</div>
+              <div>
+                <div><img src="assets/img/pdf.svg">&nbsp;&nbsp;PDF</div>
+                <div><img src="assets/img/exel.svg">&nbsp;&nbsp;Excel</div>
+                <div style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal">Crear usuario</div>
+              </div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+    </table>
+
+    <!-- Material Table -->
+    <table mat-table [dataSource]="users" matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="first_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de usuario </th>
+        <td mat-cell *matCellDef="let element"> {{element.first_name}} {{element.last_name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Correo. </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="role_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
+        <td mat-cell *matCellDef="let element"> {{element.role_id ? 'Administrador' : 'Cliente'}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="0" [pageSize]="10" showFirstLastButtons>
+    </mat-paginator>
+
+  </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style=" background: #212121;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><img src="assets/img/cancel.svg" alt=""></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="content">
+          <div class=" mx-auto px-0">
+            <form>
+              <div class="input_row row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail">Nombre de usuario</label>
+                  <div class="mail_input">
+                    <input type="email" style="width: 100% !important;" id="inputEmail" placeholder="Ingresar nombre">
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword">Correo electronico</label>
+                  <div class="pass_input">
+                    <input type="text" style="width: 100% !important;" id="inputPassword" placeholder="Ingresar correo">
+                  </div>
+                </div>
+              </div>
+              <div class="input_row row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail">Contraseña</label>
+                  <div class="mail_input">
+                    <input style="z-index: 1;" style="width: 100% !important;" type="email" id="inputEmail"
+                      placeholder="Ingresar contraseña">
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword">Contraseña</label>
+                  <div class="pass_input">
+                    <input type="text" style="width: 94% !important;" id="inputPassword"
+                      placeholder="Ingresar su contraseña">
+                    <div><img src="assets/img/select.svg" class="">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"
+          style="background-color: #212121; color: #36A9E1;border: 0.5px solid #36A9E1;box-sizing: border-box;border-radius: 4px;"
+          data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary button">Crear</button>
+      </div>
+      <div><img src="assets/img/modal_bg.svg" class="modal_bg"></div>
+    </div>
+  </div>
+</div>

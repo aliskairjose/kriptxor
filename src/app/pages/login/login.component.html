@@ -1,0 +1,54 @@
+<div>
+    <header class="pl-2 py-3">
+        <img src="assets/img/logo.svg" width="175px" height="42px" alt="">
+    </header>
+
+    <div class="content mt-5 row mx-0">
+        <div class=" mx-auto px-0">
+            <img class="py-3 pl-3" src="assets/img/user.svg" width="130px" height="130px" alt="">
+            <h2>Iniciar sesión</h2>
+            <p>Por favor inicie sesion o registrece para continuar usando nuestra app</p>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" action="dashboard" style="padding: 27px !important;">
+                <div class="input_row row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail">Email</label>
+                        <div class="mail_input">
+                            <input type="email" id="inputEmail" placeholder="Ingresar su correo"
+                                formControlName="email">
+                            <div>
+                                <img src="assets/img/messege.svg" class="">
+                            </div>
+                        </div>
+                        <div *ngIf="submitted && f.email.errors?.required" class="invalid-feedback d-block">
+                            {{ formError.required }}
+                        </div>
+                        <div *ngIf="submitted && f.email.errors?.pattern" class="invalid-feedback d-block">
+                            {{ formError.invalidEmail }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword">Contraseña</label>
+                        <div class="pass_input">
+                            <input type="password" id="inputPassword" placeholder="Ingresar su contraseña"
+                                formControlName="password">
+                            <div><img src="assets/img/pass.svg" class=""></div>
+                        </div>
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback d-block">
+                            <div *ngIf="f.password.errors.required"> {{ formError.required }} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="subumit_view row">
+                    <p class="pt-3">¿Olvidaste tu cotraseña? &nbsp;&nbsp;<span><a href="">Haz click aquí</a></span>
+                    </p>
+                    <button type="submit">
+                        <div style="color: #ffff;">Iniciar sesión</div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div><img src="assets/img/rect2.svg" class="right_rect"></div>
+    <div><img src="assets/img/rect1.svg" class="left_rect"></div>
+</div>

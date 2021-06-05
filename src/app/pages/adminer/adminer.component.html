@@ -1,0 +1,117 @@
+<app-header></app-header>
+<div class="sec_chart_container">
+  <div class="scc_first">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="3" class="table-title">
+            <div class="menus_top">
+              <div>Gestión de Administradores</div>
+              <div>
+                <div><img src="assets/img/pdf.svg">&nbsp;&nbsp;PDF</div>
+                <div><img src="assets/img/exel.svg">&nbsp;&nbsp;Excel</div>
+                <div style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal">Crear usuario</div>
+              </div>
+            </div>
+          </th>
+        </tr>
+        <tr class="table-title">
+          <th>Nombre de usuario</th>
+          <th>Correo</th>
+          <th>Rol</th>
+        </tr>
+
+      </thead>
+      <tbody id="transaction_history">
+        <tr *ngFor="let user of users">
+          <td>
+            <ng-container *ngIf="user.avatar; else elseTemplate">
+              <img class="hbg_btn margin-right-10" src="{{user.avatar}}" width="30px" height="30px" alt="">
+            </ng-container>
+            <ng-template #elseTemplate>
+              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+            </ng-template>
+            {{user.first_name}} {{ user.last_name}}
+          </td>
+          <td>{{user.email}}</td>
+          <td>{{user.role_id ? 'Administrador' : 'Cliente'}}
+            <svg class="pull-right" style="" width="4" height="13" viewBox="0 0 4 13" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M2 3.61548C2.825 3.61548 3.5 2.94048 3.5 2.11548C3.5 1.29048 2.825 0.615479 2 0.615479C1.175 0.615479 0.5 1.29048 0.5 2.11548C0.5 2.94048 1.175 3.61548 2 3.61548ZM2 5.11548C1.175 5.11548 0.5 5.79048 0.5 6.61548C0.5 7.44048 1.175 8.11548 2 8.11548C2.825 8.11548 3.5 7.44048 3.5 6.61548C3.5 5.79048 2.825 5.11548 2 5.11548ZM2 9.61548C1.175 9.61548 0.5 10.2905 0.5 11.1155C0.5 11.9405 1.175 12.6155 2 12.6155C2.825 12.6155 3.5 11.9405 3.5 11.1155C3.5 10.2905 2.825 9.61548 2 9.61548Z"
+                fill="#36A9E1" />
+            </svg>
+          </td>
+          <!-- <td>{{each_row.transaction}}</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style=" background: #212121;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><img src="assets/img/cancel.svg" alt=""></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="content">
+          <div class=" mx-auto px-0">
+            <form>
+              <div class="input_row row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail">Nombre de usuario</label>
+                  <div class="mail_input">
+                    <input type="email" style="width: 100% !important;" id="inputEmail" placeholder="Ingresar nombre">
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword">Correo electronico</label>
+                  <div class="pass_input">
+                    <input type="text" style="width: 100% !important;" id="inputPassword" placeholder="Ingresar correo">
+                  </div>
+                </div>
+              </div>
+              <div class="input_row row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail">Contraseña</label>
+                  <div class="mail_input">
+                    <input style="z-index: 1;" style="width: 100% !important;" type="email" id="inputEmail"
+                      placeholder="Ingresar contraseña">
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword">Contraseña</label>
+                  <div class="pass_input">
+                    <input type="text" style="width: 94% !important;" id="inputPassword"
+                      placeholder="Ingresar su contraseña">
+                    <div><img src="assets/img/select.svg" class="">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"
+          style="background-color: #212121; color: #36A9E1;border: 0.5px solid #36A9E1;box-sizing: border-box;border-radius: 4px;"
+          data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary button">Crear</button>
+      </div>
+      <div><img src="assets/img/modal_bg.svg" class="modal_bg"></div>
+    </div>
+  </div>
+</div>

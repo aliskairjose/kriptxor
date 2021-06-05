@@ -1,0 +1,32 @@
+import { User } from './user';
+export interface Transaction {
+  id?: number;
+  type?: string;
+  amount?: number;
+  currency_id?: number;
+  transaction_code?: string;
+  url_wallet?: string;
+  account_id?: number;
+  user_id?: number;
+  status?: string;
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string;
+  image?: string;
+  currency_destination_id?: number;
+  trade_amount?: number;
+  fee?: number;
+  unit_ebits_equivalence?: number;
+  total_ebits_equivalence?: number;
+  total_to_paid?: number;
+  currency_buy_id?: number;
+  user_receiver_id?: number;
+  bank?: string;
+  bank_account_num?: string;
+  type_transaction?: string;
+  user?: User;
+  user_receiver?: string;
+  account?: string;
+  currency_destination?: Object;
+  currency_buy?: string;
+}

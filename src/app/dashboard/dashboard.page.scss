@@ -1,0 +1,95 @@
+$primary-color: #304FFE;
+$primary-text: "Open Sans";
+
+.title{
+  color: $primary-color;
+
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+.one {
+  grid-column: 1 / 2;
+  grid-row: 1;
+}
+.two {
+  grid-column: 2 / 2;
+  grid-row: 1;
+}
+
+.header-items{
+  & > ion-col {
+  margin: 0px;
+  }
+
+  .card-header{
+    align-items: center;
+    text-align: center;
+    &-icon{
+      color: $primary-color;
+    }
+    &-title{
+      color: $primary-color;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    &-content{
+      font-family: $primary-text;
+      font-size: 1rem;
+    }
+  }
+}
+.card-content{
+  &-header{
+    background-color: $primary-color;
+    &-title{
+      color: white;
+    }
+  }
+  &-title{
+    font-weight: bold;
+    font-size: 1rem;
+    color: black;
+  }
+  &-subtitle{
+    text-align: right;
+  }
+  &-text{
+    font-weight: bold;
+    font-size: 1rem;
+    color: black;
+  }
+  &-button{
+      text-align: right;
+
+  }
+}
+.footer-items{
+  & > ion-col {
+  margin: 0px;
+  }
+
+  .card-footer{
+    align-items: center;
+    text-align: center;
+    &-icon{
+      color: $primary-color;
+    }
+    &-title{
+      color: $primary-color;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    &-content{
+      font-family: $primary-text;
+      font-size: 1rem;
+    }
+    &-image{
+      height: 100;
+      width: 100;
+    }
+  }
+}

@@ -31,6 +31,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: url("/assets/img/login-bg.svg");
 
   #form {
     padding: 0.5rem 1rem;
@@ -41,6 +42,7 @@
 }
 
 #form {
+  background-color: #fff;
   .item-input {
     margin: 1rem 0;
   }
@@ -48,6 +50,10 @@
   ion-item {
     border: 1px solid var(--ion-color-primary);
     border-radius: 5px;
+  }
+
+  ion-icon {
+    color: var(--ion-color-primary);
   }
 }
 

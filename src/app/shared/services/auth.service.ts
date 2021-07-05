@@ -21,7 +21,7 @@ export class AuthService {
    * @param data Objeto { email, password }
    */
   login( data: any ): Observable<any> {
-    return this.http.post( '', data );
+    return this.http.post( 'login', data );
   }
 
   register( data: any ): Observable<any> {

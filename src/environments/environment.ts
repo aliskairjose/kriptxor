@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: ''
+  api: 'http://sms.apiv2.dev.cronapis.com/api/v1/'
 };
 
 /*

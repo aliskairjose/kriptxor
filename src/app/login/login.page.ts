@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ERROR_FORM } from '../shared/constants/constants';
+import { ERROR_FORM, LOGO } from '../shared/constants/constants';
 import { AuthService } from '../shared/services/auth.service';
 import { CommonService } from '../shared/services/common.service';
 import { Router } from '@angular/router';
@@ -15,6 +15,8 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   submitted: boolean;
   formError = ERROR_FORM;
+  logo = LOGO;
+  isPassword = true;
 
   constructor(
     private router: Router,
@@ -46,7 +48,7 @@ export class LoginPage implements OnInit {
 
   private createForm(): void {
     this.loginForm = this.fb.group( {
-      userName: [ '', [ Validators.required, Validators.minLength( 6 ) ] ],
+      email: [ '', [ Validators.required, Validators.minLength( 6 ), Validators.email ] ],
       password: [ '', [ Validators.required, Validators.minLength( 8 ) ] ]
     } );
   }

@@ -68,7 +68,7 @@
   </ion-card-header>
   </ion-card>
 
-  <ion-card class="card-content">
+  <ion-card *ngFor="let ad of ads" class="card-content">
   <ion-card-content>
     <ion-grid>
         <ion-row>
@@ -97,66 +97,6 @@
   </ion-card-content>
   </ion-card>
 
-  <!-- Quitar cuando se haga dinamico -->
-
-  <ion-card class="card-content">
-  <ion-card-content>
-    <ion-grid>
-        <ion-row>
-          <ion-col class="card-content-title">
-            Grupo Elite crece a nivel internacional
-          </ion-col>
-          <ion-col class="card-content-subtitle">
-            04/05/2021
-          </ion-col>
-        </ion-row>
-    </ion-grid>
-    <ion-row>
-      <ion-col size="8" class="card-content-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore...
-      </ion-col>
-      <ion-col class="card-content-button">
-        <ion-button shape="round" color="warning">
-          <ion-icon slot="start" name="eye-outline" ></ion-icon>
-          Leer Más
-
-        </ion-button>
-      </ion-col>
-    </ion-row>
-
-  </ion-card-content>
-  </ion-card>
-
-  <ion-card class="card-content">
-  <ion-card-content>
-    <ion-grid>
-        <ion-row>
-          <ion-col class="card-content-title">
-            Inicia proceso de implementación de CRM
-          </ion-col>
-          <ion-col class="card-content-subtitle">
-            04/05/2021
-          </ion-col>
-        </ion-row>
-    </ion-grid>
-    <ion-row>
-      <ion-col size="8" class="card-content-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore...
-      </ion-col>
-      <ion-col class="card-content-button">
-        <ion-button shape="round" color="warning">
-          <ion-icon slot="start" name="eye-outline" ></ion-icon>
-          Leer Más
-
-        </ion-button>
-      </ion-col>
-    </ion-row>
-
-  </ion-card-content>
-  </ion-card>
-  <!-- Fin -->
 
   <ion-card class="card-content">
   <ion-card-header class="card-content-header">
@@ -165,7 +105,7 @@
   </ion-card>
   <ion-grid>
     <ion-row class="footer-items">
-      <ion-col>
+      <ion-col *ngFor="let vendor of top">
         <ion-card class="card-footer">
           <img src="https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406_960_720.jpg" />
         <ion-card-header>
@@ -175,32 +115,6 @@
 
         <ion-card-content class="card-footer-content">
           Pedro Perez
-        </ion-card-content>
-      </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card class="card-footer">
-          <img src="https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406_960_720.jpg" />
-        <ion-card-header>
-          <ion-card-title class="card-footer-title">
-          </ion-card-title>
-        </ion-card-header>
-
-        <ion-card-content class="card-footer-content">
-          Maria Quintero
-        </ion-card-content>
-      </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card class="card-footer">
-          <img src="https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406_960_720.jpg" />
-        <ion-card-header>
-          <ion-card-title class="card-footer-title">
-          </ion-card-title>
-        </ion-card-header>
-
-        <ion-card-content class="card-footer-content">
-          Andres Monasterios
         </ion-card-content>
       </ion-card>
       </ion-col>

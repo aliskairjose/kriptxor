@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ERROR_FORM } from '../shared/constants/constants';
 import { AuthService } from '../shared/services/auth.service';
 import { CommonService } from '../shared/services/common.service';
+import { Router } from '@angular/router';
 
 @Component( {
   selector: 'app-login',
@@ -16,12 +17,15 @@ export class LoginPage implements OnInit {
   formError = ERROR_FORM;
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private auth: AuthService,
     private common: CommonService,
   ) {
     this.createForm();
   }
+
+  get f() { return this.loginForm.controls; }
 
   ngOnInit() {
   }
@@ -33,14 +37,16 @@ export class LoginPage implements OnInit {
       loading.present();
       this.auth.login( this.loginForm.value ).subscribe( response => {
         loading.dismiss();
-
+        const message = 'Bienvenido'
+        this.common.presentToast( { message } );
+        this.router.navigate( [ 'dashboard' ] );
       }, () => loading.dismiss() );
     }
   }
 
   private createForm(): void {
     this.loginForm = this.fb.group( {
-      email: [ '', [ Validators.required, Validators.minLength( 6 ) ] ],
+      userName: [ '', [ Validators.required, Validators.minLength( 6 ) ] ],
       password: [ '', [ Validators.required, Validators.minLength( 8 ) ] ]
     } );
   }

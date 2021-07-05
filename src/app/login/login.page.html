@@ -1,9 +1,35 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <div class="login">
+    <div class="ion-text-center ion-margin-vertical">
+      <h3 class="title">Bienvenido a GRUPO ELITE</h3>
+      <p>Ingrese con sus datos registrados</p>
+    </div>
+    <div id="form">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="item-input">
+          <ion-label position="stacked">Username</ion-label>
+          <ion-item>
+            <ion-input type="text" formControlName="userName"></ion-input>
+            <ion-icon slot="end" name="person-circle"></ion-icon>
+          </ion-item>
+          <div *ngIf="submitted && f.userName?.errors">
+            <ion-text color="danger">{{formError.required}}</ion-text>
+          </div>
+        </div>
+        <div class="item-input">
+          <ion-label position="stacked">Contraseña</ion-label>
+          <ion-item>
+            <ion-input type="text"></ion-input>
+            <ion-icon slot="end" name="eye"></ion-icon>
+          </ion-item>
+          <div *ngIf="submitted && f.password?.errors">
+            <ion-text color="danger">{{formError.required}}</ion-text>
+          </div>
+        </div>
+        <ion-button type="submit" expand="block" fill="solid" class="ion-margin-vertical">
+          Iniciar sesión
+        </ion-button>
+      </form>
+    </div>
+  </div>
 </ion-content>

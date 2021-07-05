@@ -1,0 +1,42 @@
+$primary-color: #304FFE;
+$primary-text: "Open Sans";
+
+.title{
+  color: $primary-color;
+  height: 50px;
+
+}
+.search-bar{
+  height: 50px;
+}
+.card-content{
+  &-header{
+    background-color: $primary-color;
+    &-title{
+      color: white;
+    }
+  }
+  &-title{
+    font-weight: bold;
+    font-size: 1rem;
+    color: #000000;
+  }
+  &-subtitle{
+    text-align: right;
+  }
+  &-text{
+    font-weight: bold;
+    font-size: 1rem;
+    color: #000000;
+    & > ion-icon {
+      height: 25px;
+      width: 25px;
+      color: $primary-color;
+    }
+  }
+  &-button{
+      text-align: right;
+
+  }
+
+}

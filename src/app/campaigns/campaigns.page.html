@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">Listado de Campañas</ion-title>
+    <!-- Searchbar -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar class="search-bar" placeholder="Busca tu campaña" ></ion-searchbar>
+
+  <ion-card *ngFor="let campaign of campaigns" class="card-content">
+
+    <ion-card-header>
+      <ion-grid>
+          <ion-row>
+            <ion-col class="card-content-title">
+              Camapaña #1
+            </ion-col>
+            <ion-col class="card-content-title">
+              --EN CURSO--
+            </ion-col>
+            <ion-col class="card-content-subtitle">
+              04/05/2021
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+    </ion-card-header>
+  <ion-card-content>
+
+    <ion-row>
+      <ion-col class="card-content-text">
+        <ion-icon name="people-circle"></ion-icon>
+        120 Clientes
+      </ion-col>
+      <ion-col class="card-content-text">
+        <ion-icon src="assets/icon/monetization.svg"></ion-icon>
+          120 Ventas
+      </ion-col>
+      <ion-col class="card-content-button">
+        <ion-button shape="round" color="warning">
+          <ion-icon slot="start" name="eye-outline" ></ion-icon>
+          Detalles
+
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card-content>
+  </ion-card>
+</ion-content>

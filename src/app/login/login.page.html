@@ -23,11 +23,12 @@
         <div class="item-input">
           <ion-label position="stacked">Contraseña</ion-label>
           <ion-item>
-            <ion-input [type]="isPassword ? 'password' : 'text' "></ion-input>
+            <ion-input [type]="isPassword ? 'password' : 'text' " formControlName="password"></ion-input>
             <ion-icon slot="end" [name]="isPassword ? 'eye' : 'eye-off' " (click)="isPassword = !isPassword"></ion-icon>
           </ion-item>
           <div *ngIf="submitted && f.password?.errors">
             <ion-text color="danger">{{formError.required}}</ion-text>
+            <ion-text color="danger">{{formError.minLength}} 6</ion-text>
           </div>
         </div>
         <ion-button type="submit" expand="block" fill="solid" class="ion-margin-vertical">

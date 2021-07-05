@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { StorageService } from './storage.service';
 import { TOKEN } from '../constants/constants';
 import { User } from '../interfaces/user';
+import { LoginReponse } from '../interfaces/response';
 
 @Injectable( {
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class AuthService {
    * @description Inicio de sesión a la app
    * @param data Objeto { email, password }
    */
-  login( data: any ): Observable<any> {
+  login( data: any ): Observable<LoginReponse> {
     return this.http.post( 'login', data );
   }
 

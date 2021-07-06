@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
 
   get f() { return this.loginForm.controls; }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   async onSubmit() {

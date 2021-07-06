@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api: 'http://sms.apiv2.dev.cronapis.com/api/v1/'
 };
 
 /*

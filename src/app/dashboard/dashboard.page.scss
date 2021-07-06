@@ -56,7 +56,7 @@ $primary-text: "Open Sans";
   &-title{
     font-weight: bold;
     font-size: 1rem;
-    color: black;
+    color: #000000;
   }
   &-subtitle{
     text-align: right;
@@ -64,7 +64,7 @@ $primary-text: "Open Sans";
   &-text{
     font-weight: bold;
     font-size: 1rem;
-    color: black;
+    color: #000000;
   }
   &-button{
       text-align: right;
@@ -90,7 +90,7 @@ $primary-text: "Open Sans";
     &-content{
       font-family: $primary-text;
       font-size: 1rem;
-      color: black;
+      color: #000000;
     }
     &-image{
       height: 100;

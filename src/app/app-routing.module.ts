@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'campaigns',
     loadChildren: () => import('./campaigns/campaigns.module').then( m => m.CampaignsPageModule)
+  },
+  {
+    path: 'campaign',
+    loadChildren: () => import('./campaign/campaign.module').then( m => m.CampaignPageModule)
   }
 
 ];

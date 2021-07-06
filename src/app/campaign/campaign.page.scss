@@ -7,11 +7,10 @@ $primary-text: "Open Sans";
 
 }
 .search-bar{
-  height: 50px;
+  height: 20%;
 }
-.header{
-  background-color: #F8F8F8;
-   box-shadow: 1px 1px 1px #999;
+ion-button {
+ text-transform: none;
 }
 .card-content{
   &-header{
@@ -27,20 +26,44 @@ $primary-text: "Open Sans";
   }
   &-subtitle{
     text-align: right;
+    & > ion-icon{
+      height: 30px;
+      width: 100px;
+    }
   }
   &-text{
     font-weight: bold;
     font-size: 1rem;
-    color: #000000;
+    color:  $primary-color;
     & > ion-icon {
       height: 25px;
       width: 25px;
       color: $primary-color;
     }
+
   }
   &-button{
       text-align: right;
+      & > ion-button > ion-icon{
+        height: 20px;
+        width: 20px;
+      }
+      &-text{
 
+      }
+
+  }
+  & > ion-icon{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: -17px;
+    color: $primary-color;
+  }
+  &-footer{
+    &-text{
+      font-weight: bolder;
+    }
   }
 
 }

@@ -1,9 +1,8 @@
-$primary-color: #304FFE;
+$primary-color: #304ffe;
 $primary-text: "Open Sans";
 
-.title{
+.title {
   color: $primary-color;
-
 }
 .wrapper {
   display: grid;
@@ -20,79 +19,81 @@ $primary-text: "Open Sans";
   grid-row: 1;
 }
 
-.header-items{
+.header-items {
   & > ion-col {
-  margin: 0px;
+    margin: 0px;
   }
 
-  .card-header{
+  .card-header {
     align-items: center;
     text-align: center;
-    &-icon{
+    &-icon {
       color: $primary-color;
       & > ion-icon {
         height: 30px;
         width: 30px;
       }
     }
-    &-title{
+    &-title {
       color: $primary-color;
       font-size: 2rem;
       font-weight: bold;
     }
-    &-content{
+    &-content {
       font-family: $primary-text;
       font-size: 1rem;
     }
   }
 }
-.card-content{
-  &-header{
+.card-content {
+  &-header {
     background-color: $primary-color;
-    &-title{
+    &-title {
       color: white;
     }
   }
-  &-title{
+  &-title {
     font-weight: bold;
     font-size: 1rem;
     color: #000000;
   }
-  &-subtitle{
+  &-subtitle {
     text-align: right;
   }
-  &-text{
+  &-text {
     font-weight: bold;
     font-size: 1rem;
     color: #000000;
   }
-  &-button{
-      text-align: right;
-
+  &-button {
+    text-align: right;
   }
 }
-.footer-items{
+.footer-items {
   & > ion-col {
-  margin: 0px;
+    margin: 0px;
   }
 
-  .card-footer{
+  .card-footer {
+    img {
+      width: 7rem;
+    }
     align-items: center;
     text-align: center;
-    &-icon{
+    &-icon {
       color: $primary-color;
     }
-    &-title{
+    &-title {
       color: $primary-color;
       font-size: 2rem;
       font-weight: bold;
     }
-    &-content{
+    &-content {
       font-family: $primary-text;
       font-size: 1rem;
       color: #000000;
     }
-    &-image{
+    &-image {
       height: 100;
       width: 100;
     }

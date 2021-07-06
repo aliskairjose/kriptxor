@@ -13,6 +13,6 @@ export class DashboardService {
   ) { }
 
   dashboard(): Observable<DashboardResponse> {
-    return this.http.get( `dashboard` );
+    return this.http.get( `dashboard-app` );
   }
 }

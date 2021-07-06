@@ -11,5 +11,5 @@ export interface LoginReponse {
 }
 
 export interface DashboardResponse extends BaseResponse {
-  result: Dashboard
+  data: Dashboard
 }

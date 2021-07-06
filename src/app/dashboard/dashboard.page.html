@@ -8,117 +8,121 @@
 </ion-header>
 
 <ion-content>
-<ion-grid>
-  <ion-row class="header-items">
-    <ion-col>
-      <ion-card class="card-header">
-      <ion-card-header>
-        <ion-card-subtitle class="card-header-icon"><ion-icon src="assets/icon/assessment.svg"></ion-icon></ion-card-subtitle>
-        <ion-card-title class="card-header-title">258</ion-card-title>
-      </ion-card-header>
+  <ion-grid>
+    <ion-row class="header-items">
+      <ion-col>
+        <ion-card class="card-header">
+          <ion-card-header>
+            <ion-card-subtitle class="card-header-icon">
+              <ion-icon src="assets/icon/assessment.svg"></ion-icon>
+            </ion-card-subtitle>
+            <ion-card-title class="card-header-title">{{data.allCampaigns}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="card-header-content">
+            Campañas
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="card-header">
+          <ion-card-header>
+            <ion-card-subtitle class="card-header-icon">
+              <ion-icon name="people-circle"></ion-icon>
+            </ion-card-subtitle>
+            <ion-card-title class="card-header-title">{{data.clients}}</ion-card-title>
+          </ion-card-header>
 
-      <ion-card-content class="card-header-content">
-        Campañas
-      </ion-card-content>
-    </ion-card>
-    </ion-col>
-    <ion-col>
-      <ion-card class="card-header">
-      <ion-card-header>
-        <ion-card-subtitle class="card-header-icon"><ion-icon name="people-circle"></ion-icon></ion-card-subtitle>
-        <ion-card-title class="card-header-title">1058</ion-card-title>
-      </ion-card-header>
+          <ion-card-content class="card-header-content">
+            Mis Clientes
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-      <ion-card-content class="card-header-content">
-        Mis Clientes
-      </ion-card-content>
-    </ion-card>
-    </ion-col>
-    <ion-col>
-      <ion-card class="card-header">
-      <ion-card-header>
-        <ion-card-subtitle class="card-header-icon"><ion-icon src="assets/icon/monetization.svg"></ion-icon></ion-card-subtitle>
-        <ion-card-title class="card-header-title">50.369</ion-card-title>
-      </ion-card-header>
+      <ion-col>
+        <ion-card class="card-header">
+          <ion-card-header>
+            <ion-card-subtitle class="card-header-icon">
+              <ion-icon src="assets/icon/monetization.svg"></ion-icon>
+            </ion-card-subtitle>
+            <ion-card-title class="card-header-title">{{data.reminders}}</ion-card-title>
+          </ion-card-header>
 
-      <ion-card-content class="card-header-content">
-        Mis ventas
-      </ion-card-content>
-    </ion-card>
-    </ion-col>
-    <ion-col>
-      <ion-card class="card-header">
-      <ion-card-header>
-        <ion-card-subtitle class="card-header-icon"><ion-icon name="calendar-clear-outline"></ion-icon></ion-card-subtitle>
-        <ion-card-title class="card-header-title">35</ion-card-title>
-      </ion-card-header>
+          <ion-card-content class="card-header-content">
+            Mis proyectos
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-      <ion-card-content class="card-header-content">
-        Mi Agencia
-      </ion-card-content>
-    </ion-card>
-    </ion-col>
-  </ion-row>
+      <ion-col>
+        <ion-card class="card-header">
+          <ion-card-header>
+            <ion-card-subtitle class="card-header-icon">
+              <ion-icon name="calendar-clear-outline"></ion-icon>
+            </ion-card-subtitle>
+            <ion-card-title class="card-header-title">{{data.reminders}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="card-header-content">
+            Mi Agencia
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 
 
   <ion-card class="card-content">
-  <ion-card-header class="card-content-header">
-    <ion-card-subtitle class="card-content-header-title">ULTIMAS NOTIFICACIONES</ion-card-subtitle>
-  </ion-card-header>
+    <ion-card-header class="card-content-header">
+      <ion-card-subtitle class="card-content-header-title">ULTIMAS NOTIFICACIONES</ion-card-subtitle>
+    </ion-card-header>
   </ion-card>
 
-  <ion-card *ngFor="let ad of ads" class="card-content">
-  <ion-card-content>
-    <ion-grid>
+  <ion-card *ngFor="let news of data.lastNews" class="card-content">
+    <ion-card-content>
+      <ion-grid>
         <ion-row>
           <ion-col class="card-content-title">
-            Nuevas metas establecidas
+            {{news.title}}
           </ion-col>
           <ion-col class="card-content-subtitle">
-            04/05/2021
+            {{news.create_at | date}}
           </ion-col>
         </ion-row>
-    </ion-grid>
-    <ion-row>
-      <ion-col size="8" class="card-content-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore...
-      </ion-col>
-      <ion-col class="card-content-button">
-        <ion-button shape="round" color="warning">
-          <ion-icon slot="start" name="eye-outline" ></ion-icon>
-          Leer Más
-
-        </ion-button>
-      </ion-col>
-    </ion-row>
-
-  </ion-card-content>
+      </ion-grid>
+      <ion-row>
+        <ion-col size="8" class="card-content-text">
+          {{seeMore ? news.content.substring(0,100) + '...' : news.content}}...
+        </ion-col>
+        <ion-col class="card-content-button">
+          <ion-button shape="round" color="warning" (click)="seeMore = !seeMore">
+            <ion-icon slot="start" name="eye-outline"></ion-icon>
+            {{ seeMore ? 'Leet más' : 'Leer menos'}}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
   </ion-card>
 
 
   <ion-card class="card-content">
-  <ion-card-header class="card-content-header">
-    <ion-card-subtitle class="card-content-header-title">TOP SEMANAL DE VENDEDORES</ion-card-subtitle>
-  </ion-card-header>
+    <ion-card-header class="card-content-header">
+      <ion-card-subtitle class="card-content-header-title">TOP SEMANAL DE VENDEDORES</ion-card-subtitle>
+    </ion-card-header>
   </ion-card>
   <ion-grid>
     <ion-row class="footer-items">
-      <ion-col *ngFor="let vendor of top">
+      <ion-col *ngFor="let seller of data.topSellers">
         <ion-card class="card-footer">
-          <img src="https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406_960_720.jpg" />
-        <ion-card-header>
-          <ion-card-title class="card-footer-title">
-          </ion-card-title>
-        </ion-card-header>
-
-        <ion-card-content class="card-footer-content">
-          Pedro Perez
-        </ion-card-content>
-      </ion-card>
+          <img [src]="seller.main_image" />
+          <ion-card-header>
+            <ion-card-title class="card-footer-title">
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="card-footer-content">
+            {{seller.nombre}} {{seller.apellido}}
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
-    </ion-grid>
+  </ion-grid>
 
 </ion-content>

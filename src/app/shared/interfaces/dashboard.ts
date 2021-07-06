@@ -1,37 +1,30 @@
 export interface Dashboard {
-  clients_count: number;
-  campaigns_count: number;
-  users_count: number
-  sales_count: number;
-  pending_count: number;
-  failed_count: number;
-  clients_by_user: ClientByUser[];
-  campaign_messages: CampaignMessage[];
-  sales_success: SaleSuccess[];
-  states_last: StatesLast[];
+  allCampaigns?: number;
+  clients?: number;
+  lastNews?: LastNews[]
+  topSellers?: TopSellers[]
+  reminders?: number;
+  projections?: number;
 }
 
-export interface StatesLast {
-  assigned: number;
-  contacted: number;
-  no_response: number;
-  close_sell: number;
-  completed: number;
-  not_success: number;
+export interface TopSellers {
+  id?: number;
+  nombre?: string;
+  apellido?: string;
+  email?: string;
+  id_rol?: number;
+  super_admin?: number;
+  numero?: string;
+  main_image?: string;
 }
 
-export interface SaleSuccess {
-  id: number;
-  nombre: string;
-  count: number;
-}
-export interface CampaignMessage {
-  id: number;
-  nombre: string;
-  cantidad_mensajes: number;
-}
-export interface ClientByUser {
-  id: number;
-  nombre_completo: string;
-  count: number;
+export interface LastNews {
+  id?: number;
+  title?: string;
+  content?: string;
+  image?: string;
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string;
+
 }

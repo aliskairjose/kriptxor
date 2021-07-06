@@ -14,6 +14,7 @@ export class HttpService {
 
   post( serviceName: string, data?: any ): Observable<any> {
     const url = environment.api + serviceName;
+    this.http.post( url, data ).subscribe( console.log );
     return this.http.post( url, data );
   }
 

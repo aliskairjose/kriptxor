@@ -1,5 +1,6 @@
 export const USER = 'sms_user';
-export const TOKEN = 'sms_toekn';
+export const TOKEN = 'sms_token';
+export const LOGO = '/assets/img/logo.svg';
 
 export const ERROR_FORM = {
   invalidEmail: 'Email inválido.',

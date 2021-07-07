@@ -27,8 +27,10 @@ const routes: Routes = [
   {
     path: 'campaign',
     loadChildren: () => import('./campaign/campaign.module').then( m => m.CampaignPageModule)
+  },  {
+    path: 'client',
+    loadChildren: () => import('./client/client.module').then( m => m.ClientPageModule)
   }
-
 ];
 
 @NgModule( {

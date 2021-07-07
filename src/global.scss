@@ -25,6 +25,10 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+.bg-ligth-gray {
+  background-color: var(--ion-color-ligth-gray);
+}
+
 .login {
   height: 100%;
   display: flex;
@@ -57,7 +61,46 @@
   }
 }
 
-.title {
+.title-login {
   color: var(--ion-color-primary);
   font-size: 22px;
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ion-color-primary);
+  height: 2.5rem;
+  color: white;
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.seller-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  img {
+    height: 7rem;
+  }
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card-header-icon {
+  text-align: center;
+  img {
+    height: 1.5rem;
+  }
+}
+.card-header-title {
+  color: var(--ion-color-primary);
+  text-align: center;
 }

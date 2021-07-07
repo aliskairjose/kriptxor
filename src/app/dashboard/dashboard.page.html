@@ -3,126 +3,101 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="title">Dashboard</ion-title>
+    <ion-title>Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-grid>
-    <ion-row class="header-items">
-      <ion-col>
-        <ion-card class="card-header">
-          <ion-card-header>
-            <ion-card-subtitle class="card-header-icon">
-              <ion-icon src="assets/icon/assessment.svg"></ion-icon>
-            </ion-card-subtitle>
-            <ion-card-title class="card-header-title">{{data.allCampaigns}}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content class="card-header-content">
-            Campañas
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card class="card-header">
-          <ion-card-header>
-            <ion-card-subtitle class="card-header-icon">
-              <ion-icon name="people-circle"></ion-icon>
-            </ion-card-subtitle>
-            <ion-card-title class="card-header-title">{{data.clients}}</ion-card-title>
-          </ion-card-header>
 
-          <ion-card-content class="card-header-content">
-            Mis Clientes
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
+<ion-content class="ion-padding">
 
-      <ion-col>
-        <ion-card class="card-header">
-          <ion-card-header>
-            <ion-card-subtitle class="card-header-icon">
-              <ion-icon src="assets/icon/monetization.svg"></ion-icon>
-            </ion-card-subtitle>
-            <ion-card-title class="card-header-title">{{data.reminders}}</ion-card-title>
-          </ion-card-header>
+  <div class="card-container">
+    <!-- Campañas -->
+    <ion-card class="card-header">
+      <ion-card-header>
+        <ion-card-subtitle class="card-header-icon">
+          <img src="assets/icon/assessment.svg">
+        </ion-card-subtitle>
+        <ion-card-title class="card-header-title">{{data.allCampaigns}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="card-header-content">
+        Campañas
+      </ion-card-content>
+    </ion-card>
+    <!-- Clientes -->
+    <ion-card class="card-header">
+      <ion-card-header>
+        <ion-card-subtitle class="card-header-icon">
+          <img src="/assets/icon/persons-circle.svg" alt="">
+        </ion-card-subtitle>
+        <ion-card-title class="card-header-title">{{data.clients}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="card-header-content">
+        Mis Clientes
+      </ion-card-content>
+    </ion-card>
+  </div>
 
-          <ion-card-content class="card-header-content">
-            Mis proyectos
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
+  <div class="card-container">
+    <!-- Proyecciones -->
+    <ion-card class="card-header">
+      <ion-card-header>
+        <ion-card-subtitle class="card-header-icon">
+          <img src="assets/icon/monetization.svg" alt="">
+        </ion-card-subtitle>
+        <ion-card-title class="card-header-title">{{data.projections}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="card-header-content">
+        Proyecciones
+      </ion-card-content>
+    </ion-card>
+    <!-- Agenda -->
+    <ion-card class="card-header">
+      <ion-card-header>
+        <ion-card-subtitle class="card-header-icon">
+          <img src="/assets/icon/calendar.svg" alt="">
+        </ion-card-subtitle>
+        <ion-card-title class="card-header-title">{{data.reminders}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="card-header-content">
+        Mi Agenda
+      </ion-card-content>
+    </ion-card>
+  </div>
 
-      <ion-col>
-        <ion-card class="card-header">
-          <ion-card-header>
-            <ion-card-subtitle class="card-header-icon">
-              <ion-icon name="calendar-clear-outline"></ion-icon>
-            </ion-card-subtitle>
-            <ion-card-title class="card-header-title">{{data.reminders}}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content class="card-header-content">
-            Mi Agencia
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="title-bar">
+    ULTIMAS NOTIFICACIONES
+  </div>
 
+  <ng-container *ngFor="let news of data.lastNews" class="card-content">
+    <ion-card>
+      <ion-card-header class="bg-ligth-gray">
+        <ion-card-subtitle>
+          {{news.title}}
+          {{news.create_at | date}}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{seeMore ? news.content.substring(0,100) + '...' : news.content}}...
+        <ion-button (click)="seeMore = !seeMore" color="warning" size="small">
+          <ion-icon slot="start" name="eye-outline"></ion-icon>
+          {{ seeMore ? 'Leet más' : 'Leer menos'}}
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
 
-  <ion-card class="card-content">
-    <ion-card-header class="card-content-header">
-      <ion-card-subtitle class="card-content-header-title">ULTIMAS NOTIFICACIONES</ion-card-subtitle>
-    </ion-card-header>
-  </ion-card>
+  <div class="title-bar">
+    TOP SEMANAL DE VENDEDORES
+  </div>
 
-  <ion-card *ngFor="let news of data.lastNews" class="card-content">
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col class="card-content-title">
-            {{news.title}}
-          </ion-col>
-          <ion-col class="card-content-subtitle">
-            {{news.create_at | date}}
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-row>
-        <ion-col size="8" class="card-content-text">
-          {{seeMore ? news.content.substring(0,100) + '...' : news.content}}...
-        </ion-col>
-        <ion-col class="card-content-button">
-          <ion-button shape="round" color="warning" (click)="seeMore = !seeMore">
-            <ion-icon slot="start" name="eye-outline"></ion-icon>
-            {{ seeMore ? 'Leet más' : 'Leer menos'}}
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
+  <div>
+    <ng-container *ngFor="let seller of data.topSellers">
+      <div class="seller-card">
+        <img [src]="seller.main_image" />
+        <small>{{seller.nombre}} {{seller.apellido}}</small>
+      </div>
+    </ng-container>
 
-
-  <ion-card class="card-content">
-    <ion-card-header class="card-content-header">
-      <ion-card-subtitle class="card-content-header-title">TOP SEMANAL DE VENDEDORES</ion-card-subtitle>
-    </ion-card-header>
-  </ion-card>
-  <ion-grid>
-    <ion-row class="footer-items">
-      <ion-col *ngFor="let seller of data.topSellers">
-        <ion-card class="card-footer">
-          <img [src]="seller.main_image" />
-          <ion-card-header>
-            <ion-card-title class="card-footer-title">
-            </ion-card-title>
-          </ion-card-header>
-          <ion-card-content class="card-footer-content">
-            {{seller.nombre}} {{seller.apellido}}
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  </div>
 
 </ion-content>

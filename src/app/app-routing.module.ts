@@ -30,7 +30,11 @@ const routes: Routes = [
   },  {
     path: 'client',
     loadChildren: () => import('./client/client.module').then( m => m.ClientPageModule)
+  },  {
+    path: 'documents',
+    loadChildren: () => import('./documents/documents.module').then( m => m.DocumentsPageModule)
   }
+
 ];
 
 @NgModule( {

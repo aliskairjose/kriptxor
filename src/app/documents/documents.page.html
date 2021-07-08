@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">Documentos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="client-name">
+    <ion-text class="title" >
+        Melissa
+    </ion-text>
+    <div>
+      <ion-grid>
+        <!-- icon -->
+        <ion-row class="icons-container">
+          <ion-col size="3">
+            <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
+            <br>Documentos
+          </ion-col>
+          <ion-col size="3">
+            <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
+            <br>Notas
+          </ion-col>
+          <ion-col size="3">
+            <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
+            <br>Agenda
+          </ion-col>
+          <ion-col size="3">
+            <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
+            <br>Cotizaciones
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- end icon -->
+    </div>
+  </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-text color="dark" class="bold-text">
+        Historial
+      </ion-text>
+    </ion-card-header>
+    <ion-card-content >
+      <ion-item class="document">
+        <ion-icon slot="start"  src="assets/icon/pdf-icon.svg"></ion-icon>
+        <ion-icon slot="end"  src="assets/icon/x-icon.svg"></ion-icon>
+        hola
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="full" color="warning">
+    <ion-text class="card-content-footer-text">
+      VOLVER AL LISTADO DE CONTACTOS
+     </ion-text>
+  </ion-button>
+</ion-content>

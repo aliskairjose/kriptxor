@@ -1,4 +1,3 @@
-import { Client } from './cliente';
 export interface Campaign {
   id?: number;
   nombre?: string;
@@ -46,7 +45,7 @@ export interface CampaignClient {
   amount?: number;
   id_user?: number;
   interested?: number;
-  cliente: Client | null;
+  cliente: CampaignClient | null;
   status: Status | null;
   getlast?: Last | null;
   vendedor?: Seller | null;
@@ -81,7 +80,7 @@ export interface ClientCampaignDetail {
   twilio_observaciones?: string;
   amount?: number;
   interested?: number;
-  cliente?: Client;
+  cliente?: CampaignClient;
   details: Detail[];
 }
 

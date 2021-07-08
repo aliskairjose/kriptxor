@@ -10,6 +10,10 @@ export interface LoginReponse {
   user: User;
 }
 
-export interface DashboardResponse extends BaseResponse {
-  data: Dashboard
+export interface DataResponse<T> extends BaseResponse {
+  data: T
+}
+
+export interface ResultReponse<T> extends BaseResponse {
+  result: T
 }

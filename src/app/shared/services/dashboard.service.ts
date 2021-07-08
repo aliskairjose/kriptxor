@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Observable } from 'rxjs';
-import { DashboardResponse } from '../interfaces/response';
+import { DataResponse } from '../interfaces/response';
+import { Dashboard } from '../interfaces/dashboard';
 
 @Injectable( {
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class DashboardService {
     private http: HttpService
   ) { }
 
-  dashboard(): Observable<DashboardResponse> {
+  dashboard(): Observable<DataResponse<Dashboard>> {
     return this.http.get( `dashboard-app` );
   }
 }

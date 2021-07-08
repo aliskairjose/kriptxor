@@ -17,6 +17,8 @@ export interface Campaign {
   vendedor?: Seller;
   campaign_clientes_count?: number;
   campaign_clientes?: CampaignClient[];
+  status_name?: string;
+  quotes?: number;
 }
 
 export interface Seller {

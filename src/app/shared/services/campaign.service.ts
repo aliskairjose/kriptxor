@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Observable } from 'rxjs';
-import { ResultReponse, PaginationResponse } from '../interfaces/response';
+import { ResultReponse, DataResponse } from '../interfaces/response';
 import { Campaign, ClientCampaignDetail } from '../interfaces/campaign';
 
 @Injectable( {
@@ -17,8 +17,8 @@ export class CampaignService {
    * @description Lista todas las campañas
    * @returns Listado de campañas
    */
-  list( sellerId: number, filter: any, page = 1 ): Observable<PaginationResponse<Campaign>> {
-    return this.http.get( `campaigns?sellers=${sellerId}&filter={"campaignClientsCount":${filter.campaignClientsCount},"name":""}&page=${page}` );
+  list( sellerId: number, filter: any, page = 1 ): Observable<DataResponse<Campaign[]>> {
+    return this.http.get( `campaigns?sellers=${sellerId}&filter={"campaignClientsCount":${filter.campaignClientsCount},"name":"","quotesCount":1}&page=${page}` );
   }
 
   getById( id: number ): Observable<ResultReponse<Campaign>> {

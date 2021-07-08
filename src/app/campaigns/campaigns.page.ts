@@ -45,7 +45,7 @@ export class CampaignsPage implements OnInit {
       if ( isFirstLoad ) { event.target.complete(); }
 
       this.pagination = response.meta.page;
-      this.campaigns.push( ...response.data.data );
+      this.campaigns.push( ...response.data );
 
     }, () => loading.dismiss() );
   }

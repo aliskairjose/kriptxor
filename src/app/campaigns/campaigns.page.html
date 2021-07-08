@@ -19,7 +19,7 @@
         <ion-card-subtitle class="campaign-card-header">
           <div>
             <ion-label class="ion-margin-end">Campaña #{{campaign.id}}</ion-label>
-            <ion-label>EN CURSO</ion-label>
+            <ion-label>{{campaign.status_name}}</ion-label>
           </div>
           <ion-label class="date">Iniciada el {{campaign.fecha_inicio }}</ion-label>
         </ion-card-subtitle>
@@ -30,7 +30,7 @@
             <img src="/assets/icon/persons-circle.svg" alt=""> {{campaign.campaign_clientes_count}} clientes
           </ion-label>
           <ion-label>
-            <img src="/assets/icon/monetization.svg" alt=""> 7 ventas
+            <img src="/assets/icon/monetization.svg" alt=""> {{campaign.quotes}} ventas
           </ion-label>
         </div>
         <div>

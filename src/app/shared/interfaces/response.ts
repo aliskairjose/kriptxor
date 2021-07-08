@@ -12,14 +12,11 @@ export interface LoginReponse {
 }
 
 export interface DataResponse<T> extends BaseResponse {
-  data: T
+  data: T;
+  meta?: Meta;
 }
 
 export interface ResultReponse<T> extends BaseResponse {
   result: T
 }
 
-export interface PaginationResponse<T> {
-  data?: Pagination<T>;
-  meta?: Meta;
-}

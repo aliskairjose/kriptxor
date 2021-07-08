@@ -1,0 +1,69 @@
+ion-button {
+ text-transform: none;
+}
+.history-span{
+  color: #304FFE;
+}
+ion-item:not(.file){
+  --background: rgba(48, 79, 254, 0.22);
+}
+ion-label{
+  width: 100%;
+}
+.client-name{
+  text-align: center;
+  margin-top: 5%;
+}
+.icons{
+    height: 60px;
+    width: 60px;
+
+}
+.hidde{
+  position: absolute;
+  opacity: 0;
+}
+.icon{
+    height: 15px;
+    width: 50px;
+
+}
+.card-header-title{
+  font-size: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+.center{
+  text-align: center;
+}
+.img-preview{
+  max-height: 80px;
+  width: 100%;
+}
+.card-content{
+  text-align: center;
+}
+.text-button{
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 400;
+  color: #455A64;
+}
+.card{
+
+}
+.bold-text{
+  font-weight: bold;
+}
+.status-text{
+  position: absolute;
+  top: 10px;
+
+}
+.icon-history{
+  height: 20px;
+  width: 20px;
+}
+.history > ion-grid > ion-row {
+  box-shadow: 0.4px 0.4px 0.4px #999;
+}

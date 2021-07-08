@@ -1,0 +1,174 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">Datos del cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="client-name">
+    <ion-text class="title" >
+        Melissa
+    </ion-text>
+    <div>
+      <ion-grid>
+        <!-- icon -->
+        <ion-row class="icons-container">
+          <ion-col size="3">
+            <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
+            <br>Documentos
+          </ion-col>
+          <ion-col size="3">
+            <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
+            <br>Notas
+          </ion-col>
+          <ion-col size="3">
+            <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
+            <br>Agenda
+          </ion-col>
+          <ion-col size="3">
+            <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
+            <br>Cotizaciones
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- end icon -->
+    </div>
+  </div>
+
+
+  <ion-card class="card">
+    <ion-card-content class="card-content">
+      <ion-button shape="round" fill="outline" color="medium">
+        <ion-icon slot="start" src="assets/icon/x-outline.svg"></ion-icon>
+        <ion-text class="text-button">
+          No interesado
+        </ion-text>
+
+      </ion-button>
+      &nbsp;&nbsp;
+      <ion-button shape="round" fill="outline" color="medium">
+        <ion-icon slot="start" src="assets/icon/check-outline.svg"></ion-icon>
+        <ion-text class="text-button">
+          Interesado
+        </ion-text>
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-text color="dark" class="bold-text">
+              Cliente:
+            </ion-text>
+            <br>
+            Melissa Olaya Domingues
+          </ion-col>
+          <ion-col>
+            <ion-text color="dark" class="bold-text">
+              Telefono:
+            </ion-text>
+            <br>
+            209834572345
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-text>
+              <ion-badge color="tertiary">Actualizado</ion-badge>
+            </ion-text>
+            <br>
+            Última actualización 26 de Mayo 2021
+          </ion-col>
+          <ion-col>
+            <ion-text color="dark" class="bold-text">
+              Cedula:
+            </ion-text>
+            <br>
+            209834572345
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-text color="dark" class="bold-text">
+        Historial
+      </ion-text>
+    </ion-card-header>
+    <ion-card-content class="history">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-icon src="assets/icon/cellphone1.svg"></ion-icon>
+            &nbsp;
+            <ion-text color="dark" class="bold-text">
+              Alberto Chirinos:
+            </ion-text> Llamda realizada
+            <br>
+            <ion-badge color="medium">26 May 2021</ion-badge>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-icon src="assets/icon/cellphone1.svg"></ion-icon>
+            &nbsp;
+            <ion-text color="dark" class="bold-text">
+              Alberto Chirinos:
+            </ion-text> Ha registrado una nota
+            <br>
+            <ion-badge class="history-span"  color="warning">10 May 2021</ion-badge>
+            <br>
+            <ion-textarea>
+              El cliente indica que se llame despues de las 6:00pm
+              <br><br><br>
+              Se mostró interesado
+            </ion-textarea>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="8">
+            <ion-icon src="assets/icon/cellphone1.svg"></ion-icon>
+            &nbsp;
+            <ion-text color="dark" class="bold-text">
+              Alberto Chirinos:
+            </ion-text> Ha marcado
+            <br>
+            <ion-badge  color="medium">26 May 2021</ion-badge>
+
+          </ion-col>
+          <ion-col class="ion-align-self-center">
+            <ion-icon class="icon" src="assets/icon/check-outline.svg"></ion-icon>
+            &nbsp;
+            <ion-text color="dark" class="status-text">
+              Interesado
+            </ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-icon class="icon-history" src="assets/icon/schedule.svg"></ion-icon>
+            &nbsp;
+            <ion-text color="dark" class="bold-text">
+              Alberto Chirinos:
+            </ion-text> Ha marcado una cita
+            <br>
+            <ion-badge  color="medium">09 May 2021</ion-badge>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="full" color="warning">
+    <ion-text class="card-content-footer-text">
+      VOLVER AL LISTADO DE CONTACTOS
+     </ion-text>
+  </ion-button>
+</ion-content>

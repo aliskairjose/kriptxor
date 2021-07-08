@@ -11,8 +11,32 @@ $primary-text: "Open Sans";
 ion-button {
   text-transform: none;
 }
-.header {
-  background-color: #f8f8f8;
+ion-button:not(.button-client, .whatsapp-butto, .call, .call2){
+   --background: white;
+    color: black;
+}
+
+ion-item:not(.file){
+  --background: #F8F8F8;
+}
+.button-client{
+  text-align: right;
+}
+.whatsapp-button{
+  --background: red;
+  color: red;
+}
+.client{
+  position: absolute;
+  left: 40px;
+  top: 17px;
+}
+.account-icon{
+  height: 30px;
+  width: 30px;
+}
+.header{
+  background-color: #F8F8F8;
   box-shadow: 0.4px 0.4px 0.4px #999;
 }
 .card-content {
@@ -55,8 +79,8 @@ ion-button {
   }
   & > ion-icon {
     position: absolute;
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
     left: -17px;
     color: $primary-color;
   }

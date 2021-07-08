@@ -12,64 +12,62 @@
 
 
   <ion-card *ngFor="let client of clients" class="card-content">
+  <ion-card-content>
 
-    <ion-card-header class="header">
-      <ion-grid>
-        <ion-row>
-          <ion-col class="card-content">
-            <ion-icon src="assets/icon/account-circle.svg"></ion-icon>
-            Cliente: <ion-text class="card-content-title">Melisa</ion-text>
-          </ion-col>
-          <ion-col class="card-content-subtitle">
-            <ion-button shape="round" size="small" color="tertiary">
-              <ion-icon name="arrow-forward-circle-outline"></ion-icon>
-              &nbsp;
-              Ver Cliente
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-header>
-    <ion-card-content>
+<ion-item>
+  <ion-label>
+    <ion-icon class="account-icon" src="assets/icon/account-circle.svg"></ion-icon>
+    <ion-text class="client">
+        Cliente:    <ion-text class="card-content-title">Melisa</ion-text>
+    </ion-text>
+  </ion-label>
+  <ion-label class="button-client">
+    <ion-button class="button-client" shape="round" size="small" color="tertiary">
+      <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+      &nbsp;
+      Ver Cliente
+    </ion-button>
+  </ion-label>
+</ion-item>
 
-      <ion-row>
-        <ion-col class="card-content">
-          Estado: <br>
-          <ion-text class="card-content-text">
-            Contactando
-          </ion-text>
-        </ion-col>
-        <ion-col class="card-content">
-          Telefono: <br>
-          <ion-text class="card-content">
-            +507 6536-5905
-          </ion-text>
-        </ion-col>
-        <ion-col class="card-content-button">
-          <ion-button shape="round" color="light" size="small">
-            <ion-icon slot="start" src="assets/icon/whatsapp-icon.svg"></ion-icon>
-            <ion-text class="card-content-button-text">
-              Whatsapp
+    <ion-row>
+      <ion-col class="card-content">
+        Estado: <br>
+           <ion-text class="card-content-text">
+             Contactando
             </ion-text>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-    <ion-button expand="full" color="warning">
-      <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
-      <ion-text class="card-content-footer-text">
-        LLAMAR AHORA
-      </ion-text>
-    </ion-button>
+      </ion-col>
+      <ion-col class="card-content">
+        Telefono: <br>
+           <ion-text class="card-content">
+             +507 6536-5905
+            </ion-text>
+      </ion-col>
+      <ion-col class="card-content-button">
+        <ion-button class="whatsapp-button" shape="round">
+          <ion-icon slot="start" src="assets/icon/whatsapp-icon.svg"></ion-icon>
+          <ion-text class="card-content-button-text">
+            Whatsapp
+           </ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+  <ion-button class="call" expand="full" color="warning">
+    <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
+    <ion-text class="card-content-footer-text">
+      LLAMAR AHORA
+     </ion-text>
+  </ion-button>
   </ion-card>
-  <div style="flex: 1;">
-    <ion-button expand="full" color="warning">
-      <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
-      <ion-text class="card-content-footer-text">
-        CONTINUAR LLAMANDO
-      </ion-text>
-    </ion-button>
-  </div>
+   <div style="flex: 1;">
+     <ion-button class="call2" expand="full" color="warning">
+       <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
+       <ion-text class="card-content-footer-text">
+         CONTINUAR LLAMANDO
+        </ion-text>
+     </ion-button>
+   </div>
 </ion-content>
 <ion-footer class="ion-no-border">
 </ion-footer>

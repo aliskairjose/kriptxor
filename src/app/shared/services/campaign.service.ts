@@ -17,15 +17,16 @@ export class CampaignService {
    * @description Lista todas las campañas
    * @returns Listado de campañas
    */
-  list(): Observable<ResultReponse<Campaign[]>> {
-    return this.http.get( `campaign` );
+  list( sellerId: number, filter: any, page = 1 ): Observable<ResultReponse<Campaign[]>> {
+    console.log( filter );
+    return this.http.get( `campaigns?sellers=${sellerId}&filter={"campaignClientsCount":${filter.campaignClientsCount},"name":""}&page=${page}` );
   }
 
   getById( id: number ): Observable<ResultReponse<Campaign>> {
-    return this.http.get( `campaign/${id}` );
+    return this.http.get( `campaign / ${id} ` );
   }
 
   getClientDetailById( id: number ): Observable<ResultReponse<ClientCampaignDetail>> {
-    return this.http.get( `campaignclientdetails/${id}` )
+    return this.http.get( `campaignclientdetails / ${id} ` )
   }
 }

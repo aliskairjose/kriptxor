@@ -8,6 +8,12 @@ ion-menu.md ion-content {
   --padding-top: 20px;
   --padding-bottom: 20px;
 }
+$primary-color: #304ffe;
+$primary-text: "Open Sans";
+
+.title {
+  color: $primary-color;
+}
 
 ion-menu.md ion-list {
   padding: 20px 0;

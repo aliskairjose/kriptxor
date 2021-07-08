@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Observable } from 'rxjs';
 import { ResultReponse } from '../interfaces/response';
-import { Campaign } from '../interfaces/campaign';
+import { Campaign, ClientCampaignDetail } from '../interfaces/campaign';
 
 @Injectable( {
   providedIn: 'root'
@@ -25,4 +25,7 @@ export class CampaignService {
     return this.http.get( `campaign/${id}` );
   }
 
+  getClientDetailById( id: number ): Observable<ResultReponse<ClientCampaignDetail>> {
+    return this.http.get( `campaignclientdetails/${id}` )
+  }
 }

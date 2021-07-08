@@ -64,3 +64,31 @@ export interface Status {
   description?: string;
   created_at?: string;
 }
+
+export interface ClientCampaignDetail {
+  id?: number;
+  id_campaign?: number;
+  id_cliente?: number;
+  id_user?: number;
+  observaciones?: string;
+  condicion?: number;
+  created_at?: string;
+  updated_at?: string;
+  twilio_status?: number;
+  twilio_observaciones?: string;
+  amount?: number;
+  interested?: number;
+  cliente?: Client;
+  details: Detail[];
+}
+
+export interface Detail {
+  id?: number;
+  id_campaign_client?: number;
+  id_user?: number;
+  observaciones?: string;
+  condicion?: number;
+  created_at?: string;
+  url_file?: string | null;
+  vendedor?: Seller;
+}

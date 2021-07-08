@@ -15,6 +15,7 @@ export interface Campaign {
   success?: string;
   deleted_at?: string;
   vendedor?: Seller;
+  campaign_clientes_count?: number;
   campaign_clientes?: CampaignClient[];
 }
 

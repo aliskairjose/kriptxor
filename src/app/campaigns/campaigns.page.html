@@ -18,16 +18,16 @@
       <ion-card-header class="bg-ligth-gray">
         <ion-card-subtitle class="campaign-card-header">
           <div>
-            <ion-label class="ion-margin-end">Campaña #{{i+1}}</ion-label>
+            <ion-label class="ion-margin-end">Campaña #{{campaign.id}}</ion-label>
             <ion-label>EN CURSO</ion-label>
           </div>
-          <ion-label class="date">Iniciada el 01-01-2021</ion-label>
+          <ion-label class="date">Iniciada el {{campaign.fecha_inicio }}</ion-label>
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content class="campaign-card-content">
         <div>
           <ion-label>
-            <img src="/assets/icon/persons-circle.svg" alt=""> 102 clientes
+            <img src="/assets/icon/persons-circle.svg" alt=""> {{campaign.campaign_clientes_count}} clientes
           </ion-label>
           <ion-label>
             <img src="/assets/icon/monetization.svg" alt=""> 7 ventas
@@ -43,5 +43,11 @@
     </ion-card>
 
   </ng-container>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más campañas...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 
 </ion-content>

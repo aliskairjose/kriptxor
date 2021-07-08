@@ -1,5 +1,6 @@
 import { User } from './user';
 import { Dashboard } from './dashboard';
+import { Pagination, Meta } from './pagination';
 export interface BaseResponse {
   status: string;
   message: string;
@@ -16,4 +17,9 @@ export interface DataResponse<T> extends BaseResponse {
 
 export interface ResultReponse<T> extends BaseResponse {
   result: T
+}
+
+export interface PaginationResponse<T> {
+  data?: Pagination<T>;
+  meta?: Meta;
 }

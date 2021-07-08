@@ -69,9 +69,18 @@
               <ion-icon slot="start" class="icon"  src="assets/icon/attach-icon.svg"></ion-icon>
               <ion-text class="title">SUBIR ARCHIVO</ion-text>
             </ion-label>
-          <ion-input type="file" class="hidde"></ion-input>
+          <ion-input  (change)='updateFile($event)' type="file" class="hidde"></ion-input>
         </ion-item>
         </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngIf="uploadedFile">
+        <img class="img-preview" src="{{imgPreview}}" />
+        <ion-card-content>
+          <ion-icon slot="start" class="icon"  src="assets/icon/photo.svg"></ion-icon>
+          {{imgName}}
+        </ion-card-content>
+
       </ion-card>
     </ion-card-content>
   </ion-card>

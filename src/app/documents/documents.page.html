@@ -46,16 +46,46 @@
       </ion-text>
     </ion-card-header>
     <ion-card-content >
-      <ion-item class="document">
-        <ion-icon slot="start"  src="assets/icon/pdf-icon.svg"></ion-icon>
-        <ion-icon slot="end"  src="assets/icon/x-icon.svg"></ion-icon>
-        hola
-      </ion-item>
+      <div class="document">
+        <ion-item>
+          <ion-icon slot="start"  src="assets/icon/pdf-icon.svg"></ion-icon>
+          <ion-icon slot="end"  src="assets/icon/x-icon.svg"></ion-icon>
+          <ion-text>
+            Ficha de Mayo ac..
+          </ion-text>
+        </ion-item>
+      </div>
     </ion-card-content>
   </ion-card>
-  <ion-button expand="full" color="warning">
-    <ion-text class="card-content-footer-text">
-      VOLVER AL LISTADO DE CONTACTOS
-     </ion-text>
-  </ion-button>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle class="card-header-title">Seleccione un archivo o tome una foto</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card>
+        <ion-card-content>
+          <ion-item class="file">
+            <ion-label  position="stacked">
+              <ion-icon slot="start" class="icon"  src="assets/icon/attach-icon.svg"></ion-icon>
+              <ion-text class="title">SUBIR ARCHIVO</ion-text>
+            </ion-label>
+          <ion-input type="file" class="hidde"></ion-input>
+        </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+  <div class="center">
+    <ion-button shape="round" color="light">
+      <ion-text class="card-content-footer-text">
+        Salir
+       </ion-text>
+    </ion-button>
+    &nbsp;
+    <ion-button shape="round" color="warning">
+      <ion-text class="card-content-footer-text">
+        Guardar
+       </ion-text>
+    </ion-button>
+  </div>
 </ion-content>

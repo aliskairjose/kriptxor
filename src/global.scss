@@ -130,6 +130,9 @@ ion-label {
   padding-top: 1rem !important;
 
   ion-label {
+    display: inline-flex;
+    align-items: center;
     font-size: 0.875rem;
+    margin-right: 5px;
   }
 }

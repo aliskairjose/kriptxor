@@ -18,7 +18,8 @@ export class CampaignService {
    * @returns Listado de campañas
    */
   list( sellerId: number, filter: any, page = 1 ): Observable<DataResponse<Campaign[]>> {
-    return this.http.get( `campaigns?sellers=${sellerId}&filter={"campaignClientsCount":${filter.campaignClientsCount},"name":"","quotesCount":1}&page=${page}` );
+    const filtro = JSON.stringify( filter );
+    return this.http.get( `campaigns?sellers=${sellerId}&filter=${filtro}&page=${page}` );
   }
 
   getById( id: number ): Observable<ResultReponse<Campaign>> {

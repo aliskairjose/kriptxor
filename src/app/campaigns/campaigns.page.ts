@@ -17,9 +17,9 @@ export class CampaignsPage implements OnInit {
 
   campaigns: Campaign[] = [];
   pagination: Page = {};
+  filter = { campaignClientsCount: 1, name: '', quotesCount: 1 };
 
   @ViewChild( IonInfiniteScroll ) infiniteScroll: IonInfiniteScroll;
-
 
   constructor(
     private common: CommonService,
@@ -36,22 +36,27 @@ export class CampaignsPage implements OnInit {
     if ( !isFirstLoad ) { loading.present(); }
 
     const user: User = await this.storage.get( USER ) as unknown as User;
-    const filter = { campaignClientsCount: 1, name: '' };
-
-    this.campaignService.list( user.id, filter, page ).subscribe( response => {
+    this.campaignService.list( user.id, this.filter, page ).subscribe( response => {
       loading.dismiss();
 
       if ( this.pagination.lastPage === page ) { this.infiniteScroll.disabled = true; }
       if ( isFirstLoad ) { event.target.complete(); }
 
       this.pagination = response.meta.page;
-      this.campaigns.push( ...response.data );
+
+      ( this.filter.name ) ? this.campaigns = [ ...response.data ] : this.campaigns.push( ...response.data );
 
     }, () => loading.dismiss() );
   }
 
   loadData( event: any ): void {
     this.getCampaigns( true, event, this.pagination.currentPage + 1 );
+  }
+
+  // Busca por nombre de campaña
+  find( query: string ): void {
+    this.filter.name = query;
+    this.getCampaigns( false, '' );
   }
 
 }

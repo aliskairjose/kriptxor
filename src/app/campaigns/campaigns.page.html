@@ -9,45 +9,40 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar class="search-bar" placeholder="Busca tu campaña" ></ion-searchbar>
+  <ion-searchbar class="search-bar" placeholder="Busca tu campaña"></ion-searchbar>
 
-  <ion-card *ngFor="let campaign of campaigns" class="card-content">
 
-    <ion-card-header class="header">
-      <ion-grid>
-          <ion-row>
-            <ion-col class="card-content-title">
-              Camapaña #1
-            </ion-col>
-            <ion-col class="card-content-title">
-              --EN CURSO--
-            </ion-col>
-            <ion-col class="card-content-subtitle">
-              04/05/2021
-            </ion-col>
-          </ion-row>
-      </ion-grid>
-    </ion-card-header>
-  <ion-card-content>
+  <ng-container *ngFor="let campaign of campaigns; let i=index" class="card-content">
 
-    <ion-row>
-      <ion-col class="card-content-text">
-        <ion-icon name="people-circle"></ion-icon>
-        120 Clientes
-      </ion-col>
-      <ion-col class="card-content-text">
-        <ion-icon src="assets/icon/monetization.svg"></ion-icon>
-          120 Ventas
-      </ion-col>
-      <ion-col class="card-content-button">
-        <ion-button shape="round" color="warning">
-          <ion-icon slot="start" name="eye-outline" ></ion-icon>
-          Detalles
+    <ion-card>
+      <ion-card-header class="bg-ligth-gray">
+        <ion-card-subtitle class="campaign-card-header">
+          <div>
+            <ion-label class="ion-margin-end">Campaña #{{i+1}}</ion-label>
+            <ion-label>EN CURSO</ion-label>
+          </div>
+          <ion-label class="date">Iniciada el 01-01-2021</ion-label>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content class="campaign-card-content">
+        <div>
+          <ion-label>
+            <img src="/assets/icon/persons-circle.svg" alt=""> 102 clientes
+          </ion-label>
+          <ion-label>
+            <img src="/assets/icon/monetization.svg" alt=""> 7 ventas
+          </ion-label>
+        </div>
+        <div>
+          <ion-button color="warning" size="small">
+            <ion-icon slot="start" name="eye-outline"></ion-icon>
+            Detalles
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
 
-        </ion-button>
-      </ion-col>
-    </ion-row>
+  </ng-container>
 
-  </ion-card-content>
-  </ion-card>
+
 </ion-content>

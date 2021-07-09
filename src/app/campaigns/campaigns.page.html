@@ -5,22 +5,23 @@
     </ion-buttons>
     <ion-title class="title">Listado de Campañas</ion-title>
   </ion-toolbar>
-  <ion-searchbar placeholder="Buscar tu campaña" inputmode="text" (ionChange)="find($event.target.value)"
-    debounce="1000">
-  </ion-searchbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-searchbar placeholder="Buscar tu campaña" inputmode="text" (ionChange)="find($event.target.value)"
+    debounce="1000">
+  </ion-searchbar>
+
   <ng-container *ngFor="let campaign of campaigns; let i=index" class="card-content">
     <ion-card>
       <ion-card-header class="bg-ligth-gray">
-        <ion-card-subtitle class="campaign-card-header">
-          <div>
-            <ion-label class="ion-margin-end">{{campaign.nombre}}</ion-label>
+        <ion-card-subtitle>
+          <p class="campaign-title">{{campaign.nombre}}</p>
+          <div class="campaign-card-header">
             <ion-label>{{campaign.status_name}}</ion-label>
+            <ion-label>Iniciada el {{campaign.fecha_inicio }}</ion-label>
           </div>
-          <ion-label class="date">Iniciada el {{campaign.fecha_inicio }}</ion-label>
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content class="campaign-card-content">

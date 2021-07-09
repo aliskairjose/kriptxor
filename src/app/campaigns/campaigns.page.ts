@@ -32,17 +32,18 @@ export class CampaignsPage implements OnInit {
   }
 
   private async getCampaigns( isFirstLoad, event, page = 1 ) {
+
     const loading = await this.common.presentLoading();
     if ( !isFirstLoad ) { loading.present(); }
 
     const user: User = await this.storage.get( USER ) as unknown as User;
     this.campaignService.list( user.id, this.filter, page ).subscribe( response => {
       loading.dismiss();
+      this.pagination = response.meta.page;
 
       if ( this.pagination.lastPage === page ) { this.infiniteScroll.disabled = true; }
-      if ( isFirstLoad ) { event.target.complete(); }
 
-      this.pagination = response.meta.page;
+      if ( isFirstLoad ) { event.target.complete(); }
 
       ( this.filter.name ) ? this.campaigns = [ ...response.data ] : this.campaigns.push( ...response.data );
 
@@ -56,6 +57,10 @@ export class CampaignsPage implements OnInit {
   // Busca por nombre de campaña
   find( query: string ): void {
     this.filter.name = query;
+    if ( !query ) {
+      this.campaigns = [];
+      this.infiniteScroll.disabled = false;
+    }
     this.getCampaigns( false, '' );
   }
 

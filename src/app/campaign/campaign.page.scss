@@ -51,6 +51,7 @@ ion-item:not(.file){
     font-weight: bold;
     font-size: 1rem;
     color: #000000;
+    text-transform: capitalize;
   }
   &-subtitle{
     text-align: right;

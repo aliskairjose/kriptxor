@@ -16,7 +16,7 @@ export class AppComponent {
     { title: 'Campañas', url: '/campaigns', icon: 'flag' },
     { title: 'Outbox', url: '/documents', icon: 'paper-plane' },
     { title: 'Favorites', url: '/campaign', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
+    { title: 'Archived', url: '/notes', icon: 'archive' },
     { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
     { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];

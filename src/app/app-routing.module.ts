@@ -33,6 +33,10 @@ const routes: Routes = [
   },  {
     path: 'documents',
     loadChildren: () => import('./documents/documents.module').then( m => m.DocumentsPageModule)
+  },
+  {
+    path: 'notes',
+    loadChildren: () => import('./notes/notes.module').then( m => m.NotesPageModule)
   }
 
 ];

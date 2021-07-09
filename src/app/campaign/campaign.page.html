@@ -18,7 +18,7 @@
   <ion-label>
     <ion-icon class="account-icon" src="assets/icon/account-circle.svg"></ion-icon>
     <ion-text class="client">
-        Cliente:    <ion-text class="card-content-title">Melisa</ion-text>
+        Cliente:    <ion-text class="card-content-title">{{client.cliente.nombre}} {{client.cliente.apellido}}</ion-text>
     </ion-text>
   </ion-label>
   <ion-label class="button-client">
@@ -34,13 +34,13 @@
       <ion-col class="card-content">
         Estado: <br>
            <ion-text class="card-content-text">
-             Contactando
+             {{client.status.name}}
             </ion-text>
       </ion-col>
       <ion-col class="card-content">
         Telefono: <br>
            <ion-text class="card-content">
-             +507 6536-5905
+             {{client.cliente.numero}}
             </ion-text>
       </ion-col>
       <ion-col class="card-content-button">

@@ -3,98 +3,53 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="title">Documentos</ion-title>
+    <ion-title>Documentos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content>
-  <div class="client-name">
-    <ion-text class="title" >
-        Melissa
-    </ion-text>
+<ion-content class="ion-padding">
+  <h2 class="title ion-text-center">Melissa Olaya Domingues</h2>
+
+  <div class="document-banner">
     <div>
-      <ion-grid>
-        <!-- icon -->
-        <ion-row class="icons-container">
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
-            <br>Documentos
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
-            <br>Notas
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
-            <br>Agenda
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
-            <br>Cotizaciones
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <!-- end icon -->
+      <div>
+        <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
+        <ion-label>Documentos</ion-label>
+      </div>
+      <div>
+        <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
+        <ion-label>Notas</ion-label>
+      </div>
+    </div>
+    <div>
+      <div>
+        <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
+        <ion-label>Agenda</ion-label>
+      </div>
+      <div>
+        <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
+        <ion-label>Cotizaciones</ion-label>
+      </div>
     </div>
   </div>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-text color="dark" class="bold-text">
-        Historial
-      </ion-text>
-    </ion-card-header>
-    <ion-card-content >
-      <div class="document">
-        <ion-item>
-          <ion-icon slot="start"  src="assets/icon/pdf-icon.svg"></ion-icon>
-          <ion-icon slot="end"  src="assets/icon/x-icon.svg"></ion-icon>
-          <ion-text>
-            Ficha de Mayo ac..
-          </ion-text>
-        </ion-item>
-      </div>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle class="card-header-title">Seleccione un archivo o tome una foto</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-card>
-        <ion-card-content>
-          <ion-item class="file">
-            <ion-label  position="stacked">
-              <ion-icon slot="start" class="icon"  src="assets/icon/attach-icon.svg"></ion-icon>
-              <ion-text class="title">SUBIR ARCHIVO</ion-text>
-            </ion-label>
-          <ion-input  (change)='updateFile($event)' type="file" class="hidde"></ion-input>
-        </ion-item>
-        </ion-card-content>
-      </ion-card>
+  <div class="container-bordered ion-padding">
+    <p>Historical</p>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <img src="assets/icon/pdf.svg" style="height: 1.5rem;" class="ion-margin-end">
+      <ion-label>Ficha de Mayo ac...</ion-label>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
 
-      <ion-card *ngIf="uploadedFile">
-        <img class="img-preview" src="{{imgPreview}}" />
-        <ion-card-content>
-          <ion-icon slot="start" class="icon"  src="assets/icon/photo.svg"></ion-icon>
-          {{imgName}}
-        </ion-card-content>
-
-      </ion-card>
-    </ion-card-content>
-  </ion-card>
-  <div class="center">
-    <ion-button shape="round" color="light">
-      <ion-text class="card-content-footer-text">
-        Salir
-       </ion-text>
+  <div class="ion-text-center ion-margin-top">
+    <ion-button (click)="onClick()" fill="outline" shape="round" class="ion-margin-end">
+      <ion-label class="ion-margin-horizontal">Salir</ion-label>
     </ion-button>
-    &nbsp;
-    <ion-button shape="round" color="warning">
-      <ion-text class="card-content-footer-text">
-        Guardar
-       </ion-text>
+    <ion-button (click)="onClick()" color="warning" fill="solid" shape="round" class="ion-margin-start">
+      <i-label class="ion-margin-horizontal">Guardar</i-label>
     </ion-button>
   </div>
+
 </ion-content>

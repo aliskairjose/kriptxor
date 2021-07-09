@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'documents',
     pathMatch: 'full'
   },
   {
@@ -22,17 +22,19 @@ const routes: Routes = [
   },
   {
     path: 'campaigns',
-    loadChildren: () => import('./campaigns/campaigns.module').then( m => m.CampaignsPageModule)
+    loadChildren: () => import( './campaigns/campaigns.module' ).then( m => m.CampaignsPageModule )
   },
   {
     path: 'campaign',
-    loadChildren: () => import('./campaign/campaign.module').then( m => m.CampaignPageModule)
-  },  {
+    loadChildren: () => import( './campaign/campaign.module' ).then( m => m.CampaignPageModule )
+  },
+  {
     path: 'client',
-    loadChildren: () => import('./client/client.module').then( m => m.ClientPageModule)
-  },  {
+    loadChildren: () => import( './client/client.module' ).then( m => m.ClientPageModule )
+  },
+  {
     path: 'documents',
-    loadChildren: () => import('./documents/documents.module').then( m => m.DocumentsPageModule)
+    loadChildren: () => import( './documents/documents.module' ).then( m => m.DocumentsPageModule )
   }
 
 ];

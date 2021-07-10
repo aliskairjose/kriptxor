@@ -4,11 +4,21 @@ ion-button {
 .history-span{
   color: #304FFE;
 }
-ion-item:not(.file){
-  --background: rgba(48, 79, 254, 0.22);
+ion-item:not(.last){
+  --border-color: white;
+}
+ion-badge{
+  --background: #E1E6EF;
+  --color: #304FFE;
+}
+ion-textarea{
+  --placeholder-font-weight: bold;
 }
 ion-label{
   width: 100%;
+}
+.document{
+  text-align: left;
 }
 .client-name{
   text-align: center;
@@ -30,7 +40,7 @@ ion-label{
 }
 .card-header-title{
   font-size: 1rem;
-  text-align: center;
+  text-align: left;
   font-weight: bold;
 }
 .center{

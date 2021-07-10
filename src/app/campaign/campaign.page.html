@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="title">Campaña #1</ion-title>
+    <ion-title class="title">Campaña #{{id}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -22,7 +22,7 @@
     </ion-text>
   </ion-label>
   <ion-label class="button-client">
-    <ion-button class="button-client" shape="round" size="small" color="tertiary">
+    <ion-button href="client/{{client.id_cliente}}" class="button-client" shape="round" size="small" color="tertiary">
       <ion-icon name="arrow-forward-circle-outline"></ion-icon>
       &nbsp;
       Ver Cliente

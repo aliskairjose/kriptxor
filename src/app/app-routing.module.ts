@@ -28,14 +28,14 @@ const routes: Routes = [
     path: 'campaign',
     loadChildren: () => import('./campaign/campaign.module').then( m => m.CampaignPageModule)
   },  {
-    path: 'client',
+    path: 'client/:id',
     loadChildren: () => import('./client/client.module').then( m => m.ClientPageModule)
   },  {
     path: 'documents',
     loadChildren: () => import('./documents/documents.module').then( m => m.DocumentsPageModule)
   },
   {
-    path: 'notes',
+    path: 'notes/:id',
     loadChildren: () => import('./notes/notes.module').then( m => m.NotesPageModule)
   },
   {

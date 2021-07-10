@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Campaign} from '../shared/interfaces/campaign';
-import {MasterClient} from '../shared/interfaces/client'
+import {Campaign} from '../shared/classes/campaign';
+import {MasterClient} from '../shared/classes/client'
 import {CampaignService} from '../shared/services/campaign.service';
 
 @Component({
@@ -10,6 +10,7 @@ import {CampaignService} from '../shared/services/campaign.service';
 })
 export class CampaignPage implements OnInit {
 
+  id: number = 17;
   clients: MasterClient[];
   campaign: Campaign;
 
@@ -17,10 +18,11 @@ export class CampaignPage implements OnInit {
 
   ngOnInit() {
     this.getCampaign()
+
   }
 
   getCampaign(page: number = 1){
-    this.campaignService.getCampaign(17,page).subscribe(
+    this.campaignService.getCampaign(this.id,page).subscribe(
       response => this.clients = response as MasterClient[]
     )
   }

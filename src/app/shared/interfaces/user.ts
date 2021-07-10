@@ -4,4 +4,7 @@ export interface User {
   apellido: string;
   email: string;
   id_rol: number;
+  super_admin: number;
+  numero: string;
+  main_image: string;
 }

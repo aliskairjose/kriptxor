@@ -5,5 +5,6 @@ xmlns:amazon="http://schemas.amazon.com/apk/res/android">
 <application  >
 
 </application>
-
+<uses-permission android:name="android.permission.CALL_PHONE"/>
+<uses-feature android:name="android.hardware.telephony" android:required="false"/>
 </manifest>

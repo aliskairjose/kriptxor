@@ -13,7 +13,7 @@ export class DocumentsPage implements OnInit {
   uploadedFile: boolean = false;
   imgPreview: string | ArrayBuffer;
   imgName: string;
-  documents: Document[] = [];
+  data: Document[] = [];
 
   constructor(
     private common: CommonService,
@@ -45,7 +45,7 @@ export class DocumentsPage implements OnInit {
     loading.present();
     this.documentService.list( 1 ).subscribe( response => {
       loading.dismiss();
-      this.documents = [ ...response.data ];
+      this.data = [ ...response.data ];
     }, () => loading.dismiss() )
   }
 

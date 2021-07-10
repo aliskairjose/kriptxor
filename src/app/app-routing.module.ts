@@ -35,6 +35,14 @@ const routes: Routes = [
   {
     path: 'documents',
     loadChildren: () => import( './documents/documents.module' ).then( m => m.DocumentsPageModule )
+  },
+  {
+    path: 'notes',
+    loadChildren: () => import( './notes/notes.module' ).then( m => m.NotesPageModule )
+  },
+  {
+    path: 'schedule',
+    loadChildren: () => import( './schedule/schedule.module' ).then( m => m.SchedulePageModule )
   }
 
 ];

@@ -19,8 +19,8 @@ export class AppComponent {
     { title: 'Documentos', url: '/documents', icon: 'flag' },
     { title: 'Outbox', url: '/documents', icon: 'paper-plane' },
     { title: 'Favorites', url: '/campaign', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
+    { title: 'Archived', url: '/notes', icon: 'archive' },
+    { title: 'Trash', url: '/schedule', icon: 'trash' },
     { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
   public labels = [ 'Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders' ];

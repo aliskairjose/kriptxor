@@ -1,3 +1,13 @@
+import {DateAt} from './response';
+import {MasterClient} from './client';
+//import {Seller} from './seller';
+
+export class CampaignClient{
+  masterClient: MasterClient;
+  status: Status;
+  last: Last;
+  seller: Seller;
+}
 export interface Campaign {
   id?: number;
   nombre?: string;
@@ -7,8 +17,8 @@ export interface Campaign {
   cantidad_mensajes?: number;
   texto?: string;
   id_user?: number;
-  created_at?: string;
-  updated_at?: string;
+  created_at: string;
+  updated_at: string;
   user_create?: string;
   user_update?: string;
   success?: string;

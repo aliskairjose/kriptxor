@@ -37,6 +37,10 @@ const routes: Routes = [
   {
     path: 'notes',
     loadChildren: () => import('./notes/notes.module').then( m => m.NotesPageModule)
+  },
+  {
+    path: 'schedule',
+    loadChildren: () => import('./schedule/schedule.module').then( m => m.SchedulePageModule)
   }
 
 ];

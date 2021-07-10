@@ -10,10 +10,10 @@ export interface LoginReponse {
   token: string;
   user: User;
 }
-export interface Reponse {
-  status: string;
-  data: string;
-  message: string;
+export interface Response<T> {
+  status?: string;
+  data: T;
+  message?: string;
 }
 
 export interface DataResponse<T> extends BaseResponse {

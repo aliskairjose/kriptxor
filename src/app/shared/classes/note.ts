@@ -1,4 +1,4 @@
-import {User} from './user';
+import {User} from '../interfaces/user';
 export class Note {
   id: number;
   content: string;

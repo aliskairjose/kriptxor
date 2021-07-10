@@ -47,19 +47,19 @@
     </ion-card-header>
     <ion-card-content>
       <div class="document">
-        <ion-list>
+        <ion-list *ngFor="let note of notes">
           <ion-item>
             <ion-icon slot="start"  src="assets/icon/arrow-icon.svg"></ion-icon>
-            <ion-icon slot="end"  src="assets/icon/points.svg"></ion-icon>
+            <ion-icon  (click)="alert(note)" slot="end"  src="assets/icon/points.svg"></ion-icon>
             <ion-text>
-              Llamada recibida Melissa Olaya Domingues
+              {{note.content}}
             </ion-text>
           </ion-item>
           <ion-item>
-            <ion-badge>Creado por Saraí Sanchez </ion-badge>
+            <ion-badge>Creado por {{note.user.nombre}} {{note.user.apellido}} </ion-badge>
           </ion-item>
           <ion-item class="last">
-            26 de May. de 2021 a la(s) 1:32 PM EST
+            {{note.updated_at}}
           </ion-item>
         </ion-list>
 
@@ -81,7 +81,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-item>
-        <ion-textarea auto-grow="true" placeholder="Escribe aquí tu nota"></ion-textarea>
+        <ion-textarea #content [(ngModel)]="note.content" auto-grow="true" placeholder="Escribe aquí tu nota"></ion-textarea>
       </ion-item>
     </ion-card-content>
   </ion-card>
@@ -92,10 +92,17 @@
        </ion-text>
     </ion-button>
     &nbsp;
-    <ion-button shape="round" color="warning">
+    <ion-button (click)="createNote()" *ngIf="!updatedNote else update" shape="round" color="warning">
       <ion-text class="card-content-footer-text">
         Guardar
        </ion-text>
     </ion-button>
+    <ng-template #update>
+      <ion-button (click)="updateNote()" shape="round" color="warning">
+        <ion-text class="card-content-footer-text">
+          Actualizar
+        </ion-text>
+      </ion-button>
+     </ng-template>
   </div>
 </ion-content>

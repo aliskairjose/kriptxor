@@ -17,6 +17,15 @@ ion-textarea{
 ion-label{
   width: 100%;
 }
+ion-card-content{
+  max-height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+ion-card{
+  max-width: 500px;
+  margin-left: 15%;
+}
 .document{
   text-align: left;
 }

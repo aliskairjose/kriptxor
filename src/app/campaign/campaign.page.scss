@@ -11,6 +11,11 @@ $primary-text: "Open Sans";
 ion-button {
   text-transform: none;
 }
+ion-card{
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
 ion-button:not(.button-client, .whatsapp-butto, .call, .call2){
    --background: white;
     color: black;

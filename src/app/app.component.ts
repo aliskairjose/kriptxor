@@ -17,9 +17,9 @@ export class AppComponent {
     { title: 'Campaña', url: '/campaign', icon: 'flag' },
     { title: 'Cliente', url: '/client/21', icon: 'flag' },
     { title: 'Documentos', url: '/documents', icon: 'flag' },
-    { title: 'Notas', url: '/notes/113', icon: 'archive' },
-    { title: 'Trash', url: '/schedule', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
+    { title: 'Notas', url: '/notes/113', icon: 'flag' },
+    { title: 'Agenda', url: '/schedule', icon: 'flag' },
+    { title: 'Spam', url: '/folder/Spam', icon: 'flag' },
   ];
   public labels = [ 'Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders' ];
 

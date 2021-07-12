@@ -42,8 +42,11 @@
     <ion-card>
       <ion-card-header class="bg-ligth-gray">
         <ion-card-subtitle>
-          {{news.title}}
-          {{news.create_at | date}}
+          <div class="d-flex justify-content-between">
+            <h4>{{news.title}}</h4>
+            20/02/2021
+            {{news.create_at | date}}
+          </div>
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>

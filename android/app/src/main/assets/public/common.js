@@ -465,7 +465,7 @@ let HttpService = class HttpService {
     }
     post(serviceName, data) {
         const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        this.http.post(url, data).subscribe(console.log);
+        this.http.post(url, data);
         return this.http.post(url, data);
     }
     get(serviceName, data) {

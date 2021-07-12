@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MasterClient } from '../../shared/interfaces/client'
 import { CampaignService } from '../../shared/services/campaign.service';
 import { CommonService } from '../../shared/services/common.service';
 import { Page } from '../../shared/interfaces/pagination';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { MasterClient } from '../../shared/classes/client';
 
 @Component( {
   selector: 'app-campaign',

@@ -25,10 +25,6 @@ const routes: Routes = [
     loadChildren: () => import( './campaigns/campaigns.module' ).then( m => m.CampaignsPageModule )
   },
   {
-    path: 'campaign',
-    loadChildren: () => import( './campaign/campaign.module' ).then( m => m.CampaignPageModule )
-  },
-  {
     path: 'client',
     loadChildren: () => import( './client/client.module' ).then( m => m.ClientPageModule )
   },

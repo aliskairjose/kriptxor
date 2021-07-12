@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../shared/services/dashboard.service';
 import { Dashboard } from '../shared/interfaces/dashboard';
+import { CommonService } from '../shared/services/common.service';
 
 @Component( {
   selector: 'app-dashboard',
@@ -13,11 +14,17 @@ export class DashboardPage implements OnInit {
   seeMore = true;
 
   constructor(
+    private common: CommonService,
     private dashboard: DashboardService
   ) { }
 
-  ngOnInit() {
-    this.dashboard.dashboard().subscribe( response => this.data = { ...response.data } );
+  async ngOnInit() {
+    const loading = await this.common.presentLoading();
+    loading.present();
+    this.dashboard.dashboard().subscribe( response => {
+      loading.dismiss();
+      this.data = { ...response.data };
+    }, () => loading.dismiss() );
   }
 
 }

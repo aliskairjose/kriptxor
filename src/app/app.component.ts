@@ -37,7 +37,7 @@ export class AppComponent {
     this.platform.ready().then( async () => {
       SplashScreen.hide();
       const isLoggedin = await this.storage.get( TOKEN );
-      const route = isLoggedin ? '/documents' : '/login';
+      const route = isLoggedin ? '/dashboard' : '/login';
       this.router.navigate( [ route ] );
     } );
   }

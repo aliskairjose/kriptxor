@@ -95,10 +95,14 @@ ion-label {
 
 .seller-card {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  /* align-items: center; */
+  margin: 0.5rem 0;
   flex-wrap: wrap;
-
+  justify-content: center;
+  small {
+    font-size: 12px;
+  }
   img {
     height: 7rem;
   }
@@ -106,7 +110,20 @@ ion-label {
 
 .card-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  .cards {
+    width: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p {
+      font-size: 0.6875rem;
+    }
+    img {
+      height: 1.5rem;
+      margin: 5px 0;
+    }
+  }
 }
 
 .card-header {
@@ -175,4 +192,16 @@ ion-card-subtitle {
       display: block;
     }
   }
+}
+
+.primary-chip {
+  background-color: var(--ion-color-primary);
+  color: #fff;
+  ion-icon {
+    color: #fff;
+  }
+}
+
+.info {
+  color: var(--ion-color-primary) !important;
 }

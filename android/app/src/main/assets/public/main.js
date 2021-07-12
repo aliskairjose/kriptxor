@@ -62,16 +62,20 @@ const routes = [
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_campaigns_campaigns_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./campaigns/campaigns.module */ 6583)).then(m => m.CampaignsPageModule)
     },
     {
-        path: 'campaign',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_campaign_campaign_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./campaign/campaign.module */ 7092)).then(m => m.CampaignPageModule)
-    },
-    {
         path: 'client',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_client_client_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./client/client.module */ 7808)).then(m => m.ClientPageModule)
     },
     {
         path: 'documents',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_documents_documents_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./documents/documents.module */ 9061)).then(m => m.DocumentsPageModule)
+    },
+    {
+        path: 'notes',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_notes_notes_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./notes/notes.module */ 2172)).then(m => m.NotesPageModule)
+    },
+    {
+        path: 'schedule',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_schedule_schedule_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./schedule/schedule.module */ 7911)).then(m => m.SchedulePageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -131,8 +135,8 @@ let AppComponent = class AppComponent {
             { title: 'Documentos', url: '/documents', icon: 'flag' },
             { title: 'Outbox', url: '/documents', icon: 'paper-plane' },
             { title: 'Favorites', url: '/campaign', icon: 'heart' },
-            { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-            { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
+            { title: 'Archived', url: '/notes', icon: 'archive' },
+            { title: 'Trash', url: '/schedule', icon: 'trash' },
             { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
         ];
         this.labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
@@ -142,7 +146,7 @@ let AppComponent = class AppComponent {
         this.platform.ready().then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             _capacitor_splash_screen__WEBPACK_IMPORTED_MODULE_3__.SplashScreen.hide();
             const isLoggedin = yield this.storage.get(_shared_constants_constants__WEBPACK_IMPORTED_MODULE_4__.TOKEN);
-            const route = isLoggedin ? '/documents' : '/login';
+            const route = isLoggedin ? '/dashboard' : '/login';
             this.router.navigate([route]);
         }));
     }
@@ -175,20 +179,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppModule": () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/router */ 9895);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 476);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser */ 9075);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/router */ 9895);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 476);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component */ 5041);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-routing.module */ 158);
 /* harmony import */ var _angular_common_locales_es__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/locales/es */ 441);
 /* harmony import */ var _angular_common_locales_es__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_es__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 8583);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 8583);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ 1841);
 /* harmony import */ var _shared_services_interceptor_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared/services/interceptor.service */ 5923);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ 3679);
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/platform-browser/animations */ 5835);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/platform-browser/animations */ 5835);
+/* harmony import */ var _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/call-number/ngx */ 4687);
 
 
 
@@ -202,26 +207,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_angular_common__WEBPACK_IMPORTED_MODULE_4__.registerLocaleData)((_angular_common_locales_es__WEBPACK_IMPORTED_MODULE_2___default()));
+
+(0,_angular_common__WEBPACK_IMPORTED_MODULE_5__.registerLocaleData)((_angular_common_locales_es__WEBPACK_IMPORTED_MODULE_2___default()));
 let AppModule = class AppModule {
 };
-AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.NgModule)({
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.NgModule)({
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
         entryComponents: [],
         imports: [
-            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__.BrowserModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.IonicModule.forRoot(),
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__.BrowserModule,
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonicModule.forRoot(),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule,
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpClientModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_10__.ReactiveFormsModule,
-            _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormsModule,
-            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_11__.BrowserAnimationsModule
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_10__.HttpClientModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_11__.ReactiveFormsModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_11__.FormsModule,
+            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__.BrowserAnimationsModule
         ],
         providers: [
-            { provide: _angular_core__WEBPACK_IMPORTED_MODULE_6__.LOCALE_ID, useValue: 'es' },
-            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_12__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.IonicRouteStrategy },
-            { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HTTP_INTERCEPTORS, useClass: _shared_services_interceptor_service__WEBPACK_IMPORTED_MODULE_3__.InterceptorService, multi: true }
+            { provide: _angular_core__WEBPACK_IMPORTED_MODULE_7__.LOCALE_ID, useValue: 'es' },
+            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_13__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonicRouteStrategy },
+            { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_10__.HTTP_INTERCEPTORS, useClass: _shared_services_interceptor_service__WEBPACK_IMPORTED_MODULE_3__.InterceptorService, multi: true },
+            _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_4__.CallNumber,
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
     })

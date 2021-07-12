@@ -27,14 +27,15 @@
       <ion-card-content class="campaign-card-content">
         <div>
           <ion-label>
-            <img src="/assets/icon/persons-circle.svg" alt=""> {{campaign.campaign_clientes_count}} clientes
+            <img src="/assets/icon/persons-circle.svg" alt="" style="margin-right: 5px;">
+            {{campaign.campaign_clientes_count}} clientes
           </ion-label>
           <ion-label>
-            <img src="/assets/icon/monetization.svg" alt=""> {{campaign.quotes}} ventas
+            <img src="/assets/icon/monetization.svg" alt="" style="margin-right: 5px;"> {{campaign.quotes}} ventas
           </ion-label>
         </div>
         <div>
-          <ion-button color="warning" size="small">
+          <ion-button color="warning" size="small" [routerLink]="[ '/campaigns/campaign',campaign.id ]">
             <ion-icon slot="start" name="eye-outline"></ion-icon>
             Detalles
           </ion-button>

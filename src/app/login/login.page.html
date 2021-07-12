@@ -12,7 +12,8 @@
         <div class="item-input">
           <ion-label position="stacked">Correo electrónico</ion-label>
           <ion-item>
-            <ion-input type="email" formControlName="email"></ion-input>
+            <ion-input type="email" formControlName="email" [ngClass]="{'invalid': submitted && f.email?.errors}">
+            </ion-input>
             <ion-icon slot="end" name="person-circle"></ion-icon>
           </ion-item>
           <div *ngIf="submitted && f.email?.errors">

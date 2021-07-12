@@ -13,7 +13,7 @@ export class DocumentsPage implements OnInit {
   uploadedFile: boolean = false;
   imgPreview: string | ArrayBuffer;
   imgName: string;
-  data: Document[] = [];
+  data: any;
 
   constructor(
     private common: CommonService,

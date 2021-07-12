@@ -5,6 +5,7 @@ import { Page } from '../../shared/interfaces/pagination';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { MasterClient } from '../../shared/classes/client';
+import { ActivatedRoute } from '@angular/router';
 
 @Component( {
   selector: 'app-campaign',
@@ -15,10 +16,11 @@ export class CampaignPage implements OnInit {
 
   clients: MasterClient[] = [];
   pagination: Page;
-
+  idCampaing: number;
   @ViewChild( IonInfiniteScroll ) infiniteScroll: IonInfiniteScroll;
 
   constructor(
+    private route: ActivatedRoute,
     private common: CommonService,
     private call: CallNumber,
     private campaignService: CampaignService
@@ -26,6 +28,7 @@ export class CampaignPage implements OnInit {
 
   ngOnInit() {
     this.getCampaign( false, '' );
+    this.route.params.subscribe( data => this.idCampaing = data.id );
   }
 
   async getCampaign( isFirstLoad, event, page = 1 ) {

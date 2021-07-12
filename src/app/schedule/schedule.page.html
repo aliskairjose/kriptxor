@@ -32,11 +32,11 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-text color="dark" class="bold-text">
+      <ion-text color="dark" class="font-weight-bold">
         Citas proximas
       </ion-text>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content class="scrolling-content">
       <div class="document">
         <ion-list *ngFor="let reminder of reminders">
           <ion-item class="no-bottom-border-item">
@@ -65,7 +65,10 @@
   </ion-card>
   <ion-card>
     <ion-card-header>
-      <ion-card-title class="card-header-title">Crea una reunion</ion-card-title>
+      <ion-card-title *ngIf="!updatedReminder else updt" class="card-header-title">Crea una reunion</ion-card-title>
+      <ng-template #updt>
+        <ion-card-title class="card-header-title">Actualizar reunion</ion-card-title>
+       </ng-template>
     </ion-card-header>
     <ion-card-content>
       <ion-item class="no-bottom-border-item">
@@ -73,18 +76,16 @@
       </ion-item>
       <ion-item class="no-bottom-border-item">
           <ion-label>Fecha de la reunion</ion-label>
-          <ion-datetime  min="{{today}}" max="{{maxDate}}" placeholder="Selecciona una Fecha"></ion-datetime>
+          <ion-datetime [(ngModel)]="date"  min="{{today}}" max="{{maxDate}}" placeholder="Selecciona una Fecha"></ion-datetime>
       </ion-item>
       <ion-item class="no-bottom-border-item">
           <ion-label>Hora de la reunion</ion-label>
-          <ion-datetime  display-format="h:mm A" picker-format="h:mm A"></ion-datetime>
-          <ion-input type="text"></ion-input>
+          <ion-datetime [(ngModel)]="time" display-format="h:mm A" picker-format="h:mm A"></ion-datetime>
       </ion-item>
       <ion-item class="no-bottom-border-item">
       <ion-label>Duracion</ion-label>
-      <ion-select [(ngModel)]="reminder.duration" placeholder="Selecciona cuantas hora durara la reunion">
-        <ion-select-option value="f">Female</ion-select-option>
-        <ion-select-option value="m">Male</ion-select-option>
+      <ion-select [(ngModel)]="reminder.duration" value="{{reminder.duration}}" placeholder="Selecciona cuantas hora durara la reunion">
+        <ion-select-option *ngFor="let duration of durations" value="{{duration.id}}">{{duration.content}}</ion-select-option>
       </ion-select>
     </ion-item>
     </ion-card-content>

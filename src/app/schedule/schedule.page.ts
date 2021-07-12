@@ -5,7 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { Schedule } from '../shared/classes/schedule';
 import {Page} from '../shared/interfaces/pagination';
 import { ScheduleService } from '../shared/services/schedule.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import {DURATIONS} from './durations.json';
 import * as moment from 'moment-timezone';
 
 @Component({
@@ -18,6 +18,7 @@ export class SchedulePage implements OnInit {
 
   id: number;
   moment: any = moment;
+  durations = DURATIONS;
   reminder: Schedule = new Schedule;
   reminders: Schedule[];
   page: Page;
@@ -25,8 +26,8 @@ export class SchedulePage implements OnInit {
   today: string = new Date().toISOString();
   max: Date = new Date();
   maxDate: string;
-  date = new FormControl();
-  time = new FormControl();
+  date: any;
+  time: any;
 
   constructor(private activateRoute: ActivatedRoute, private scheduleService: ScheduleService,public alertController: AlertController) {
     this.activateRoute.params.subscribe(
@@ -55,18 +56,22 @@ export class SchedulePage implements OnInit {
     this.scheduleService.getReminder(reminder.id).subscribe(
       response =>{
         this.reminder = response.data as Schedule;
+        this.date = moment(this.reminder.date).format('YYYY-MM-DD');
+        this.time = moment(this.reminder.date).format('HH:mm');
       }
     )
   }
   create(){
-    //this.reminder.title != null ? this.createReminder() : this.invalidText();
-    const test = this.moment(this.reminder.date).format('YYYY-MM-DD');
-    console.log(test);
+    this.date = this.moment(this.date).format('YYYY-MM-DD');
+    this.reminder.date = this.date + " " + this.time;
+    this.reminder.title != null ? this.createReminder() : this.invalidText();
   }
   createReminder(){
     this.scheduleService.createReminder(this.reminder).subscribe(
       response =>{
         this.reminder = new Schedule;
+        this.date = "";
+        this.time = "";
         this.successRequest(response.message);
         this.getReminders();
 
@@ -74,12 +79,17 @@ export class SchedulePage implements OnInit {
     )
   }
   update(){
+    this.date = this.moment(this.date).format('YYYY-MM-DD');
+    this.reminder.date = this.date + " " + this.time;
     this.reminder.title != null ? this.updateReminder() : this.invalidText();
   }
   updateReminder(){
     this.scheduleService.updateReminder(this.reminder).subscribe(
       response =>{
         this.reminder = new Schedule;
+        this.date = "";
+        this.time = "";
+        this.updatedReminder = false;
         this.successRequest(response.message);
         this.getReminders();
       }
@@ -89,6 +99,8 @@ export class SchedulePage implements OnInit {
     this.scheduleService.deleteReminder(reminder.id).subscribe(
       response =>{
         this.reminder = new Schedule;
+        this.date = "";
+        this.time = "";
         this.successRequest(response.message);
         this.getReminders();
       }

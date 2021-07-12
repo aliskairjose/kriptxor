@@ -36,7 +36,7 @@
         Mayo 21
       </ion-text>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content class="scrolling-content">
       <div class="document">
         <ion-list *ngFor="let note of notes">
           <ion-item class="no-bottom-border-item">
@@ -65,7 +65,10 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title class="text-left">Crear nota</ion-card-title>
+      <ion-card-title *ngIf="!updatedNote else upd" class="text-left">Crear nota</ion-card-title>
+      <ng-template #upd>
+          <ion-card-title class="text-left">Actualizar nota</ion-card-title>
+      </ng-template>
     </ion-card-header>
     <ion-card-content>
       <ion-item>

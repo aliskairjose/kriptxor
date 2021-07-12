@@ -39,6 +39,11 @@ ion-badge{
 .no-bottom-border-item{
   --border-color: white;
 }
+.scrolling-content{
+  max-height: 500px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 .container-bordered {
   background: #ffffff;
   // box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.102);

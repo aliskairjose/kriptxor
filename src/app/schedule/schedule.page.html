@@ -8,34 +8,25 @@
 </ion-header>
 
 
-<ion-content>
-  <div class="client-name">
-    <ion-text class="title" >
-        Melissa
-    </ion-text>
+<ion-content class="ion-padding">
+  <h2 class="title ion-text-center">Melissa Olaya Domingues</h2>
+
+  <div class="document-banner">
     <div>
-      <ion-grid>
-        <!-- icon -->
-        <ion-row class="icons-container">
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
-            <br>Documentos
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
-            <br>Notas
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
-            <br>Agenda
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
-            <br>Cotizaciones
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <!-- end icon -->
+      <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
+      <ion-label>Documentos</ion-label>
+    </div>
+    <div>
+      <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
+      <ion-label>Notas</ion-label>
+    </div>
+    <div>
+      <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
+      <ion-label>Agenda</ion-label>
+    </div>
+    <div>
+      <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
+      <ion-label>Cotizaciones</ion-label>
     </div>
   </div>
 
@@ -49,8 +40,8 @@
       <div class="document">
         <ion-list>
           <ion-item>
-            <ion-icon slot="start"  src="assets/icon/arrow-icon.svg"></ion-icon>
-            <ion-icon slot="end"  src="assets/icon/points.svg"></ion-icon>
+            <ion-icon slot="start" src="assets/icon/arrow-icon.svg"></ion-icon>
+            <ion-icon slot="end" src="assets/icon/points.svg"></ion-icon>
             <ion-text>
               Firma Melissa Olaya Domingues
             </ion-text>
@@ -66,12 +57,10 @@
       </div>
 
       <!-- Infinte Scroll -->
-        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-          <ion-infinite-scroll-content
-            loadingSpinner="bubbles"
-            loadingText="Loading more data...">
-          </ion-infinite-scroll-content>
-        </ion-infinite-scroll>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
     </ion-card-content>
   </ion-card>
   <ion-card>
@@ -83,30 +72,30 @@
         <ion-textarea auto-grow="true" placeholder="Escribe aquí tu nota"></ion-textarea>
       </ion-item>
       <ion-item>
-          <ion-label>Fecha de la reunion</ion-label>
-          <ion-datetime value="1990-02-19" placeholder="Selecciona una Fecha"></ion-datetime>
+        <ion-label>Fecha de la reunion</ion-label>
+        <ion-datetime value="1990-02-19" placeholder="Selecciona una Fecha"></ion-datetime>
       </ion-item>
       <ion-item>
-          <ion-label>Hora de la reunion</ion-label>
-          <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z"></ion-datetime>
+        <ion-label>Hora de la reunion</ion-label>
+        <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z"></ion-datetime>
       </ion-item>
       <ion-item>
-          <ion-label>Fin de la reunion</ion-label>
-          <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z"></ion-datetime>
-        </ion-item>
+        <ion-label>Fin de la reunion</ion-label>
+        <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z"></ion-datetime>
+      </ion-item>
     </ion-card-content>
   </ion-card>
   <div class="center">
     <ion-button shape="round" color="light">
       <ion-text class="card-content-footer-text">
         Salir
-       </ion-text>
+      </ion-text>
     </ion-button>
     &nbsp;
     <ion-button shape="round" color="warning">
       <ion-text class="card-content-footer-text">
         Guardar cita
-       </ion-text>
+      </ion-text>
     </ion-button>
   </div>
 </ion-content>

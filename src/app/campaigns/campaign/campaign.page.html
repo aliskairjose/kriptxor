@@ -17,7 +17,9 @@
           <ion-icon slot="start" name="person-circle" color="primary" style="font-size: 2rem"></ion-icon>
           cliente: <h4> {{client?.cliente?.nombre_completo}} </h4>
         </ion-label>
-        <ion-chip outline="false" class="primary-chip">
+
+        <ion-chip outline="false" class="primary-chip" [routerLink]="['/client', client?.cliente.id]"
+          routerLinkActive="router-link-active">
           <ion-icon name="arrow-forward-circle-outline"></ion-icon>
           <ion-label>Ver cliente</ion-label>
         </ion-chip>
@@ -40,16 +42,6 @@
             </ion-chip>
           </div>
         </div>
-        <!-- <div class="d-flex justify-content-around">
-          <ion-chip outline="false" class="primary-chip">
-            <ion-icon name="arrow-forward-circle-outline"></ion-icon>
-            <ion-label>Ver cliente</ion-label>
-          </ion-chip>
-          <ion-chip color="success" mode="ios" outline="true">
-            <ion-icon name="logo-whatsapp"></ion-icon>
-            <ion-label>Whatsapp</ion-label>
-          </ion-chip>
-        </div> -->
         <div>
           <ion-button class="call2" expand="full" color="warning" (click)="callNumber(client?.cliente.numero)">
             <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>

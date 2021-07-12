@@ -25,7 +25,7 @@ const routes: Routes = [
     loadChildren: () => import( './campaigns/campaigns.module' ).then( m => m.CampaignsPageModule )
   },
   {
-    path: 'client',
+    path: 'client/:id',
     loadChildren: () => import( './client/client.module' ).then( m => m.ClientPageModule )
   },
   {

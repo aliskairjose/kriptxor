@@ -14,8 +14,6 @@ export class AppComponent {
   public appPages = [
     { title: 'Home', url: '/dashboard', icon: 'home' },
     { title: 'Campañas', url: '/campaigns', icon: 'flag' },
-    { title: 'Campaña', url: '/campaign', icon: 'flag' },
-    { title: 'Cliente', url: '/client/21', icon: 'flag' },
     { title: 'Documentos', url: '/documents', icon: 'flag' },
     { title: 'Notas', url: '/notes/113', icon: 'flag' },
     { title: 'Agenda', url: '/schedule', icon: 'flag' },

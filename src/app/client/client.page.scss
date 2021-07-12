@@ -1,49 +1,41 @@
 ion-button {
- text-transform: none;
+  text-transform: none;
 }
-.history-span{
-  color: #304FFE;
+.history-span {
+  color: #304ffe;
 }
-.client-name{
+.client-name {
   text-align: center;
   margin-top: 5%;
 }
-.icons{
-    height: 60px;
-    width: 60px;
+.icons {
+  height: 60px;
+  width: 60px;
+}
 
+.icon {
+  height: 30px;
+  width: 30px;
 }
-ion-card{
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.icon{
-    height: 30px;
-    width: 30px;
-
-}
-.card-content{
+.card-content {
   text-align: center;
 }
-.text-button{
+.text-button {
   font-style: normal;
   font-size: 14px;
   font-weight: 400;
-  color: #455A64;
+  color: #455a64;
 }
-.card{
-
+.card {
 }
-.bold-text{
+.bold-text {
   font-weight: bold;
 }
-.status-text{
+.status-text {
   position: absolute;
   top: 10px;
-
 }
-.icon-history{
+.icon-history {
   height: 20px;
   width: 20px;
 }

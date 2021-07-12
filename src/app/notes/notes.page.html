@@ -53,17 +53,16 @@
             {{note.updated_at}}
           </ion-item>
         </ion-list>
-
       </div>
-
       <!-- Infinte Scroll -->
       <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando mas notas...">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más notas...">
         </ion-infinite-scroll-content>
       </ion-infinite-scroll>
       <!-- Infinte Scroll -->
     </ion-card-content>
   </ion-card>
+
   <ion-card>
     <ion-card-header>
       <ion-card-title class="card-header-title">Crear nota</ion-card-title>
@@ -75,6 +74,7 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
+
   <div class="center">
     <ion-button shape="round" color="light">
       <ion-text class="card-content-footer-text">

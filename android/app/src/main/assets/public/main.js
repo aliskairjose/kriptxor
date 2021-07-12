@@ -62,8 +62,8 @@ const routes = [
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_campaigns_campaigns_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./campaigns/campaigns.module */ 6583)).then(m => m.CampaignsPageModule)
     },
     {
-        path: 'client',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_client_client_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./client/client.module */ 7808)).then(m => m.ClientPageModule)
+        path: 'client/:id',
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_client_client_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./client/client.module */ 7808)).then(m => m.ClientPageModule)
     },
     {
         path: 'documents',
@@ -130,8 +130,6 @@ let AppComponent = class AppComponent {
         this.appPages = [
             { title: 'Home', url: '/dashboard', icon: 'home' },
             { title: 'Campañas', url: '/campaigns', icon: 'flag' },
-            { title: 'Campaña', url: '/campaign', icon: 'flag' },
-            { title: 'Cliente', url: '/client/21', icon: 'flag' },
             { title: 'Documentos', url: '/documents', icon: 'flag' },
             { title: 'Notas', url: '/notes/113', icon: 'flag' },
             { title: 'Agenda', url: '/schedule', icon: 'flag' },

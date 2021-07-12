@@ -90,7 +90,6 @@ ion-label {
   color: white;
   border-radius: 5px 5px 0 0;
   margin-bottom: 1rem;
-  margin-left: 1rem;
   font-size: 0.875rem;
 }
 
@@ -204,4 +203,14 @@ ion-card-subtitle {
 
 .info {
   color: var(--ion-color-primary) !important;
+}
+
+.history-span {
+  color: var(--ion-color-primary);
+}
+
+ion-button {
+  .no-transform {
+    text-transform: none;
+  }
 }

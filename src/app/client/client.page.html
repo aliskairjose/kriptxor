@@ -8,95 +8,62 @@
 </ion-header>
 
 
-<ion-content>
-  <div class="client-name">
-    <ion-text class="title" >
-        Melissa
-    </ion-text>
+<ion-content class="ion-padding">
+
+  <h2 class="title ion-text-center">{{client.nombre_completo}}</h2>
+
+  <div class="document-banner text-center">
     <div>
-      <ion-grid>
-        <!-- icon -->
-        <ion-row class="icons-container">
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
-            <br>Documentos
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
-            <br>Notas
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
-            <br>Agenda
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
-            <br>Cotizaciones
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <!-- end icon -->
+      <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
+      <ion-label>Documentos</ion-label>
+    </div>
+    <div>
+      <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
+      <ion-label>Notas</ion-label>
+    </div>
+    <div>
+      <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
+      <ion-label>Agenda</ion-label>
+    </div>
+    <div>
+      <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
+      <ion-label>Cotizaciones</ion-label>
     </div>
   </div>
 
+  <div class="d-flex justify-content-around container-bordered ion-padding-vertical">
+    <ion-chip color="danger" mode="ios" outline="true">
+      <ion-icon name="close-circle-outline"></ion-icon>
+      <ion-label>No interesado</ion-label>
+    </ion-chip>
+    <ion-chip color="success" mode="ios" outline="true">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>
+      <ion-label>Interesado</ion-label>
+    </ion-chip>
+  </div>
 
-  <ion-card class="card">
-    <ion-card-content class="card-content">
-      <ion-button shape="round" fill="outline" color="medium">
-        <ion-icon slot="start" src="assets/icon/x-outline.svg"></ion-icon>
-        <ion-text class="text-button">
-          No interesado
-        </ion-text>
+  <div class="d-flex justify-content-around container-bordered">
+    <div class="d-flex flex-column">
+      <ion-label class="font-weight-bold">Cliente:</ion-label>
+      <ion-label>{{client.nombre_completo}}</ion-label>
+      <ion-chip color="primary" mode="ios" outline="true">
+        <ion-label>Actualizado</ion-label>
+      </ion-chip>
+      <ion-label>
+        <small style="font-size: 10px;" class="text-black-50">Última actualización 26 de mayo 2021</small>
+      </ion-label>
+    </div>
+    <div class="d-flex flex-column align-items-start">
+      <ion-label class="font-weight-bold">Teléfono:</ion-label>
+      <ion-label>{{client.numero}}</ion-label>
+      <ion-label class="font-weight-bold">Cédula</ion-label>
+      <ion-label>{{client.identidad}}</ion-label>
+    </div>
+    <div>
+      <ion-icon name="ellipsis-vertical"></ion-icon>
+    </div>
+  </div>
 
-      </ion-button>
-      &nbsp;&nbsp;
-      <ion-button shape="round" fill="outline" color="medium">
-        <ion-icon slot="start" src="assets/icon/check-outline.svg"></ion-icon>
-        <ion-text class="text-button">
-          Interesado
-        </ion-text>
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-text color="dark" class="bold-text">
-              Cliente:
-            </ion-text>
-            <br>
-            Melissa Olaya Domingues
-          </ion-col>
-          <ion-col>
-            <ion-text color="dark" class="bold-text">
-              Telefono:
-            </ion-text>
-            <br>
-            209834572345
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-text>
-              <ion-badge color="tertiary">Actualizado</ion-badge>
-            </ion-text>
-            <br>
-            Última actualización 26 de Mayo 2021
-          </ion-col>
-          <ion-col>
-            <ion-text color="dark" class="bold-text">
-              Cedula:
-            </ion-text>
-            <br>
-            209834572345
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
   <ion-card>
     <ion-card-header>
       <ion-text color="dark" class="bold-text">
@@ -124,7 +91,7 @@
               Alberto Chirinos:
             </ion-text> Ha registrado una nota
             <br>
-            <ion-badge class="history-span"  color="warning">10 May 2021</ion-badge>
+            <ion-badge class="history-span" color="warning">10 May 2021</ion-badge>
             <br>
             <ion-textarea>
               El cliente indica que se llame despues de las 6:00pm
@@ -141,7 +108,7 @@
               Alberto Chirinos:
             </ion-text> Ha marcado
             <br>
-            <ion-badge  color="medium">26 May 2021</ion-badge>
+            <ion-badge color="medium">26 May 2021</ion-badge>
 
           </ion-col>
           <ion-col class="ion-align-self-center">
@@ -160,7 +127,7 @@
               Alberto Chirinos:
             </ion-text> Ha marcado una cita
             <br>
-            <ion-badge  color="medium">09 May 2021</ion-badge>
+            <ion-badge color="medium">09 May 2021</ion-badge>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -169,6 +136,6 @@
   <ion-button expand="full" color="warning">
     <ion-text class="card-content-footer-text">
       VOLVER AL LISTADO DE CONTACTOS
-     </ion-text>
+    </ion-text>
   </ion-button>
 </ion-content>

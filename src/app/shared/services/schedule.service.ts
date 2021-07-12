@@ -19,9 +19,10 @@ export class ScheduleService {
       )
     )
   }
-  //No endpoint found yet
-  getReminder(id: number){
-    return id;
+  getReminder(id: number): Observable<DataResponse<Schedule>>{
+    return this.http.get(`reminders/${id}`).pipe(map(
+      response => response as DataResponse<Schedule>
+    ))
   }
   createReminder(reminder: Schedule): Observable<DataResponse<Schedule>>{
     return this.http.post("reminders", reminder).pipe(map(

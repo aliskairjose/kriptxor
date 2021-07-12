@@ -68,6 +68,7 @@ export class NotesPage implements OnInit {
   updateNote(){
     this.notesService.updateNote(this.note).subscribe(
       response => {
+        this.note = new Note;
         this.successRequest(response.message);
         this.getNotes();
       }

@@ -5,7 +5,8 @@ import { AlertController } from '@ionic/angular';
 import { Schedule } from '../shared/classes/schedule';
 import {Page} from '../shared/interfaces/pagination';
 import { ScheduleService } from '../shared/services/schedule.service';
-import * as moment from 'moment';
+import { FormControl, FormGroup } from '@angular/forms';
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'app-schedule',
@@ -16,6 +17,7 @@ export class SchedulePage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   id: number;
+  moment: any = moment;
   reminder: Schedule = new Schedule;
   reminders: Schedule[];
   page: Page;
@@ -23,6 +25,8 @@ export class SchedulePage implements OnInit {
   today: string = new Date().toISOString();
   max: Date = new Date();
   maxDate: string;
+  date = new FormControl();
+  time = new FormControl();
 
   constructor(private activateRoute: ActivatedRoute, private scheduleService: ScheduleService,public alertController: AlertController) {
     this.activateRoute.params.subscribe(
@@ -47,9 +51,17 @@ export class SchedulePage implements OnInit {
       }
     )
   }
+  getReminder(reminder: Schedule){
+    this.scheduleService.getReminder(reminder.id).subscribe(
+      response =>{
+        this.reminder = response.data as Schedule;
+      }
+    )
+  }
   create(){
     //this.reminder.title != null ? this.createReminder() : this.invalidText();
-    console.log(this.reminder.date)
+    const test = this.moment(this.reminder.date).format('YYYY-MM-DD');
+    console.log(test);
   }
   createReminder(){
     this.scheduleService.createReminder(this.reminder).subscribe(
@@ -58,6 +70,18 @@ export class SchedulePage implements OnInit {
         this.successRequest(response.message);
         this.getReminders();
 
+      }
+    )
+  }
+  update(){
+    this.reminder.title != null ? this.updateReminder() : this.invalidText();
+  }
+  updateReminder(){
+    this.scheduleService.updateReminder(this.reminder).subscribe(
+      response =>{
+        this.reminder = new Schedule;
+        this.successRequest(response.message);
+        this.getReminders();
       }
     )
   }
@@ -113,6 +137,7 @@ export class SchedulePage implements OnInit {
         cssClass: 'secondary',
         handler: () => {
             this.updatedReminder = true;
+            this.getReminder(reminder);
         }
       }, {
         text: 'Eliminar',

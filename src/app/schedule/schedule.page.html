@@ -22,7 +22,8 @@
             <br>Documentos
           </ion-col>
           <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
+            <ion-icon class="icons"
+             src="assets/icon/notes.svg"></ion-icon>
             <br>Notas
           </ion-col>
           <ion-col size="3">
@@ -84,16 +85,20 @@
       </ion-item>
       <ion-item>
           <ion-label>Fecha de la reunion</ion-label>
-          <ion-datetime (change)="test($event)" min="{{today}}" max="{{maxDate}}" placeholder="Selecciona una Fecha"></ion-datetime>
+          <ion-datetime  min="{{today}}" max="{{maxDate}}" placeholder="Selecciona una Fecha"></ion-datetime>
       </ion-item>
       <ion-item>
           <ion-label>Hora de la reunion</ion-label>
-          <ion-datetime display-format="h:mm A" picker-format="h:mm A"></ion-datetime>
+          <ion-datetime  display-format="h:mm A" picker-format="h:mm A"></ion-datetime>
+          <ion-input type="text"></ion-input>
       </ion-item>
       <ion-item>
-          <ion-label>Fin de la reunion</ion-label>
-          <ion-datetime display-format="h:mm A" picker-format="h:mm A"></ion-datetime>
-        </ion-item>
+      <ion-label>Duracion</ion-label>
+      <ion-select [(ngModel)]="reminder.duration" placeholder="Selecciona cuantas hora durara la reunion">
+        <ion-select-option value="f">Female</ion-select-option>
+        <ion-select-option value="m">Male</ion-select-option>
+      </ion-select>
+    </ion-item>
     </ion-card-content>
   </ion-card>
   <div class="center">
@@ -103,13 +108,13 @@
        </ion-text>
     </ion-button>
     &nbsp;
-    <ion-button (click)="create()" *ngIf="!updatedReminder else update" shape="round" color="warning">
+    <ion-button (click)="create()" *ngIf="!updatedReminder else upd" shape="round" color="warning">
       <ion-text class="card-content-footer-text">
         Guardar cita
        </ion-text>
     </ion-button>
-    <ng-template #update>
-      <ion-button (click)="test()" shape="round" color="warning">
+    <ng-template #upd>
+      <ion-button (click)="update()" shape="round" color="warning">
         <ion-text class="card-content-footer-text">
           Actualizar cita
         </ion-text>

@@ -1,6 +1,5 @@
 import { User } from './user';
-import { Dashboard } from './dashboard';
-import { Pagination, Meta } from './pagination';
+import { Meta } from './pagination';
 export interface BaseResponse {
   status: string;
   message: string;
@@ -23,4 +22,15 @@ export interface DataResponse<T> extends BaseResponse {
 
 export interface ResultReponse<T> extends BaseResponse {
   result: T
+}
+export interface DateAt {
+  date?: string;
+  timezone_type?: number;
+  timezone?: string;
+}
+export interface Status {
+  id?: number;
+  name?: string;
+  decription?: string;
+  created_at?: string;
 }

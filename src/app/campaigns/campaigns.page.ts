@@ -6,12 +6,13 @@ import { USER } from '../shared/constants/constants';
 import { CommonService } from '../shared/services/common.service';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { Campaign } from '../shared/interfaces/campaign';
-import { Meta, Page } from '../shared/interfaces/pagination';
+import { Page } from '../shared/interfaces/pagination';
 
 @Component( {
   selector: 'app-campaigns',
   templateUrl: './campaigns.page.html',
   styleUrls: [ './campaigns.page.scss' ],
+
 } )
 export class CampaignsPage implements OnInit {
 
@@ -37,12 +38,12 @@ export class CampaignsPage implements OnInit {
     if ( !isFirstLoad ) { loading.present(); }
 
     const user: User = await this.storage.get( USER ) as unknown as User;
+
     this.campaignService.list( user.id, this.filter, page ).subscribe( response => {
       loading.dismiss();
       this.pagination = response.meta.page;
 
       if ( this.pagination.lastPage === page ) { this.infiniteScroll.disabled = true; }
-
       if ( isFirstLoad ) { event.target.complete(); }
 
       ( this.filter.name ) ? this.campaigns = [ ...response.data ] : this.campaigns.push( ...response.data );

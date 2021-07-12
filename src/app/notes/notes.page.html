@@ -8,34 +8,25 @@
 </ion-header>
 
 
-<ion-content>
-  <div class="client-name">
-    <ion-text class="title" >
-        Melissa
-    </ion-text>
+<ion-content class="ion-padding">
+  <h2 class="title ion-text-center">Melissa Olaya Domingues</h2>
+
+  <div class="document-banner">
     <div>
-      <ion-grid>
-        <!-- icon -->
-        <ion-row class="icons-container">
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
-            <br>Documentos
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
-            <br>Notas
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
-            <br>Agenda
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
-            <br>Cotizaciones
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <!-- end icon -->
+      <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
+      <ion-label>Documentos</ion-label>
+    </div>
+    <div>
+      <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
+      <ion-label>Notas</ion-label>
+    </div>
+    <div>
+      <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
+      <ion-label>Agenda</ion-label>
+    </div>
+    <div>
+      <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
+      <ion-label>Cotizaciones</ion-label>
     </div>
   </div>
 
@@ -49,8 +40,8 @@
       <div class="document">
         <ion-list *ngFor="let note of notes">
           <ion-item>
-            <ion-icon slot="start"  src="assets/icon/arrow-icon.svg"></ion-icon>
-            <ion-icon  (click)="alert(note)" slot="end"  src="assets/icon/points.svg"></ion-icon>
+            <ion-icon slot="start" src="assets/icon/arrow-icon.svg"></ion-icon>
+            <ion-icon (click)="alert(note)" slot="end" src="assets/icon/points.svg"></ion-icon>
             <ion-text>
               {{note.content}}
             </ion-text>
@@ -62,40 +53,39 @@
             {{note.updated_at}}
           </ion-item>
         </ion-list>
-
       </div>
-
       <!-- Infinte Scroll -->
-        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-          <ion-infinite-scroll-content
-            loadingSpinner="bubbles"
-            loadingText="Cargando mas notas...">
-          </ion-infinite-scroll-content>
-        </ion-infinite-scroll>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más notas...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
       <!-- Infinte Scroll -->
     </ion-card-content>
   </ion-card>
+
   <ion-card>
     <ion-card-header>
       <ion-card-title class="card-header-title">Crear nota</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-item>
-        <ion-textarea #content [(ngModel)]="note.content" auto-grow="true" placeholder="Escribe aquí tu nota"></ion-textarea>
+        <ion-textarea #content [(ngModel)]="note.content" auto-grow="true" placeholder="Escribe aquí tu nota">
+        </ion-textarea>
       </ion-item>
     </ion-card-content>
   </ion-card>
+
   <div class="center">
     <ion-button shape="round" color="light">
       <ion-text class="card-content-footer-text">
         Salir
-       </ion-text>
+      </ion-text>
     </ion-button>
     &nbsp;
     <ion-button (click)="createNote()" *ngIf="!updatedNote else update" shape="round" color="warning">
       <ion-text class="card-content-footer-text">
         Guardar
-       </ion-text>
+      </ion-text>
     </ion-button>
     <ng-template #update>
       <ion-button (click)="updateNote()" shape="round" color="warning">
@@ -103,6 +93,6 @@
           Actualizar
         </ion-text>
       </ion-button>
-     </ng-template>
+    </ng-template>
   </div>
 </ion-content>

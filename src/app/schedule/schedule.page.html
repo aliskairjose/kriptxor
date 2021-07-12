@@ -8,11 +8,18 @@
 </ion-header>
 
 
-<ion-content>
-  <div class="client-name">
-    <ion-text class="title" >
-        Melissa
-    </ion-text>
+<ion-content class="ion-padding">
+  <h2 class="title ion-text-center">Melissa Olaya Domingues</h2>
+
+  <div class="document-banner">
+    <div>
+      <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
+      <ion-label>Documentos</ion-label>
+    </div>
+    <div>
+      <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
+      <ion-label>Notas</ion-label>
+    </div>
     <div>
       <ion-grid>
         <!-- icon -->
@@ -67,12 +74,10 @@
       </div>
 
       <!-- Infinte Scroll -->
-        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-          <ion-infinite-scroll-content
-            loadingSpinner="bubbles"
-            loadingText="Loading more data...">
-          </ion-infinite-scroll-content>
-        </ion-infinite-scroll>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
     </ion-card-content>
   </ion-card>
   <ion-card>
@@ -105,13 +110,13 @@
     <ion-button shape="round" color="light">
       <ion-text class="card-content-footer-text">
         Salir
-       </ion-text>
+      </ion-text>
     </ion-button>
     &nbsp;
     <ion-button (click)="create()" *ngIf="!updatedReminder else upd" shape="round" color="warning">
       <ion-text class="card-content-footer-text">
         Guardar cita
-       </ion-text>
+      </ion-text>
     </ion-button>
     <ng-template #upd>
       <ion-button (click)="update()" shape="round" color="warning">

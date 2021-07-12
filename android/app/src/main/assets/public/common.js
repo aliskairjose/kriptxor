@@ -438,6 +438,64 @@ const openURL = async (url, ev, direction, animation) => {
 
 
 
+/***/ }),
+
+/***/ 4691:
+/*!*************************************************!*\
+  !*** ./src/app/shared/services/http.service.ts ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HttpService": () => (/* binding */ HttpService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 1841);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 2340);
+
+
+
+
+let HttpService = class HttpService {
+    constructor(http) {
+        this.http = http;
+    }
+    post(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        this.http.post(url, data);
+        return this.http.post(url, data);
+    }
+    get(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        return this.http.get(url, { params: data });
+    }
+    put(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        return this.http.put(url, data);
+    }
+    patch(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        return this.http.patch(url, data);
+    }
+    delete(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        return this.http.delete(url, data);
+    }
+};
+HttpService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+];
+HttpService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root'
+    })
+], HttpService);
+
+
+
 /***/ })
 
 }]);

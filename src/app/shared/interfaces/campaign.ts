@@ -1,8 +1,9 @@
 //import {DateAt} from './response';
-import {Client} from './cliente';
 //import {Seller} from './seller';
 
-export class CampaignClient{
+import { Client } from '../classes/client';
+
+export class CampaignClient {
   masterClient: Client;
   status: Status;
   last: Last;

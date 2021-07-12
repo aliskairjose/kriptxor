@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Observable } from 'rxjs';
 import { ResultReponse, DataResponse } from '../interfaces/response';
-import {MasterClient} from '../classes/client';
 import { Campaign, ClientCampaignDetail } from '../interfaces/campaign';
 import { map } from 'rxjs/operators';
+import { MasterClient } from '../classes/client';
 
 @Injectable( {
   providedIn: 'root'
@@ -24,6 +24,10 @@ export class CampaignService {
     return this.http.get( `campaigns?sellers=${sellerId}&filter=${filtro}&page=${page}` );
   }
 
+  detail( id: number, filter: any, page = 1 ): Observable<DataResponse<any[]>> {
+    return this.http.get( `campaign-clients?filter${filter}&&page=${page}&include=cliente,status` )
+  }
+
   getById( id: number ): Observable<ResultReponse<Campaign>> {
     return this.http.get( `campaign / ${id} ` );
   }
@@ -31,11 +35,14 @@ export class CampaignService {
   getClientDetailById( id: number ): Observable<ResultReponse<ClientCampaignDetail>> {
     return this.http.get( `campaignclientdetails / ${id} ` )
   }
-  getCampaign(campaign: number, page: number): Observable<MasterClient[]>{
-    return this.http.get(`campaign-clients?filter={"campaignId":${campaign},"order":{"field":"created_at","way":"ASC"}}&page=${page}&include=cliente,status`).pipe(
-      map(
-        response => response.data as MasterClient[]
-      )
-    )
+  getCampaign( campaign: number, page: number ): Observable<DataResponse<MasterClient[]>> {
+    const filter = {
+      campaignId: 17,
+      order: { field: 'created_at', way: 'ASC' }
+    };
+
+    const filtro = JSON.stringify( filter );
+
+    return this.http.get( `campaign-clients?filter=${filtro}&page=${page}&include=cliente,status` );
   }
 }

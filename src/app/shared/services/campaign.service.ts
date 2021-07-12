@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Observable } from 'rxjs';
 import { ResultReponse, DataResponse } from '../interfaces/response';
-import {MasterClient} from '../interfaces/client';
+import {MasterClient} from '../classes/client';
 import { Campaign, ClientCampaignDetail } from '../interfaces/campaign';
 import { map } from 'rxjs/operators';
 

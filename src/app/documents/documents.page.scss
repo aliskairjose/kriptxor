@@ -10,6 +10,11 @@ ion-item:not(.file){
 ion-label{
   width: 100%;
 }
+ion-card{
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .client-name{
   text-align: center;
   margin-top: 5%;

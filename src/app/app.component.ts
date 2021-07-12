@@ -15,13 +15,11 @@ export class AppComponent {
     { title: 'Home', url: '/dashboard', icon: 'home' },
     { title: 'Campañas', url: '/campaigns', icon: 'flag' },
     { title: 'Campaña', url: '/campaign', icon: 'flag' },
-    { title: 'Cliente', url: '/client', icon: 'flag' },
+    { title: 'Cliente', url: '/client/21', icon: 'flag' },
     { title: 'Documentos', url: '/documents', icon: 'flag' },
-    { title: 'Outbox', url: '/documents', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/campaign', icon: 'heart' },
-    { title: 'Archived', url: '/notes', icon: 'archive' },
-    { title: 'Trash', url: '/schedule', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
+    { title: 'Notas', url: '/notes/113', icon: 'flag' },
+    { title: 'Agenda', url: '/schedule', icon: 'flag' },
+    { title: 'Spam', url: '/folder/Spam', icon: 'flag' },
   ];
   public labels = [ 'Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders' ];
 

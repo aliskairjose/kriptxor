@@ -87,12 +87,11 @@ export class NotesPage implements OnInit {
 
   // Infinite Scroll
   scrollNotes(){
-    let notes: Array<Note>;
+
     this.notesService.getNotes(this.id,this.pages.currentPage + 1).subscribe(
       response => {
-        notes = this.notes.concat(response.data);
+        this.notes = this.notes.concat(response.data);
         this.pages = response.meta.page as Page;
-        this.notes = notes;
       }
     )
   }

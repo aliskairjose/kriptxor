@@ -37,8 +37,8 @@ const routes: Routes = [
     loadChildren: () => import( './notes/notes.module' ).then( m => m.NotesPageModule )
   },
   {
-    path: 'schedule',
-    loadChildren: () => import( './schedule/schedule.module' ).then( m => m.SchedulePageModule )
+    path: 'schedule/:id',
+    loadChildren: () => import('./schedule/schedule.module').then( m => m.SchedulePageModule)
   }
 
 ];

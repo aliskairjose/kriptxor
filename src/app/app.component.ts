@@ -16,7 +16,7 @@ export class AppComponent {
     { title: 'Campañas', url: '/campaigns', icon: 'flag' },
     { title: 'Documentos', url: '/documents', icon: 'flag' },
     { title: 'Notas', url: '/notes/113', icon: 'flag' },
-    { title: 'Agenda', url: '/schedule', icon: 'flag' },
+    { title: 'Agenda', url: '/schedule/113', icon: 'flag' },
     { title: 'Spam', url: '/folder/Spam', icon: 'flag' },
   ];
   public labels = [ 'Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders' ];

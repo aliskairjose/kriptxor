@@ -68,6 +68,8 @@
 
   --ion-color-white: #f8f9ff;
   --ion-color-ligth-gray: #f8f8f8;
+  --ion-badge-background-primary: #e1e6ef;
+  --ion-badge-color-primary: #304ffe;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -226,4 +228,5 @@
 
     --ion-card-background: #1e1e1e;
   }
+
 }

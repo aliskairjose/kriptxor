@@ -39,17 +39,17 @@
     <ion-card-content>
       <div class="document">
         <ion-list *ngFor="let note of notes">
-          <ion-item>
+          <ion-item class="no-bottom-border-item">
             <ion-icon slot="start" src="assets/icon/arrow-icon.svg"></ion-icon>
             <ion-icon (click)="alert(note)" slot="end" src="assets/icon/points.svg"></ion-icon>
             <ion-text>
               {{note.content}}
             </ion-text>
           </ion-item>
-          <ion-item>
+          <ion-item class="no-bottom-border-item">
             <ion-badge>Creado por {{note.user.nombre}} {{note.user.apellido}} </ion-badge>
           </ion-item>
-          <ion-item class="last">
+          <ion-item>
             {{note.updated_at}}
           </ion-item>
         </ion-list>
@@ -65,7 +65,7 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title class="card-header-title">Crear nota</ion-card-title>
+      <ion-card-title class="text-left">Crear nota</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-item>
@@ -75,24 +75,26 @@
     </ion-card-content>
   </ion-card>
 
-  <div class="center">
-    <ion-button shape="round" color="light">
-      <ion-text class="card-content-footer-text">
-        Salir
-      </ion-text>
-    </ion-button>
-    &nbsp;
-    <ion-button (click)="createNote()" *ngIf="!updatedNote else update" shape="round" color="warning">
-      <ion-text class="card-content-footer-text">
-        Guardar
-      </ion-text>
-    </ion-button>
-    <ng-template #update>
-      <ion-button (click)="updateNote()" shape="round" color="warning">
-        <ion-text class="card-content-footer-text">
-          Actualizar
+  <div>
+    <div class="m-0 row justify-content-center">
+      <ion-button class="col-auto" shape="round" color="light">
+        <ion-text>
+          Salir
         </ion-text>
       </ion-button>
-    </ng-template>
+      &nbsp;
+      <ion-button class="col-auto" (click)="createNote()" *ngIf="!updatedNote else update" shape="round" color="warning">
+        <ion-text class="card-content-footer-text">
+          Guardar
+        </ion-text>
+      </ion-button>
+      <ng-template #update>
+        <ion-button class="col-auto" (click)="updateNote()" shape="round" color="warning">
+          <ion-text>
+            Actualizar
+          </ion-text>
+        </ion-button>
+      </ng-template>
+    </div>
   </div>
 </ion-content>

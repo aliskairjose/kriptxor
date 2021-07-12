@@ -21,29 +21,12 @@
       <ion-label>Notas</ion-label>
     </div>
     <div>
-      <ion-grid>
-        <!-- icon -->
-        <ion-row class="icons-container">
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
-            <br>Documentos
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons"
-             src="assets/icon/notes.svg"></ion-icon>
-            <br>Notas
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
-            <br>Agenda
-          </ion-col>
-          <ion-col size="3">
-            <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
-            <br>Cotizaciones
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <!-- end icon -->
+      <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
+      <ion-label>Agenda</ion-label>
+    </div>
+    <div>
+      <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
+      <ion-label>Cotizaciones</ion-label>
     </div>
   </div>
 
@@ -56,14 +39,14 @@
     <ion-card-content>
       <div class="document">
         <ion-list *ngFor="let reminder of reminders">
-          <ion-item>
+          <ion-item class="no-bottom-border-item">
             <ion-icon slot="start"  src="assets/icon/arrow-icon.svg"></ion-icon>
             <ion-icon slot="end" (click)="alert(reminder)"  src="assets/icon/points.svg"></ion-icon>
             <ion-text>
               {{ reminder.title }}
             </ion-text>
           </ion-item>
-          <ion-item>
+          <ion-item class="no-bottom-border-item">
             <ion-badge>Creado por {{reminder.user.nombre}} {{reminder.user.apellido}} </ion-badge>
           </ion-item>
           <ion-item class="last">
@@ -85,19 +68,19 @@
       <ion-card-title class="card-header-title">Crea una reunion</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-item>
+      <ion-item class="no-bottom-border-item">
         <ion-textarea [(ngModel)]="reminder.title" auto-grow="true" placeholder="Escribe aquí tu nota"></ion-textarea>
       </ion-item>
-      <ion-item>
+      <ion-item class="no-bottom-border-item">
           <ion-label>Fecha de la reunion</ion-label>
           <ion-datetime  min="{{today}}" max="{{maxDate}}" placeholder="Selecciona una Fecha"></ion-datetime>
       </ion-item>
-      <ion-item>
+      <ion-item class="no-bottom-border-item">
           <ion-label>Hora de la reunion</ion-label>
           <ion-datetime  display-format="h:mm A" picker-format="h:mm A"></ion-datetime>
           <ion-input type="text"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item class="no-bottom-border-item">
       <ion-label>Duracion</ion-label>
       <ion-select [(ngModel)]="reminder.duration" placeholder="Selecciona cuantas hora durara la reunion">
         <ion-select-option value="f">Female</ion-select-option>
@@ -106,20 +89,20 @@
     </ion-item>
     </ion-card-content>
   </ion-card>
-  <div class="center">
-    <ion-button shape="round" color="light">
+  <div class="m-0 row justify-content-center">
+    <ion-button class="col-auto" shape="round" color="light">
       <ion-text class="card-content-footer-text">
         Salir
       </ion-text>
     </ion-button>
     &nbsp;
-    <ion-button (click)="create()" *ngIf="!updatedReminder else upd" shape="round" color="warning">
+    <ion-button class="col-auto" (click)="create()" *ngIf="!updatedReminder else upd" shape="round" color="warning">
       <ion-text class="card-content-footer-text">
         Guardar cita
       </ion-text>
     </ion-button>
     <ng-template #upd>
-      <ion-button (click)="update()" shape="round" color="warning">
+      <ion-button class="col-auto" (click)="update()" shape="round" color="warning">
         <ion-text class="card-content-footer-text">
           Actualizar cita
         </ion-text>

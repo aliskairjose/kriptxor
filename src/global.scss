@@ -32,7 +32,13 @@ ion-label {
 .bg-ligth-gray {
   background-color: var(--ion-color-ligth-gray);
 }
-
+ion-badge{
+  --background: var(--ion-badge-background-primary);
+  --color: var(--ion-badge-color-primary);
+}
+.no-bottom-border-item{
+  --border-color: white;
+}
 .container-bordered {
   background: #ffffff;
   // box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.102);
@@ -66,7 +72,9 @@ ion-label {
   ion-item {
     border: 1px solid var(--ion-color-primary);
     border-radius: 5px;
+
   }
+
 
   ion-icon {
     color: var(--ion-color-primary);

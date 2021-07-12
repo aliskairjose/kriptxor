@@ -33,7 +33,7 @@ const routes: Routes = [
     loadChildren: () => import( './documents/documents.module' ).then( m => m.DocumentsPageModule )
   },
   {
-    path: 'notes',
+    path: 'notes/:id',
     loadChildren: () => import( './notes/notes.module' ).then( m => m.NotesPageModule )
   },
   {

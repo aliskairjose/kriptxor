@@ -1,9 +1,9 @@
-import {DateAt} from './response';
-import {MasterClient} from './client';
+//import {DateAt} from './response';
+import {Client} from './cliente';
 //import {Seller} from './seller';
 
 export class CampaignClient{
-  masterClient: MasterClient;
+  masterClient: Client;
   status: Status;
   last: Last;
   seller: Seller;

@@ -1380,6 +1380,12 @@ ion-card-subtitle .campaign-title {
 .info {
   color: var(--ion-color-primary) !important;
 }
+.history-span {
+  color: var(--ion-color-primary);
+}
+ion-button .no-transform {
+  text-transform: none;
+}
 @charset "UTF-8";
 /*!
  * Bootstrap v5.0.2 (https://getbootstrap.com/)

@@ -35,7 +35,8 @@ ion-label {
 
 .container-bordered {
   background: #ffffff;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.102);
+  // box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.102);
+  box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
   border-radius: 8px;
   margin: 1rem 0;
 }

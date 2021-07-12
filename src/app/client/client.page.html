@@ -32,11 +32,12 @@
   </div>
 
   <div class="d-flex justify-content-around container-bordered ion-padding-vertical">
-    <ion-chip color="danger" mode="ios" outline="true">
-      <ion-icon name="close-circle-outline"></ion-icon>
+    <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest(0)">
+      <ion-icon name=" close-circle-outline">
+      </ion-icon>
       <ion-label>No interesado</ion-label>
     </ion-chip>
-    <ion-chip color="success" mode="ios" outline="true">
+    <ion-chip color="success" mode="ios" outline="true" (click)="updateInterest(1)">
       <ion-icon name="checkmark-circle-outline"></ion-icon>
       <ion-label>Interesado</ion-label>
     </ion-chip>

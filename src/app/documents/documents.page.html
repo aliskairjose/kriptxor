@@ -31,7 +31,7 @@
   </div>
 
   <div class="container-bordered ion-padding scrolling-content">
-    <p>Seleccione un archivo o tome una foto</p>
+    <p>Historial</p>
     <div *ngFor="let document of documents" class="alert alert-primary alert-dismissible fade show" role="alert">
       <img src="assets/icon/pdf.svg" style="height: 1.5rem;" class="ion-margin-end">
       <ion-label>{{document.name}}</ion-label>
@@ -45,8 +45,21 @@
     <!-- Infinte Scroll -->
   </div>
   <div class="container-bordered ion-padding">
-    <p>test</p>
+    <p class="text-center">Seleccione un archivo o tome una foto</p>
+    <div class="container-bordered ion-padding">
 
+      <input [(ngModel)]="file" (change)="uploadFile($event)" type="file" id="file" class="upload">
+      <label for="file">
+        <img src="assets/icon/pdf.svg" style="height: 1.5rem;" class="ion-margin-start">
+      </label>
+      <label class="file-selector text-right" for="file">
+        SUBIR ARCHIVO
+      </label>
+    </div>
+    <div *ngIf="isFile" class="alert alert-primary alert-dismissible fade show" role="alert">
+      <img src="assets/icon/pdf.svg" style="height: 1.5rem;" class="ion-margin-end">
+      <ion-label>{{document.name}}</ion-label>
+    </div>
   </div>
 
   <div class="ion-text-center ion-margin-top">

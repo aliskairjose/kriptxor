@@ -16,13 +16,14 @@ import { AlertController } from '@ionic/angular';
 export class DocumentsPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  id: number;
+  id: any;
   uploadedFile: boolean = false;
   imgPreview: string | ArrayBuffer;
   imgName: string;
   document: Document = new Document;
   documents: Document[];
   pages: Page;
+  isFile: boolean = false;
 
   constructor(
     private common: CommonService,
@@ -42,19 +43,6 @@ export class DocumentsPage implements OnInit {
 
   }
 
-
-  updateFile( event ) {
-    if ( event.target.files.length > 0 ) {
-      const file = event.target.files[ 0 ];
-      this.imgName = event.target.files[ 0 ].name;
-      // preview de la img
-      const reader = new FileReader();
-      // leo el archivo seleccionado
-      reader.onload = e => this.imgPreview = reader.result;
-      reader.readAsDataURL( file );
-      this.uploadedFile = true;
-    }
-  }
   getDocuments(page: number = 1){
     this.documentService.list(this.id,page).subscribe(
       response => {
@@ -66,9 +54,10 @@ export class DocumentsPage implements OnInit {
     )
   }
   create(){
-    return 'hello-world';
+    this.document.file != null ? this.createDocument() : this.invalidDocument();
   }
   createDocument(){
+    this.document.campaign_client_id = this.id;
     this.documentService.create(this.document).subscribe(
       response =>{
         this.document = new Document;
@@ -86,7 +75,11 @@ export class DocumentsPage implements OnInit {
       }
     )
   }
-
+  uploadFile(event: any){
+    this.document.name = event.target.files[0].name;
+    this.document.file = event.target.files[0];
+    this.isFile = true;
+  }
 
   //Infinite scroll
   scrollDocments(){
@@ -144,7 +137,7 @@ export class DocumentsPage implements OnInit {
         cssClass: 'my-custom-class',
         header: 'Error',
         subHeader: '',
-        message: 'El campo de texto no puede estar vacio',
+        message: 'El documento es invalido',
         buttons: ['OK']
       });
 

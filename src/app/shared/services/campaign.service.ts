@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Observable } from 'rxjs';
 import { ResultReponse, DataResponse } from '../interfaces/response';
-import { Campaign, ClientCampaignDetail } from '../interfaces/campaign';
+import { Campaign, ClientCampaignDetail, CampaignClient } from '../interfaces/campaign';
 import { map } from 'rxjs/operators';
 import { MasterClient } from '../classes/client';
 
@@ -32,17 +32,16 @@ export class CampaignService {
     return this.http.get( `campaign / ${id} ` );
   }
 
-  getClientDetailById( id: number ): Observable<ResultReponse<ClientCampaignDetail>> {
-    return this.http.get( `campaignclientdetails / ${id} ` )
+  getCampaignClientById( id: number ): Observable<DataResponse<CampaignClient>> {
+    return this.http.get( `campaign-clients/${id}?include=cliente` );
   }
-  getCampaign( campaign: number, page: number ): Observable<DataResponse<MasterClient[]>> {
-    const filter = {
-      campaignId: 17,
-      order: { field: 'created_at', way: 'ASC' }
-    };
 
+  getCampaign( filter: any, page: number ): Observable<DataResponse<MasterClient[]>> {
     const filtro = JSON.stringify( filter );
-
     return this.http.get( `campaign-clients?filter=${filtro}&page=${page}&include=cliente,status` );
+  }
+
+  updateCampaignClientInterest( id: number, interested: number ): Observable<any> {
+    return this.http.put( `campaign-clients/${id}`, { interested } );
   }
 }

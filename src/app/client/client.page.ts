@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from '../shared/services/common.service';
-import { ClientService } from '../shared/services/client.service';
+import { CampaignService } from '../shared/services/campaign.service';
+import { CampaignClient } from '../shared/interfaces/campaign';
 import { Client } from '../shared/classes/client';
 
 @Component( {
@@ -12,12 +13,13 @@ import { Client } from '../shared/classes/client';
 export class ClientPage implements OnInit {
 
   clientId: number;
+  data: CampaignClient = {};
   client: Client = {};
 
   constructor(
     private route: ActivatedRoute,
     private common: CommonService,
-    private clientService: ClientService,
+    private campaignService: CampaignService,
   ) { }
 
   ngOnInit() {
@@ -27,15 +29,25 @@ export class ClientPage implements OnInit {
     } );
   }
 
+  async updateInterest( interested: number ): Promise<void> {
+    const loading = await this.common.presentLoading();
+    loading.present();
+    this.campaignService
+      .updateCampaignClientInterest( this.clientId, interested )
+      .subscribe( () => {
+        loading.dismiss();
+        const message = 'Se actualizo con exito';
+        this.common.presentToast( { message } );
+      }, () => loading.dismiss() );
+  }
+
   async loadData() {
     const loading = await this.common.presentLoading();
     loading.present();
-    this.clientService.getById( this.clientId ).subscribe( response => {
+    this.campaignService.getCampaignClientById( this.clientId ).subscribe( response => {
       loading.dismiss();
-      this.client = { ...response.result };
-
+      this.client = { ...response.data.cliente };
     }, () => loading.dismiss() )
-
   }
 
 }

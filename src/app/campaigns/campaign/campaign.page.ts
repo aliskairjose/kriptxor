@@ -17,6 +17,13 @@ export class CampaignPage implements OnInit {
   clients: MasterClient[] = [];
   pagination: Page;
   idCampaing: number;
+  query = '';
+  filter = {
+    search: '',
+    campaignId: 17,
+    order: { field: 'created_at', way: 'ASC' }
+  };
+
   @ViewChild( IonInfiniteScroll ) infiniteScroll: IonInfiniteScroll;
 
   constructor(
@@ -36,7 +43,7 @@ export class CampaignPage implements OnInit {
     const loading = await this.common.presentLoading();
     if ( !isFirstLoad ) { loading.present(); }
 
-    this.campaignService.getCampaign( 17, page ).subscribe( response => {
+    this.campaignService.getCampaign( this.filter, page ).subscribe( response => {
       loading.dismiss();
       this.pagination = { ...response.meta.page };
 
@@ -58,12 +65,12 @@ export class CampaignPage implements OnInit {
   }
 
   // Busca por nombre de campaña
-  // find( query: string ): void {
-  //   this.filter.name = query;
-  //   if ( !query ) {
-  //     this.campaigns = [];
-  //     this.infiniteScroll.disabled = false;
-  //   }
-  //   this.getCampaigns( false, '' );
-  // }
+  find( query: string ): void {
+    this.filter.search = query;
+    if ( !query ) {
+      this.clients = [];
+      this.infiniteScroll.disabled = false;
+    }
+    this.getCampaign( false, '', );
+  }
 }

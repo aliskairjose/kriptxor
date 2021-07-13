@@ -6,6 +6,7 @@ export class Schedule {
   date: string;
   condition: number;
   user_id: number;
+  campaign_client_id? : number;
   created_at: string;
   updated_at: string;
   duration: number;

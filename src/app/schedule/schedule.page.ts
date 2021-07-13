@@ -7,7 +7,9 @@ import {Page} from '../shared/interfaces/pagination';
 import { ScheduleService } from '../shared/services/schedule.service';
 import {DURATIONS} from './durations.json';
 import * as moment from 'moment-timezone';
-
+import { StorageService } from '../shared/services/storage.service';
+import { User } from '../shared/interfaces/user';
+import { USER } from '../shared/constants/constants';
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.page.html',
@@ -29,7 +31,12 @@ export class SchedulePage implements OnInit {
   date: any;
   time: any;
 
-  constructor(private activateRoute: ActivatedRoute, private scheduleService: ScheduleService,public alertController: AlertController) {
+  constructor(
+    private activateRoute: ActivatedRoute, 
+    private scheduleService: ScheduleService,
+    public alertController: AlertController,
+    private storage: StorageService
+  ) {
     this.activateRoute.params.subscribe(
       params => this.id = params['id']
     )
@@ -44,8 +51,9 @@ export class SchedulePage implements OnInit {
   test(event){
     return console.log('hello-world');
   }
-  getReminders(page: number = 1){
-    this.scheduleService.getReminders(this.id, page).subscribe(
+  async getReminders(page: number = 1){
+    const user: User = await this.storage.get( USER ) as unknown as User;
+    this.scheduleService.getReminders(this.id,user.id, page).subscribe(
       response => {
         this.reminders = response.data as Schedule[]
         this.page = response.meta.page as Page;
@@ -61,13 +69,19 @@ export class SchedulePage implements OnInit {
       }
     )
   }
-  create(){
+  async create(){
     this.date = this.moment(this.date).format('YYYY-MM-DD');
-    this.reminder.date = this.date + " " + this.time;
+    this.reminder.date = this.date + " " + this.moment(this.time).format('HH:mm:ss');
+    this.reminder.campaign_client_id=this.id;
+    const user: User = await this.storage.get( USER ) as unknown as User;
+    this.reminder.user_id=user.id;
     this.reminder.title != null ? this.createReminder() : this.invalidText();
   }
   createReminder(){
-    this.scheduleService.createReminder(this.reminder).subscribe(
+    const data={
+      attributes:this.reminder
+    }
+    this.scheduleService.createReminder(data).subscribe(
       response =>{
         this.reminder = new Schedule;
         this.date = "";
@@ -78,9 +92,12 @@ export class SchedulePage implements OnInit {
       }
     )
   }
-  update(){
+  async update(){
     this.date = this.moment(this.date).format('YYYY-MM-DD');
-    this.reminder.date = this.date + " " + this.time;
+    this.reminder.date = this.date + " " + this.moment(this.time).format('HH:mm:ss');
+    this.reminder.campaign_client_id=this.id;
+    const user: User = await this.storage.get( USER ) as unknown as User;
+    this.reminder.user_id=user.id;
     this.reminder.title != null ? this.updateReminder() : this.invalidText();
   }
   updateReminder(){
@@ -112,8 +129,9 @@ export class SchedulePage implements OnInit {
 
 
     //Infinite Scroll
-    scrollReminders(){
-      this.scheduleService.getReminders(this.id, this.page.currentPage + 1).subscribe(
+    async scrollReminders(){
+    const user: User = await this.storage.get( USER ) as unknown as User;
+    this.scheduleService.getReminders(this.id,user.id, this.page.currentPage + 1).subscribe(
         response => {
           this.reminders = this.reminders.concat(response.data as Schedule[]);
           this.page = response.meta.page as Page;

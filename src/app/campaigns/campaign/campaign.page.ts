@@ -4,8 +4,8 @@ import { CommonService } from '../../shared/services/common.service';
 import { Page } from '../../shared/interfaces/pagination';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { CallNumber } from '@ionic-native/call-number/ngx';
-import { MasterClient } from '../../shared/classes/client';
-import { ActivatedRoute } from '@angular/router';
+import { MasterClient, Client } from '../../shared/classes/client';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component( {
   selector: 'app-campaign',
@@ -28,6 +28,7 @@ export class CampaignPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private common: CommonService,
     private call: CallNumber,
     private campaignService: CampaignService
@@ -58,9 +59,9 @@ export class CampaignPage implements OnInit {
     this.getCampaign( true, event, this.pagination.currentPage + 1 );
   }
 
-  callNumber( number: string ): void {
-    this.call.callNumber( number, true )
-      .then( res => console.log( 'Launched dialer!', res ) )
+  callNumber( client: Client ): void {
+    this.call.callNumber( client.numero, true )
+      .then( res => this.router.navigateByUrl( `/client/${client.id}` ) )
       .catch( err => console.log( 'Error launching dialer', err ) );
   }
 

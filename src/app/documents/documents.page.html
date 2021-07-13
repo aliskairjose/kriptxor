@@ -13,15 +13,15 @@
 
   <div class="document-banner">
     <div>
-      <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
+      <ion-icon [routerLink]="[ '/documents',id ]" class="icons" src="assets/icon/documents.svg"></ion-icon>
       <ion-label>Documentos</ion-label>
     </div>
     <div>
-      <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
+      <ion-icon [routerLink]="[ '/notes',id ]" class="icons" src="assets/icon/notes.svg"></ion-icon>
       <ion-label>Notas</ion-label>
     </div>
     <div>
-      <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
+      <ion-icon [routerLink]="[ '/schedule',id ]" class="icons" src="assets/icon/schedule.svg"></ion-icon>
       <ion-label>Agenda</ion-label>
     </div>
     <div>
@@ -30,20 +30,30 @@
     </div>
   </div>
 
-  <div class="container-bordered ion-padding">
-    <p>Historical</p>
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+  <div class="container-bordered ion-padding scrolling-content">
+    <p>Historial</p>
+    <div *ngFor="let document of documents" class="alert alert-primary alert-dismissible fade show" role="alert">
       <img src="assets/icon/pdf.svg" style="height: 1.5rem;" class="ion-margin-end">
-      <ion-label>Ficha de Mayo ac...</ion-label>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <ion-label>{{document.name}}</ion-label>
+      <button type="button" (click)="delete(document)" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+    <!-- Infinte Scroll -->
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más notas...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <!-- Infinte Scroll -->
+  </div>
+  <div class="container-bordered ion-padding">
+    <p>test</p>
+
   </div>
 
   <div class="ion-text-center ion-margin-top">
-    <ion-button (click)="onClick()" fill="outline" shape="round" class="ion-margin-end">
+    <ion-button [routerLink]="[ '/campaigns/campaign',id ]" fill="outline" shape="round" class="ion-margin-end">
       <ion-label class="ion-margin-horizontal">Salir</ion-label>
     </ion-button>
-    <ion-button (click)="onClick()" color="warning" fill="solid" shape="round" class="ion-margin-start">
+    <ion-button (click)="create()" color="warning" fill="solid" shape="round" class="ion-margin-start">
       <ion-label class="ion-margin-horizontal">Guardar</ion-label>
     </ion-button>
   </div>

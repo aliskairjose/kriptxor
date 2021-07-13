@@ -13,15 +13,15 @@
 
   <div class="document-banner">
     <div>
-      <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
+      <ion-icon [routerLink]="[ '/documents',id ]" class="icons" src="assets/icon/documents.svg"></ion-icon>
       <ion-label>Documentos</ion-label>
     </div>
     <div>
-      <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
+      <ion-icon [routerLink]="[ '/notes',id ]" class="icons" src="assets/icon/notes.svg"></ion-icon>
       <ion-label>Notas</ion-label>
     </div>
     <div>
-      <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
+      <ion-icon [routerLink]="[ '/schedule',id ]" class="icons" src="assets/icon/schedule.svg"></ion-icon>
       <ion-label>Agenda</ion-label>
     </div>
     <div>
@@ -91,7 +91,7 @@
     </ion-card-content>
   </ion-card>
   <div class="m-0 row justify-content-center">
-    <ion-button class="col-auto" shape="round" color="light">
+    <ion-button [routerLink]="[ '/campaigns/campaign',id ]" class="col-auto" shape="round" color="light">
       <ion-text class="card-content-footer-text">
         Salir
       </ion-text>

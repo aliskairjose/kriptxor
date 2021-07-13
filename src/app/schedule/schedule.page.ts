@@ -7,6 +7,8 @@ import {Page} from '../shared/interfaces/pagination';
 import { ScheduleService } from '../shared/services/schedule.service';
 import {DURATIONS} from './durations.json';
 import * as moment from 'moment-timezone';
+import { StorageService } from '../shared/services/storage.service';
+import { TOKEN } from '../shared/constants/constants';
 
 @Component({
   selector: 'app-schedule',
@@ -29,7 +31,7 @@ export class SchedulePage implements OnInit {
   date: any;
   time: any;
 
-  constructor(private activateRoute: ActivatedRoute, private scheduleService: ScheduleService,public alertController: AlertController) {
+  constructor(private storage: StorageService,private activateRoute: ActivatedRoute, private scheduleService: ScheduleService,public alertController: AlertController) {
     this.activateRoute.params.subscribe(
       params => this.id = params['id']
     )
@@ -39,6 +41,7 @@ export class SchedulePage implements OnInit {
 
   ngOnInit() {
     this.getReminders();
+    console.log(this.storage.get( TOKEN ))
   }
 
   test(event){
@@ -49,6 +52,7 @@ export class SchedulePage implements OnInit {
       response => {
         this.reminders = response.data as Schedule[]
         this.page = response.meta.page as Page;
+        this.activateInfiniteScroll()
       }
     )
   }
@@ -134,8 +138,8 @@ export class SchedulePage implements OnInit {
     }, 500);
   }
 
-  toggleInfiniteScroll() {
-    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  activateInfiniteScroll() {
+    this.infiniteScroll.disabled = false;
   }
   // Alerts
   async alert(reminder: Schedule) {

@@ -12,8 +12,8 @@ export class ScheduleService {
 
   constructor(private http: HttpService) { }
 
-  getReminders(id: number, page: number): Observable<DataResponse<Schedule[]>>{
-    return this.http.get(`reminders?filter={"campaignClientId":${id},"userId":4,"order":{"field":"created_at","way":"DESC"}}&page=${page}&include=user`).pipe(
+  getReminders(campaignClientId: number,userId:number, page: number): Observable<DataResponse<Schedule[]>>{
+    return this.http.get(`reminders?filter={"campaignClientId":${campaignClientId},"userId":${userId},"order":{"field":"created_at","way":"DESC"}}&page=${page}&include=user`).pipe(
       map(
         response => response as DataResponse<Schedule[]>
       )
@@ -24,7 +24,7 @@ export class ScheduleService {
       response => response as DataResponse<Schedule>
     ))
   }
-  createReminder(reminder: Schedule): Observable<DataResponse<Schedule>>{
+  createReminder(reminder: {attributes:Schedule}): Observable<DataResponse<Schedule>>{
     return this.http.post("reminders", reminder).pipe(map(
       response => response as DataResponse<Schedule>
     ))

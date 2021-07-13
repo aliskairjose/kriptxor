@@ -18,7 +18,7 @@
           cliente: <h4> {{client?.cliente?.nombre_completo}} </h4>
         </ion-label>
 
-        <ion-chip outline="false" class="primary-chip" [routerLink]="['/client', client?.cliente.id]"
+        <ion-chip outline="false" class="primary-chip" [routerLink]="['/client', client?.id]"
           routerLinkActive="router-link-active">
           <ion-icon name="arrow-forward-circle-outline"></ion-icon>
           <ion-label>Ver cliente</ion-label>
@@ -29,7 +29,7 @@
         <div class="d-flex justify-content-around">
           <div>
             <p class="text-black-50">Estado</p>
-            <p class="info">{{client?.status?.name}}</p>
+            <p class="info">{{client?.condicion === 0 ? 'No contactado' : 'Contactado'}}</p>
           </div>
           <div>
             <p class="text-black-50">Teléfono</p>

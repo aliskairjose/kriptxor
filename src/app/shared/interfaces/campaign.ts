@@ -1,14 +1,8 @@
 //import {DateAt} from './response';
 //import {Seller} from './seller';
-
 import { Client } from '../classes/client';
 
-export class CampaignClient {
-  masterClient: Client;
-  status: Status;
-  last: Last;
-  seller: Seller;
-}
+
 export interface Campaign {
   id?: number;
   nombre?: string;
@@ -56,10 +50,10 @@ export interface CampaignClient {
   amount?: number;
   id_user?: number;
   interested?: number;
-  cliente: CampaignClient | null;
-  status: Status | null;
-  getlast?: Last | null;
-  vendedor?: Seller | null;
+  cliente?: Client;
+  status?: Status;
+  getlast?: Last;
+  vendedor?: Seller;
 }
 
 export interface Last {

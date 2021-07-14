@@ -50,6 +50,7 @@ ion-badge{
   box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
   border-radius: 8px;
   margin: 1rem 0;
+  padding: 0.5rem;
 }
 
 .login {
@@ -88,6 +89,7 @@ ion-badge{
 
 .title {
   color: var(--ion-color-primary);
+  text-transform: capitalize;
 }
 
 .title-login {
@@ -227,4 +229,12 @@ ion-button {
   .no-transform {
     text-transform: none;
   }
+}
+
+.date-badged {
+  display: inline-block;
+  color: #304ffe;
+  background-color: #e1e6ef;
+  padding: 3px 5px;
+  font-size: 0.875rem;
 }

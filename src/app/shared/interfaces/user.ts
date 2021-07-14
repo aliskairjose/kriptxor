@@ -7,4 +7,5 @@ export interface User {
   super_admin: number;
   numero: string;
   main_image: string;
+  top_seller?: number;
 }

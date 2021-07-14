@@ -4,8 +4,8 @@ import { CommonService } from '../../shared/services/common.service';
 import { Page } from '../../shared/interfaces/pagination';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { CallNumber } from '@ionic-native/call-number/ngx';
-import { MasterClient } from '../../shared/classes/client';
-import { ActivatedRoute } from '@angular/router';
+import { MasterClient, Client } from '../../shared/classes/client';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component( {
   selector: 'app-campaign',
@@ -20,7 +20,7 @@ export class CampaignPage implements OnInit {
   query = '';
   filter = {
     search: '',
-    campaignId: 17,
+    campaignId: 0,
     order: { field: 'created_at', way: 'ASC' }
   };
 
@@ -28,6 +28,7 @@ export class CampaignPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private common: CommonService,
     private call: CallNumber,
     private campaignService: CampaignService
@@ -35,7 +36,7 @@ export class CampaignPage implements OnInit {
 
   ngOnInit() {
     this.getCampaign( false, '' );
-    this.route.params.subscribe( data => this.idCampaing = data.id );
+    this.route.params.subscribe( data => this.idCampaing = this.filter.campaignId = data.id );
   }
 
   async getCampaign( isFirstLoad, event, page = 1 ) {
@@ -54,13 +55,24 @@ export class CampaignPage implements OnInit {
     } );
   }
 
+  async callNow() {
+    const loading = await this.common.presentLoading();
+    loading.present();
+    this.campaignService.callNow( this.idCampaing ).subscribe( response => {
+      const data = response.data;
+      this.callNumber( data.cliente );
+      this.router.navigateByUrl( `client/${data.id}` );
+      loading.dismiss();
+    }, () => loading.dismiss() );
+  }
+
   loadData( event: any ): void {
     this.getCampaign( true, event, this.pagination.currentPage + 1 );
   }
 
-  callNumber( number: string ): void {
-    this.call.callNumber( number, true )
-      .then( res => console.log( 'Launched dialer!', res ) )
+  callNumber( data ): void {
+    this.call.callNumber( data.cliente.numero, true )
+      .then( res => this.router.navigateByUrl( `/client/${data.id}` ) )
       .catch( err => console.log( 'Error launching dialer', err ) );
   }
 

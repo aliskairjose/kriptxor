@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Observable } from 'rxjs';
 import { ResultReponse, DataResponse } from '../interfaces/response';
-import { Campaign, ClientCampaignDetail, CampaignClient } from '../interfaces/campaign';
+import { Campaign, ClientCampaignDetail, CampaignClient, CampaignClientHistory } from '../interfaces/campaign';
 import { map } from 'rxjs/operators';
 import { MasterClient } from '../classes/client';
 
@@ -32,7 +32,7 @@ export class CampaignService {
     return this.http.get( `campaign / ${id} ` );
   }
 
-  getCampaignClientById( id: number ): Observable<DataResponse<CampaignClient>> {
+  getCampaignClientById( id: number ): Observable<DataResponse<any>> {
     return this.http.get( `campaign-clients/${id}?include=cliente` );
   }
 
@@ -44,4 +44,25 @@ export class CampaignService {
   updateCampaignClientInterest( id: number, interested: number ): Observable<any> {
     return this.http.put( `campaign-clients/${id}`, { interested } );
   }
+
+
+  /**
+   * @description Muestra el historial del ciente de la campaña
+   * @param campaign_client_id 
+   * @param page 
+   * @returns 
+   */
+  campaignClientHistory( campaign_client_id: number, page = 1 ): Observable<DataResponse<CampaignClientHistory[]>> {
+    const filter = { campaign_client_id, order: { field: 'created_at', way: 'DESC' } };
+    const filtro = JSON.stringify( filter );
+
+    return this.http.get( `campaign-clients-histories?filter=${filtro}&page=${page}&include=user` );
+  }
+
+  callNow( campaignId: number ): Observable<any> {
+    const filter = { campaignId, order: { field: 'created_at', way: 'ASC' } };
+    const filtro = JSON.stringify( filter );
+    return this.http.get( `campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status` );
+  }
+
 }

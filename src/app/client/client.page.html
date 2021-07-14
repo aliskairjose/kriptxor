@@ -32,8 +32,8 @@
   </div>
 
   <div class="d-flex justify-content-around container-bordered ion-padding-vertical">
-    <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest(0)">
-      <ion-icon name=" close-circle-outline">
+    <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest(2)">
+      <ion-icon name="close-circle-outline">
       </ion-icon>
       <ion-label>No interesado</ion-label>
     </ion-chip>
@@ -43,7 +43,7 @@
     </ion-chip>
   </div>
 
-  <div class="d-flex justify-content-around container-bordered" style="padding: 0.5rem;">
+  <div class="d-flex justify-content-around container-bordered">
     <div class="d-flex flex-column">
       <ion-label class="ion-margin-top">Cliente:</ion-label>
       <ion-label>{{client.nombre_completo}}</ion-label>
@@ -65,78 +65,37 @@
     </div>
   </div>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-text color="dark" class="bold-text">
-        Historial
-      </ion-text>
-    </ion-card-header>
-    <ion-card-content class="history">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-icon src="assets/icon/cellphone1.svg"></ion-icon>
-            &nbsp;
-            <ion-text color="dark" class="bold-text">
-              Alberto Chirinos:
-            </ion-text> Llamda realizada
-            <br>
-            <ion-badge color="medium">26 May 2021</ion-badge>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-icon src="assets/icon/cellphone1.svg"></ion-icon>
-            &nbsp;
-            <ion-text color="dark" class="bold-text">
-              Alberto Chirinos:
-            </ion-text> Ha registrado una nota
-            <br>
-            <ion-badge class="history-span" color="warning">10 May 2021</ion-badge>
-            <br>
-            <ion-textarea>
-              El cliente indica que se llame despues de las 6:00pm
-              <br><br><br>
-              Se mostró interesado
-            </ion-textarea>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size="8">
-            <ion-icon src="assets/icon/cellphone1.svg"></ion-icon>
-            &nbsp;
-            <ion-text color="dark" class="bold-text">
-              Alberto Chirinos:
-            </ion-text> Ha marcado
-            <br>
-            <ion-badge color="medium">26 May 2021</ion-badge>
+  <div class="container-bordered">
+    <div>
+      <ion-label>Historial</ion-label>
+    </div>
+    <ion-list>
+      <ng-container *ngFor="let h of historical; let i=index">
+        <ion-item>
+          <div style="margin: 1rem 0;" class="w-100">
+            <ion-label>
+              <ion-icon class="icon" src="assets/icon/cellphone1.svg"></ion-icon>
+              {{h?.user.nombre}} {{h?.user.apellido}}: Ha marcado interesado
+            </ion-label>
+            <div class="d-flex justify-content-between">
+              <div class="date-badged text-center">{{h.created_at | date}}</div>
+              <div class="d-flex align-items-center" *ngIf="h.message === 'Se mostró interesado'">
+                <ion-icon slot="end" name="checkmark-circle-outline" color="success" style="font-size: 2rem;">
+                </ion-icon>
+                <ion-label>
+                  Interesado
+                </ion-label>
+              </div>
+            </div>
+          </div>
+        </ion-item>
+      </ng-container>
+    </ion-list>
 
-          </ion-col>
-          <ion-col class="ion-align-self-center">
-            <ion-icon class="icon" src="assets/icon/check-outline.svg"></ion-icon>
-            &nbsp;
-            <ion-text color="dark" class="status-text">
-              Interesado
-            </ion-text>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-icon class="icon-history" src="assets/icon/schedule.svg"></ion-icon>
-            &nbsp;
-            <ion-text color="dark" class="bold-text">
-              Alberto Chirinos:
-            </ion-text> Ha marcado una cita
-            <br>
-            <ion-badge color="medium">09 May 2021</ion-badge>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-  <ion-button expand="full" color="warning">
-    <ion-text class="card-content-footer-text">
-      VOLVER AL LISTADO DE CONTACTOS
-    </ion-text>
-  </ion-button>
+  </div>
+
+  <div class="d-flex justify-content-around">
+    <ion-button color="warning" (click)="location.back()">Volver al listado</ion-button>
+    <ion-button color="primary" fill="outline" (click)="nextCall()">Llamar siguiente</ion-button>
+  </div>
 </ion-content>

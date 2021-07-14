@@ -70,9 +70,9 @@ export class CampaignPage implements OnInit {
     this.getCampaign( true, event, this.pagination.currentPage + 1 );
   }
 
-  callNumber( client: Client ): void {
-    this.call.callNumber( client.numero, true )
-      .then( res => this.router.navigateByUrl( `/client/${client.id}` ) )
+  callNumber( data ): void {
+    this.call.callNumber( data.cliente.numero, true )
+      .then( res => this.router.navigateByUrl( `/client/${data.id}` ) )
       .catch( err => console.log( 'Error launching dialer', err ) );
   }
 

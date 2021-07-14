@@ -10,7 +10,7 @@
 <ion-content>
   <ion-searchbar class="search-bar" placeholder="Buscar clientes"></ion-searchbar>
 
-  <ng-container *ngFor="let client of clients; let i=index">
+  <ng-container *ngFor="let data of clients; let i=index">
     <ion-card>
       <ion-card-header class="d-flex justify-content-between bg-ligth-gray" style="padding: 5px;">
         <ion-label class="d-flex align-items-center">
@@ -18,7 +18,7 @@
           cliente: <h4> {{client?.cliente?.nombre_completo}} </h4>
         </ion-label>
 
-        <ion-chip outline="false" class="primary-chip" [routerLink]="['/client', client?.id]"
+        <ion-chip outline="false" class="primary-chip" [routerLink]="['/client', data?.id]"
           routerLinkActive="router-link-active">
           <ion-icon name="arrow-forward-circle-outline"></ion-icon>
           <ion-label>Ver cliente</ion-label>
@@ -29,11 +29,11 @@
         <div class="d-flex justify-content-around">
           <div>
             <p class="text-black-50">Estado</p>
-            <p class="info">{{client?.condicion === 0 ? 'No contactado' : 'Contactado'}}</p>
+            <p class="info">{{data?.condicion === 0 ? 'No contactado' : 'Contactado'}}</p>
           </div>
           <div>
             <p class="text-black-50">Teléfono</p>
-            <p>{{client?.cliente?.numero}}</p>
+            <p>{{data?.cliente?.numero}}</p>
           </div>
           <div>
             <ion-chip color="success" mode="ios" outline="true">
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div>
-          <ion-button class="call2" expand="full" color="warning" (click)="callNumber(client)">
+          <ion-button class="call2" expand="full" color="warning" (click)="callNumber(data)">
             <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
             <ion-text class="card-content-footer-text">
               LLAMAR AHORA

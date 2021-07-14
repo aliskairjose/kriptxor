@@ -41,8 +41,6 @@ export class InterceptorService {
       let clone: HttpRequest<any>;
       clone = request.clone( {
         setHeaders: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
         }
       } );

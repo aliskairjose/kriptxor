@@ -32,7 +32,7 @@
   </div>
 
   <div class="d-flex justify-content-around container-bordered ion-padding-vertical">
-    <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest(0)">
+    <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest(2)">
       <ion-icon name="close-circle-outline">
       </ion-icon>
       <ion-label>No interesado</ion-label>
@@ -94,9 +94,8 @@
 
   </div>
 
-  <ion-button expand="full" color="warning" (click)="goBack()">
-    <ion-text class="card-content-footer-text">
-      VOLVER AL LISTADO DE CONTACTOS
-    </ion-text>
-  </ion-button>
+  <div class="d-flex justify-content-around">
+    <ion-button color="warning" (click)="location.back()">Volver al listado</ion-button>
+    <ion-button color="primary" fill="outline" (click)="nextCall()">Llamar siguiente</ion-button>
+  </div>
 </ion-content>

@@ -417,8 +417,6 @@ let InterceptorService = class InterceptorService {
             let clone;
             clone = request.clone({
                 setHeaders: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
                 }
             });

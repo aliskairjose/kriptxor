@@ -496,6 +496,11 @@ let CampaignService = class CampaignService {
         const filtro = JSON.stringify(filter);
         return this.http.get(`campaign-clients-histories?filter=${filtro}&page=${page}&include=user`);
     }
+    callNow(campaignId) {
+        const filter = { campaignId, order: { field: 'created_at', way: 'ASC' } };
+        const filtro = JSON.stringify(filter);
+        return this.http.get(`campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status`);
+    }
 };
 CampaignService.ctorParameters = () => [
     { type: _http_service__WEBPACK_IMPORTED_MODULE_0__.HttpService }

@@ -440,6 +440,76 @@ const openURL = async (url, ev, direction, animation) => {
 
 /***/ }),
 
+/***/ 2507:
+/*!*****************************************************!*\
+  !*** ./src/app/shared/services/campaign.service.ts ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CampaignService": () => (/* binding */ CampaignService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http.service */ 4691);
+
+
+
+let CampaignService = class CampaignService {
+    constructor(http) {
+        this.http = http;
+    }
+    /**
+     * @description Lista todas las campañas
+     * @returns Listado de campañas
+     */
+    list(sellerId, filter, page = 1) {
+        const filtro = JSON.stringify(filter);
+        return this.http.get(`campaigns?sellers=${sellerId}&filter=${filtro}&page=${page}`);
+    }
+    detail(id, filter, page = 1) {
+        return this.http.get(`campaign-clients?filter${filter}&&page=${page}&include=cliente,status`);
+    }
+    getById(id) {
+        return this.http.get(`campaign / ${id} `);
+    }
+    getCampaignClientById(id) {
+        return this.http.get(`campaign-clients/${id}?include=cliente`);
+    }
+    getCampaign(filter, page) {
+        const filtro = JSON.stringify(filter);
+        return this.http.get(`campaign-clients?filter=${filtro}&page=${page}&include=cliente,status`);
+    }
+    updateCampaignClientInterest(id, interested) {
+        return this.http.put(`campaign-clients/${id}`, { interested });
+    }
+    /**
+     * @description Muestra el historial del ciente de la campaña
+     * @param campaign_client_id
+     * @param page
+     * @returns
+     */
+    campaignClientHistory(campaign_client_id, page = 1) {
+        const filter = { campaign_client_id, order: { field: 'created_at', way: 'DESC' } };
+        const filtro = JSON.stringify(filter);
+        return this.http.get(`campaign-clients-histories?filter=${filtro}&page=${page}&include=user`);
+    }
+};
+CampaignService.ctorParameters = () => [
+    { type: _http_service__WEBPACK_IMPORTED_MODULE_0__.HttpService }
+];
+CampaignService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root'
+    })
+], CampaignService);
+
+
+
+/***/ }),
+
 /***/ 4691:
 /*!*************************************************!*\
   !*** ./src/app/shared/services/http.service.ts ***!

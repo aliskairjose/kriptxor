@@ -56,6 +56,8 @@
   --ion-color-light-tint: #cdcdcd;
   --ion-color-white: #f8f9ff;
   --ion-color-ligth-gray: #f8f8f8;
+  --ion-badge-background-primary: #e1e6ef;
+  --ion-badge-color-primary: #304ffe;
 }
 @media (prefers-color-scheme: dark) {
   /*
@@ -1231,6 +1233,18 @@ ion-label {
 }
 .bg-ligth-gray {
   background-color: var(--ion-color-ligth-gray);
+}
+ion-badge {
+  --background: var(--ion-badge-background-primary);
+  --color: var(--ion-badge-color-primary);
+}
+.no-bottom-border-item {
+  --border-color: white;
+}
+.scrolling-content {
+  max-height: 500px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 .container-bordered {
   background: #ffffff;

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DataResponse } from '../interfaces/response';
 import { Document } from '../classes/document';
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpRequest } from '@angular/common/http';
 
 @Injectable( {
   providedIn: 'root'
@@ -32,8 +32,8 @@ export class DocumentService {
 			reportProgress: true,
 		};
     let formData: FormData = new FormData();
-    formData.append("campaign_client_id", document.campaign_client_id.toString());
-    formData.append("file", document.file)
+    formData.set("campaign_client_id", document.campaign_client_id.toString());
+    formData.set("file", document.file);
     return this.http.post(`campaign-clients-documents`, formData, options).pipe(map(
       response => response as DataResponse<Document>
     ))

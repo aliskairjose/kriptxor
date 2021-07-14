@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">Mis clientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar class="search-bar" placeholder="Buscar clientes"></ion-searchbar>
+
+  <ng-container *ngFor="let client of clients">
+    <ion-card>
+      <ion-card-header class="d-flex justify-content-between bg-ligth-gray" style="padding: 5px;">
+        <ion-label class="d-flex align-items-center">
+          <ion-icon slot="start" name="person-circle" color="primary" style="font-size: 2rem"></ion-icon>
+          cliente: <h4 class="info"> {{client.cliente.nombre}} {{client.cliente.apellido}} </h4>
+        </ion-label>
+
+        <ion-chip outline="false" class="primary-chip" [routerLink]="['/client', client.id]"
+          routerLinkActive="router-link-active">
+          <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+          <ion-label>Ver cliente</ion-label>
+        </ion-chip>
+      </ion-card-header>
+
+      <ion-card-content class="ion-no-padding">
+        <div class="d-flex justify-content-around">
+          <div>
+            <p class="text-black-50">Estado</p>
+            <p class="info">{{client.condicion === 0 ? 'No contactado' : 'Contactado'}}</p>
+          </div>
+          <div>
+            <p class="text-black-50">Teléfono</p>
+            <p>{{client.cliente.numero}}</p>
+          </div>
+          <div>
+            <ion-chip color="success" mode="ios" outline="true">
+              <ion-icon name="logo-whatsapp"></ion-icon>
+              <ion-label>Whatsapp</ion-label>
+            </ion-chip>
+          </div>
+        </div>
+        <div>
+          <ion-button class="call2" expand="full" color="warning" (click)="callNumber()">
+            <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
+            <ion-text class="card-content-footer-text">
+              LLAMAR AHORA
+            </ion-text>
+          </ion-button>
+        </div>
+      </ion-card-content>
+
+    </ion-card>
+  </ng-container>
+
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más campañas...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+<ion-footer class="ion-no-border">
+</ion-footer>

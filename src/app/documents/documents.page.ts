@@ -8,6 +8,7 @@ import { CommonService } from '../shared/services/common.service';
 import { StorageService } from '../shared/services/storage.service';
 import { AlertController } from '@ionic/angular';
 
+
 @Component( {
   selector: 'app-documents',
   templateUrl: './documents.page.html',
@@ -24,6 +25,7 @@ export class DocumentsPage implements OnInit {
   documents: Document[];
   pages: Page;
   isFile: boolean = false;
+  file: any;
 
   constructor(
     private common: CommonService,
@@ -61,6 +63,7 @@ export class DocumentsPage implements OnInit {
     this.documentService.create(this.document).subscribe(
       response =>{
         this.document = new Document;
+        this.isFile = false;
         this.successRequest(response.message);
         this.getDocuments();
       }

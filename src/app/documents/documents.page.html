@@ -33,9 +33,10 @@
   <div class="container-bordered ion-padding scrolling-content">
     <p>Historial</p>
     <div *ngFor="let document of documents" class="alert alert-primary alert-dismissible fade show" role="alert">
-      <img src="assets/icon/pdf.svg" style="height: 1.5rem;" class="ion-margin-end">
+      <a [routerLink]="[ 'document', document.file ]">  <img src="assets/icon/pdf.svg" style="height: 1.5rem;" class="ion-margin-end"></a>
       <ion-label>{{document.name}}</ion-label>
       <button type="button" (click)="delete(document)" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <button type="button" (click)="delete(document)" class="btn-check" data-bs-dismiss="alert" aria-label="Check"></button>
     </div>
     <!-- Infinte Scroll -->
     <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
@@ -50,7 +51,7 @@
 
       <input [(ngModel)]="file" (change)="uploadFile($event)" type="file" id="file" class="upload">
       <label for="file">
-        <img src="assets/icon/pdf.svg" style="height: 1.5rem;" class="ion-margin-start">
+        <img src="assets/icon/attach-icon.svg" style="height: 1.5rem;" class="ion-margin-start">
       </label>
       <label class="file-selector text-right" for="file">
         SUBIR ARCHIVO

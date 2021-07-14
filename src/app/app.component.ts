@@ -14,12 +14,9 @@ export class AppComponent {
   public appPages = [
     { title: 'Home', url: '/dashboard', icon: 'home' },
     { title: 'Campañas', url: '/campaigns', icon: 'flag' },
-    { title: 'Documentos', url: '/documents', icon: 'flag' },
-    { title: 'Notas', url: '/notes/113', icon: 'flag' },
-    { title: 'Agenda', url: '/schedule/113', icon: 'flag' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'flag' },
+    { title: 'Mis clientes', url: '/clients', icon: 'flag' },
   ];
-  public labels = [ 'Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders' ];
+  public labels = [  ];
 
   constructor(
     private router: Router,

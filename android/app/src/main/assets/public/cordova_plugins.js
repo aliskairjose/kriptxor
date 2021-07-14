@@ -8,12 +8,31 @@
         "clobbers": [
           "call"
         ]
+        },
+      {
+          "id": "cordova-plugin-document-viewer.SitewaertsDocumentViewer",
+          "file": "plugins/cordova-plugin-document-viewer/www/sitewaertsdocumentviewer.js",
+          "pluginId": "cordova-plugin-document-viewer",
+        "clobbers": [
+          "cordova.plugins.SitewaertsDocumentViewer",
+          "SitewaertsDocumentViewer"
+        ]
+        },
+      {
+          "id": "cordova-plugin-preview-any-file.PreviewAnyFile",
+          "file": "plugins/cordova-plugin-preview-any-file/www/preview.js",
+          "pluginId": "cordova-plugin-preview-any-file",
+        "clobbers": [
+          "window.PreviewAnyFile"
+        ]
         }
     ];
     module.exports.metadata =
     // TOP OF METADATA
     {
-      "mx.ferreyra.callnumber": "0.0.2"
+      "mx.ferreyra.callnumber": "0.0.2",
+      "cordova-plugin-document-viewer": "1.0.0",
+      "cordova-plugin-preview-any-file": "0.2.7"
     };
     // BOTTOM OF METADATA
     });

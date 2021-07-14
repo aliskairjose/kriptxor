@@ -36,6 +36,7 @@ export class NotesPage implements OnInit {
       response => {
         this.notes = response.data as Note[];
         this.pages = response.meta.page as Page;
+        this.activateInfiniteScroll();
       }
     )
   }
@@ -111,6 +112,9 @@ export class NotesPage implements OnInit {
       event.target.disabled = true;
     }
     }, 500);
+  }
+  activateInfiniteScroll() {
+    this.infiniteScroll.disabled = false;
   }
 
   // Alerts

@@ -1,6 +1,5 @@
-//import {DateAt} from './response';
-//import {Seller} from './seller';
 import { Client } from '../classes/client';
+import { User } from './user';
 
 
 export interface Campaign {
@@ -98,4 +97,14 @@ export interface Detail {
   created_at?: string;
   url_file?: string | null;
   vendedor?: Seller;
+}
+
+export interface CampaignClientHistory {
+  id?: number;
+  campaign_client_id?: number;
+  message?: string;
+  user_id?: number;
+  created_at?: string;
+  updated_at?: string;
+  user?: User;
 }

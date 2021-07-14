@@ -29,7 +29,7 @@ const routes: Routes = [
     loadChildren: () => import( './client/client.module' ).then( m => m.ClientPageModule )
   },
   {
-    path: 'documents',
+    path: 'documents/:id',
     loadChildren: () => import( './documents/documents.module' ).then( m => m.DocumentsPageModule )
   },
   {

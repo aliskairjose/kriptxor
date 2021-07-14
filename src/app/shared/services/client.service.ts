@@ -16,7 +16,8 @@ export class ClientService {
   getById( id: number ): Observable<ResultReponse<Client>> {
     return this.http.get( `clientes/${id}` );
   }
-  getClients(page: number): Observable<DataResponse<MasterClient[]>>{
-    return this.http.get(`campaign-clients?filter={"interested":1,"auth":1,"doesntQuotes":1,"search":"","order":{"field":"created_at","way":"ASC"}}&page=${page}&include=cliente,status`)
+  getClients(page: number, search: string): Observable<DataResponse<MasterClient[]>>{
+    search = search.toLowerCase();
+    return this.http.get(`campaign-clients?filter={"interested":1,"auth":1,"doesntQuotes":1,"search":"${search}","order":{"field":"created_at","way":"ASC"}}&page=${page}&include=cliente,status`)
   }
 }

@@ -3,6 +3,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { MasterClient } from '../shared/classes/client';
 import { ClientService } from '../shared/services/client.service';
 import {Page} from '../shared/interfaces/pagination';
+import { CommonService } from '../shared/services/common.service';
 
 
 @Component({
@@ -14,8 +15,9 @@ export class ClientsPage implements OnInit {
 
   clients: MasterClient[];
   pages: Page;
+  search: string = "";
 
-  constructor(private call: CallNumber, private clientService: ClientService) { }
+  constructor(private call: CallNumber, private clientService: ClientService, private common: CommonService) { }
 
   ngOnInit() {
     this.getClients();
@@ -25,22 +27,27 @@ export class ClientsPage implements OnInit {
       .then( res => console.log( 'Launched dialer!', res ) )
       .catch( err => console.log( 'Error launching dialer', err ) );
   }
-  getClients(page: number = 1){
-    this.clientService.getClients(page).subscribe(
+  async getClients(page: number = 1){
+    const loading = await this.common.presentLoading();
+    loading.present();
+    this.clientService.getClients(page, this.search).subscribe(
       response => {
         this.clients = response.data;
-        console.log(this.clients);
         this.pages = response.meta.page;
+        loading.dismiss();
       }
     )
   }
 
   //Infinity scroll
-  scrollClients(page: number){
-    this.clientService.getClients(page).subscribe(
+   async scrollClients(page: number){
+     const loading = await this.common.presentLoading();
+     loading.present();
+    this.clientService.getClients(page, this.search).subscribe(
       response =>{
         this.clients = this.clients.concat(response.data);
         this.pages = response.meta.page;
+        loading.dismiss();
       }
     )
   }
@@ -59,6 +66,20 @@ export class ClientsPage implements OnInit {
       event.target.disabled = true;
     }
     }, 500);
+  }
+
+  searchClient(event: any){
+    this.search = event.target.value;
+    setTimeout( () => {
+      this.clientService.getClients(1, event.target.value).subscribe(
+        response => {
+          this.clients = response.data;
+          this.pages = response.meta.page;
+        }
+      );
+    }, 1500)
+
+
   }
 
 }

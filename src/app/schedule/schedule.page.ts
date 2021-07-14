@@ -32,7 +32,7 @@ export class SchedulePage implements OnInit {
   time: any;
 
   constructor(
-    private activateRoute: ActivatedRoute, 
+    private activateRoute: ActivatedRoute,
     private scheduleService: ScheduleService,
     public alertController: AlertController,
     private storage: StorageService
@@ -57,6 +57,7 @@ export class SchedulePage implements OnInit {
       response => {
         this.reminders = response.data as Schedule[]
         this.page = response.meta.page as Page;
+        this.activateInfiniteScroll()
       }
     )
   }
@@ -152,8 +153,8 @@ export class SchedulePage implements OnInit {
     }, 500);
   }
 
-  toggleInfiniteScroll() {
-    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  activateInfiniteScroll() {
+    this.infiniteScroll.disabled = false;
   }
   // Alerts
   async alert(reminder: Schedule) {

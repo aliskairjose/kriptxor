@@ -20,7 +20,7 @@ export class CampaignPage implements OnInit {
   query = '';
   filter = {
     search: '',
-    campaignId: 17,
+    campaignId: 0,
     order: { field: 'created_at', way: 'ASC' }
   };
 
@@ -36,7 +36,7 @@ export class CampaignPage implements OnInit {
 
   ngOnInit() {
     this.getCampaign( false, '' );
-    this.route.params.subscribe( data => this.idCampaing = data.id );
+    this.route.params.subscribe( data => this.idCampaing = this.filter.campaignId = data.id );
   }
 
   async getCampaign( isFirstLoad, event, page = 1 ) {
@@ -53,6 +53,17 @@ export class CampaignPage implements OnInit {
 
       this.clients = [ ...response.data ];
     } );
+  }
+
+  async callNow() {
+    const loading = await this.common.presentLoading();
+    loading.present();
+    this.campaignService.callNow( this.idCampaing ).subscribe( response => {
+      const data = response.data;
+      this.callNumber( data.cliente );
+      this.router.navigateByUrl( `client/${data.id}` );
+      loading.dismiss();
+    }, () => loading.dismiss() );
   }
 
   loadData( event: any ): void {

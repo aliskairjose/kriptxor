@@ -94,9 +94,14 @@
 
   </div>
 
-  <ion-button expand="full" color="warning" (click)="goBack()">
-    <ion-text class="card-content-footer-text">
-      VOLVER AL LISTADO DE CONTACTOS
-    </ion-text>
-  </ion-button>
+  <div class="d-flex justify-content-around">
+    <!-- <ion-button (click)="onClick()" expand="block" fill="colid" color="warning" (click)="goBack()">
+      Volver al listado de contactos
+    </ion-button>
+    <ion-button (click)="onClick()" expand="block" fill="outline" shape="round">
+      Continuar llamando
+    </ion-button> -->
+    <ion-button color="warning" (click)="goBack()">Volver al listado</ion-button>
+    <ion-button color="primary" fill="outline" (click)="nextCall()">Llamar siguiente</ion-button>
+  </div>
 </ion-content>

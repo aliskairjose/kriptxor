@@ -32,7 +32,7 @@ export class CampaignService {
     return this.http.get( `campaign / ${id} ` );
   }
 
-  getCampaignClientById( id: number ): Observable<DataResponse<CampaignClient>> {
+  getCampaignClientById( id: number ): Observable<DataResponse<any>> {
     return this.http.get( `campaign-clients/${id}?include=cliente` );
   }
 
@@ -57,6 +57,12 @@ export class CampaignService {
     const filtro = JSON.stringify( filter );
 
     return this.http.get( `campaign-clients-histories?filter=${filtro}&page=${page}&include=user` );
+  }
+
+  callNow( campaignId: number ): Observable<any> {
+    const filter = { campaignId, order: { field: 'created_at', way: 'ASC' } };
+    const filtro = JSON.stringify( filter );
+    return this.http.get( `campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status` );
   }
 
 }

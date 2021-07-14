@@ -55,20 +55,20 @@
     </ion-card>
   </ng-container>
 
-  <div style="flex: 1;">
-    <ion-button class="call2" expand="full" color="warning">
-      <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
-      <ion-text class="card-content-footer-text">
-        CONTINUAR LLAMANDO
-      </ion-text>
-    </ion-button>
-  </div>
-
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más campañas...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
 </ion-content>
+
 <ion-footer class="ion-no-border">
+  <div style="flex: 1;">
+    <ion-button class="call2" expand="full" color="warning" (click)="callNow()">
+      <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
+      <ion-text class="card-content-footer-text">
+        CONTINUAR LLAMANDO
+      </ion-text>
+    </ion-button>
+  </div>
 </ion-footer>

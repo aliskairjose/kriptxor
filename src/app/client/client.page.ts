@@ -26,7 +26,7 @@ export class ClientPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private common: CommonService,
-    private location: Location,
+    public location: Location,
     private call: CallNumber,
     private campaignService: CampaignService,
   ) { }
@@ -66,9 +66,6 @@ export class ClientPage implements OnInit {
 
   }
 
-  goBack(): void {
-    this.location.back();
-  }
 
   async nextCall() {
     const loading = await this.common.presentLoading();

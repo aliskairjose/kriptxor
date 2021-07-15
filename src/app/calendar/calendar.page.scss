@@ -24,3 +24,14 @@ section {
 .calendar {
   height: 100%;
 }
+
+.custom-calendar-header.active {
+  border: 1px solid var(--ion-color-primary);
+}
+
+.button {
+  --padding-top: 1rem;
+  --padding-right: 0.5rem;
+  --padding-bottom: 1rem;
+  --padding-left: 0.5rem;
+}

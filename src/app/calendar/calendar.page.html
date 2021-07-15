@@ -8,34 +8,48 @@
     />
     <h3 class="title">Crear Recordatorio</h3>
   </div>
-  <div class="d-flex align-items-center justify-content-end">
-    <img
-      (click)="prevSlide()"
-      class="arrow-icon-reverse"
-      src="assets/icon/arrow-icon.svg"
-      alt="Icono de Flecha"
-    />
-    <img
-      (click)="nextSlide()"
-      class="arrow-icon"
-      src="assets/icon/arrow-icon.svg"
-      alt="Icono de Flecha"
-    />
+  <div class="d-flex align-items-center justify-content-between">
+    <span *ngIf="selectedDate" class="fw-bold"
+      >Fecha seleccionada: {{ selectedDate }}</span
+    >
+    <div class="ms-auto">
+      <img
+        (click)="prevSlide()"
+        class="arrow-icon-reverse"
+        src="assets/icon/arrow-icon.svg"
+        alt="Icono de Flecha"
+      />
+      <img
+        (click)="nextSlide()"
+        class="arrow-icon"
+        src="assets/icon/arrow-icon.svg"
+        alt="Icono de Flecha"
+      />
+    </div>
   </div>
   <div class="calendar">
+    <ng-template #template let-viewDate="viewDate">
+      <div style="cursor: pointer">{{ viewDate.dayHeader }}</div>
+    </ng-template>
     <calendar
       #myCalendar
+      [weekviewHeaderTemplate]="template"
       [eventSource]="eventSource"
       [calendarMode]="calendar.mode"
       [currentDate]="calendar.currentDate"
       [lockSwipes]="true"
+      (onDayHeaderSelected)="setDate($event.selectedTime)"
+      (onTimeSelected)="setDate($event.selectedTime)"
     >
     </calendar>
   </div>
-  <ion-button class="my-3" expand="full" color="dark">
-    <ion-text> Cancelar </ion-text>
-  </ion-button>
-  <ion-button (click)="initModal()" expand="full" color="warning">
+  <ion-button
+    (click)="initModal()"
+    class="button mt-3"
+    shape="round"
+    expand="full"
+    color="warning"
+  >
     <ion-text> Agregar Recordatorio </ion-text>
   </ion-button>
 </section>

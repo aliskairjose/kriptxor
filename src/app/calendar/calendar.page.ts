@@ -2,11 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarMode, Step, IEvent } from 'ionic2-calendar/calendar';
 import { CalendarComponent } from 'ionic2-calendar';
 import { CalendarService } from '../shared/services/calendar.service';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Location } from '@angular/common';
 import { StorageService } from '../shared/services/storage.service';
 import { USER } from '../shared/constants/constants';
-import { AddReminderModalComponent } from './modal/addReminderModal.pagel.page';
+import { AddReminderModalComponent } from './modal/addReminderModal.page';
 
 @Component({
   selector: 'app-calendar',
@@ -17,10 +17,11 @@ export class CalendarPage implements OnInit {
   @ViewChild(CalendarComponent, null) myCalendar: CalendarComponent;
 
   eventSource: IEvent[] = [];
+  selectedDate: string = null;
 
   calendar = {
     mode: 'week' as CalendarMode,
-    step: 30 as Step,
+    step: 15 as Step,
     currentDate: new Date(),
   };
 
@@ -28,7 +29,8 @@ export class CalendarPage implements OnInit {
     private calendarService: CalendarService,
     private location: Location,
     private storage: StorageService,
-    private modal: ModalController
+    private modal: ModalController,
+    private alertController: AlertController
   ) {
     this.getEvents();
   }
@@ -36,17 +38,43 @@ export class CalendarPage implements OnInit {
   ngOnInit() {}
 
   async initModal() {
+    if (this.selectedDate === null) {
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Error',
+        subHeader: '',
+        message: 'Debe seleccionar una fecha del calendario',
+        buttons: ['OK'],
+      });
+      await alert.present();
+      return;
+    }
+
     const modal = await this.modal.create({
       component: AddReminderModalComponent,
       cssClass: 'custom-modal',
+      componentProps: {
+        date: this.selectedDate,
+      },
     });
 
-    modal.onDidDismiss().then((modalDataResponse) => {
-      console.log('Closed');
+    modal.onDidDismiss().then(() => {
+      this.getEvents();
     });
 
     return await modal.present();
   }
+
+  setDate = (selectedDate: Date) => {
+    const date = this.parseDate(selectedDate);
+
+    if (this.selectedDate === date) {
+      this.selectedDate = null;
+      return;
+    }
+
+    this.selectedDate = date;
+  };
 
   public async getEvents() {
     const userId = ((await this.storage.get(USER)) as any).id;
@@ -80,13 +108,11 @@ export class CalendarPage implements OnInit {
   }
 
   public prevSlide(): void {
-    this.myCalendar.slidePrev();
     this.calendar.currentDate = this.prevWeek();
     this.getEvents();
   }
 
   public nextSlide(): void {
-    this.myCalendar.slideNext();
     this.calendar.currentDate = this.nextWeek();
     this.getEvents();
   }
@@ -112,6 +138,13 @@ export class CalendarPage implements OnInit {
   }
 
   private parseDate(date: Date): string {
-    return date.toLocaleString().split(' ')[0].split('/').reverse().join('-');
+    const parsedDate = date.toLocaleString().split(' ')[0].split('/');
+    parsedDate[0] = this.zeroBased(parsedDate[0]);
+    parsedDate[1] = this.zeroBased(parsedDate[1]);
+    return parsedDate.reverse().join('-');
+  }
+
+  private zeroBased(value: string | number): string {
+    return `0${value}`.slice(-2);
   }
 }

@@ -9,19 +9,19 @@
 
 
 <ion-content class="ion-padding">
-  <h2 class="title ion-text-center">Melissa Olaya Domingues</h2>
+  <h2 class="title ion-text-center">{{client}}</h2>
 
   <div class="document-banner">
     <div>
-      <ion-icon [routerLink]="[ '/documents',id ]" class="icons" src="assets/icon/documents.svg"></ion-icon>
+      <ion-icon [routerLink]="[ '/documents', id, client ]" class="icons" src="assets/icon/documents.svg"></ion-icon>
       <ion-label>Documentos</ion-label>
     </div>
     <div>
-      <ion-icon [routerLink]="[ '/notes',id ]" class="icons" src="assets/icon/notes.svg"></ion-icon>
+      <ion-icon [routerLink]="[ '/notes', id, client]" class="icons" src="assets/icon/notes.svg"></ion-icon>
       <ion-label>Notas</ion-label>
     </div>
     <div>
-      <ion-icon [routerLink]="[ '/schedule',id ]" class="icons" src="assets/icon/schedule.svg"></ion-icon>
+      <ion-icon [routerLink]="[ '/schedule', id, client ]" class="icons" src="assets/icon/schedule.svg"></ion-icon>
       <ion-label>Agenda</ion-label>
     </div>
     <div>

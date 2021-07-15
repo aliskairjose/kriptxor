@@ -19,6 +19,7 @@ export class SchedulePage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   id: number;
+  client: string;
   moment: any = moment;
   durations = DURATIONS;
   reminder: Schedule = new Schedule;
@@ -38,7 +39,10 @@ export class SchedulePage implements OnInit {
     private storage: StorageService
   ) {
     this.activateRoute.params.subscribe(
-      params => this.id = params['id']
+      params => {
+        this.id = params['id'];
+        this.client =  params['client'];
+      }
     )
     this.max.setFullYear(this.max.getFullYear() + 3);
     this.maxDate = this.max.toISOString()

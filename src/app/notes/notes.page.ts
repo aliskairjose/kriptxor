@@ -16,6 +16,7 @@ export class NotesPage implements OnInit {
    @ViewChild('content') content;
 
    id: number;
+   client: string;
    notes: Note[];
    note: Note = new Note;
    pages: Page;
@@ -23,7 +24,10 @@ export class NotesPage implements OnInit {
 
   constructor(private activateRoute: ActivatedRoute, private notesService: NotesService, public alertController: AlertController) {
     this.activateRoute.params.subscribe(
-      params => this.id = params['id']
+      params => {
+        this.id = params['id'];
+        this.client =  params['client'];
+      }
     )
   }
 

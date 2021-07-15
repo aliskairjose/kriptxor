@@ -18,6 +18,7 @@ export class DocumentsPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   id: any;
+  client: string;
   uploadedFile: boolean = false;
   imgPreview: string | ArrayBuffer;
   imgName: string;
@@ -35,7 +36,10 @@ export class DocumentsPage implements OnInit {
     public alertController: AlertController
   ) {
     this.activateRoute.params.subscribe(
-      params => this.id = params['id']
+      params => {
+        this.id = params['id'];
+        this.client =  params['client'];
+      }
     )
   }
 

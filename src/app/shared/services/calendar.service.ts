@@ -32,18 +32,18 @@ export class CalendarService {
   }: GetEventsParams): Observable<any> {
     const params = {
       date: {
-        field: 'created_at',
+        field: 'date',
         from,
         to,
       },
       userId,
       order: {
-        field: 'created_at',
+        field: 'date',
         way: 'ASC',
-      },
+      }
     };
 
-    return this.http.get(`reminders?filter=${JSON.stringify(params)}`);
+    return this.http.get(`reminders?filter=${JSON.stringify(params)}&include=campaignClient.cliente`);
   }
 
   public setReminder(data: SetReminderParams): Observable<any> {

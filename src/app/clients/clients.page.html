@@ -30,12 +30,12 @@
       </ion-card-header>
 
       <ion-card-content class="ion-no-padding">
-        <div class="d-flex justify-content-around">
-          <div>
+        <div class="d-flex justify-content-between">
+          <div class="p-1">
             <p class="text-black-50">Estado</p>
             <p class="info">{{client.condicion === 0 ? 'No contactado' : 'Contactado'}}</p>
           </div>
-          <div>
+          <div class="p-1">
             <p class="text-black-50">Teléfono</p>
             <p>{{client.cliente.numero}}</p>
           </div>
@@ -46,6 +46,7 @@
             </ion-chip>
           </div>
         </div>
+
         <div>
           <ion-button class="call2" expand="full" color="warning" (click)="callNumber()">
             <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
@@ -61,7 +62,7 @@
 
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más campañas...">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más clientes...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 

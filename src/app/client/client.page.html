@@ -14,15 +14,15 @@
 
   <div class="document-banner text-center">
     <div>
-      <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
+      <ion-icon [routerLink]="[ '/documents',campaing.id ]" class="icons" src="assets/icon/documents.svg"></ion-icon>
       <ion-label>Documentos</ion-label>
     </div>
     <div>
-      <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
+      <ion-icon [routerLink]="[ '/notes',campaing.id ]" class="icons" src="assets/icon/notes.svg"></ion-icon>
       <ion-label>Notas</ion-label>
     </div>
     <div>
-      <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
+      <ion-icon [routerLink]="[ '/schedule',campaing.id ]" class="icons" src="assets/icon/schedule.svg"></ion-icon>
       <ion-label>Agenda</ion-label>
     </div>
     <div>

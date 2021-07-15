@@ -40,14 +40,13 @@ export class ClientsPage implements OnInit {
   }
 
   //Infinity scroll
-   async scrollClients(page: number){
-     const loading = await this.common.presentLoading();
-     loading.present();
+   scrollClients(page: number, event: any){
     this.clientService.getClients(page, this.search).subscribe(
       response =>{
         this.clients = this.clients.concat(response.data);
         this.pages = response.meta.page;
-        loading.dismiss();
+        //Finish the load
+        event.target.complete();
       }
     )
   }
@@ -55,10 +54,8 @@ export class ClientsPage implements OnInit {
   loadData(event: any) {
     setTimeout(() => {
       //console.log('Done');
-      this.scrollClients(this.pages.currentPage+1)
+      this.scrollClients(this.pages.currentPage+1, event)
 
-      //Finish the load
-      event.target.complete();
       // App logic to determine if all data is loaded
       // and disable the infinite scroll
       //console.log(this.pages.total);

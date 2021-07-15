@@ -85,21 +85,21 @@ export class DocumentsPage implements OnInit {
   }
 
   //Infinite scroll
-  scrollDocments(){
+  scrollDocments(event: any){
     this.documentService.list(this.id, this.pages.currentPage + 1).subscribe(
       response => {
         this.documents = this.documents.concat(response.data as Document[]);
         this.pages = response.meta.page as Page;
+        //Finish the load
+        event.target.complete();
       })
   }
 
-  loadData(event) {
+  loadData(event: any) {
     setTimeout(() => {
       //console.log('Done');
-      this.scrollDocments()
+      this.scrollDocments(event)
 
-      //Finish the load
-      event.target.complete();
       // App logic to determine if all data is loaded
       // and disable the infinite scroll
       //console.log(this.pages.total);

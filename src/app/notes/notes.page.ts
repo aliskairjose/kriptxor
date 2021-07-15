@@ -89,22 +89,23 @@ export class NotesPage implements OnInit {
 
 
   // Infinite Scroll
-  scrollNotes(){
+  scrollNotes(event: any){
     this.notesService.getNotes(this.id,this.pages.currentPage + 1).subscribe(
       response => {
         this.notes = this.notes.concat(response.data);
         this.pages = response.meta.page as Page;
+        //Finish the load
+        event.target.complete();
       }
     )
   }
 
-  loadData(event) {
+  loadData(event: any) {
     setTimeout(() => {
       //console.log('Done');
-      this.scrollNotes()
+      this.scrollNotes(event)
 
-      //Finish the load
-      event.target.complete();
+
       // App logic to determine if all data is loaded
       // and disable the infinite scroll
     if (this.notes.length == this.pages.total) {

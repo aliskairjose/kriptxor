@@ -36,6 +36,7 @@ export class ClientPage implements OnInit {
       this.clientId = data.id;
       this.loadData();
     } );
+    console.log(this.data);
   }
 
   async updateInterest( interested: number ): Promise<void> {

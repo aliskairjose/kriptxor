@@ -130,21 +130,22 @@ export class SchedulePage implements OnInit {
 
 
     //Infinite Scroll
-    async scrollReminders(){
+    async scrollReminders(event: any){
     const user: User = await this.storage.get( USER ) as unknown as User;
     this.scheduleService.getReminders(this.id,user.id, this.page.currentPage + 1).subscribe(
         response => {
           this.reminders = this.reminders.concat(response.data as Schedule[]);
           this.page = response.meta.page as Page;
+          // Emulates a event
+          event.target.complete();
         }
       )
     }
-  loadData(event) {
+  loadData(event: any) {
     setTimeout(() => {
-      this.scrollReminders();
+      this.scrollReminders(event);
 
-      // Emulates a event
-      event.target.complete();
+
       // App logic to determine if all data is loaded
       // and disable the infinite scroll
     if (this.reminders.length == this.page.total) {

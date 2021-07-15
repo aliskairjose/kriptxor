@@ -5,11 +5,11 @@ import { StorageService } from './shared/services/storage.service';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { TOKEN } from './shared/constants/constants';
 
-@Component( {
+@Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: [ 'app.component.scss' ],
-} )
+  styleUrls: ['app.component.scss'],
+})
 export class AppComponent {
   public appPages = [
     { title: 'Home', url: '/dashboard', icon: 'home' },
@@ -19,25 +19,25 @@ export class AppComponent {
     { title: 'Agenda', url: '/schedule/113', icon: 'flag' },
     { title: 'Spam', url: '/folder/Spam', icon: 'flag' },
     { title: 'Calendario', url: '/calendar', icon: 'flag' },
+    { title: 'Mis clientes', url: '/clients', icon: 'flag' },
   ];
-  public labels = [ 'Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders', 'Calendario' ];
+
+  public labels = [];
 
   constructor(
     private router: Router,
     private platform: Platform,
-    private storage: StorageService,
+    private storage: StorageService
   ) {
     this.initializeApp();
   }
 
   private initializeApp(): void {
-    this.platform.ready().then( async () => {
+    this.platform.ready().then(async () => {
       SplashScreen.hide();
-      const isLoggedin = await this.storage.get( TOKEN );
+      const isLoggedin = await this.storage.get(TOKEN);
       const route = isLoggedin ? '/dashboard' : '/login';
-      this.router.navigate( [ route ] );
-    } );
+      this.router.navigate([route]);
+    });
   }
-
-
 }

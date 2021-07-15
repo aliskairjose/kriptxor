@@ -12,10 +12,10 @@ export class HttpService {
     private http: HttpClient
   ) { }
 
-  post( serviceName: string, data?: any ): Observable<any> {
+  post( serviceName: string, data?: any, options?: any ): Observable<any> {
     const url = environment.api + serviceName;
     this.http.post( url, data );
-    return this.http.post( url, data );
+    return this.http.post( url, data, options );
   }
 
   get( serviceName: string, data?: any ): Observable<any> {

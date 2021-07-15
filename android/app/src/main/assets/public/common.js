@@ -11,9 +11,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "c": () => (/* binding */ createButtonActiveGesture)
 /* harmony export */ });
-/* harmony import */ var _index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-7a8b7a1c.js */ 3150);
-/* harmony import */ var _haptic_27b3f981_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./haptic-27b3f981.js */ 2954);
-/* harmony import */ var _index_f49d994d_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-f49d994d.js */ 7279);
+/* harmony import */ var _index_7a8b7a1c_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-7a8b7a1c.js */ 23150);
+/* harmony import */ var _haptic_27b3f981_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./haptic-27b3f981.js */ 52954);
+/* harmony import */ var _index_f49d994d_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-f49d994d.js */ 97279);
 
 
 
@@ -82,7 +82,7 @@ const createButtonActiveGesture = (el, isButton) => {
 
 /***/ }),
 
-/***/ 7330:
+/***/ 77330:
 /*!**************************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/framework-delegate-4392cd63.js ***!
   \**************************************************************************/
@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "a": () => (/* binding */ attachComponent),
 /* harmony export */   "d": () => (/* binding */ detachComponent)
 /* harmony export */ });
-/* harmony import */ var _helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers-dd7e4b7b.js */ 2377);
+/* harmony import */ var _helpers_dd7e4b7b_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers-dd7e4b7b.js */ 52377);
 
 
 const attachComponent = async (delegate, container, component, cssClasses, componentProps) => {
@@ -133,7 +133,7 @@ const detachComponent = (delegate, element) => {
 
 /***/ }),
 
-/***/ 2954:
+/***/ 52954:
 /*!**************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/haptic-27b3f981.js ***!
   \**************************************************************/
@@ -258,7 +258,7 @@ const hapticImpact = (options) => {
 
 /***/ }),
 
-/***/ 408:
+/***/ 60408:
 /*!***********************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/spinner-configs-cd7845af.js ***!
   \***********************************************************************/
@@ -383,7 +383,7 @@ const SPINNERS = spinners;
 
 /***/ }),
 
-/***/ 1269:
+/***/ 61269:
 /*!*************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/theme-ff3fc52f.js ***!
   \*************************************************************/
@@ -451,9 +451,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CampaignService": () => (/* binding */ CampaignService)
 /* harmony export */ });
+<<<<<<< HEAD
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http.service */ 74691);
+=======
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
 /* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http.service */ 4691);
+>>>>>>> a4ecf1696fdf648b5e9ea3f63c8176e7e9b277ea
 
 
 
@@ -485,6 +491,8 @@ let CampaignService = class CampaignService {
     updateCampaignClientInterest(id, interested) {
         return this.http.put(`campaign-clients/${id}`, { interested });
     }
+<<<<<<< HEAD
+=======
     /**
      * @description Muestra el historial del ciente de la campaña
      * @param campaign_client_id
@@ -501,6 +509,7 @@ let CampaignService = class CampaignService {
         const filtro = JSON.stringify(filter);
         return this.http.get(`campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status`);
     }
+>>>>>>> a4ecf1696fdf648b5e9ea3f63c8176e7e9b277ea
 };
 CampaignService.ctorParameters = () => [
     { type: _http_service__WEBPACK_IMPORTED_MODULE_0__.HttpService }
@@ -515,7 +524,11 @@ CampaignService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
 
 /***/ }),
 
+<<<<<<< HEAD
+/***/ 74691:
+=======
 /***/ 4691:
+>>>>>>> a4ecf1696fdf648b5e9ea3f63c8176e7e9b277ea
 /*!*************************************************!*\
   !*** ./src/app/shared/services/http.service.ts ***!
   \*************************************************/
@@ -526,10 +539,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "HttpService": () => (/* binding */ HttpService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 1841);
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 2340);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 91841);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
 
 
 
@@ -538,10 +551,10 @@ let HttpService = class HttpService {
     constructor(http) {
         this.http = http;
     }
-    post(serviceName, data) {
+    post(serviceName, data, options) {
         const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
         this.http.post(url, data);
-        return this.http.post(url, data);
+        return this.http.post(url, data, options);
     }
     get(serviceName, data) {
         const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;

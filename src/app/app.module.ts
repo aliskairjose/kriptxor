@@ -15,6 +15,7 @@ import { InterceptorService } from './shared/services/interceptor.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 
 registerLocaleData( localeEs );
 
@@ -35,6 +36,7 @@ registerLocaleData( localeEs );
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     CallNumber,
+    PreviewAnyFile
   ],
   bootstrap: [ AppComponent ],
 } )

@@ -17,12 +17,14 @@
     ></button>
   </div>
   <ion-input
+    [(ngModel)]="title"
     (ionChange)="title = $event.target.value"
     class="input my-3"
     placeholder="Asunto del Recordatorio"
   ></ion-input>
-  <ion-label (click)="print()">Hora</ion-label>
+  <ion-label>Hora</ion-label>
   <ion-datetime
+    [(ngModel)]="selectedHour"
     (ionChange)="setHour($event.target.value)"
     class="input"
     minute-values="0,15,30,45"
@@ -33,6 +35,7 @@
   ></ion-datetime>
   <ion-label>Duración</ion-label>
   <ion-input
+    [(ngModel)]="duration"
     (ionChange)="duration = $event.target.value"
     class="input"
     type="number"

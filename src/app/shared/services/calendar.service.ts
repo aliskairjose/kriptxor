@@ -24,12 +24,7 @@ interface SetReminderParams {
 export class CalendarService {
   constructor(private http: HttpService) {}
 
-  public getEvents({
-    userId,
-    from,
-    to,
-    page = 1,
-  }: GetEventsParams): Observable<any> {
+  public getEvents({ userId, from, to }: GetEventsParams): Observable<any> {
     const params = {
       date: {
         field: 'created_at',
@@ -43,7 +38,11 @@ export class CalendarService {
       },
     };
 
-    return this.http.get(`reminders?filter=${JSON.stringify(params)}`);
+    return this.http.get(
+      `reminders?filter=${JSON.stringify(
+        params
+      )}&include=user,campaignClient.cliente`
+    );
   }
 
   public setReminder(data: SetReminderParams): Observable<any> {

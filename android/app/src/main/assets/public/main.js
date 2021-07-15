@@ -76,6 +76,14 @@ const routes = [
     {
         path: 'schedule/:id',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_schedule_schedule_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./schedule/schedule.module */ 47911)).then(m => m.SchedulePageModule)
+    },
+    {
+        path: 'clients',
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_clients_clients_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./clients/clients.module */ 57158)).then(m => m.ClientsPageModule)
+    },
+    {
+        path: 'market-rates',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_market-rates_market-rates_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./market-rates/market-rates.module */ 46233)).then(m => m.MarketRatesPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -130,17 +138,17 @@ let AppComponent = class AppComponent {
         this.appPages = [
             { title: 'Home', url: '/dashboard', icon: 'home' },
             { title: 'Campañas', url: '/campaigns', icon: 'flag' },
-            { title: 'Notas', url: '/notes/113', icon: 'flag' },
-            { title: 'Agenda', url: '/schedule/113', icon: 'flag' },
+            { title: 'Mis clientes', url: '/clients', icon: 'flag' },
+            { title: 'Cotizaciones', url: '/market-rates', icon: 'flag' },
         ];
-        this.labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+        this.labels = [];
         this.initializeApp();
     }
     initializeApp() {
         this.platform.ready().then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             _capacitor_splash_screen__WEBPACK_IMPORTED_MODULE_3__.SplashScreen.hide();
             const isLoggedin = yield this.storage.get(_shared_constants_constants__WEBPACK_IMPORTED_MODULE_4__.TOKEN);
-            const route = isLoggedin ? '/dashboard' : '/login';
+            const route = isLoggedin ? '/market-rates' : '/login';
             this.router.navigate([route]);
         }));
     }

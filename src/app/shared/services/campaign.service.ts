@@ -38,7 +38,7 @@ export class CampaignService {
 
   getCampaign( filter: any, page: number ): Observable<DataResponse<MasterClient[]>> {
     const filtro = JSON.stringify( filter );
-    return this.http.get( `campaign-clients?filter=${filtro}&page=${page}&include=cliente,status` );
+    return this.http.get( `campaign-clients?filter=${filtro}&page=${page}&include=cliente,status&skipCalledClients=1` );
   }
 
   updateCampaignClientInterest( id: number, interested: number ): Observable<any> {

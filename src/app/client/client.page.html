@@ -9,27 +9,7 @@
 
 
 <ion-content class="ion-padding">
-
-  <h2 class="title ion-text-center">{{client.nombre_completo}}</h2>
-
-  <div class="document-banner text-center">
-    <div>
-      <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
-      <ion-label>Documentos</ion-label>
-    </div>
-    <div>
-      <ion-icon class="icons" src="assets/icon/notes.svg"></ion-icon>
-      <ion-label>Notas</ion-label>
-    </div>
-    <div>
-      <ion-icon class="icons" src="assets/icon/schedule.svg"></ion-icon>
-      <ion-label>Agenda</ion-label>
-    </div>
-    <div>
-      <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
-      <ion-label>Cotizaciones</ion-label>
-    </div>
-  </div>
+  <app-info-bar [client]="client"></app-info-bar>
 
   <div class="d-flex justify-content-around container-bordered ion-padding-vertical">
     <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest(2)">
@@ -78,7 +58,7 @@
               {{h?.user.nombre}} {{h?.user.apellido}}: Ha marcado interesado
             </ion-label>
             <div class="d-flex justify-content-between">
-              <div class="date-badged text-center">{{h.created_at | date}}</div>
+              <div class="date-badged primary text-center">{{h.created_at | date}}</div>
               <div class="d-flex align-items-center" *ngIf="h.message === 'Se mostró interesado'">
                 <ion-icon slot="end" name="checkmark-circle-outline" color="success" style="font-size: 2rem;">
                 </ion-icon>

@@ -440,7 +440,7 @@ const openURL = async (url, ev, direction, animation) => {
 
 /***/ }),
 
-/***/ 2507:
+/***/ 62507:
 /*!*****************************************************!*\
   !*** ./src/app/shared/services/campaign.service.ts ***!
   \*****************************************************/
@@ -451,15 +451,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CampaignService": () => (/* binding */ CampaignService)
 /* harmony export */ });
-<<<<<<< HEAD
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 64762);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
 /* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http.service */ 74691);
-=======
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7716);
-/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http.service */ 4691);
->>>>>>> a4ecf1696fdf648b5e9ea3f63c8176e7e9b277ea
 
 
 
@@ -486,13 +480,11 @@ let CampaignService = class CampaignService {
     }
     getCampaign(filter, page) {
         const filtro = JSON.stringify(filter);
-        return this.http.get(`campaign-clients?filter=${filtro}&page=${page}&include=cliente,status`);
+        return this.http.get(`campaign-clients?filter=${filtro}&page=${page}&include=cliente,status&skipCalledClients=1`);
     }
     updateCampaignClientInterest(id, interested) {
         return this.http.put(`campaign-clients/${id}`, { interested });
     }
-<<<<<<< HEAD
-=======
     /**
      * @description Muestra el historial del ciente de la campaña
      * @param campaign_client_id
@@ -509,7 +501,6 @@ let CampaignService = class CampaignService {
         const filtro = JSON.stringify(filter);
         return this.http.get(`campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status`);
     }
->>>>>>> a4ecf1696fdf648b5e9ea3f63c8176e7e9b277ea
 };
 CampaignService.ctorParameters = () => [
     { type: _http_service__WEBPACK_IMPORTED_MODULE_0__.HttpService }
@@ -524,11 +515,7 @@ CampaignService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
 
 /***/ }),
 
-<<<<<<< HEAD
 /***/ 74691:
-=======
-/***/ 4691:
->>>>>>> a4ecf1696fdf648b5e9ea3f63c8176e7e9b277ea
 /*!*************************************************!*\
   !*** ./src/app/shared/services/http.service.ts ***!
   \*************************************************/

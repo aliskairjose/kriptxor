@@ -15,8 +15,9 @@ export class AppComponent {
     { title: 'Home', url: '/dashboard', icon: 'home' },
     { title: 'Campañas', url: '/campaigns', icon: 'flag' },
     { title: 'Mis clientes', url: '/clients', icon: 'flag' },
+    { title: 'Cotizaciones', url: '/market-rates', icon: 'flag' },
   ];
-  public labels = [  ];
+  public labels = [];
 
   constructor(
     private router: Router,
@@ -30,7 +31,7 @@ export class AppComponent {
     this.platform.ready().then( async () => {
       SplashScreen.hide();
       const isLoggedin = await this.storage.get( TOKEN );
-      const route = isLoggedin ? '/dashboard' : '/login';
+      const route = isLoggedin ? '/market-rates' : '/login';
       this.router.navigate( [ route ] );
     } );
   }

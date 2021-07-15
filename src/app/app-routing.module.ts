@@ -38,10 +38,15 @@ const routes: Routes = [
   },
   {
     path: 'schedule/:id',
-    loadChildren: () => import('./schedule/schedule.module').then( m => m.SchedulePageModule)
-  },  {
+    loadChildren: () => import( './schedule/schedule.module' ).then( m => m.SchedulePageModule )
+  },
+  {
     path: 'clients',
-    loadChildren: () => import('./clients/clients.module').then( m => m.ClientsPageModule)
+    loadChildren: () => import( './clients/clients.module' ).then( m => m.ClientsPageModule )
+  },
+  {
+    path: 'market-rates',
+    loadChildren: () => import( './market-rates/market-rates.module' ).then( m => m.MarketRatesPageModule )
   }
 
 

@@ -18,8 +18,9 @@ export class AppComponent {
     { title: 'Notas', url: '/notes/113', icon: 'flag' },
     { title: 'Agenda', url: '/schedule/113', icon: 'flag' },
     { title: 'Spam', url: '/folder/Spam', icon: 'flag' },
+    { title: 'Calendario', url: '/calendar', icon: 'flag' },
   ];
-  public labels = [ 'Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders' ];
+  public labels = [ 'Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders', 'Calendario' ];
 
   constructor(
     private router: Router,

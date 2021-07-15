@@ -1,0 +1,26 @@
+section {
+  min-height: 100vh;
+}
+
+.arrow-icon {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+
+  &-reverse {
+    @extend .arrow-icon;
+    transform: rotate(180deg);
+  }
+}
+
+.top-bar {
+  padding: 1rem;
+  display: flex;
+  justify-items: start;
+  align-items: center;
+  gap: 2rem;
+}
+
+.calendar {
+  height: 100%;
+}

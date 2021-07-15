@@ -1,0 +1,22 @@
+<div class="p-4">
+  <div class="d-flex justify-content-between mb-4">
+    <div class="d-flex gap-3">
+      <div class="box">
+        <img src="assets/icon/calendar-icon.svg" alt="Icono de calendario" />
+      </div>
+      <div>
+        <h4>Agregar Recordatorio</h4>
+        <span class="d-block">20 Feb 2020</span>
+      </div>
+    </div>
+    <button
+      (click)="close()"
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+    ></button>
+  </div>
+  <ion-input class="my-3" placeholder="Asunto del Recordatorio"></ion-input>
+  <ion-label>Hora</ion-label>
+  <ion-select></ion-select>
+</div>

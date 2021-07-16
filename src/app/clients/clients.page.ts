@@ -35,7 +35,7 @@ export class ClientsPage implements OnInit {
         this.clients = response.data;
         this.pages = response.meta.page;
         loading.dismiss();
-      }
+      }, () => loading.dismiss()
     )
   }
 

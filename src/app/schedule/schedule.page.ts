@@ -10,6 +10,8 @@ import * as moment from 'moment-timezone';
 import { StorageService } from '../shared/services/storage.service';
 import { User } from '../shared/interfaces/user';
 import { USER } from '../shared/constants/constants';
+import { CampaignService } from '../shared/services/campaign.service';
+import { Client } from '../shared/classes/client';
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.page.html',
@@ -19,7 +21,7 @@ export class SchedulePage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   id: number;
-  client: string;
+  client: Client = {};
   moment: any = moment;
   durations = DURATIONS;
   reminder: Schedule = new Schedule;
@@ -36,12 +38,12 @@ export class SchedulePage implements OnInit {
     private activateRoute: ActivatedRoute,
     private scheduleService: ScheduleService,
     public alertController: AlertController,
-    private storage: StorageService
-  ) {
+    private storage: StorageService,
+    private campaignService: CampaignService,
+    ) {
     this.activateRoute.params.subscribe(
       params => {
         this.id = params['id'];
-        this.client =  params['client'];
       }
     )
     this.max.setFullYear(this.max.getFullYear() + 3);
@@ -50,7 +52,14 @@ export class SchedulePage implements OnInit {
 
   ngOnInit() {
     this.getReminders();
+    this.getCampaignClient();
   }
+
+  getCampaignClient(){
+    this.campaignService.getCampaignClientById( this.id ).subscribe( response => {
+      this.client = { ...response.data.cliente };
+    }, () =>  console.error("error get campaign client service"))
+  }//
 
   test(event){
     return console.log('hello-world');

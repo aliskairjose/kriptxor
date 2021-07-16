@@ -9,26 +9,8 @@
 
 
 <ion-content class="ion-padding">
-  <h2 class="title ion-text-center">{{client}}</h2>
 
-  <div class="document-banner">
-    <div>
-      <ion-icon [routerLink]="[ '/documents', id, client ]" class="icons" src="assets/icon/documents.svg"></ion-icon>
-      <ion-label>Documentos</ion-label>
-    </div>
-    <div>
-      <ion-icon [routerLink]="[ '/notes', id, client]" class="icons" src="assets/icon/notes.svg"></ion-icon>
-      <ion-label>Notas</ion-label>
-    </div>
-    <div>
-      <ion-icon [routerLink]="[ '/schedule', id, client ]" class="icons" src="assets/icon/schedule.svg"></ion-icon>
-      <ion-label>Agenda</ion-label>
-    </div>
-    <div>
-      <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
-      <ion-label>Cotizaciones</ion-label>
-    </div>
-  </div>
+  <app-info-bar [client]="client" [id]="id"></app-info-bar>
 
   <ion-card>
     <ion-card-header>

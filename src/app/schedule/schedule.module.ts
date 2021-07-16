@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { SchedulePageRoutingModule } from './schedule-routing.module';
 
 import { SchedulePage } from './schedule.page';
+import { InfoBarComponent } from '../shared/components/info-bar/info-bar.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { SchedulePage } from './schedule.page';
     IonicModule,
     SchedulePageRoutingModule
   ],
-  declarations: [SchedulePage]
+  declarations: [SchedulePage,InfoBarComponent],
+  entryComponents: [ InfoBarComponent ]
 })
 export class SchedulePageModule {}

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DocumentsPageRoutingModule } from './documents-routing.module';
 
 import { DocumentsPage } from './documents.page';
+import { InfoBarComponent } from '../shared/components/info-bar/info-bar.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { DocumentsPage } from './documents.page';
     IonicModule,
     DocumentsPageRoutingModule
   ],
-  declarations: [DocumentsPage]
+  entryComponents: [ InfoBarComponent ],
+  declarations: [DocumentsPage,InfoBarComponent]
 })
 export class DocumentsPageModule {}

@@ -5,7 +5,8 @@ import {Page} from '../shared/interfaces/pagination';
 import {NotesService} from '../shared/services/notes.service';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-
+import { CampaignService } from '../shared/services/campaign.service';
+import { Client } from '../shared/classes/client';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.page.html',
@@ -16,24 +17,35 @@ export class NotesPage implements OnInit {
    @ViewChild('content') content;
 
    id: number;
-   client: string;
+   client: Client = {};
    notes: Note[];
    note: Note = new Note;
    pages: Page;
    updatedNote: boolean = false;
 
-  constructor(private activateRoute: ActivatedRoute, private notesService: NotesService, public alertController: AlertController) {
+  constructor(
+    private activateRoute: ActivatedRoute, 
+    private notesService: NotesService, 
+    public alertController: AlertController,
+    private campaignService: CampaignService,
+    ) {
     this.activateRoute.params.subscribe(
       params => {
         this.id = params['id'];
-        this.client =  params['client'];
       }
     )
   }
 
   ngOnInit() {
     this.getNotes();
+    this.getCampaignClient();
   }
+  
+  getCampaignClient(){
+    this.campaignService.getCampaignClientById( this.id ).subscribe( response => {
+      this.client = { ...response.data.cliente };
+    }, () =>  console.error("error get campaign client service"))
+  }//
 
   getNotes(page: number = 1){
     this.notesService.getNotes(this.id,page).subscribe(

@@ -35,6 +35,7 @@
     "@ionic/angular": "^5.5.2",
     "bootstrap": "^5.0.2",
     "call-number": "^1.0.1",
+    "ionic2-calendar": "^0.6.9",
     "cordova-plugin-document-viewer": "^1.0.0",
     "cordova-plugin-preview-any-file": "^0.2.7",
     "moment": "^2.29.1",

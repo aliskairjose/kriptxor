@@ -7,7 +7,8 @@ import {Page} from '../shared/interfaces/pagination';
 import { CommonService } from '../shared/services/common.service';
 import { StorageService } from '../shared/services/storage.service';
 import { AlertController } from '@ionic/angular';
-
+import { CampaignService } from '../shared/services/campaign.service';
+import { Client } from '../shared/classes/client';
 
 @Component( {
   selector: 'app-documents',
@@ -18,7 +19,7 @@ export class DocumentsPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   id: any;
-  client: string;
+  client: Client = {};
   uploadedFile: boolean = false;
   imgPreview: string | ArrayBuffer;
   imgName: string;
@@ -33,12 +34,12 @@ export class DocumentsPage implements OnInit {
     private storage: StorageService,
     private documentService: DocumentService,
     private activateRoute: ActivatedRoute,
-    public alertController: AlertController
-  ) {
+    public alertController: AlertController,
+    private campaignService: CampaignService,
+    ) {
     this.activateRoute.params.subscribe(
       params => {
         this.id = params['id'];
-        this.client =  params['client'];
       }
     )
   }
@@ -46,8 +47,14 @@ export class DocumentsPage implements OnInit {
   ngOnInit() {
 
     this.getDocuments()
-
+    this.getCampaignClient();
   }
+
+  getCampaignClient(){
+    this.campaignService.getCampaignClientById( this.id ).subscribe( response => {
+      this.client = { ...response.data.cliente };
+    }, () =>  console.error("error get campaign client service"))
+  }//
 
   getDocuments(page: number = 1){
     this.documentService.list(this.id,page).subscribe(

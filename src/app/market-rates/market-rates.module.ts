@@ -4,19 +4,18 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NotesPageRoutingModule } from './notes-routing.module';
+import { MarketRatesPageRoutingModule } from './market-rates-routing.module';
 
-import { NotesPage } from './notes.page';
+import { MarketRatesPage } from './market-rates.page';
 import { InfoBarComponent } from '../shared/components/info-bar/info-bar.component';
 
-@NgModule({
+@NgModule( {
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NotesPageRoutingModule
+    MarketRatesPageRoutingModule
   ],
-  entryComponents: [ InfoBarComponent ],
-  declarations: [NotesPage,InfoBarComponent]
-})
-export class NotesPageModule {}
+  declarations: [ MarketRatesPage, InfoBarComponent ]
+} )
+export class MarketRatesPageModule { }

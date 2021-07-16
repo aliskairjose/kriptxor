@@ -1,0 +1,24 @@
+<h2 class="title ion-text-center">{{client.nombre_completo}}</h2>
+
+<div class="document-banner text-center">
+  <div [routerLink]="[ '/client', id ]">
+    <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
+    <ion-label>Ficha</ion-label>
+  </div>
+  <div [routerLink]="[ '/documents', id ]">
+    <ion-icon class="icons" src="assets/icon/documents.svg"></ion-icon>
+    <ion-label>Documentos</ion-label>
+  </div>
+  <div>
+    <ion-icon [routerLink]="[ '/notes', id ]" class="icons" src="assets/icon/notes.svg"></ion-icon>
+    <ion-label>Notas</ion-label>
+  </div>
+  <div>
+    <ion-icon [routerLink]="[ '/schedule', id ]" class="icons" src="assets/icon/schedule.svg"></ion-icon>
+    <ion-label>Agenda</ion-label>
+  </div>
+  <div [routerLink]="['/market-rates', ]">
+    <ion-icon class="icons" src="assets/icon/cotizations.svg"></ion-icon>
+    <ion-label>Cotizaciones</ion-label>
+  </div>
+</div>

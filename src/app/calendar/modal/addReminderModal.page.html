@@ -1,0 +1,53 @@
+<div class="p-4">
+  <div class="d-flex justify-content-between mb-4">
+    <div class="d-flex gap-3">
+      <div class="box">
+        <img src="assets/icon/calendar-icon.svg" alt="Icono de calendario" />
+      </div>
+      <div>
+        <h4>Agregar Recordatorio</h4>
+        <span class="d-block">{{ date }}</span>
+      </div>
+    </div>
+    <button
+      (click)="close()"
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+    ></button>
+  </div>
+  <ion-input
+    [(ngModel)]="title"
+    (ionChange)="title = $event.target.value"
+    class="input my-3"
+    placeholder="Asunto del Recordatorio"
+  ></ion-input>
+  <ion-label>Hora</ion-label>
+  <ion-datetime
+    [(ngModel)]="selectedHour"
+    (ionChange)="setHour($event.target.value)"
+    class="input"
+    minute-values="0,15,30,45"
+    display-format="HH:mm"
+    picker-format="HH:mm"
+    cancel-text="Cancelar"
+    done-text="Seleccionar"
+  ></ion-datetime>
+  <ion-label>Duración</ion-label>
+  <ion-input
+    [(ngModel)]="duration"
+    (ionChange)="duration = $event.target.value"
+    class="input"
+    type="number"
+    inputmode="numeric"
+  ></ion-input>
+  <ion-button
+    (click)="saveReminder()"
+    expand="full"
+    class="button mt-3"
+    shape="round"
+    color="warning"
+  >
+    <ion-text> Agregar Recordatorio </ion-text>
+  </ion-button>
+</div>

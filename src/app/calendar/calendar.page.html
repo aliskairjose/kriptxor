@@ -29,7 +29,9 @@
   </div>
   <div class="calendar">
     <ng-template #template let-viewDate="viewDate">
-      <div style="cursor: pointer">{{ viewDate.dayHeader }}</div>
+      <div (click)="setDate(viewDate.date)" style="cursor: pointer">
+        {{ viewDate.dayHeader }}
+      </div>
     </ng-template>
     <calendar
       #myCalendar
@@ -37,9 +39,9 @@
       [eventSource]="eventSource"
       [calendarMode]="calendar.mode"
       [currentDate]="calendar.currentDate"
+      [startingDayWeek]="calendar.startingDayWeek"
       [lockSwipes]="true"
-      (onDayHeaderSelected)="setDate($event.selectedTime)"
-      (onTimeSelected)="setDate($event.selectedTime)"
+      (onEventSelected)="openRemindersModal($event.title)"
     >
     </calendar>
   </div>

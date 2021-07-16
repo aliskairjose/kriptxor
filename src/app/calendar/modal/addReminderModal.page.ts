@@ -7,7 +7,7 @@ import { StorageService } from 'src/app/shared/services/storage.service';
 @Component({
   selector: 'app-reminder-modal',
   templateUrl: './addReminderModal.page.html',
-  styleUrls: ['./addReminderModal.page.scss'],
+  styleUrls: ['./styles.scss'],
 })
 export class AddReminderModalComponent implements OnInit {
   public title = '';
@@ -24,14 +24,8 @@ export class AddReminderModalComponent implements OnInit {
 
   ngOnInit() {}
 
-  public print() {
-    console.log('title: ', this.title);
-    console.log('hour: ', this.selectedHour);
-    console.log('duration: ', this.duration);
-    console.log('date: ', this.date);
-  }
-
   public setHour(date: string) {
+    console.log(date);
     const newDate = new Date(date);
     this.selectedHour = `${this.zeroBased(newDate.getHours())}:${this.zeroBased(
       newDate.getMinutes()

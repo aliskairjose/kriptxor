@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CalendarMode, Step, IEvent } from 'ionic2-calendar/calendar';
-import { CalendarComponent } from 'ionic2-calendar';
 import { CalendarService } from '../shared/services/calendar.service';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Location } from '@angular/common';
 import { StorageService } from '../shared/services/storage.service';
 import { USER } from '../shared/constants/constants';
 import { AddReminderModalComponent } from './modal/addReminderModal.page';
+import { RemindersModalsComponent } from './modal/remindersModal.page';
 
 @Component({
   selector: 'app-calendar',
@@ -14,8 +14,6 @@ import { AddReminderModalComponent } from './modal/addReminderModal.page';
   styleUrls: ['./calendar.page.scss'],
 })
 export class CalendarPage implements OnInit {
-  @ViewChild(CalendarComponent, null) myCalendar: CalendarComponent;
-
   eventSource: IEvent[] = [];
   selectedDate: string = null;
 
@@ -23,6 +21,7 @@ export class CalendarPage implements OnInit {
     mode: 'week' as CalendarMode,
     step: 15 as Step,
     currentDate: new Date(),
+    startingDayWeek: new Date().getDay(),
   };
 
   constructor(
@@ -65,7 +64,21 @@ export class CalendarPage implements OnInit {
     return await modal.present();
   }
 
+  async openRemindersModal(reminder: string) {
+    const modal = await this.modal.create({
+      component: RemindersModalsComponent,
+      cssClass: 'custom-modal',
+      componentProps: {
+        date: this.selectedDate,
+        reminder,
+      },
+    });
+
+    return await modal.present();
+  }
+
   setDate = (selectedDate: Date) => {
+    console.log(selectedDate);
     const date = this.parseDate(selectedDate);
 
     if (this.selectedDate === date) {
@@ -74,6 +87,7 @@ export class CalendarPage implements OnInit {
     }
 
     this.selectedDate = date;
+    this.initModal();
   };
 
   public async getEvents() {
@@ -89,8 +103,13 @@ export class CalendarPage implements OnInit {
         this.eventSource = response.data.map((event) => {
           const startTime = new Date(event.date);
 
+          const title =
+            event.campaign_client.length > 0
+              ? `${event.campaign_client[0].cliente.nombre_completo}: ${event.title}`
+              : event.title;
+
           return {
-            title: event.title,
+            title,
             startTime,
             endTime: this.getEndTime(startTime, 3),
           } as IEvent;

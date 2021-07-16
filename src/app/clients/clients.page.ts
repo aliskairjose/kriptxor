@@ -35,7 +35,7 @@ export class ClientsPage implements OnInit {
         this.clients = response.data;
         this.pages = response.meta.page;
         loading.dismiss();
-      }
+      }, () => loading.dismiss()
     )
   }
 
@@ -67,14 +67,12 @@ export class ClientsPage implements OnInit {
 
   searchClient(event: any){
     this.search = event.target.value;
-    setTimeout( () => {
       this.clientService.getClients(1, event.target.value).subscribe(
         response => {
           this.clients = response.data;
           this.pages = response.meta.page;
         }
       );
-    }, 1500)
 
 
   }

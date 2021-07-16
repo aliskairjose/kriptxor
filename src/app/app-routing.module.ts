@@ -58,7 +58,7 @@ const routes: Routes = [
       import('./clients/clients.module').then((m) => m.ClientsPageModule),
   },
   {
-    path: 'market-rates',
+    path: 'market-rates/:id',
     loadChildren: () => import( './market-rates/market-rates.module' ).then( m => m.MarketRatesPageModule )
   }
 ];

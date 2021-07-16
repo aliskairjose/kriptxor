@@ -47,7 +47,6 @@ export class MarketRatesPage implements OnInit {
     const loading = await this.common.presentLoading();
     loading.present();
     this.campaignService.quoteCalculator( this.form.value ).subscribe( response => {
-      console.log( response );
       loading.dismiss();
     }, () => loading.dismiss() )
   }

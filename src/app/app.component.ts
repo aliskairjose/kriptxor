@@ -19,6 +19,7 @@ export class AppComponent {
     // { title: 'Agenda', url: '/schedule/102189', icon: 'flag' },
     { title: 'Calendario', url: '/calendar', icon: 'calendar' },
     { title: 'Mis clientes', url: '/clients', icon: 'person' },
+    { title: 'Cotizaciones', url: '/market-rates', icon: 'flag' },
   ];
 
   public labels = [];

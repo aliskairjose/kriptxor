@@ -38,7 +38,7 @@ export class CampaignService {
 
   getCampaign( filter: any, page: number ): Observable<DataResponse<MasterClient[]>> {
     const filtro = JSON.stringify( filter );
-    return this.http.get( `campaign-clients?filter=${filtro}&page=${page}&include=cliente,status` );
+    return this.http.get( `campaign-clients?filter=${filtro}&page=${page}&include=cliente,status&skipCalledClients=1` );
   }
 
   updateCampaignClientInterest( id: number, interested: number ): Observable<any> {
@@ -63,6 +63,16 @@ export class CampaignService {
     const filter = { campaignId, order: { field: 'created_at', way: 'ASC' } };
     const filtro = JSON.stringify( filter );
     return this.http.get( `campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status` );
+  }
+
+  quoteCalculator( data: any ): Observable<any> {
+    return this.http.post( `campaign-client-quotes-calculator`, data );
+  }
+
+  clientQuotes( campaignClientId: number ): Observable<any> {
+    const filter = { campaignClientId, order: { field: 'created_at', way: 'DESC' } };
+    const filtro = JSON.stringify( filter );
+    return this.http.get( `campaign-client-quotes?filter=${filtro}&page=1&include=bank` );
   }
 
 }

@@ -57,6 +57,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./clients/clients.module').then((m) => m.ClientsPageModule),
   },
+  {
+    path: 'market-rates',
+    loadChildren: () => import( './market-rates/market-rates.module' ).then( m => m.MarketRatesPageModule )
+  }
 ];
 @NgModule({
   imports: [

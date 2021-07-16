@@ -9,6 +9,8 @@ import { ModalController } from '@ionic/angular';
 export class RemindersModalsComponent implements OnInit {
   public title = '';
   public date: '';
+  public startHour: '';
+  public endHour: '';
 
   constructor(private modal: ModalController) {}
 

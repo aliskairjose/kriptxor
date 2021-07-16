@@ -51,7 +51,7 @@ export class CalendarPage implements OnInit {
 
     const modal = await this.modal.create({
       component: AddReminderModalComponent,
-      cssClass: 'custom-modal',
+      cssClass: 'add-reminder-modal',
       componentProps: {
         date: this.selectedDate,
       },
@@ -64,27 +64,24 @@ export class CalendarPage implements OnInit {
     return await modal.present();
   }
 
-  async openRemindersModal(reminder: string) {
+  async openRemindersModal(reminder) {
     const modal = await this.modal.create({
       component: RemindersModalsComponent,
-      cssClass: 'custom-modal',
+      cssClass: 'view-reminder-modal',
       componentProps: {
-        date: this.selectedDate,
-        reminder,
+        date: this.parseDate(reminder.startTime),
+        startHour: this.parseHour(reminder.startTime),
+        endHour: this.parseHour(reminder.endTime),
+        reminder: reminder.title,
       },
     });
 
     return await modal.present();
   }
 
-  setDate = (selectedDate: Date) => {
+  public setDate = (selectedDate: Date) => {
     console.log(selectedDate);
     const date = this.parseDate(selectedDate);
-
-    if (this.selectedDate === date) {
-      this.selectedDate = null;
-      return;
-    }
 
     this.selectedDate = date;
     this.initModal();
@@ -161,6 +158,12 @@ export class CalendarPage implements OnInit {
     parsedDate[0] = this.zeroBased(parsedDate[0]);
     parsedDate[1] = this.zeroBased(parsedDate[1]);
     return parsedDate.reverse().join('-');
+  }
+
+  private parseHour(date: Date) {
+    return `${this.zeroBased(date.getHours())}:${this.zeroBased(
+      date.getMinutes()
+    )}`;
   }
 
   private zeroBased(value: string | number): string {

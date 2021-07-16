@@ -242,10 +242,19 @@ ion-button {
   }
 }
 
-.modal-wrapper.sc-ion-modal-md {
+.base-modal {
   width: 90%;
   height: 400px;
   max-width: 600px;
   border-radius: 12px;
   background-color: #fff;
+}
+
+.add-reminder-modal .modal-wrapper.sc-ion-modal-md {
+  @extend .base-modal;
+}
+
+.view-reminder-modal .modal-wrapper.sc-ion-modal-md {
+  @extend .base-modal;
+  height: 180px;
 }

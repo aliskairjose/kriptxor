@@ -3,8 +3,11 @@ import { CommonService } from '../shared/services/common.service';
 import { CampaignService } from '../shared/services/campaign.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Client } from '../shared/classes/client';
-import { forkJoin } from 'rxjs';
+import { Client, MasterClient } from '../shared/classes/client';
+import { Quote, Bank } from '../shared/classes/quote';
+import { QuoteService } from '../shared/services/quote.service';
+import * as moment from 'moment-timezone';
+import { AlertController } from '@ionic/angular';
 
 @Component( {
   selector: 'app-market-rates',
@@ -12,62 +15,194 @@ import { forkJoin } from 'rxjs';
   styleUrls: [ './market-rates.page.scss' ],
 } )
 export class MarketRatesPage implements OnInit {
-  form: FormGroup;
-  hasMortgage = false;
-  submitted = false;
+
+  id: number;
+  moment: any = moment;
   client: Client = {};
+  age: number;
   clientQuotes: any[] = [];
+  quote: Quote = new Quote;
+  birth: string;
+  banks: Bank[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
+    private activateRoute: ActivatedRoute,
     private common: CommonService,
-    private campaignService: CampaignService
-  ) { }
+    private campaignService: CampaignService,
+    private quoteService: QuoteService,
+    public alertController: AlertController
+  ) {
+    this.activateRoute.params.subscribe(
+      params => {
+        this.id = params['id'];
+      }
+    ) }
 
-  async ngOnInit() {
-    const loading = await this.common.presentLoading();
-    loading.present();
-    this.route.params.subscribe( data => {
-      forkJoin( [
-        this.campaignService.getCampaignClientById( 116 ),
-        this.campaignService.clientQuotes( 116 )
-      ] )
-        .subscribe( ( [ clientResponse, clientQuotesResponse ] ) => {
-          loading.dismiss();
-          console.log( clientResponse );
-          console.log( clientQuotesResponse )
-          this.client = { ...clientResponse.data.cliente };
-          this.clientQuotes = [ ...clientQuotesResponse.data ];
-        }, () => loading.dismiss() );
-    } )
+  ngOnInit() {
+    this.getClient();
+    this.getClientQuotes();
   }
 
   async calculate() {
-    const loading = await this.common.presentLoading();
-    loading.present();
-    this.campaignService.quoteCalculator( this.form.value ).subscribe( response => {
+    }
+ async getClient(){
+   const loading = await this.common.presentLoading();
+   loading.present();
+  this.campaignService.getCampaignClientById(this.id).subscribe(
+    response => {
+      let master = response.data as MasterClient;
+      this.client = master.cliente as Client;
+      this.quote.campaign_client_id = master.id;
+      this.calculateAge();
+      this.setSex();
       loading.dismiss();
-    }, () => loading.dismiss() )
+    }, () => loading.dismiss()
+  )
+}
+getClientQuotes(){
+  this.campaignService.clientQuotes(this.id).subscribe(
+    response => {
+      this.clientQuotes = response.data;
+    }
+  )
+}
+
+getQuotes(){
+  this.quoteService.getQuotes(this.quote).subscribe(
+    response =>{
+      this.banks = response.data;
+    }
+  )
+}
+setBank(id: number){
+  console.log(id);
+}
+selectBankQuote(){
+  this.quote.banks = [];
+  this.banks.forEach( key => {
+    key as Bank;
+    if(key.isChecked == true){
+      this.quote.banks.push(key.bank_id)
+    }
+  })
+}
+quoteClient(){
+  this.quoteService.quote(this.quote).subscribe(
+    response => {
+      this.successRequest(response.message);
+      this.quote = new Quote;
+    }
+  )
+}
+
+//Validators
+finishQuote(){
+  if(this.client.fecha_nacimiento != null && this.birth != null){
+    if(this.quote.salary != null){
+      this.validMortgage();
+      this.validHeightWeight();
+      this.validLoan();
+      this.quoteClient();
+    } else{
+      this.invalidForm("Salario")
+    }
+
+  } else{
+    this.invalidForm("Fecha de nacimiento")
+  }
+}
+setAge(event: any){
+  let birth = moment(event.target.value).format('YYYY-MM-DD');
+  let today = moment();
+  let age = today.diff(birth, "years");
+  this.age = age;
+  this.quote.day = +moment(birth).format('DD');
+  this.quote.month = +moment(birth).format('MM');
+  this.quote.year = +moment(birth).format('YYYY');
+}
+calculateAge(){
+  if(this.client.fecha_nacimiento != null){
+    let birth = moment(this.client.fecha_nacimiento).format('YYYY-MM-DD');
+    let today = moment();
+    let age = today.diff(birth, "years");
+    this.age = age;
+    this.birth = birth;
   }
 
-  createForm(): void {
-    this.form = this.fb.group(
-      {
-        salary: [],
-        campaign_client_id: [],
-        mortgage: [],
-        apply_mortgage: [],
-        loan: [],
-        weight: [],
-        height: [],
-        sex: [],
-        month: [],
-        day: [],
-        year: []
-      }
-    );
+}
+setSex(){
+  if(this.client.sexo != null){
+    this.quote.sex = this.client.sexo
   }
+}
+validQuote(){
+  if(this.client.fecha_nacimiento != null && this.birth != null){
+    if(this.quote.salary != null){
+      this.validMortgage();
+      this.validHeightWeight();
+      this.validLoan();
+      this.getQuotes();
+      //console.log(this.quote);
+    } else{
+      this.invalidForm("Salario")
+    }
+
+  } else{
+    this.invalidForm("Fecha de nacimiento")
+  }
+
+}
+validMortgage(){
+  if(this.quote.apply_mortgage != null){
+    if(this.quote.apply_mortgage == true){
+      this.quote.apply_mortgage = 1;
+    } else{
+      this.quote.apply_mortgage = 0;
+      this.quote.mortgage = 0;
+    }
+  } else{
+    this.quote.apply_mortgage = 0;
+    this.quote.mortgage = 0;
+  }
+}
+validHeightWeight(){
+  if(this.quote.height == null){
+    this.quote.height = 0;
+  }
+  if(this.quote.weight == null){
+    this.quote.weight = 0;
+  }
+}
+validLoan(){
+  if(this.quote.loan == null){
+    this.quote.loan = 0;
+  }
+}
+// Alerts
+async successRequest(text: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Exito!',
+      subHeader: '',
+      message: text,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  async invalidForm(text: string) {
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Error!',
+        subHeader: '',
+        message: "El campo de <strong>" + text + "</strong> no puede estar vacio",
+        buttons: ['OK']
+      });
+
+      await alert.present();
+    }
+
 
 
 }

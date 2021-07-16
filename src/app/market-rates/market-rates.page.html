@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <app-info-bar [client]="client"></app-info-bar>
+  <app-info-bar [client]="client" [id]="id"></app-info-bar>
 
   <ng-container *ngFor="let clientQuote of clientQuotes; let i=index">
     <div class="container-bordered">
@@ -53,23 +53,46 @@
         <ion-col size="8">
           <ion-item>
             <ion-label>Fecha de nacimiento</ion-label>
-            <ion-datetime displayFormat="DD/MM/YYYY" value="2012-12-15T13:47:20.789"></ion-datetime>
+            <ion-datetime
+              *ngIf="client.fecha_nacimiento != null else noDataBirth"
+              readonly
+              [(ngModel)]="birth"
+              (ionChange)="setAge($event)"
+              displayFormat="DD/MM/YYYY"></ion-datetime>
+              <ng-template #noDataBirth>
+                <ion-datetime
+                  [(ngModel)]="birth"
+                  (ionChange)="setAge($event)"
+                  displayFormat="DD/MM/YYYY"></ion-datetime>
+              </ng-template>
           </ion-item>
         </ion-col>
         <ion-col size="4">
           <ion-item>
             <ion-label>Edad</ion-label>
-            <ion-input type="number" maxlength="2"></ion-input>
+            <ion-input [(ngModel)]="age" readonly type="number" maxlength="2"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-select placeholder="Seleccione sexo">
-              <ion-select-option value="f">Femenino</ion-select-option>
-              <ion-select-option value="m">Masculino</ion-select-option>
+            <ion-select
+            *ngIf="client.sexo != null else noDataSex"
+            disabled
+            [(ngModel)]="quote.sex"
+            placeholder="Seleccione sexo">
+              <ion-select-option value="Femenino">Femenino</ion-select-option>
+              <ion-select-option value="Masculino">Masculino</ion-select-option>
             </ion-select>
+            <ng-template #noDataSex>
+              <ion-select
+              [(ngModel)]="quote.sex"
+              placeholder="Seleccione sexo">
+                <ion-select-option value="Femenino">Femenino</ion-select-option>
+                <ion-select-option value="Masculino">Masculino</ion-select-option>
+              </ion-select>
+            </ng-template>
           </ion-item>
         </ion-col>
         <ion-col>
@@ -83,7 +106,7 @@
         <ion-col>
           <ion-item>
             <ion-label>Salario</ion-label>
-            <ion-input inputmode="numeric"></ion-input>
+            <ion-input type="number" [(ngModel)]="quote.salary" inputmode="numeric"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col>
@@ -94,30 +117,41 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="8">
-          <ion-item>
-            <ion-label>¿Aplica Hipoteca?</ion-label>
-            <ion-checkbox slot="start" (ionChange)="hasMortage = !hasMortage"></ion-checkbox>
-          </ion-item>
-        </ion-col>
         <ion-col size="4">
           <ion-item>
             <ion-label>Peso</ion-label>
-            <ion-input inputmode="decimal" type="number"></ion-input>
+            <ion-input [(ngModel)]="quote.weight" inputmode="decimal" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="3">
+          <ion-item>
+            <ion-select value="kg" placeholder="Seleccione sexo">
+              <ion-select-option value="kg">KG</ion-select-option>
+              <ion-select-option value="libs">LIBS</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="5">
+          <ion-item>
+            <ion-label>Altura</ion-label>
+            <ion-input [(ngModel)]="quote.height" inputmode="decimal" type="number"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="8">
-          <ion-item *ngIf="hasMortage">
-            <ion-label>Hipoteca</ion-label>
-            <ion-input></ion-input>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label>¿Aplica Hipoteca?</ion-label>
+            <ion-checkbox
+            [(ngModel)]="quote.apply_mortgage"
+             slot="start"
+             (ionChange)="hasMortage = !hasMortage"></ion-checkbox>
           </ion-item>
         </ion-col>
-        <ion-col size="4">
-          <ion-item>
-            <ion-label>Altura</ion-label>
-            <ion-input inputmode="decimal" type="number"></ion-input>
+        <ion-col size="6">
+          <ion-item *ngIf="hasMortage">
+            <ion-label>Hipoteca</ion-label>
+            <ion-input type="number" [(ngModel)]="quote.mortgage"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -125,13 +159,13 @@
         <ion-col size="12">
           <ion-item>
             <ion-label>Prestamo</ion-label>
-            <ion-input></ion-input>
+            <ion-input type="number" [(ngModel)]="quote.loan"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row class="ion-justify-content-center">
         <ion-col size="4">
-          <ion-button (click)="onClick()">
+          <ion-button (click)="validQuote()">
             Calcular
           </ion-button>
         </ion-col>
@@ -139,15 +173,19 @@
     </ion-grid>
   </div>
 
-  <div class="container-bordered">
+
+  <div *ngFor="let bank of banks" class="container-bordered">
     <ion-grid fixed>
       <ion-row>
         <ion-col size="5">
-          <ion-icon name="ellipse"></ion-icon>
-          Banesco
+          <ion-checkbox (ionChange)="selectBankQuote()" [(ngModel)]="bank.isChecked"></ion-checkbox>
+          &nbsp;
+          <ion-icon name="business-outline"></ion-icon>
+          &nbsp;
+          {{bank.bank_name}}
         </ion-col>
-        <ion-col size="5">
-          <div class="date-badged primary text-center">$26.500</div>
+        <ion-col size="5" class="ion-justify-content-right">
+          <div class="date-badged primary text-right">${{bank.quotes[0].amount}}</div>
         </ion-col>
         <ion-col size="2">
           <div class="ion-text-right">
@@ -157,25 +195,30 @@
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          Neto a cobrar <div class="date-badged primary text-center">$26.500</div>
+          Neto a cobrar <div class="date-badged primary text-center">${{bank.quotes[0].amount}}</div>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="6">
-          Letra Quicenal $150
+          Letra Quicenal ${{bank.quotes[0].biweekly_letter}}
         </ion-col>
-        <ion-col size="6">
-          Interes 7,25%
+        <ion-col size="6" class="ion-justify-content-right">
+          <div class="text-right">
+            Interes {{bank.bank_interest_rate}}%
+          </div>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="12">Letra Mensual: $300</ion-col>
+        <ion-col size="12">Letra Mensual: ${{bank.quotes[0].monthly_letter}}</ion-col>
       </ion-row>
       <ion-row class="ion-justify-content-center">
-        <ion-col size="8">
-          <div class="date-badged primary text-center">Con examenes médicos</div>
-        </ion-col>
+          <div *ngIf="bank.quotes[0].apply_medical_exams" class="date-badged primary text-center">Con examenes médicos</div>
       </ion-row>
     </ion-grid>
+  </div>
+  <div class="ion-justify-content-center text-center">
+    <ion-button (click)="finishQuote()">
+      Cotizar
+    </ion-button>
   </div>
 </ion-content>

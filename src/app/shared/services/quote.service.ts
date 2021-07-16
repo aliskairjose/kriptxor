@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { HttpService } from './http.service';
 import { MasterClient } from '../classes/client';
 import { Response } from '../interfaces/response';
+import { Quote, Bank } from '../classes/quote';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,11 @@ export class QuoteService {
         response => response as Response<MasterClient>
       )
     );
+  }
+  getQuotes(quote: Quote): Observable<Response<Bank[]>>{
+    return this.http.post("campaign-client-quotes-calculator", quote)
+  }
+  quote(quote: Quote): Observable<Response<Quote>>{
+    return this.http.post("campaign-client-quotes", quote)
   }
 }

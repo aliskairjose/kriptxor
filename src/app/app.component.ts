@@ -12,14 +12,13 @@ import { TOKEN } from './shared/constants/constants';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Home', url: '/dashboard', icon: 'home' },
+    { title: 'Dashboard', url: '/dashboard', icon: 'home' },
     { title: 'Campañas', url: '/campaigns', icon: 'flag' },
-    { title: 'Documentos', url: '/documents', icon: 'flag' },
-    { title: 'Notas', url: '/notes/113', icon: 'flag' },
-    { title: 'Agenda', url: '/schedule/113', icon: 'flag' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'flag' },
-    { title: 'Calendario', url: '/calendar', icon: 'flag' },
-    { title: 'Mis clientes', url: '/clients', icon: 'flag' },
+    // { title: 'Documentos', url: '/documents/102189', icon: 'flag' },
+    // { title: 'Notas', url: '/notes/102189', icon: 'flag' },
+    // { title: 'Agenda', url: '/schedule/102189', icon: 'flag' },
+    { title: 'Calendario', url: '/calendar', icon: 'calendar' },
+    { title: 'Mis clientes', url: '/clients', icon: 'person' },
   ];
 
   public labels = [];

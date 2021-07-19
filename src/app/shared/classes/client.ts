@@ -13,6 +13,7 @@ export class Client {
   id_user?: number;
   code?: string;
   nombre_completo?: string;
+  available?: boolean;
 }
 export class MasterClient {
   id?: number;

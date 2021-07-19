@@ -46,6 +46,7 @@ export class ClientsPage implements OnInit {
     this.clientService.getClients(page, this.search).subscribe(
       response =>{
         this.clients = this.clients.concat(response.data);
+        this.length = this.clients.length;
         this.pages = response.meta.page;
         //Finish the load
         event.target.complete();
@@ -72,6 +73,7 @@ export class ClientsPage implements OnInit {
       this.clientService.getClients(1, event.target.value).subscribe(
         response => {
           this.clients = response.data;
+          this.length = this.clients.length;
           this.pages = response.meta.page;
         }
       );

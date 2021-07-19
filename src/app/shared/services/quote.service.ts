@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { HttpService } from './http.service';
 import { MasterClient } from '../classes/client';
 import { Response } from '../interfaces/response';
-import { Quote, Bank } from '../classes/quote';
+import { Quote, Bank, RequestSalary } from '../classes/quote';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,16 @@ export class QuoteService {
   }
   getQuotes(quote: Quote): Observable<Response<Bank[]>>{
     return this.http.post("campaign-client-quotes-calculator", quote)
+  }
+  getCalculatedNetSalary(net: FormData): Observable<Response<number>>{
+    return this.http.post("calculator-net-salary", net)
+  }
+  getRequestedSalary(net: FormData): Observable<Response<RequestSalary[]>>{
+    return this.http.post("calculator-salary-per-bank", net).pipe(
+      map(
+        response => response as Response<RequestSalary[]>
+      )
+    )
   }
   quote(quote: Quote): Observable<Response<Quote>>{
     return this.http.post("campaign-client-quotes", quote)

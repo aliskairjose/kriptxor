@@ -14,6 +14,7 @@ import { CommonService } from '../shared/services/common.service';
 export class ClientsPage implements OnInit {
 
   clients: MasterClient[];
+  length: number;
   pages: Page;
   search: string = "";
 
@@ -33,6 +34,7 @@ export class ClientsPage implements OnInit {
     this.clientService.getClients(page, this.search).subscribe(
       response => {
         this.clients = response.data;
+        this.length = this.clients.length;
         this.pages = response.meta.page;
         loading.dismiss();
       }, () => loading.dismiss()

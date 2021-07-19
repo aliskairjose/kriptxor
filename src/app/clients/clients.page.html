@@ -15,7 +15,7 @@
     (ionChange)="searchClient($event)"
     debounce="1000"
    ></ion-searchbar>
-  <div *ngIf="clients > 0 else noData">
+  <div *ngIf="length > 0 else noData">
     <ng-container *ngFor="let client of clients">
       <ion-card>
         <ion-card-header class="d-flex justify-content-between bg-ligth-gray" style="padding: 5px;">

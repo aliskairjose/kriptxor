@@ -11,18 +11,29 @@
   <ion-searchbar class="search-bar" placeholder="Buscar clientes"></ion-searchbar>
 
   <ng-container *ngFor="let data of clients; let i=index">
-    <ion-card>
+    <ion-card [disabled]="data?.called">
       <ion-card-header class="d-flex justify-content-between bg-ligth-gray" style="padding: 5px;">
         <ion-label class="d-flex align-items-center">
           <ion-icon slot="start" name="person-circle" color="primary" style="font-size: 2rem"></ion-icon>
           cliente: <h4> {{data?.cliente?.nombre_completo}} </h4>
         </ion-label>
 
-        <ion-chip outline="false" class="primary-chip" [routerLink]="['/client', data?.id]"
+        <ion-chip *ngIf="data?.called else availabl"
+
+         outline="false" class="primary-chip disabled" [routerLink]="['/client', data?.id]"
           routerLinkActive="router-link-active">
           <ion-icon name="arrow-forward-circle-outline"></ion-icon>
           <ion-label>Ver cliente</ion-label>
         </ion-chip>
+        <ng-template #availabl>
+          <ion-chip *ngIf="data?.called else availabl"
+
+           outline="false" class="primary-chip" [routerLink]="['/client', data?.id]"
+            routerLinkActive="router-link-active">
+            <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+            <ion-label>Ver cliente</ion-label>
+          </ion-chip>
+        </ng-template>
       </ion-card-header>
 
       <ion-card-content class="ion-no-padding">
@@ -43,12 +54,24 @@
           </div>
         </div>
         <div>
-          <ion-button class="call2" expand="full" color="warning" (click)="callNumber(data)">
+          <ion-button
+          *ngIf="data?.called else button"
+           class="call2" expand="full" color="medium" >
             <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
             <ion-text class="card-content-footer-text">
               LLAMAR AHORA
             </ion-text>
           </ion-button>
+          <ng-template #button>
+            <ion-button
+
+             class="call2" expand="full" color="warning">
+              <ion-icon slot="start" (click)="callNumber(data)" src="assets/icon/cellphone.svg"></ion-icon>
+              <ion-text class="card-content-footer-text">
+                LLAMAR AHORA
+              </ion-text>
+            </ion-button>
+          </ng-template>
         </div>
       </ion-card-content>
 

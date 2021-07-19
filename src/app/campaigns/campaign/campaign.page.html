@@ -56,7 +56,7 @@
         <div>
           <ion-button
           *ngIf="data?.called else button"
-           class="call2" expand="full" color="medium" >
+           class="call2 disabled" expand="full" >
             <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
             <ion-text class="card-content-footer-text">
               LLAMAR AHORA
@@ -64,9 +64,9 @@
           </ion-button>
           <ng-template #button>
             <ion-button
-
+            (click)="callNumber(data)"
              class="call2" expand="full" color="warning">
-              <ion-icon slot="start" (click)="callNumber(data)" src="assets/icon/cellphone.svg"></ion-icon>
+              <ion-icon slot="start"  src="assets/icon/cellphone.svg"></ion-icon>
               <ion-text class="card-content-footer-text">
                 LLAMAR AHORA
               </ion-text>

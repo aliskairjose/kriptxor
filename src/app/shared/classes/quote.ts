@@ -20,6 +20,11 @@ export class Bank{
   quotes: BankQuotes[];
   isChecked: boolean;
 }
+export class RequestSalary{
+  bank_id: number;
+  bank_name: string;
+  salary: string;
+}
 export class BankQuotes{
   mortgage: boolean;
   amount: string;

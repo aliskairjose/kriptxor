@@ -98,7 +98,11 @@
         <ion-col>
           <ion-item>
             <ion-label>Neto</ion-label>
-            <ion-input></ion-input>
+            <ion-input
+            inputmode="numeric"
+            (ionChange)="calculateNetSalary($event)"
+            debounce="500"
+            ></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -112,10 +116,23 @@
         <ion-col>
           <ion-item>
             <ion-label>Solicitado</ion-label>
-            <ion-input inputmode="numeric"></ion-input>
+            <ion-input
+            inputmode="numeric"
+            (ionChange)="calculateRequestedSalary($event)"
+            debounce="500"
+            ></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
+      <ion-list *ngIf="showBanksRequested">
+        <ion-list-header>
+            Bancos
+        </ion-list-header>
+        <ion-item *ngFor="let bank of RequestedBanks">
+          <ion-label>{{bank.bank_name}}</ion-label>
+          <ion-badge slot="start">$ {{bank.salary}}</ion-badge>
+        </ion-item>
+      </ion-list>
       <ion-row>
         <ion-col size="4">
           <ion-item>
@@ -172,7 +189,7 @@
       </ion-row>
     </ion-grid>
   </div>
-
+  
 
   <div *ngFor="let bank of banks" class="container-bordered">
     <ion-grid fixed>

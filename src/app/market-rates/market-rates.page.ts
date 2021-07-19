@@ -4,7 +4,7 @@ import { CampaignService } from '../shared/services/campaign.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Client, MasterClient } from '../shared/classes/client';
-import { Quote, Bank } from '../shared/classes/quote';
+import { Quote, Bank, RequestSalary } from '../shared/classes/quote';
 import { QuoteService } from '../shared/services/quote.service';
 import * as moment from 'moment-timezone';
 import { AlertController } from '@ionic/angular';
@@ -24,6 +24,8 @@ export class MarketRatesPage implements OnInit {
   quote: Quote = new Quote;
   birth: string;
   banks: Bank[] = [];
+  RequestedBanks: RequestSalary[];
+  showBanksRequested: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -94,6 +96,35 @@ quoteClient(){
       this.quote = new Quote;
     }
   )
+}
+calculateRequestedSalary(event: any){
+  if(event.target.value != null && event.target.value != ""){
+    let formData: FormData = new FormData;
+    formData.append("requested_amount", event.target.value);
+    formData.append("birthday_year", this.quote.year.toString());
+    this.quoteService.getRequestedSalary(formData).subscribe(
+      response => {
+          this.RequestedBanks = response.data as RequestSalary[];
+          this.showBanksRequested = true;
+      }
+    )
+  } else{
+    this.quote.salary = null;
+    this.showBanksRequested = false;
+  }
+}
+calculateNetSalary(event: any){
+  if(event.target.value != null && event.target.value != ""){
+    let formData: FormData = new FormData;
+    formData.append("net_salary", event.target.value)
+    this.quoteService.getCalculatedNetSalary(formData).subscribe(
+      response =>{
+        this.quote.salary = response.data;
+      }
+    )
+  } else{
+    this.quote.salary = null;
+  }
 }
 
 //Validators

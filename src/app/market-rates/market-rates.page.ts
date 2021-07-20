@@ -99,19 +99,22 @@ quoteClient(){
 }
 calculateRequestedSalary(event: any){
   if(event.target.value != null && event.target.value != ""){
-    let formData: FormData = new FormData;
-    formData.append("requested_amount", event.target.value);
-    formData.append("birthday_year", this.quote.year.toString());
-    this.quoteService.getRequestedSalary(formData).subscribe(
-      response => {
-          this.RequestedBanks = response.data as RequestSalary[];
-          this.showBanksRequested = true;
-      }
-    )
+      this.requestedSalary(event.target.value)
   } else{
     this.quote.salary = null;
     this.showBanksRequested = false;
   }
+}
+requestedSalary(amount: string){
+  let formData: FormData = new FormData;
+  formData.append("requested_amount", amount);
+  formData.append("birthday_year", this.quote.year.toString());
+  this.quoteService.getRequestedSalary(formData).subscribe(
+    response => {
+        this.RequestedBanks = response.data as RequestSalary[];
+        this.showBanksRequested = true;
+    }
+  )
 }
 calculateNetSalary(event: any){
   if(event.target.value != null && event.target.value != ""){

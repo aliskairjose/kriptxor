@@ -5,11 +5,11 @@ import { StorageService } from './shared/services/storage.service';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { TOKEN } from './shared/constants/constants';
 
-@Component({
+@Component( {
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
-})
+  styleUrls: [ 'app.component.scss' ],
+} )
 export class AppComponent {
   public appPages = [
     { title: 'Dashboard', url: '/dashboard', icon: 'home' },
@@ -19,10 +19,12 @@ export class AppComponent {
     // { title: 'Agenda', url: '/schedule/102189', icon: 'flag' },
     { title: 'Calendario', url: '/calendar', icon: 'calendar' },
     { title: 'Mis clientes', url: '/clients', icon: 'person' },
+    { title: 'Mis clientes', url: '/clients', icon: 'person' },
     //{ title: 'Cotizaciones', url: '/market-rates/116', icon: 'flag' },
   ];
 
   public labels = [];
+  url = 'https://grupoglobalelite.com/politicas-bancarias/';
 
   constructor(
     private router: Router,
@@ -32,12 +34,16 @@ export class AppComponent {
     this.initializeApp();
   }
 
+  openUrl(): void {
+    window.open( this.url, '_system' );
+  }
+
   private initializeApp(): void {
-    this.platform.ready().then(async () => {
+    this.platform.ready().then( async () => {
       SplashScreen.hide();
-      const isLoggedin = await this.storage.get(TOKEN);
+      const isLoggedin = await this.storage.get( TOKEN );
       const route = isLoggedin ? '/dashboard' : '/login';
-      this.router.navigate([route]);
-    });
+      this.router.navigate( [ route ] );
+    } );
   }
 }

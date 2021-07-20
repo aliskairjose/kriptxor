@@ -43,47 +43,51 @@ const routes = [
     {
         path: '',
         redirectTo: 'documents',
-        pathMatch: 'full'
+        pathMatch: 'full',
     },
     {
         path: 'folder/:id',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_folder_folder_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./folder/folder.module */ 3412)).then(m => m.FolderPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_folder_folder_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./folder/folder.module */ 3412)).then((m) => m.FolderPageModule),
     },
     {
         path: 'dashboard',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_dashboard_dashboard_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./dashboard/dashboard.module */ 34814)).then(m => m.DashboardPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_dashboard_dashboard_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./dashboard/dashboard.module */ 34814)).then((m) => m.DashboardPageModule),
     },
     {
         path: 'login',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./login/login.module */ 80107)).then(m => m.LoginPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_login_login_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./login/login.module */ 80107)).then((m) => m.LoginPageModule),
     },
     {
         path: 'campaigns',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_campaigns_campaigns_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./campaigns/campaigns.module */ 66583)).then(m => m.CampaignsPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_campaigns_campaigns_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./campaigns/campaigns.module */ 66583)).then((m) => m.CampaignsPageModule),
     },
     {
         path: 'client/:id',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_client_client_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./client/client.module */ 27808)).then(m => m.ClientPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_client_client_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./client/client.module */ 27808)).then((m) => m.ClientPageModule),
     },
     {
         path: 'documents/:id',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_documents_documents_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./documents/documents.module */ 79061)).then(m => m.DocumentsPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_documents_documents_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./documents/documents.module */ 79061)).then((m) => m.DocumentsPageModule),
     },
     {
         path: 'notes/:id',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_notes_notes_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./notes/notes.module */ 52172)).then(m => m.NotesPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_notes_notes_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./notes/notes.module */ 52172)).then((m) => m.NotesPageModule),
     },
     {
         path: 'schedule/:id',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_schedule_schedule_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./schedule/schedule.module */ 47911)).then(m => m.SchedulePageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment-timezone_index_js-src_app_shared_components_info-bar_info-bar_com-8698d8"), __webpack_require__.e("src_app_schedule_schedule_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./schedule/schedule.module */ 47911)).then((m) => m.SchedulePageModule),
+    },
+    {
+        path: 'calendar',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_calendar_calendar_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./calendar/calendar.module */ 979)).then((m) => m.CalendarPageModule),
     },
     {
         path: 'clients',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_clients_clients_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./clients/clients.module */ 57158)).then(m => m.ClientsPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_clients_clients_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./clients/clients.module */ 57158)).then((m) => m.ClientsPageModule),
     },
     {
-        path: 'market-rates',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_market-rates_market-rates_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./market-rates/market-rates.module */ 46233)).then(m => m.MarketRatesPageModule)
+        path: 'market-rates/:id',
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment-timezone_index_js-src_app_shared_components_info-bar_info-bar_com-8698d8"), __webpack_require__.e("src_app_market-rates_market-rates_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./market-rates/market-rates.module */ 46233)).then(m => m.MarketRatesPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -91,9 +95,9 @@ let AppRoutingModule = class AppRoutingModule {
 AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.NgModule)({
         imports: [
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule.forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_2__.PreloadAllModules })
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule.forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_2__.PreloadAllModules }),
         ],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule]
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule],
     })
 ], AppRoutingModule);
 
@@ -136,10 +140,14 @@ let AppComponent = class AppComponent {
         this.platform = platform;
         this.storage = storage;
         this.appPages = [
-            { title: 'Home', url: '/dashboard', icon: 'home' },
+            { title: 'Dashboard', url: '/dashboard', icon: 'home' },
             { title: 'Campañas', url: '/campaigns', icon: 'flag' },
-            { title: 'Mis clientes', url: '/clients', icon: 'flag' },
-            { title: 'Cotizaciones', url: '/market-rates', icon: 'flag' },
+            // { title: 'Documentos', url: '/documents/102189', icon: 'flag' },
+            // { title: 'Notas', url: '/notes/102189', icon: 'flag' },
+            // { title: 'Agenda', url: '/schedule/102189', icon: 'flag' },
+            { title: 'Calendario', url: '/calendar', icon: 'calendar' },
+            { title: 'Mis clientes', url: '/clients', icon: 'person' },
+            //{ title: 'Cotizaciones', url: '/market-rates/116', icon: 'flag' },
         ];
         this.labels = [];
         this.initializeApp();
@@ -148,7 +156,7 @@ let AppComponent = class AppComponent {
         this.platform.ready().then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             _capacitor_splash_screen__WEBPACK_IMPORTED_MODULE_3__.SplashScreen.hide();
             const isLoggedin = yield this.storage.get(_shared_constants_constants__WEBPACK_IMPORTED_MODULE_4__.TOKEN);
-            const route = isLoggedin ? '/market-rates' : '/login';
+            const route = isLoggedin ? '/dashboard' : '/login';
             this.router.navigate([route]);
         }));
     }
@@ -834,7 +842,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-app>\r\n  <ion-split-pane contentId=\"main-content\">\r\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\r\n      <ion-content>\r\n        <ion-list id=\"inbox-list\">\r\n          <ion-list-header>Inbox</ion-list-header>\r\n          <ion-note>hi@ionicframework.com</ion-note>\r\n\r\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\r\n            <ion-item routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\" routerLinkActive=\"selected\">\r\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\r\n              <ion-label>{{ p.title }}</ion-label>\r\n            </ion-item>\r\n          </ion-menu-toggle>\r\n        </ion-list>\r\n\r\n        <ion-list id=\"labels-list\">\r\n          <ion-list-header>Labels</ion-list-header>\r\n\r\n          <ion-item *ngFor=\"let label of labels\" lines=\"none\">\r\n            <ion-icon slot=\"start\" ios=\"bookmark-outline\" md=\"bookmark-sharp\"></ion-icon>\r\n            <ion-label>{{ label }}</ion-label>\r\n          </ion-item>\r\n        </ion-list>\r\n      </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\r\n  </ion-split-pane>\r\n</ion-app>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-app>\r\n  <ion-split-pane contentId=\"main-content\">\r\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\r\n      <ion-content>\r\n        <ion-list id=\"inbox-list\">\r\n          <ion-list-header>Grupo Global Elite</ion-list-header>\r\n          <!-- <ion-note>hi@ionicframework.com</ion-note> -->\r\n\r\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\r\n            <ion-item routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\" routerLinkActive=\"selected\">\r\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\r\n              <ion-label>{{ p.title }}</ion-label>\r\n            </ion-item>\r\n          </ion-menu-toggle>\r\n        </ion-list>\r\n\r\n        <!-- <ion-list id=\"labels-list\">\r\n          <ion-list-header>Labels</ion-list-header>\r\n\r\n          <ion-item *ngFor=\"let label of labels\" lines=\"none\">\r\n            <ion-icon slot=\"start\" ios=\"bookmark-outline\" md=\"bookmark-sharp\"></ion-icon>\r\n            <ion-label>{{ label }}</ion-label>\r\n          </ion-item>\r\n        </ion-list> -->\r\n      </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\r\n  </ion-split-pane>\r\n</ion-app>\r\n");
 
 /***/ })
 

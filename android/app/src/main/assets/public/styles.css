@@ -1414,6 +1414,16 @@ ion-button .no-transform {
   color: var(--ion-badge-background-primary);
   background-color: var(--ion-color-secondary);
 }
+.base-modal, .view-reminder-modal .modal-wrapper.sc-ion-modal-md, .add-reminder-modal .modal-wrapper.sc-ion-modal-md {
+  width: 90%;
+  height: 400px;
+  max-width: 600px;
+  border-radius: 12px;
+  background-color: #fff;
+}
+.view-reminder-modal .modal-wrapper.sc-ion-modal-md {
+  height: 180px;
+}
 @charset "UTF-8";
 /*!
  * Bootstrap v5.0.2 (https://getbootstrap.com/)

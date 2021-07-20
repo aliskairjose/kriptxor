@@ -41,7 +41,7 @@ export class CalendarService {
     return this.http.get(
       `reminders?filter=${JSON.stringify(
         params
-      )}&include=user,campaignClient.cliente`
+      )}&include=campaignClient.cliente`
     );
   }
 

@@ -8,11 +8,8 @@
     />
     <h3 class="title">Crear Recordatorio</h3>
   </div>
-  <div class="d-flex align-items-center justify-content-between">
-    <span *ngIf="selectedDate" class="fw-bold"
-      >Fecha seleccionada: {{ selectedDate }}</span
-    >
-    <div class="ms-auto">
+  <div class="d-flex align-items-center justify-content-end">
+    <div>
       <img
         (click)="prevSlide()"
         class="arrow-icon-reverse"
@@ -41,7 +38,7 @@
       [currentDate]="calendar.currentDate"
       [startingDayWeek]="calendar.startingDayWeek"
       [lockSwipes]="true"
-      (onEventSelected)="openRemindersModal($event.title)"
+      (onEventSelected)="openRemindersModal($event)"
     >
     </calendar>
   </div>

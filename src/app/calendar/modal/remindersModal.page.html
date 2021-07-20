@@ -5,8 +5,10 @@
         <img src="assets/icon/calendar-icon.svg" alt="Icono de calendario" />
       </div>
       <div>
-        <h4>Recordatorios</h4>
+        <h4>Recordatorio</h4>
         <span class="d-block">{{ date }}</span>
+        <span><b>Desde:</b> {{ startHour }} - </span>
+        <span><b>Hasta:</b> {{ endHour }} </span>
       </div>
     </div>
     <button
@@ -16,5 +18,5 @@
       aria-label="Close"
     ></button>
   </div>
-  <span><b>Recordatorio -></b> {{ reminder }}</span>
+  <span>{{ reminder }}</span>
 </div>

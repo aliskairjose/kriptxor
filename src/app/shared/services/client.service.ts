@@ -20,4 +20,8 @@ export class ClientService {
     search = search.toLowerCase();
     return this.http.get(`campaign-clients?filter={"interested":1,"auth":1,"doesntQuotes":1,"search":"${search}","order":{"field":"created_at","way":"ASC"}}&page=${page}&include=cliente,status`)
   }
+
+  searchClient(text: string): Observable<DataResponse<MasterClient[]>>{
+    return this.http.get(`campaign-clients?filter={"auth":1,"search":"${text}","order":{"field":"created_at","way":"ASC"}}&page=1&include=cliente,status`)
+  }
 }

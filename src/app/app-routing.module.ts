@@ -60,7 +60,11 @@ const routes: Routes = [
   {
     path: 'market-rates/:id',
     loadChildren: () => import( './market-rates/market-rates.module' ).then( m => m.MarketRatesPageModule )
+  },  {
+    path: 'seeker',
+    loadChildren: () => import('./seeker/seeker.module').then( m => m.SeekerPageModule)
   }
+
 ];
 @NgModule({
   imports: [

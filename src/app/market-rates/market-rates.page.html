@@ -117,6 +117,7 @@
           <ion-item>
             <ion-label>Solicitado</ion-label>
             <ion-input
+            *ngIf="age != null"
             inputmode="numeric"
             (ionChange)="calculateRequestedSalary($event)"
             debounce="500"

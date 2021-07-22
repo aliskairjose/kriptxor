@@ -1,4 +1,4 @@
-(self["webpackChunkprueba"] = self["webpackChunkprueba"] || []).push([["polyfills"],{
+(self["webpackChunkgrupo_global_elite"] = self["webpackChunkgrupo_global_elite"] || []).push([["polyfills"],{
 
 /***/ 12626:
 /*!*********************************************************************************!*\

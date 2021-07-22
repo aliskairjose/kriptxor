@@ -1,4 +1,4 @@
-(self["webpackChunkprueba"] = self["webpackChunkprueba"] || []).push([["main"],{
+(self["webpackChunkgrupo_global_elite"] = self["webpackChunkgrupo_global_elite"] || []).push([["main"],{
 
 /***/ 98255:
 /*!*******************************************************!*\
@@ -147,10 +147,18 @@ let AppComponent = class AppComponent {
             // { title: 'Agenda', url: '/schedule/102189', icon: 'flag' },
             { title: 'Calendario', url: '/calendar', icon: 'calendar' },
             { title: 'Mis clientes', url: '/clients', icon: 'person' },
+            { title: 'Mis clientes', url: '/clients', icon: 'person' },
             //{ title: 'Cotizaciones', url: '/market-rates/116', icon: 'flag' },
         ];
         this.labels = [];
+        this.url = 'https://grupoglobalelite.com/politicas-bancarias/';
         this.initializeApp();
+    }
+    openUrl() {
+        window.open(this.url, '_system');
+    }
+    closeSession() {
+        console.log('close session');
     }
     initializeApp() {
         this.platform.ready().then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
@@ -842,7 +850,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-app>\r\n  <ion-split-pane contentId=\"main-content\">\r\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\r\n      <ion-content>\r\n        <ion-list id=\"inbox-list\">\r\n          <ion-list-header>Grupo Global Elite</ion-list-header>\r\n          <!-- <ion-note>hi@ionicframework.com</ion-note> -->\r\n\r\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\r\n            <ion-item routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\" routerLinkActive=\"selected\">\r\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\r\n              <ion-label>{{ p.title }}</ion-label>\r\n            </ion-item>\r\n          </ion-menu-toggle>\r\n        </ion-list>\r\n\r\n        <!-- <ion-list id=\"labels-list\">\r\n          <ion-list-header>Labels</ion-list-header>\r\n\r\n          <ion-item *ngFor=\"let label of labels\" lines=\"none\">\r\n            <ion-icon slot=\"start\" ios=\"bookmark-outline\" md=\"bookmark-sharp\"></ion-icon>\r\n            <ion-label>{{ label }}</ion-label>\r\n          </ion-item>\r\n        </ion-list> -->\r\n      </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\r\n  </ion-split-pane>\r\n</ion-app>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-app>\r\n  <ion-split-pane contentId=\"main-content\">\r\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\r\n      <ion-content>\r\n        <ion-list id=\"inbox-list\">\r\n          <ion-list-header>Grupo Global Elite</ion-list-header>\r\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\r\n            <ion-item routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\"\r\n              routerLinkActive=\"selected\">\r\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\r\n              <ion-label>{{ p.title }}</ion-label>\r\n            </ion-item>\r\n          </ion-menu-toggle>\r\n          <ion-item (click)=\"openUrl()\" lines=\"none\">\r\n            <ion-icon slot=\"start\" name=\"id-card-outline\"></ion-icon>\r\n            <ion-label>Políticas bancarias</ion-label>\r\n          </ion-item>\r\n          <ion-item (click)=\"closeSession()\" lines=\"none\">\r\n            <ion-icon slot=\"start\" name=\"log-out-outline\"></ion-icon>\r\n            <ion-label>Cerrar sesión</ion-label>\r\n          </ion-item>\r\n        </ion-list>\r\n      </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\r\n  </ion-split-pane>\r\n</ion-app>");
 
 /***/ })
 

@@ -1,4 +1,4 @@
-(self["webpackChunkprueba"] = self["webpackChunkprueba"] || []).push([["common"],{
+(self["webpackChunkgrupo_global_elite"] = self["webpackChunkgrupo_global_elite"] || []).push([["common"],{
 
 /***/ 6633:
 /*!*********************************************************************!*\

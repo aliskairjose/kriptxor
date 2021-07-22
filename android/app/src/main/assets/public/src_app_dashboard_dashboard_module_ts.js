@@ -1,4 +1,4 @@
-(self["webpackChunkprueba"] = self["webpackChunkprueba"] || []).push([["src_app_dashboard_dashboard_module_ts"],{
+(self["webpackChunkgrupo_global_elite"] = self["webpackChunkgrupo_global_elite"] || []).push([["src_app_dashboard_dashboard_module_ts"],{
 
 /***/ 50425:
 /*!*******************************************************!*\

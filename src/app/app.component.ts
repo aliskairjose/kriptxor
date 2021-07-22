@@ -38,6 +38,10 @@ export class AppComponent {
     window.open( this.url, '_system' );
   }
 
+  closeSession(): void {
+    console.log( 'close session' );
+  }
+
   private initializeApp(): void {
     this.platform.ready().then( async () => {
       SplashScreen.hide();

@@ -134,21 +134,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 let AppComponent = class AppComponent {
-    constructor(router, platform, storage) {
+    constructor(router, platform, storage, menuCtrl) {
         this.router = router;
         this.platform = platform;
         this.storage = storage;
+        this.menuCtrl = menuCtrl;
         this.appPages = [
             { title: 'Dashboard', url: '/dashboard', icon: 'home' },
             { title: 'Campañas', url: '/campaigns', icon: 'flag' },
-            // { title: 'Documentos', url: '/documents/102189', icon: 'flag' },
-            // { title: 'Notas', url: '/notes/102189', icon: 'flag' },
-            // { title: 'Agenda', url: '/schedule/102189', icon: 'flag' },
             { title: 'Calendario', url: '/calendar', icon: 'calendar' },
             { title: 'Mis clientes', url: '/clients', icon: 'person' },
             { title: 'Mis clientes', url: '/clients', icon: 'person' },
-            //{ title: 'Cotizaciones', url: '/market-rates/116', icon: 'flag' },
         ];
         this.labels = [];
         this.url = 'https://grupoglobalelite.com/politicas-bancarias/';
@@ -159,6 +157,7 @@ let AppComponent = class AppComponent {
     }
     closeSession() {
         localStorage.clear();
+        this.menuCtrl.close();
         this.router.navigate(['/login']);
     }
     initializeApp() {
@@ -173,7 +172,8 @@ let AppComponent = class AppComponent {
 AppComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.Platform },
-    { type: _shared_services_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService }
+    { type: _shared_services_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.MenuController }
 ];
 AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
@@ -851,7 +851,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-app>\r\n  <ion-split-pane contentId=\"main-content\">\r\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\r\n      <ion-content>\r\n        <ion-list id=\"inbox-list\">\r\n          <ion-list-header>Grupo Global Elite</ion-list-header>\r\n          <!-- <ion-note>hi@ionicframework.com</ion-note> -->\r\n\r\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\r\n            <ion-item routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\"\r\n              routerLinkActive=\"selected\">\r\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\r\n              <ion-label>{{ p.title }}</ion-label>\r\n            </ion-item>\r\n          </ion-menu-toggle>\r\n          <ion-item (click)=\"openUrl()\">\r\n            <ion-icon slot=\"start\" name=\"id-card-outline\"></ion-icon>\r\n            <ion-label>Políticas bancarias</ion-label>\r\n          </ion-item>\r\n          <ion-item (click)=\"closeSession()\">\r\n            <ion-icon slot=\"start\" name=\"log-out-outline\"></ion-icon>\r\n            <ion-label>Cerrar sesión</ion-label>\r\n          </ion-item>\r\n        </ion-list>\r\n\r\n        <!-- <ion-list id=\"labels-list\">\r\n          <ion-list-header>Labels</ion-list-header>\r\n\r\n          <ion-item *ngFor=\"let label of labels\" lines=\"none\">\r\n            <ion-icon slot=\"start\" ios=\"bookmark-outline\" md=\"bookmark-sharp\"></ion-icon>\r\n            <ion-label>{{ label }}</ion-label>\r\n          </ion-item>\r\n        </ion-list> -->\r\n      </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\r\n  </ion-split-pane>\r\n</ion-app>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-app>\r\n  <ion-split-pane contentId=\"main-content\">\r\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\r\n      <ion-content>\r\n        <ion-list id=\"inbox-list\">\r\n          <ion-list-header>Grupo Global Elite</ion-list-header>\r\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\r\n            <ion-item routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\"\r\n              routerLinkActive=\"selected\">\r\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\r\n              <ion-label>{{ p.title }}</ion-label>\r\n            </ion-item>\r\n          </ion-menu-toggle>\r\n          <ion-item (click)=\"openUrl()\" lines=\"none\">\r\n            <ion-icon slot=\"start\" name=\"id-card-outline\"></ion-icon>\r\n            <ion-label>Políticas bancarias</ion-label>\r\n          </ion-item>\r\n          <ion-item (click)=\"closeSession()\" lines=\"none\">\r\n            <ion-icon slot=\"start\" name=\"log-out-outline\"></ion-icon>\r\n            <ion-label>Cerrar sesión</ion-label>\r\n          </ion-item>\r\n        </ion-list>\r\n      </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\r\n  </ion-split-pane>\r\n</ion-app>");
 
 /***/ })
 

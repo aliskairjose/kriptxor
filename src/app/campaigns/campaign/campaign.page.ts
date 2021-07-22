@@ -51,7 +51,7 @@ export class CampaignPage implements OnInit {
       if ( this.pagination.lastPage === page ) { this.infiniteScroll.disabled = true; }
       if ( isFirstLoad ) { event.target.complete(); }
 
-      this.clients = [ ...response.data ];
+      this.clients.push( ...response.data );
     } );
   }
 

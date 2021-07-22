@@ -13,8 +13,8 @@ import { TOKEN } from './shared/constants/constants';
 export class AppComponent {
   public appPages = [
     { title: 'Dashboard', url: '/dashboard', icon: 'home' },
-    { title: 'Campañas', url: '/campaigns', icon: 'flag' },
-    // { title: 'Documentos', url: '/documents/102189', icon: 'flag' },
+    { title: 'Listado', url: '/campaigns', icon: 'flag' },
+    { title: 'Buscar Clientes', url: '/seeker', icon: 'people' },
     // { title: 'Notas', url: '/notes/102189', icon: 'flag' },
     // { title: 'Agenda', url: '/schedule/102189', icon: 'flag' },
     { title: 'Calendario', url: '/calendar', icon: 'calendar' },

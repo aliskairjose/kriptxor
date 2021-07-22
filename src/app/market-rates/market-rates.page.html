@@ -101,7 +101,7 @@
             <ion-input
             inputmode="numeric"
             (ionChange)="calculateNetSalary($event)"
-            debounce="500"
+            debounce="100"
             ></ion-input>
           </ion-item>
         </ion-col>
@@ -120,7 +120,7 @@
             *ngIf="age != null"
             inputmode="numeric"
             (ionChange)="calculateRequestedSalary($event)"
-            debounce="500"
+            debounce="100"
             ></ion-input>
           </ion-item>
         </ion-col>
@@ -190,7 +190,7 @@
       </ion-row>
     </ion-grid>
   </div>
-  
+
 
   <div *ngFor="let bank of banks" class="container-bordered">
     <ion-grid fixed>

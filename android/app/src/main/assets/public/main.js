@@ -158,7 +158,8 @@ let AppComponent = class AppComponent {
         window.open(this.url, '_system');
     }
     closeSession() {
-        console.log('close session');
+        localStorage.clear();
+        this.router.navigate(['/login']);
     }
     initializeApp() {
         this.platform.ready().then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {

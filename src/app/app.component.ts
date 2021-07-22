@@ -39,7 +39,8 @@ export class AppComponent {
   }
 
   closeSession(): void {
-    console.log( 'close session' );
+    localStorage.clear();
+    this.router.navigate( [ '/login' ] );
   }
 
   private initializeApp(): void {

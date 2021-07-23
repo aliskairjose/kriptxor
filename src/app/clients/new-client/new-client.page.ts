@@ -33,6 +33,13 @@ export class NewClientPage implements OnInit {
       }
     )
   }
+  setAge(event: any){
+    if(event.target.value != null){
+      this.client.fecha_nacimiento = moment(event.target.value).format('YYYY-MM-DD')
+    } else{
+      this.client.fecha_nacimiento = null;
+    }
+  }
 
 
 

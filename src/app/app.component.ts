@@ -12,13 +12,13 @@ import { TOKEN } from './shared/constants/constants';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Dashboard', url: '/dashboard', icon: 'home' },
+    { title: 'Inicio', url: '/dashboard', icon: 'home' },
     { title: 'Listado', url: '/campaigns', icon: 'flag' },
     { title: 'Buscar Clientes', url: '/seeker', icon: 'people' },
     // { title: 'Notas', url: '/notes/102189', icon: 'flag' },
     // { title: 'Agenda', url: '/schedule/102189', icon: 'flag' },
     { title: 'Calendario', url: '/calendar', icon: 'calendar' },
-    { title: 'Mis clientes', url: '/clients', icon: 'person' },
+    { title: 'Agenda', url: '/clients', icon: 'person' },
     //{ title: 'Cotizaciones', url: '/market-rates/116', icon: 'flag' },
   ];
 

@@ -54,7 +54,6 @@ export class CampaignPage implements OnInit {
 
       ( this.filter.search ) ? this.clients = [ ...response.data ] : this.clients.push( ...response.data );
 
-      this.clients.push( ...response.data );
     } );
   }
 

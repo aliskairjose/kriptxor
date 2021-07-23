@@ -18,7 +18,7 @@ export class CampaignsPage implements OnInit {
 
   campaigns: Campaign[] = [];
   pagination: Page = {};
-  filter = { campaignClientsCount: 1, name: '', quotesCount: 1 };
+  filter = { campaignClientsCount: 1, name: '', quotesCount: 1, condition: 1 };
 
   @ViewChild( IonInfiniteScroll ) infiniteScroll: IonInfiniteScroll;
 

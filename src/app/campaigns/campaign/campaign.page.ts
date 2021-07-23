@@ -19,6 +19,7 @@ export class CampaignPage implements OnInit {
   idCampaing: number;
   query = '';
   filter = {
+    auth: 1,
     search: '',
     campaignId: 0,
     order: { field: 'created_at', way: 'ASC' }

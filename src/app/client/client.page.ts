@@ -36,7 +36,7 @@ export class ClientPage implements OnInit {
       this.clientId = data.id;
       this.loadData();
     } );
-    console.log(this.data);
+    console.log( this.data );
   }
 
   async updateInterest( interested: number ): Promise<void> {
@@ -48,6 +48,7 @@ export class ClientPage implements OnInit {
         loading.dismiss();
         const message = 'Se actualizo con exito';
         this.common.presentToast( { message } );
+        this.loadData();
       }, () => loading.dismiss() );
   }
 

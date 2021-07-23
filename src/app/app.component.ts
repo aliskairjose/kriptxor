@@ -17,7 +17,6 @@ export class AppComponent {
     { title: 'Campañas', url: '/campaigns', icon: 'flag' },
     { title: 'Calendario', url: '/calendar', icon: 'calendar' },
     { title: 'Mis clientes', url: '/clients', icon: 'person' },
-    { title: 'Mis clientes', url: '/clients', icon: 'person' },
   ];
 
   public labels = [];

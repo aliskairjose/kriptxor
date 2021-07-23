@@ -62,7 +62,7 @@ export class CampaignPage implements OnInit {
     loading.present();
     this.campaignService.callNow( this.idCampaing ).subscribe( response => {
       const data = response.data;
-      this.callNumber( data.cliente );
+      this.callNumber( data );
       this.router.navigateByUrl( `client/${data.id}` );
       loading.dismiss();
     }, () => loading.dismiss() );

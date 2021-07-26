@@ -107,7 +107,7 @@ export class DocumentsPage implements OnInit {
             handler: () => {
               const options = {
                 message: `Documento de ${this.client.nombre_completo}`,
-                subject: 'Comparte esto',
+                subject: `Documento de ${this.client.nombre_completo}`,
                 files: [ document.file ],
                 chooserTitle: 'Selecciona una app'
               }

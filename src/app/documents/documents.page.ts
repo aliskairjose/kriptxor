@@ -96,7 +96,6 @@ export class DocumentsPage implements OnInit {
   }
 
   async share( document: Document ) {
-    console.log( document );
     const actionSheet = await this.actionSheetCtrl.create(
       {
         header: '¿Que deseas hacer?',

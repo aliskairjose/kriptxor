@@ -110,9 +110,7 @@ export class DocumentsPage implements OnInit {
                 files: [ document.file ],
                 chooserTitle: 'Selecciona una app'
               }
-              this.socialSharing.shareWithOptions( options ).then( async () => {
-                await this.common.presentToast( { message: 'EL documento ha sido compartido' } );
-              } )
+              this.socialSharing.shareWithOptions( options );
             }
           },
           {

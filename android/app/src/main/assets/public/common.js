@@ -438,6 +438,265 @@ const openURL = async (url, ev, direction, animation) => {
 
 
 
+/***/ }),
+
+/***/ 83777:
+/*!******************************************************************!*\
+  !*** ./src/app/shared/components/info-bar/info-bar.component.ts ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "InfoBarComponent": () => (/* binding */ InfoBarComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _raw_loader_info_bar_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./info-bar.component.html */ 97178);
+/* harmony import */ var _info_bar_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./info-bar.component.scss */ 47150);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
+
+
+
+
+let InfoBarComponent = class InfoBarComponent {
+    constructor() { }
+    ngOnInit() { }
+};
+InfoBarComponent.ctorParameters = () => [];
+InfoBarComponent.propDecorators = {
+    client: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }],
+    id: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }]
+};
+InfoBarComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
+        selector: 'app-info-bar',
+        template: _raw_loader_info_bar_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
+        styles: [_info_bar_component_scss__WEBPACK_IMPORTED_MODULE_1__.default]
+    })
+], InfoBarComponent);
+
+
+
+/***/ }),
+
+/***/ 62507:
+/*!*****************************************************!*\
+  !*** ./src/app/shared/services/campaign.service.ts ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CampaignService": () => (/* binding */ CampaignService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http.service */ 74691);
+
+
+
+let CampaignService = class CampaignService {
+    constructor(http) {
+        this.http = http;
+    }
+    /**
+     * @description Lista todas las campañas
+     * @returns Listado de campañas
+     */
+    list(sellerId, filter, page = 1) {
+        const filtro = JSON.stringify(filter);
+        return this.http.get(`campaigns?sellers=${sellerId}&filter=${filtro}&page=${page}`);
+    }
+    detail(id, filter, page = 1) {
+        return this.http.get(`campaign-clients?filter${filter}&&page=${page}&include=cliente,status`);
+    }
+    getById(id) {
+        return this.http.get(`campaign / ${id} `);
+    }
+    getCampaignClientById(id) {
+        return this.http.get(`campaign-clients/${id}?include=cliente`);
+    }
+    getCampaign(filter, page) {
+        const filtro = JSON.stringify(filter);
+        return this.http.get(`campaign-clients?filter=${filtro}&page=${page}&include=cliente,status&skipCalledClients=1`);
+    }
+    updateCampaignClientInterest(id, interested) {
+        return this.http.put(`campaign-clients/${id}`, { interested });
+    }
+    /**
+     * @description Muestra el historial del ciente de la campaña
+     * @param campaign_client_id
+     * @param page
+     * @returns
+     */
+    campaignClientHistory(campaign_client_id, page = 1) {
+        const filter = { campaign_client_id, order: { field: 'created_at', way: 'DESC' } };
+        const filtro = JSON.stringify(filter);
+        return this.http.get(`campaign-clients-histories?filter=${filtro}&page=${page}&include=user`);
+    }
+    callNow(campaignId) {
+        const filter = { campaignId, order: { field: 'created_at', way: 'ASC' } };
+        const filtro = JSON.stringify(filter);
+        return this.http.get(`campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status`);
+    }
+    quoteCalculator(data) {
+        return this.http.post(`campaign-client-quotes-calculator`, data);
+    }
+    clientQuotes(campaignClientId) {
+        const filter = { campaignClientId, order: { field: 'created_at', way: 'DESC' } };
+        const filtro = JSON.stringify(filter);
+        return this.http.get(`campaign-client-quotes?filter=${filtro}&page=1&include=bank`);
+    }
+};
+CampaignService.ctorParameters = () => [
+    { type: _http_service__WEBPACK_IMPORTED_MODULE_0__.HttpService }
+];
+CampaignService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root'
+    })
+], CampaignService);
+
+
+
+/***/ }),
+
+/***/ 97641:
+/*!***************************************************!*\
+  !*** ./src/app/shared/services/client.service.ts ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ClientService": () => (/* binding */ ClientService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http.service */ 74691);
+
+
+
+let ClientService = class ClientService {
+    constructor(http) {
+        this.http = http;
+    }
+    getById(id) {
+        return this.http.get(`clientes/${id}`);
+    }
+    getClients(page, search) {
+        search = search.toLowerCase();
+        return this.http.get(`campaign-clients?filter={"interested":1,"auth":1,"doesntQuotes":1,"search":"${search}","order":{"field":"created_at","way":"ASC"}}&page=${page}&include=cliente,status`);
+    }
+    searchClient(text, page = 1) {
+        return this.http.get(`campaign-clients?filter={"auth":1,"search":"${text}","order":{"field":"created_at","way":"ASC"}}&page=${page}&include=cliente,status`);
+    }
+    createClient(client) {
+        return this.http.post("clientes", client);
+    }
+};
+ClientService.ctorParameters = () => [
+    { type: _http_service__WEBPACK_IMPORTED_MODULE_0__.HttpService }
+];
+ClientService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root'
+    })
+], ClientService);
+
+
+
+/***/ }),
+
+/***/ 74691:
+/*!*************************************************!*\
+  !*** ./src/app/shared/services/http.service.ts ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HttpService": () => (/* binding */ HttpService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 91841);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
+
+
+
+
+let HttpService = class HttpService {
+    constructor(http) {
+        this.http = http;
+    }
+    post(serviceName, data, options) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        this.http.post(url, data);
+        return this.http.post(url, data, options);
+    }
+    get(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        return this.http.get(url, { params: data });
+    }
+    put(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        return this.http.put(url, data);
+    }
+    patch(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        return this.http.patch(url, data);
+    }
+    delete(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        return this.http.delete(url, data);
+    }
+};
+HttpService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+];
+HttpService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root'
+    })
+], HttpService);
+
+
+
+/***/ }),
+
+/***/ 47150:
+/*!********************************************************************!*\
+  !*** ./src/app/shared/components/info-bar/info-bar.component.scss ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJpbmZvLWJhci5jb21wb25lbnQuc2NzcyJ9 */");
+
+/***/ }),
+
+/***/ 97178:
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/shared/components/info-bar/info-bar.component.html ***!
+  \**********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<h2 class=\"title ion-text-center\">{{client.nombre_completo}}</h2>\r\n\r\n<div class=\"document-banner text-center\">\r\n  <div [routerLink]=\"[ '/client', id ]\">\r\n    <ion-icon class=\"icons\" src=\"assets/icon/documents.svg\"></ion-icon>\r\n    <ion-label>Ficha</ion-label>\r\n  </div>\r\n  <div [routerLink]=\"[ '/documents', id ]\">\r\n    <ion-icon class=\"icons\" src=\"assets/icon/documents.svg\"></ion-icon>\r\n    <ion-label>Documentos</ion-label>\r\n  </div>\r\n  <div>\r\n    <ion-icon [routerLink]=\"[ '/notes', id ]\" class=\"icons\" src=\"assets/icon/notes.svg\"></ion-icon>\r\n    <ion-label>Notas</ion-label>\r\n  </div>\r\n  <div>\r\n    <ion-icon [routerLink]=\"[ '/schedule', id ]\" class=\"icons\" src=\"assets/icon/schedule.svg\"></ion-icon>\r\n    <ion-label>Agenda</ion-label>\r\n  </div>\r\n  <div [routerLink]=\"['/market-rates',id ]\">\r\n    <ion-icon class=\"icons\" src=\"assets/icon/cotizations.svg\"></ion-icon>\r\n    <ion-label>Cotizaciones</ion-label>\r\n  </div>\r\n</div>");
+
 /***/ })
 
 }]);

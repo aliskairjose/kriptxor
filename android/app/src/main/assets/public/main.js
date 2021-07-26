@@ -51,43 +51,47 @@ const routes = [
     },
     {
         path: 'dashboard',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_dashboard_dashboard_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./dashboard/dashboard.module */ 34814)).then((m) => m.DashboardPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_dashboard_dashboard_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./dashboard/dashboard.module */ 34814)).then((m) => m.DashboardPageModule),
     },
     {
         path: 'login',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_login_login_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./login/login.module */ 80107)).then((m) => m.LoginPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./login/login.module */ 80107)).then((m) => m.LoginPageModule),
     },
     {
         path: 'campaigns',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_campaigns_campaigns_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./campaigns/campaigns.module */ 66583)).then((m) => m.CampaignsPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_campaigns_campaigns_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./campaigns/campaigns.module */ 66583)).then((m) => m.CampaignsPageModule),
     },
     {
         path: 'client/:id',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_client_client_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./client/client.module */ 27808)).then((m) => m.ClientPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_client_client_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./client/client.module */ 27808)).then((m) => m.ClientPageModule),
     },
     {
         path: 'documents/:id',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_documents_documents_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./documents/documents.module */ 79061)).then((m) => m.DocumentsPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_documents_documents_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./documents/documents.module */ 79061)).then((m) => m.DocumentsPageModule),
     },
     {
         path: 'notes/:id',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_notes_notes_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./notes/notes.module */ 52172)).then((m) => m.NotesPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_notes_notes_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./notes/notes.module */ 52172)).then((m) => m.NotesPageModule),
     },
     {
         path: 'schedule/:id',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment-timezone_index_js-src_app_shared_components_info-bar_info-bar_com-8698d8"), __webpack_require__.e("src_app_schedule_schedule_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./schedule/schedule.module */ 47911)).then((m) => m.SchedulePageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_schedule_schedule_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./schedule/schedule.module */ 47911)).then((m) => m.SchedulePageModule),
     },
     {
         path: 'calendar',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_calendar_calendar_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./calendar/calendar.module */ 979)).then((m) => m.CalendarPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_calendar_calendar_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./calendar/calendar.module */ 979)).then((m) => m.CalendarPageModule),
     },
     {
         path: 'clients',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_clients_clients_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./clients/clients.module */ 57158)).then((m) => m.ClientsPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_clients_clients_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./clients/clients.module */ 57158)).then((m) => m.ClientsPageModule),
     },
     {
         path: 'market-rates/:id',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment-timezone_index_js-src_app_shared_components_info-bar_info-bar_com-8698d8"), __webpack_require__.e("src_app_market-rates_market-rates_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./market-rates/market-rates.module */ 46233)).then(m => m.MarketRatesPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_market-rates_market-rates_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./market-rates/market-rates.module */ 46233)).then(m => m.MarketRatesPageModule)
+    },
+    {
+        path: 'seeker',
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_seeker_seeker_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./seeker/seeker.module */ 45576)).then(m => m.SeekerPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -142,11 +146,14 @@ let AppComponent = class AppComponent {
         this.storage = storage;
         this.menuCtrl = menuCtrl;
         this.appPages = [
-            { title: 'Dashboard', url: '/dashboard', icon: 'home' },
-            { title: 'Campañas', url: '/campaigns', icon: 'flag' },
+            { title: 'Inicio', url: '/dashboard', icon: 'home' },
+            { title: 'Listado', url: '/campaigns', icon: 'flag' },
+            { title: 'Buscar Clientes', url: '/seeker', icon: 'people' },
+            // { title: 'Notas', url: '/notes/102189', icon: 'flag' },
+            // { title: 'Agenda', url: '/schedule/102189', icon: 'flag' },
             { title: 'Calendario', url: '/calendar', icon: 'calendar' },
-            { title: 'Mis clientes', url: '/clients', icon: 'person' },
-            { title: 'Mis clientes', url: '/clients', icon: 'person' },
+            { title: 'Agenda', url: '/clients', icon: 'person' },
+            //{ title: 'Cotizaciones', url: '/market-rates/116', icon: 'flag' },
         ];
         this.labels = [];
         this.url = 'https://grupoglobalelite.com/politicas-bancarias/';
@@ -431,9 +438,20 @@ let InterceptorService = class InterceptorService {
             const headers = this.addToken(request, `${token}`);
             // Pasamos al siguiente interceptor de la cadena la petición modificada
             return next.handle(headers).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.catchError)((result) => {
-                const message = result.error.message;
                 const color = 'danger';
-                this.common.presentToast({ message, color });
+                let message = '';
+                switch (result.status) {
+                    case 401:
+                        if (result.error.error = 'invalid_credentials') {
+                            message = 'Credenciales inválidas';
+                            this.common.presentToast({ message, color });
+                        }
+                        break;
+                    default:
+                        message = result.error.message;
+                        this.common.presentToast({ message, color });
+                        break;
+                }
                 return (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.throwError)(result);
             }));
         }));

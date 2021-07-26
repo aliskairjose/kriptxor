@@ -124,6 +124,9 @@ ion-badge {
 .card-container {
   display: flex;
   justify-content: space-between;
+  ion-label {
+    color: black;
+  }
   .cards {
     width: 5rem;
     display: flex;
@@ -131,6 +134,7 @@ ion-badge {
     align-items: center;
     p {
       font-size: 0.6875rem;
+      color: black;
     }
     img {
       height: 1.5rem;

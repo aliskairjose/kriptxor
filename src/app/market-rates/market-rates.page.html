@@ -56,11 +56,13 @@
             <ion-datetime
               *ngIf="client.fecha_nacimiento != null else noDataBirth"
               readonly
+              min="1960"
               [(ngModel)]="birth"
               (ionChange)="setAge($event)"
               displayFormat="DD/MM/YYYY"></ion-datetime>
               <ng-template #noDataBirth>
                 <ion-datetime
+                  min="1960"
                   [(ngModel)]="birth"
                   (ionChange)="setAge($event)"
                   displayFormat="DD/MM/YYYY"></ion-datetime>

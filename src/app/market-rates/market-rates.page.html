@@ -82,7 +82,7 @@
             <ion-select
             *ngIf="client.sexo != null else noDataSex"
             disabled
-            [(ngModel)]="quote.sex"
+            value="{{client.sexo}}"
             placeholder="Seleccione sexo">
               <ion-select-option value="Femenino">Femenino</ion-select-option>
               <ion-select-option value="Masculino">Masculino</ion-select-option>

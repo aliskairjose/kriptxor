@@ -103,7 +103,7 @@ export class DocumentsPage implements OnInit {
         buttons: [
 
           {
-            text: 'Compartir documentos',
+            text: 'Compartir documento',
             handler: () => {
               const options = {
                 message: `Documento de ${this.client.nombre_completo}`,

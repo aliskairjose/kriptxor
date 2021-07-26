@@ -15,7 +15,7 @@
   <div class="container-bordered ion-padding scrolling-content">
     <p>Historial</p>
     <div *ngFor="let document of documents" class="alert alert-primary alert-dismissible fade show" role="alert">
-      <a [routerLink]="[ 'document', document.file ]">  <img src="assets/icon/pdf.svg" style="height: 1.5rem;" class="ion-margin-end"></a>
+      <a [routerLink]="[ 'document', document.file, id ]">  <img src="assets/icon/pdf.svg" style="height: 1.5rem;" class="ion-margin-end"></a>
       <ion-label>{{document.name}}</ion-label>
       <button type="button" (click)="delete(document)" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       <button type="button" (click)="delete(document)" class="btn-check" data-bs-dismiss="alert" aria-label="Check"></button>

@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { DocumentPageRoutingModule } from './document-routing.module';
 
 import { DocumentPage } from './document.page';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
-@NgModule({
+@NgModule( {
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     DocumentPageRoutingModule
   ],
-  declarations: [DocumentPage]
-})
-export class DocumentPageModule {}
+  providers: [ SocialSharing ],
+  declarations: [ DocumentPage ]
+} )
+export class DocumentPageModule { }

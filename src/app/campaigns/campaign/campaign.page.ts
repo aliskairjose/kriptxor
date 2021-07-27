@@ -19,6 +19,7 @@ export class CampaignPage implements OnInit {
   idCampaing: number;
   query = '';
   filter = {
+    auth: 1,
     search: '',
     campaignId: 0,
     order: { field: 'created_at', way: 'ASC' }
@@ -51,7 +52,8 @@ export class CampaignPage implements OnInit {
       if ( this.pagination.lastPage === page ) { this.infiniteScroll.disabled = true; }
       if ( isFirstLoad ) { event.target.complete(); }
 
-      this.clients = [ ...response.data ];
+      ( this.filter.search ) ? this.clients = [ ...response.data ] : this.clients.push( ...response.data );
+
     } );
   }
 

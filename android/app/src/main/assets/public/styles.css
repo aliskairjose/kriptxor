@@ -1316,6 +1316,9 @@ ion-badge {
   display: flex;
   justify-content: space-between;
 }
+.card-container ion-label {
+  color: black;
+}
 .card-container .cards {
   width: 5rem;
   display: flex;
@@ -1324,6 +1327,7 @@ ion-badge {
 }
 .card-container .cards p {
   font-size: 0.6875rem;
+  color: black;
 }
 .card-container .cards img {
   height: 1.5rem;

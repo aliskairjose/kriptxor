@@ -19,6 +19,14 @@
         ]
         },
       {
+          "id": "cordova-plugin-x-socialsharing.SocialSharing",
+          "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+          "pluginId": "cordova-plugin-x-socialsharing",
+        "clobbers": [
+          "window.plugins.socialsharing"
+        ]
+        },
+      {
           "id": "cordova-plugin-preview-any-file.PreviewAnyFile",
           "file": "plugins/cordova-plugin-preview-any-file/www/preview.js",
           "pluginId": "cordova-plugin-preview-any-file",
@@ -32,7 +40,8 @@
     {
       "mx.ferreyra.callnumber": "0.0.2",
       "cordova-plugin-document-viewer": "1.0.0",
-      "cordova-plugin-preview-any-file": "0.2.7"
+      "cordova-plugin-preview-any-file": "0.2.7",
+      "cordova-plugin-x-socialsharing": "6.0.3"
     };
     // BOTTOM OF METADATA
     });

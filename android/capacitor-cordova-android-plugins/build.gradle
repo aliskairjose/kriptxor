@@ -46,6 +46,7 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     implementation "androidx.appcompat:appcompat:1.0.0"
     implementation "androidx.appcompat:appcompat:+"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
     // SUB-PROJECT DEPENDENCIES END
 }
 

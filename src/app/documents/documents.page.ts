@@ -3,12 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { DocumentService } from '../shared/services/document.service';
 import { Document } from '../shared/classes/document';
-import {Page} from '../shared/interfaces/pagination';
+import { Page } from '../shared/interfaces/pagination';
 import { CommonService } from '../shared/services/common.service';
-import { StorageService } from '../shared/services/storage.service';
 import { AlertController } from '@ionic/angular';
 import { CampaignService } from '../shared/services/campaign.service';
 import { Client } from '../shared/classes/client';
+import { ActionSheetController } from '@ionic/angular';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component( {
   selector: 'app-documents',
@@ -16,7 +17,7 @@ import { Client } from '../shared/classes/client';
   styleUrls: [ './documents.page.scss' ],
 } )
 export class DocumentsPage implements OnInit {
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  @ViewChild( IonInfiniteScroll ) infiniteScroll: IonInfiniteScroll;
 
   id: any;
   client: Client = {};
@@ -31,15 +32,17 @@ export class DocumentsPage implements OnInit {
 
   constructor(
     private common: CommonService,
-    private storage: StorageService,
     private documentService: DocumentService,
     private activateRoute: ActivatedRoute,
     public alertController: AlertController,
     private campaignService: CampaignService,
-    ) {
+    private actionSheetCtrl: ActionSheetController,
+    private socialSharing: SocialSharing
+
+  ) {
     this.activateRoute.params.subscribe(
       params => {
-        this.id = params['id'];
+        this.id = params[ 'id' ];
       }
     )
   }
@@ -50,14 +53,14 @@ export class DocumentsPage implements OnInit {
     this.getCampaignClient();
   }
 
-  getCampaignClient(){
+  getCampaignClient() {
     this.campaignService.getCampaignClientById( this.id ).subscribe( response => {
       this.client = { ...response.data.cliente };
-    }, () =>  console.error("error get campaign client service"))
-  }//
+    }, () => console.error( "error get campaign client service" ) )
+  }
 
-  getDocuments(page: number = 1){
-    this.documentService.list(this.id,page).subscribe(
+  getDocuments( page: number = 1 ) {
+    this.documentService.list( this.id, page ).subscribe(
       response => {
         this.documents = response.data as Document[];
         this.pages = response.meta.page as Page;
@@ -73,108 +76,151 @@ export class DocumentsPage implements OnInit {
 
     )
   }
-  create(){
+  create() {
     this.document.file != null ? this.createDocument() : this.invalidDocument();
   }
-  createDocument(){
+
+  createDocument() {
     this.document.campaign_client_id = this.id;
-    this.documentService.create(this.document).subscribe(
-      response =>{
+    this.documentService.create( this.document ).subscribe(
+      response => {
         this.document = new Document;
         this.isFile = false;
-        this.successRequest(response.message);
+        this.successRequest( response.message );
         this.getDocuments();
       }
     )
   }
-  deleteDocument(document: Document){
-    this.documentService.delete(document.id).subscribe(
-      response =>{
+
+  deleteDocument( document: Document ) {
+    this.documentService.delete( document.id ).subscribe(
+      response => {
         this.document = new Document;
-        this.successRequest(response.message);
+        this.successRequest( response.message );
         this.getDocuments();
       }
     )
   }
-  uploadFile(event: any){
-    this.document.name = event.target.files[0].name;
-    this.document.file = event.target.files[0];
+
+  async share( document: Document ) {
+    const actionSheet = await this.actionSheetCtrl.create(
+      {
+        header: '¿Que deseas hacer?',
+        buttons: [
+
+          {
+            text: 'Compartir documento',
+            handler: () => {
+              const options = {
+                message: `Documento de ${this.client.nombre_completo}`,
+                subject: `Documento de ${this.client.nombre_completo}`,
+                files: [ document.file ],
+                chooserTitle: 'Selecciona una app'
+              }
+              this.socialSharing.shareWithOptions( options );
+            }
+          },
+          {
+            text: 'Eliminar',
+            role: 'destructive',
+            handler: () => {
+              this.delete( document )
+            }
+          },
+          {
+            text: 'Cancelar',
+            role: 'cancel'
+          }
+        ]
+      }
+    );
+
+    await actionSheet.present();
+  }
+
+
+
+  uploadFile( event: any ) {
+    this.document.name = event.target.files[ 0 ].name;
+    this.document.file = event.target.files[ 0 ];
     this.isFile = true;
   }
 
   //Infinite scroll
-  scrollDocments(event: any){
-    this.documentService.list(this.id, this.pages.currentPage + 1).subscribe(
+  scrollDocments( event: any ) {
+    this.documentService.list( this.id, this.pages.currentPage + 1 ).subscribe(
       response => {
-        this.documents = this.documents.concat(response.data as Document[]);
+        this.documents = this.documents.concat( response.data as Document[] );
         this.pages = response.meta.page as Page;
         //Finish the load
         event.target.complete();
-      })
+      } )
   }
 
-  loadData(event: any) {
-    setTimeout(() => {
+  loadData( event: any ) {
+    setTimeout( () => {
       //console.log('Done');
-      this.scrollDocments(event)
+      this.scrollDocments( event )
 
       // App logic to determine if all data is loaded
       // and disable the infinite scroll
       //console.log(this.pages.total);
-    if (this.documents.length == this.pages.total) {
-      event.target.disabled = true;
-    }
-    }, 500);
+      if ( this.documents.length == this.pages.total ) {
+        event.target.disabled = true;
+      }
+    }, 500 );
   }
   activateInfiniteScroll() {
     this.infiniteScroll.disabled = false;
   }
   // Alerts
-  async delete(document: Document) {
-  const alert = await this.alertController.create({
-    cssClass: 'my-custom-class',
-    header: '¿Estas seguro de borrar este documento?',
-    message: 'Esta accion <strong>no se podra revertir</strong>',
-    buttons: [
-      {
-        text: 'Cancelar',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: () => {
+  async delete( document: Document ) {
+    const alert = await this.alertController.create( {
+      cssClass: 'my-custom-class',
+      header: '¿Estas seguro de borrar este documento?',
+      message: 'Esta accion <strong>no se podra revertir</strong>',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+          }
+        }, {
+          text: 'Eliminar',
+          handler: () => {
+            this.deleteDocument( document );
+          }
         }
-      }, {
-        text: 'Eliminar',
-        handler: () => {
-          this.deleteDocument(document);
-        }
-      }
-    ]
-  });
+      ]
+    } );
 
-  await alert.present();
+    await alert.present();
   }
+
   async invalidDocument() {
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Error',
-        subHeader: '',
-        message: 'El documento es invalido',
-        buttons: ['OK']
-      });
+    const alert = await this.alertController.create( {
+      cssClass: 'my-custom-class',
+      header: 'Error',
+      subHeader: '',
+      message: 'El documento es invalido',
+      buttons: [ 'OK' ]
+    } );
 
-      await alert.present();
-    }
-    async successRequest(text: string) {
-        const alert = await this.alertController.create({
-          cssClass: 'my-custom-class',
-          header: 'Exito!',
-          subHeader: '',
-          message: text,
-          buttons: ['OK']
-        });
+    await alert.present();
+  }
 
-        await alert.present();
-      }
+  async successRequest( text: string ) {
+    const alert = await this.alertController.create( {
+      cssClass: 'my-custom-class',
+      header: 'Exito!',
+      subHeader: '',
+      message: text,
+      buttons: [ 'OK' ]
+    } );
+
+    await alert.present();
+  }
 
 
 }

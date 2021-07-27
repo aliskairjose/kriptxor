@@ -26,9 +26,21 @@ export class InterceptorService {
         // Pasamos al siguiente interceptor de la cadena la petición modificada
         return next.handle( headers ).pipe(
           catchError( ( result ) => {
-            const message = result.error.message;
             const color = 'danger';
-            this.common.presentToast( { message, color } );
+            let message = '';
+            switch ( result.status ) {
+              case 401:
+                if ( result.error.error = 'invalid_credentials' ) {
+                  message = 'Credenciales inválidas';
+                  this.common.presentToast( { message, color } );
+                }
+                break;
+              default:
+                message = result.error.message;
+                this.common.presentToast( { message, color } );
+                break;
+            }
+
             return throwError( result );
           } )
         );

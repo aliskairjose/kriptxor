@@ -176,64 +176,6 @@ DashboardService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
 
 /***/ }),
 
-/***/ 74691:
-/*!*************************************************!*\
-  !*** ./src/app/shared/services/http.service.ts ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "HttpService": () => (/* binding */ HttpService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 91841);
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
-
-
-
-
-let HttpService = class HttpService {
-    constructor(http) {
-        this.http = http;
-    }
-    post(serviceName, data, options) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        this.http.post(url, data);
-        return this.http.post(url, data, options);
-    }
-    get(serviceName, data) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        return this.http.get(url, { params: data });
-    }
-    put(serviceName, data) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        return this.http.put(url, data);
-    }
-    patch(serviceName, data) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        return this.http.patch(url, data);
-    }
-    delete(serviceName, data) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        return this.http.delete(url, data);
-    }
-};
-HttpService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
-];
-HttpService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
-        providedIn: 'root'
-    })
-], HttpService);
-
-
-
-/***/ }),
-
 /***/ 38043:
 /*!***********************************************!*\
   !*** ./src/app/dashboard/dashboard.page.scss ***!
@@ -260,7 +202,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\r\n  <ion-toolbar>\r\n    <ion-buttons slot=\"start\">\r\n      <ion-menu-button></ion-menu-button>\r\n    </ion-buttons>\r\n    <ion-title>Dashboard</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n<ion-content class=\"ion-padding\">\r\n\r\n  <div class=\"card-container\">\r\n    <div class=\"cards container-bordered\">\r\n      <img src=\"assets/icon/assessment.svg\">\r\n      <ion-label>{{data.allCampaigns}}</ion-label>\r\n      <p>Campañas</p>\r\n    </div>\r\n    <div class=\"cards container-bordered\">\r\n      <img src=\"/assets/icon/persons-circle.svg\" alt=\"\">\r\n      <ion-label>{{data.clients}}</ion-label>\r\n      <p>Clientes</p>\r\n    </div>\r\n    <div class=\"cards container-bordered\">\r\n      <img src=\"assets/icon/monetization.svg\" alt=\"\">\r\n      <ion-label>{{data.projections}}</ion-label>\r\n      <p>Proyecciones</p>\r\n    </div>\r\n    <div class=\"cards container-bordered\">\r\n      <img src=\"/assets/icon/calendar.svg\" alt=\"\">\r\n      <ion-label>{{data.reminders}}</ion-label>\r\n      <p>Agenda</p>\r\n    </div>\r\n\r\n  </div>\r\n\r\n  <div class=\"title-bar mt-3\">\r\n    ULTIMAS NOTIFICACIONES\r\n  </div>\r\n\r\n  <ng-container *ngFor=\"let news of data.lastNews\" class=\"card-content\">\r\n    <ion-card>\r\n      <ion-card-header class=\"bg-ligth-gray\">\r\n        <ion-card-subtitle>\r\n          <div class=\"d-flex justify-content-between\">\r\n            <h4>{{news.title}}</h4>\r\n            {{news.created_at | date}}\r\n          </div>\r\n        </ion-card-subtitle>\r\n      </ion-card-header>\r\n      <ion-card-content>\r\n        <div class=\"d-flex flex-column\">\r\n          {{seeMore ? news.content.substring(0,100) + '...' : news.content}}...\r\n          <div>\r\n            <ion-button (click)=\"seeMore = !seeMore\" color=\"warning\" size=\"small\">\r\n              <ion-icon slot=\"start\" name=\"eye-outline\"></ion-icon>\r\n              {{ seeMore ? 'Leer más' : 'Leer menos'}}\r\n            </ion-button>\r\n          </div>\r\n        </div>\r\n      </ion-card-content>\r\n    </ion-card>\r\n  </ng-container>\r\n\r\n  <div class=\"title-bar\">\r\n    TOP SEMANAL DE VENDEDORES\r\n  </div>\r\n\r\n  <div class=\"d-flex \">\r\n    <ng-container *ngFor=\"let seller of data.topSellers\">\r\n      <div class=\"seller-card text-center\">\r\n        <img [src]=\"seller.main_image\" />\r\n        <small>{{seller.nombre}} {{seller.apellido}}</small>\r\n      </div>\r\n    </ng-container>\r\n\r\n  </div>\r\n\r\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\r\n  <ion-toolbar>\r\n    <ion-buttons slot=\"start\">\r\n      <ion-menu-button></ion-menu-button>\r\n    </ion-buttons>\r\n    <ion-title>Inicio</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n<ion-content class=\"ion-padding\">\r\n\r\n  <div class=\"card-container\">\r\n    <div class=\"cards container-bordered\">\r\n      <img src=\"assets/icon/assessment.svg\">\r\n      <ion-label>{{data.allCampaigns}}</ion-label>\r\n      <p>Campañas</p>\r\n    </div>\r\n    <div class=\"cards container-bordered\">\r\n      <img src=\"/assets/icon/persons-circle.svg\" alt=\"\">\r\n      <ion-label>{{data.clients}}</ion-label>\r\n      <p>Clientes</p>\r\n    </div>\r\n    <div class=\"cards container-bordered\">\r\n      <img src=\"assets/icon/monetization.svg\" alt=\"\">\r\n      <ion-label>{{data.projections}}</ion-label>\r\n      <p>Proyecciones</p>\r\n    </div>\r\n    <div class=\"cards container-bordered\">\r\n      <img src=\"/assets/icon/calendar.svg\" alt=\"\">\r\n      <ion-label>{{data.reminders}}</ion-label>\r\n      <p>Agenda</p>\r\n    </div>\r\n\r\n  </div>\r\n\r\n  <div class=\"title-bar mt-3\">\r\n    ULTIMAS NOTIFICACIONES\r\n  </div>\r\n\r\n  <ng-container *ngFor=\"let news of data.lastNews\" class=\"card-content\">\r\n    <ion-card>\r\n      <ion-card-header class=\"bg-ligth-gray\">\r\n        <ion-card-subtitle>\r\n          <div class=\"d-flex justify-content-between\">\r\n            <h4>{{news.title}}</h4>\r\n            {{news.created_at | date}}\r\n          </div>\r\n        </ion-card-subtitle>\r\n      </ion-card-header>\r\n      <ion-card-content>\r\n        <div class=\"d-flex flex-column\">\r\n          {{seeMore ? news.content.substring(0,100) + '...' : news.content}}...\r\n          <div>\r\n            <ion-button (click)=\"seeMore = !seeMore\" color=\"warning\" size=\"small\">\r\n              <ion-icon slot=\"start\" name=\"eye-outline\"></ion-icon>\r\n              {{ seeMore ? 'Leer más' : 'Leer menos'}}\r\n            </ion-button>\r\n          </div>\r\n        </div>\r\n      </ion-card-content>\r\n    </ion-card>\r\n  </ng-container>\r\n\r\n  <div class=\"title-bar\">\r\n    TOP SEMANAL DE VENDEDORES\r\n  </div>\r\n\r\n  <div class=\"d-flex \">\r\n    <ng-container *ngFor=\"let seller of data.topSellers\">\r\n      <div class=\"seller-card text-center\">\r\n        <img [src]=\"seller.main_image\" />\r\n        <small>{{seller.nombre}} {{seller.apellido}}</small>\r\n      </div>\r\n    </ng-container>\r\n\r\n  </div>\r\n\r\n</ion-content>");
 
 /***/ })
 

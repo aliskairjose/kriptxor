@@ -164,6 +164,7 @@ export class CalendarPage implements OnInit {
   }
 
   public isHoliday(date: string): boolean {
+    console.log('date: ', date);
     return this.holidays.some((h: any) =>
       moment(date).isSame(h.date.split('-').reverse().join('-'), 'day')
     );

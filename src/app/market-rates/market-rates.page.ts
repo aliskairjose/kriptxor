@@ -154,6 +154,7 @@ setAge(event: any){
   this.quote.day = +moment(birth).format('DD');
   this.quote.month = +moment(birth).format('MM');
   this.quote.year = +moment(birth).format('YYYY');
+  this.client.fecha_nacimiento = birth;
 }
 calculateAge(){
   if(this.client.fecha_nacimiento != null){
@@ -172,16 +173,20 @@ setSex(){
 }
 validQuote(){
   if(this.client.fecha_nacimiento != null && this.birth != null){
-    if(this.quote.salary != null){
-      this.validMortgage();
-      this.validHeightWeight();
-      this.validLoan();
-      this.getQuotes();
-      //console.log(this.quote);
+    if(this.quote.sex != null){
+      if(this.quote.salary != null){
+        this.client.sexo = this.quote.sex;
+        this.validMortgage();
+        this.validHeightWeight();
+        this.validLoan();
+        this.getQuotes();
+        //console.log(this.quote);
+      } else{
+        this.invalidForm("Salario")
+      }
     } else{
-      this.invalidForm("Salario")
+      this.invalidForm("Sexo")
     }
-
   } else{
     this.invalidForm("Fecha de nacimiento")
   }

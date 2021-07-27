@@ -5,4 +5,5 @@ export class Document {
   created_at: string;
   updated_at: string;
   file: string;
+  img: boolean;
 }

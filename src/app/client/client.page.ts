@@ -51,9 +51,11 @@ export class ClientPage implements OnInit {
           handler: async () => {
             const info = `
             Hola interesado, estos son los datos del cliente
-            Nombre: ${this.client.nombre}
+            Nombre: ${this.client.nombre_completo}
             Cédula: ${this.client.identidad}
             Fecha de nacimiento: ${this.client.fecha_nacimiento}
+            Dirección: ${this.client.direccion}
+            Email: ${this.client.correo}
             Teléfono: ${this.client.numero}
             #Seguro: ${this.client.seguro_social}
             Sexo: ${this.client.sexo}`;

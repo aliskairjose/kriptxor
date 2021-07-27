@@ -12,15 +12,22 @@
 
   <app-info-bar [client]="client" [id]="clientId"></app-info-bar>
 
-  <div class="d-flex justify-content-around container-bordered ion-padding-vertical">
-    <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest(2)">
-      <ion-icon name="close-circle-outline">
-      </ion-icon>
-      <ion-label>No interesado</ion-label>
-    </ion-chip>
-    <ion-chip color="success" mode="ios" outline="true" (click)="updateInterest(1)">
+  <div class="d-flex flex-column align-items-center">
+    <div>
+      <ion-chip color="warning" mode="ios" outline="true" (click)="updateInterest('interest', 2)"
+        class="ion-margin-end">
+        <ion-icon name="close-circle-outline">
+        </ion-icon>
+        <ion-label>No interesado</ion-label>
+      </ion-chip>
+      <ion-chip color="success" mode="ios" outline="true" (click)="updateInterest('interest',1)">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <ion-label>Interesado</ion-label>
+      </ion-chip>
+    </div>
+    <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest('unanswered', 2)">
       <ion-icon name="checkmark-circle-outline"></ion-icon>
-      <ion-label>Interesado</ion-label>
+      <ion-label>Sin respuesta</ion-label>
     </ion-chip>
   </div>
 
@@ -28,6 +35,13 @@
     <div class="d-flex flex-column">
       <ion-label class="ion-margin-top">Cliente:</ion-label>
       <ion-label>{{client.nombre_completo}}</ion-label>
+      <ion-label class="ion-margin-top">Sexo:</ion-label>
+      <ion-label>{{client.sexo}}</ion-label>
+      <ion-label class="ion-margin-top">Fecha de nacimiento:</ion-label>
+      <ion-label>{{client.fecha_nacimiento}}</ion-label>
+      <ion-label class="ion-margin-top">N° Seguro social:</ion-label>
+      <ion-label>{{client.social_security_number}}</ion-label>
+      <br>
       <ion-chip color="primary" mode="ios" outline="false">
         <ion-label>Actualizado</ion-label>
       </ion-chip>
@@ -38,11 +52,13 @@
     <div class="d-flex flex-column align-items-start">
       <ion-label class="ion-margin-top">Teléfono:</ion-label>
       <ion-label>{{client.numero}}</ion-label>
-      <ion-label class="ion-margin-top">Cédula</ion-label>
+      <ion-label class="ion-margin-top">Cédula:</ion-label>
       <ion-label>{{client.identidad}}</ion-label>
+      <ion-label class="ion-margin-top">Dirección:</ion-label>
+      <ion-label>{{client.direccion}}</ion-label>
     </div>
     <div>
-      <ion-icon name="ellipsis-vertical" class="ion-margin-vertical"></ion-icon>
+      <ion-icon (click)="options()" name="ellipsis-vertical" class="ion-margin-vertical"></ion-icon>
     </div>
   </div>
 
@@ -76,7 +92,7 @@
   </div>
 
   <div class="d-flex justify-content-around">
-    <ion-button color="warning"  (click)="backToCampaignClients()">Volver al listado</ion-button>
+    <ion-button color="warning" (click)="backToCampaignClients()">Volver al listado</ion-button>
     <ion-button color="primary" fill="outline" (click)="nextCall()">Llamar siguiente</ion-button>
   </div>
 </ion-content>

@@ -28,6 +28,13 @@
     <div class="d-flex flex-column">
       <ion-label class="ion-margin-top">Cliente:</ion-label>
       <ion-label>{{client.nombre_completo}}</ion-label>
+      <ion-label class="ion-margin-top">Sexo:</ion-label>
+      <ion-label>{{client.sexo}}</ion-label>
+      <ion-label class="ion-margin-top">Fecha de nacimiento:</ion-label>
+      <ion-label>{{client.fecha_nacimiento}}</ion-label>
+      <ion-label class="ion-margin-top">N° Seguro social:</ion-label>
+      <ion-label>{{client.social_security_number}}</ion-label>
+      <br>
       <ion-chip color="primary" mode="ios" outline="false">
         <ion-label>Actualizado</ion-label>
       </ion-chip>
@@ -38,11 +45,13 @@
     <div class="d-flex flex-column align-items-start">
       <ion-label class="ion-margin-top">Teléfono:</ion-label>
       <ion-label>{{client.numero}}</ion-label>
-      <ion-label class="ion-margin-top">Cédula</ion-label>
+      <ion-label class="ion-margin-top">Cédula:</ion-label>
       <ion-label>{{client.identidad}}</ion-label>
+      <ion-label class="ion-margin-top">Dirección:</ion-label>
+      <ion-label>{{client.direccion}}</ion-label>
     </div>
     <div>
-      <ion-icon name="ellipsis-vertical" class="ion-margin-vertical"></ion-icon>
+      <ion-icon (click)="options()" name="ellipsis-vertical" class="ion-margin-vertical"></ion-icon>
     </div>
   </div>
 

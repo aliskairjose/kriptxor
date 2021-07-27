@@ -20,7 +20,8 @@ export class MarketRatesPage implements OnInit {
   moment: any = moment;
   client: Client = {};
   age: number;
-  clientQuotes: any[] = [];
+  clientQuotes: Quote[] = [];
+  lastedQuote: Quote;
   quote: Quote = new Quote;
   birth: string;
   banks: Bank[] = [];
@@ -56,8 +57,7 @@ export class MarketRatesPage implements OnInit {
       let master = response.data as MasterClient;
       this.client = master.cliente as Client;
       this.quote.campaign_client_id = master.id;
-      this.calculateAge();
-      this.setSex();
+      this.setData();
       loading.dismiss();
     }, () => loading.dismiss()
   )
@@ -66,6 +66,7 @@ getClientQuotes(){
   this.campaignService.clientQuotes(this.id).subscribe(
     response => {
       this.clientQuotes = response.data;
+      this.lastedQuote = this.clientQuotes[0];
     }
   )
 }
@@ -74,6 +75,9 @@ getQuotes(){
   this.quoteService.getQuotes(this.quote).subscribe(
     response =>{
       this.banks = response.data;
+      if(this.banks.length <= 0){
+        this.common.presentToast({message: "Este cliente no aplica para cotizacion", color: 'warning'})
+      }
     }
   )
 }
@@ -100,7 +104,7 @@ quoteClient(){
 calculateRequestedSalary(event: any){
   if(event.target.value != null && event.target.value != ""){
       this.requestedSalary(event.target.value)
-  } else{
+  } else {
     this.quote.salary = null;
     this.showBanksRequested = false;
   }
@@ -113,6 +117,9 @@ requestedSalary(amount: string){
     response => {
         this.RequestedBanks = response.data as RequestSalary[];
         this.showBanksRequested = true;
+        if(this.RequestedBanks.length <= 0){
+          this.common.presentToast({message: "No hay bancos disponibles para este cliente", color: 'warning'})
+        }
     }
   )
 }
@@ -146,6 +153,14 @@ finishQuote(){
     this.invalidForm("Fecha de nacimiento")
   }
 }
+setData(){
+
+  this.calculateAge();
+  this.setSex();
+  this.setSalary();
+  this.setWeight();
+  this.setHeight();
+}
 setAge(event: any){
   let birth = moment(event.target.value).format('YYYY-MM-DD');
   let today = moment();
@@ -171,24 +186,65 @@ setSex(){
     this.quote.sex = this.client.sexo
   }
 }
+setWeight(){
+  if(this.lastedQuote != null){
+    if(this.lastedQuote.weight){
+      this.quote.weight = this.lastedQuote.weight;
+    } else{
+      this.quote.weight = null
+    }
+  } else{
+    this.quote.weight = null
+  }
+}
+setHeight(){
+  if(this.lastedQuote != null){
+    if(this.lastedQuote.height){
+      this.quote.height = this.lastedQuote.height;
+    } else{
+      this.quote.height = null
+    }
+  } else{
+    this.quote.height = null
+  }
+}
+setSalary(){
+  if(this.lastedQuote != null){
+    if(this.lastedQuote.salary){
+      this.quote.salary = this.lastedQuote.salary;
+    } else{
+      this.quote.salary = null
+    }
+  } else{
+    this.quote.salary = null
+  }
+}
 validQuote(){
   if(this.client.fecha_nacimiento != null && this.birth != null){
     if(this.quote.sex != null){
       if(this.quote.salary != null){
-        this.client.sexo = this.quote.sex;
-        this.validMortgage();
-        this.validHeightWeight();
-        this.validLoan();
-        this.getQuotes();
-        //console.log(this.quote);
+        if(this.quote.weight != null ){
+          if(this.quote.height != null){
+            this.client.sexo = this.quote.sex;
+            this.validMortgage();
+            this.validHeightWeight();
+            this.validLoan();
+            this.getQuotes();
+            //console.log(this.quote);
+          } else{
+            this.invalidForm("Altura");
+          }
+        } else{
+          this.invalidForm("Peso");
+        }
       } else{
-        this.invalidForm("Salario")
+        this.invalidForm("Salario");
       }
     } else{
-      this.invalidForm("Sexo")
+      this.invalidForm("Sexo");
     }
   } else{
-    this.invalidForm("Fecha de nacimiento")
+    this.invalidForm("Fecha de nacimiento");
   }
 
 }

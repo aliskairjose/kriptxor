@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ActionSheetController } from '@ionic/angular';
 import { CommonService } from '../shared/services/common.service';
 import { CampaignService } from '../shared/services/campaign.service';
 import { CampaignClient, CampaignClientHistory, Campaign } from '../shared/interfaces/campaign';
@@ -29,6 +30,7 @@ export class ClientPage implements OnInit {
     public location: Location,
     private call: CallNumber,
     private campaignService: CampaignService,
+    private actionSheetController: ActionSheetController
   ) { }
 
   ngOnInit() {
@@ -37,7 +39,33 @@ export class ClientPage implements OnInit {
       this.loadData();
     } );
   }
-
+  async options() {
+   const actionSheet = await this.actionSheetController.create({
+     header: '¿Que accion deberia realizar?',
+     cssClass: 'my-custom-class',
+     buttons: [{
+       text: 'Editar',
+       role: 'edit',
+       icon: 'pencil-outline',
+       handler: () => {
+         console.log('Delete clicked');
+       }
+     }, {
+       text: 'Copiar',
+       icon: 'document-text-outline',
+       handler: () => {
+         console.log('Share clicked');
+       }
+     }, {
+       text: 'Cancelar',
+       icon: 'close',
+       role: 'cancel',
+       handler: () => {
+       }
+     }]
+   });
+   await actionSheet.present();
+ }
   async updateInterest( interested: number ): Promise<void> {
     const loading = await this.common.presentLoading();
     loading.present();

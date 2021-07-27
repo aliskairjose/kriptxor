@@ -537,7 +537,8 @@ let CampaignService = class CampaignService {
         return this.http.get(`campaign-clients-histories?filter=${filtro}&page=${page}&include=user`);
     }
     callNow(campaignId) {
-        const filter = { campaignId, order: { field: 'created_at', way: 'ASC' } };
+        console.log("campaign id recibido:" + campaignId);
+        const filter = { campaignId: campaignId, order: { field: 'created_at', way: 'ASC' } };
         const filtro = JSON.stringify(filter);
         return this.http.get(`campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status`);
     }
@@ -695,7 +696,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<h2 class=\"title ion-text-center\">{{client.nombre_completo}}</h2>\r\n\r\n<div class=\"document-banner text-center\">\r\n  <div [routerLink]=\"[ '/client', id ]\">\r\n    <ion-icon class=\"icons\" src=\"assets/icon/documents.svg\"></ion-icon>\r\n    <ion-label>Ficha</ion-label>\r\n  </div>\r\n  <div [routerLink]=\"[ '/documents', id ]\">\r\n    <ion-icon class=\"icons\" src=\"assets/icon/documents.svg\"></ion-icon>\r\n    <ion-label>Documentos</ion-label>\r\n  </div>\r\n  <div>\r\n    <ion-icon [routerLink]=\"[ '/notes', id ]\" class=\"icons\" src=\"assets/icon/notes.svg\"></ion-icon>\r\n    <ion-label>Notas</ion-label>\r\n  </div>\r\n  <div>\r\n    <ion-icon [routerLink]=\"[ '/schedule', id ]\" class=\"icons\" src=\"assets/icon/schedule.svg\"></ion-icon>\r\n    <ion-label>Agenda</ion-label>\r\n  </div>\r\n  <div [routerLink]=\"['/market-rates',id ]\">\r\n    <ion-icon class=\"icons\" src=\"assets/icon/cotizations.svg\"></ion-icon>\r\n    <ion-label>Cotizaciones</ion-label>\r\n  </div>\r\n</div>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<h2 class=\"title ion-text-center\">{{client.nombre_completo}}</h2>\n\n<div class=\"document-banner text-center\">\n  <div [routerLink]=\"[ '/client', id ]\">\n    <ion-icon class=\"icons\" src=\"assets/icon/documents.svg\"></ion-icon>\n    <ion-label>Ficha</ion-label>\n  </div>\n  <div [routerLink]=\"[ '/documents', id ]\">\n    <ion-icon class=\"icons\" src=\"assets/icon/documents.svg\"></ion-icon>\n    <ion-label>Documentos</ion-label>\n  </div>\n  <div>\n    <ion-icon [routerLink]=\"[ '/notes', id ]\" class=\"icons\" src=\"assets/icon/notes.svg\"></ion-icon>\n    <ion-label>Notas</ion-label>\n  </div>\n  <div>\n    <ion-icon [routerLink]=\"[ '/schedule', id ]\" class=\"icons\" src=\"assets/icon/schedule.svg\"></ion-icon>\n    <ion-label>Agenda</ion-label>\n  </div>\n  <div [routerLink]=\"['/market-rates',id ]\">\n    <ion-icon class=\"icons\" src=\"assets/icon/cotizations.svg\"></ion-icon>\n    <ion-label>Cotizaciones</ion-label>\n  </div>\n</div>");
 
 /***/ })
 

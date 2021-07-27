@@ -1,5 +1,40 @@
 (self["webpackChunkgrupo_global_elite"] = self["webpackChunkgrupo_global_elite"] || []).push([["src_app_dashboard_dashboard_module_ts"],{
 
+/***/ 94580:
+/*!****************************************************************************!*\
+  !*** ./node_modules/@capacitor/push-notifications/dist/esm/definitions.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/// <reference types="@capacitor/cli" />
+
+//# sourceMappingURL=definitions.js.map
+
+/***/ }),
+
+/***/ 98748:
+/*!**********************************************************************!*\
+  !*** ./node_modules/@capacitor/push-notifications/dist/esm/index.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PushNotifications": () => (/* binding */ PushNotifications)
+/* harmony export */ });
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ 68384);
+/* harmony import */ var _definitions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./definitions */ 94580);
+
+const PushNotifications = (0,_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)('PushNotifications', {});
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
 /***/ 50425:
 /*!*******************************************************!*\
   !*** ./src/app/dashboard/dashboard-routing.module.ts ***!
@@ -92,12 +127,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DashboardPage": () => (/* binding */ DashboardPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 64762);
 /* harmony import */ var _raw_loader_dashboard_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./dashboard.page.html */ 52836);
 /* harmony import */ var _dashboard_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dashboard.page.scss */ 38043);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 37716);
 /* harmony import */ var _shared_services_dashboard_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/services/dashboard.service */ 13736);
 /* harmony import */ var _shared_services_common_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/services/common.service */ 80062);
+/* harmony import */ var _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @capacitor/push-notifications */ 98748);
+
 
 
 
@@ -112,13 +149,46 @@ let DashboardPage = class DashboardPage {
         this.seeMore = true;
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             const loading = yield this.common.presentLoading();
             loading.present();
             this.dashboard.dashboard().subscribe(response => {
                 loading.dismiss();
                 this.data = Object.assign({}, response.data);
             }, () => loading.dismiss());
+            this.initPush();
+        });
+    }
+    initPush() {
+        console.log('Init Push');
+        // Request permission to use push notifications
+        // iOS will prompt user and return if they granted permission or not
+        // Android will just grant without prompting
+        _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_4__.PushNotifications.requestPermissions().then(result => {
+            if (result.receive === 'granted') {
+                // Register with Apple / Google to receive push via APNS/FCM
+                _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_4__.PushNotifications.register();
+            }
+            else {
+                // Show some error
+            }
+        });
+        // On success, we should be able to receive notifications
+        _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_4__.PushNotifications.addListener('registration', (token) => {
+            // TOKEN REQUIRED BACKEND
+            alert('Push registration success, token: ' + token.value);
+        });
+        // Some issue with our setup and push will not work
+        _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_4__.PushNotifications.addListener('registrationError', (error) => {
+            alert('Error on registration: ' + JSON.stringify(error));
+        });
+        // Show us the notification payload if the app is open on our device
+        _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_4__.PushNotifications.addListener('pushNotificationReceived', (notification) => {
+            alert('Push received: ' + JSON.stringify(notification));
+        });
+        // Method called when tapping on a notification
+        _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_4__.PushNotifications.addListener('pushNotificationActionPerformed', (notification) => {
+            alert('Push action performed: ' + JSON.stringify(notification));
         });
     }
 };
@@ -126,8 +196,8 @@ DashboardPage.ctorParameters = () => [
     { type: _shared_services_common_service__WEBPACK_IMPORTED_MODULE_3__.CommonService },
     { type: _shared_services_dashboard_service__WEBPACK_IMPORTED_MODULE_2__.DashboardService }
 ];
-DashboardPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+DashboardPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-dashboard',
         template: _raw_loader_dashboard_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_dashboard_page_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -202,7 +272,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\r\n  <ion-toolbar>\r\n    <ion-buttons slot=\"start\">\r\n      <ion-menu-button></ion-menu-button>\r\n    </ion-buttons>\r\n    <ion-title>Inicio</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n<ion-content class=\"ion-padding\">\r\n\r\n  <div class=\"card-container\">\r\n    <div class=\"cards container-bordered\">\r\n      <img src=\"assets/icon/assessment.svg\">\r\n      <ion-label>{{data.allCampaigns}}</ion-label>\r\n      <p>Campañas</p>\r\n    </div>\r\n    <div class=\"cards container-bordered\">\r\n      <img src=\"/assets/icon/persons-circle.svg\" alt=\"\">\r\n      <ion-label>{{data.clients}}</ion-label>\r\n      <p>Clientes</p>\r\n    </div>\r\n    <div class=\"cards container-bordered\">\r\n      <img src=\"assets/icon/monetization.svg\" alt=\"\">\r\n      <ion-label>{{data.projections}}</ion-label>\r\n      <p>Proyecciones</p>\r\n    </div>\r\n    <div class=\"cards container-bordered\">\r\n      <img src=\"/assets/icon/calendar.svg\" alt=\"\">\r\n      <ion-label>{{data.reminders}}</ion-label>\r\n      <p>Agenda</p>\r\n    </div>\r\n\r\n  </div>\r\n\r\n  <div class=\"title-bar mt-3\">\r\n    ULTIMAS NOTIFICACIONES\r\n  </div>\r\n\r\n  <ng-container *ngFor=\"let news of data.lastNews\" class=\"card-content\">\r\n    <ion-card>\r\n      <ion-card-header class=\"bg-ligth-gray\">\r\n        <ion-card-subtitle>\r\n          <div class=\"d-flex justify-content-between\">\r\n            <h4>{{news.title}}</h4>\r\n            {{news.created_at | date}}\r\n          </div>\r\n        </ion-card-subtitle>\r\n      </ion-card-header>\r\n      <ion-card-content>\r\n        <div class=\"d-flex flex-column\">\r\n          {{seeMore ? news.content.substring(0,100) + '...' : news.content}}...\r\n          <div>\r\n            <ion-button (click)=\"seeMore = !seeMore\" color=\"warning\" size=\"small\">\r\n              <ion-icon slot=\"start\" name=\"eye-outline\"></ion-icon>\r\n              {{ seeMore ? 'Leer más' : 'Leer menos'}}\r\n            </ion-button>\r\n          </div>\r\n        </div>\r\n      </ion-card-content>\r\n    </ion-card>\r\n  </ng-container>\r\n\r\n  <div class=\"title-bar\">\r\n    TOP SEMANAL DE VENDEDORES\r\n  </div>\r\n\r\n  <div class=\"d-flex \">\r\n    <ng-container *ngFor=\"let seller of data.topSellers\">\r\n      <div class=\"seller-card text-center\">\r\n        <img [src]=\"seller.main_image\" />\r\n        <small>{{seller.nombre}} {{seller.apellido}}</small>\r\n      </div>\r\n    </ng-container>\r\n\r\n  </div>\r\n\r\n</ion-content>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Inicio</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content class=\"ion-padding\">\n\n  <div class=\"card-container\">\n    <div class=\"cards container-bordered\">\n      <img src=\"assets/icon/assessment.svg\">\n      <ion-label>{{data.allCampaigns}}</ion-label>\n      <p>Campañas</p>\n    </div>\n    <div class=\"cards container-bordered\">\n      <img src=\"/assets/icon/persons-circle.svg\" alt=\"\">\n      <ion-label>{{data.clients}}</ion-label>\n      <p>Clientes</p>\n    </div>\n    <div class=\"cards container-bordered\">\n      <img src=\"assets/icon/monetization.svg\" alt=\"\">\n      <ion-label>{{data.projections}}</ion-label>\n      <p>Proyecciones</p>\n    </div>\n    <div class=\"cards container-bordered\">\n      <img src=\"/assets/icon/calendar.svg\" alt=\"\">\n      <ion-label>{{data.reminders}}</ion-label>\n      <p>Agenda</p>\n    </div>\n\n  </div>\n\n  <div class=\"title-bar mt-3\">\n    ULTIMAS NOTIFICACIONES\n  </div>\n\n  <ng-container *ngFor=\"let news of data.lastNews\" class=\"card-content\">\n    <ion-card>\n      <ion-card-header class=\"bg-ligth-gray\">\n        <ion-card-subtitle>\n          <div class=\"d-flex justify-content-between\">\n            <h4>{{news.title}}</h4>\n            {{news.created_at | date}}\n          </div>\n        </ion-card-subtitle>\n      </ion-card-header>\n      <ion-card-content>\n        <div class=\"d-flex flex-column\">\n          {{seeMore ? news.content.substring(0,100) + '...' : news.content}}...\n          <div>\n            <ion-button (click)=\"seeMore = !seeMore\" color=\"warning\" size=\"small\">\n              <ion-icon slot=\"start\" name=\"eye-outline\"></ion-icon>\n              {{ seeMore ? 'Leer más' : 'Leer menos'}}\n            </ion-button>\n          </div>\n        </div>\n      </ion-card-content>\n    </ion-card>\n  </ng-container>\n\n  <div class=\"title-bar\">\n    TOP SEMANAL DE VENDEDORES\n  </div>\n\n  <div class=\"d-flex \">\n    <ng-container *ngFor=\"let seller of data.topSellers\">\n      <div class=\"seller-card text-center\">\n        <img [src]=\"seller.main_image\" />\n        <small>{{seller.nombre}} {{seller.apellido}}</small>\n      </div>\n    </ng-container>\n\n  </div>\n\n</ion-content>");
 
 /***/ })
 

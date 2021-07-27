@@ -16,8 +16,7 @@ import { InfoBarComponent } from '../shared/components/info-bar/info-bar.compone
     IonicModule,
     ClientPageRoutingModule
   ],
-  declarations: [ ClientPage ],
-  entryComponents: [ InfoBarComponent ],
+  declarations: [ ClientPage, InfoBarComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 
 } )

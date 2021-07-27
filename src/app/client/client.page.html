@@ -12,24 +12,29 @@
 
   <app-info-bar [client]="client" [id]="clientId"></app-info-bar>
 
-  <div class="d-flex flex-column align-items-center">
-    <div>
-      <ion-chip color="warning" mode="ios" outline="true" (click)="updateInterest('interest', 2)"
-        class="ion-margin-end">
-        <ion-icon name="close-circle-outline">
-        </ion-icon>
-        <ion-label>No interesado</ion-label>
-      </ion-chip>
-      <ion-chip color="success" mode="ios" outline="true" (click)="updateInterest('interest',1)">
-        <ion-icon name="checkmark-circle-outline"></ion-icon>
-        <ion-label>Interesado</ion-label>
-      </ion-chip>
-    </div>
-    <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest('unanswered', 2)">
-      <ion-icon name="checkmark-circle-outline"></ion-icon>
-      <ion-label>Sin respuesta</ion-label>
-    </ion-chip>
-  </div>
+  <ion-grid fixed class="ion-no-padding">
+    <ion-row>
+      <ion-col size="4">
+        <ion-chip color="warning" mode="ios" outline="true" (click)="updateInterest('interest', 2)"
+          class="ion-margin-end">
+          <ion-icon name="thumbs-down-outline"></ion-icon>
+          <ion-label>No interesado</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col size="4">
+        <ion-chip color="success" mode="ios" outline="true" (click)="updateInterest('interest',1)">
+          <ion-icon name="thumbs-up-outline"></ion-icon>
+          <ion-label>Interesado</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col size="4">
+        <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest('unanswered', 2)">
+          <ion-icon name="hand-left-outline"></ion-icon>
+          <ion-label>Sin respuesta</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <div class="d-flex justify-content-around container-bordered">
     <div class="d-flex flex-column">
@@ -48,7 +53,7 @@
       <ion-label class="ion-margin-top">Cédula</ion-label>
       <ion-label>{{client.identidad}}</ion-label>
     </div>
-    <div>
+    <div (click)="openOptions(client)">
       <ion-icon name="ellipsis-vertical" class="ion-margin-vertical"></ion-icon>
     </div>
   </div>

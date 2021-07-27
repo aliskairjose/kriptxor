@@ -50,6 +50,11 @@ export class MarketRatesPage implements OnInit {
   async calculate() {
   }
 
+  share( id: number ): void {
+    console.log( 'Shared', id );
+    this.campaignService.getCampaignClientPdf( id ).subscribe( console.log );
+  }
+
   async getClient() {
     const loading = await this.common.presentLoading();
     loading.present();

@@ -7,6 +7,8 @@ import { Client } from '../shared/classes/client';
 import { Page } from '../shared/interfaces/pagination';
 import { Location } from '@angular/common';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { ActionSheetController } from '@ionic/angular';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 
 @Component( {
   selector: 'app-client',
@@ -26,8 +28,10 @@ export class ClientPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private common: CommonService,
+    private clipboard: Clipboard,
     public location: Location,
     private call: CallNumber,
+    public actionSheetController: ActionSheetController,
     private campaignService: CampaignService,
   ) { }
 
@@ -36,6 +40,34 @@ export class ClientPage implements OnInit {
       this.clientId = data.id;
       this.loadData();
     } );
+  }
+
+  async openOptions( client ) {
+    const actionSheet = await this.actionSheetController.create( {
+      header: '¿Que desea hacer?',
+      buttons: [
+        {
+          text: 'Copiar datos',
+          handler: async () => {
+            const info = `
+            Hola interesado, estos son los datos del cliente
+            Nombre: ${this.client.nombre}
+            Cédula: ${this.client.identidad}
+            Fecha de nacimiento: ${this.client.fecha_nacimiento}
+            Teléfono: ${this.client.numero}
+            #Seguro: ${this.client.seguro_social}
+            Sexo: ${this.client.sexo}`;
+            this.clipboard.copy( info ).then( () => this.common.presentToast( { message: 'Datos copiados' } ) );
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
+    } );
+    await actionSheet.present();
+
   }
 
   async updateInterest( type: string, value: number ): Promise<void> {

@@ -24,6 +24,9 @@
             <div class="ion-text-end">
               <ion-label>{{client.fecha_nacimiento | date:'dd/MM/yyyy'}}</ion-label>
             </div>
+            <div class="float-end ion-margin-end ion-margin-top" (click)="share(clientQuote.id)">
+              <ion-icon name="share-social-outline"></ion-icon>
+            </div>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -35,11 +38,6 @@
           <ion-col>
             Banco: {{clientQuote.bank.name}}
           </ion-col>
-          <!-- <ion-col>
-            <div class="ion-text-end">
-              <ion-note color="primary">Estatus Firmado</ion-note>
-            </div>
-          </ion-col> -->
         </ion-row>
       </ion-grid>
 
@@ -53,20 +51,12 @@
         <ion-col size="8">
           <ion-item>
             <ion-label>Fecha de nacimiento</ion-label>
-            <ion-datetime
-              *ngIf="client.fecha_nacimiento != null else noDataBirth"
-              readonly
-              min="1960"
-              [(ngModel)]="birth"
-              (ionChange)="setAge($event)"
-              displayFormat="DD/MM/YYYY"></ion-datetime>
-              <ng-template #noDataBirth>
-                <ion-datetime
-                  min="1960"
-                  [(ngModel)]="birth"
-                  (ionChange)="setAge($event)"
-                  displayFormat="DD/MM/YYYY"></ion-datetime>
-              </ng-template>
+            <ion-datetime *ngIf="client.fecha_nacimiento != null else noDataBirth" readonly min="1960"
+              [(ngModel)]="birth" (ionChange)="setAge($event)" displayFormat="DD/MM/YYYY"></ion-datetime>
+            <ng-template #noDataBirth>
+              <ion-datetime min="1960" [(ngModel)]="birth" (ionChange)="setAge($event)" displayFormat="DD/MM/YYYY">
+              </ion-datetime>
+            </ng-template>
           </ion-item>
         </ion-col>
         <ion-col size="4">
@@ -79,18 +69,13 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-select
-            *ngIf="client.sexo != null else noDataSex"
-            disabled
-            value="{{client.sexo}}"
-            placeholder="Seleccione sexo">
+            <ion-select *ngIf="client.sexo != null else noDataSex" disabled value="{{client.sexo}}"
+              placeholder="Seleccione sexo">
               <ion-select-option value="Femenino">Femenino</ion-select-option>
               <ion-select-option value="Masculino">Masculino</ion-select-option>
             </ion-select>
             <ng-template #noDataSex>
-              <ion-select
-              [(ngModel)]="quote.sex"
-              placeholder="Seleccione sexo">
+              <ion-select [(ngModel)]="quote.sex" placeholder="Seleccione sexo">
                 <ion-select-option value="Femenino">Femenino</ion-select-option>
                 <ion-select-option value="Masculino">Masculino</ion-select-option>
               </ion-select>
@@ -100,11 +85,7 @@
         <ion-col>
           <ion-item>
             <ion-label>Neto</ion-label>
-            <ion-input
-            inputmode="numeric"
-            (ionChange)="calculateNetSalary($event)"
-            debounce="100"
-            ></ion-input>
+            <ion-input inputmode="numeric" (ionChange)="calculateNetSalary($event)" debounce="100"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -118,18 +99,14 @@
         <ion-col>
           <ion-item>
             <ion-label>Solicitado</ion-label>
-            <ion-input
-            *ngIf="age != null"
-            inputmode="numeric"
-            (ionChange)="calculateRequestedSalary($event)"
-            debounce="100"
-            ></ion-input>
+            <ion-input *ngIf="age != null" inputmode="numeric" (ionChange)="calculateRequestedSalary($event)"
+              debounce="100"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-list *ngIf="showBanksRequested">
         <ion-list-header>
-            Bancos
+          Bancos
         </ion-list-header>
         <ion-item *ngFor="let bank of RequestedBanks">
           <ion-label>{{bank.bank_name}}</ion-label>
@@ -162,10 +139,8 @@
         <ion-col>
           <ion-item>
             <ion-label>¿Hipoteca?</ion-label>
-            <ion-checkbox
-            [(ngModel)]="quote.apply_mortgage"
-             slot="start"
-             (ionChange)="hasMortage = !hasMortage"></ion-checkbox>
+            <ion-checkbox [(ngModel)]="quote.apply_mortgage" slot="start" (ionChange)="hasMortage = !hasMortage">
+            </ion-checkbox>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -234,7 +209,8 @@
         <ion-col size="12">Letra Mensual: ${{bank.quotes[0].monthly_letter}}</ion-col>
       </ion-row>
       <ion-row class="ion-justify-content-center">
-          <div *ngIf="bank.quotes[0].apply_medical_exams" class="date-badged primary text-center">Con examenes médicos</div>
+        <div *ngIf="bank.quotes[0].apply_medical_exams" class="date-badged primary text-center">Con examenes médicos
+        </div>
       </ion-row>
     </ion-grid>
   </div>

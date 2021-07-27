@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../shared/services/common.service';
 import { CampaignService } from '../shared/services/campaign.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Client, MasterClient } from '../shared/classes/client';
 import { Quote, Bank, RequestSalary } from '../shared/classes/quote';
@@ -49,6 +49,7 @@ export class MarketRatesPage implements OnInit {
 
   async calculate() {
   }
+
   async getClient() {
     const loading = await this.common.presentLoading();
     loading.present();
@@ -165,6 +166,7 @@ export class MarketRatesPage implements OnInit {
     this.quote.day = +moment( birth ).format( 'DD' );
     this.quote.month = +moment( birth ).format( 'MM' );
     this.quote.year = +moment( birth ).format( 'YYYY' );
+    this.client.fecha_nacimiento = birth;
   }
 
   calculateAge() {
@@ -173,7 +175,9 @@ export class MarketRatesPage implements OnInit {
       let today = moment();
       let age = today.diff( birth, "years" );
       this.age = age;
-      this.birth = birth;
+      this.quote.day = +moment( birth ).format( 'DD' );
+      this.quote.month = +moment( birth ).format( 'MM' );
+      this.quote.year = +moment( birth ).format( 'YYYY' );
     }
 
   }
@@ -186,21 +190,26 @@ export class MarketRatesPage implements OnInit {
 
   validQuote() {
     if ( this.client.fecha_nacimiento != null && this.birth != null ) {
-      if ( this.quote.salary != null ) {
-        this.validMortgage();
-        this.validHeightWeight();
-        this.validLoan();
-        this.getQuotes();
-        //console.log(this.quote);
+      if ( this.quote.sex != null ) {
+        if ( this.quote.salary != null ) {
+          this.client.sexo = this.quote.sex;
+          this.validMortgage();
+          this.validHeightWeight();
+          this.validLoan();
+          this.getQuotes();
+          //console.log(this.quote);
+        } else {
+          this.invalidForm( "Salario" )
+        }
       } else {
-        this.invalidForm( "Salario" )
+        this.invalidForm( "Sexo" )
       }
-
     } else {
       this.invalidForm( "Fecha de nacimiento" )
     }
 
   }
+
   validMortgage() {
     if ( this.quote.apply_mortgage != null ) {
       if ( this.quote.apply_mortgage == true ) {
@@ -249,7 +258,4 @@ export class MarketRatesPage implements OnInit {
     const color = 'warning';
     this.common.presentToast( { message, color } )
   }
-
-
-
 }

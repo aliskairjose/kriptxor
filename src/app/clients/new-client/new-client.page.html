@@ -31,6 +31,7 @@
           <ion-item>
             <ion-label>Fecha de nacimiento:</ion-label>
             <ion-datetime
+              min="1960"
               (ionChange)="setAge($event)"
               displayFormat="DD/MM/YYYY"></ion-datetime>
           </ion-item>

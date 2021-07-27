@@ -57,7 +57,9 @@ export class ClientPage implements OnInit {
     this.campaignService.getCampaignClientById( this.clientId ).subscribe( response => {
       loading.dismiss();
       this.client = { ...response.data.cliente };
-      this.campaing = { ...response.data.campaing };
+      this.campaing = { ...response.data.campaign };
+      console.log("respuesta");
+      console.log(response.data);
     }, () => loading.dismiss() )
 
     this.campaignService.campaignClientHistory( this.clientId ).subscribe( response => {
@@ -69,6 +71,9 @@ export class ClientPage implements OnInit {
 
 
   async nextCall() {
+    console.log('method next call');
+    console.log(this.campaing);
+    console.log(this.campaing.id);
     const loading = await this.common.presentLoading();
     loading.present();
     this.campaignService.callNow( this.campaing.id ).subscribe( response => {
@@ -82,5 +87,9 @@ export class ClientPage implements OnInit {
   callNumber( client: Client ): void {
     this.call.callNumber( client.numero, true );
   }
+
+  backToCampaignClients(){
+    this.router.navigateByUrl( `campaigns/campaign/${this.campaing.id}` );
+  }//backToCampaignClients
 
 }

@@ -129,8 +129,6 @@ export class DocumentsPage implements OnInit {
     await actionSheet.present();
   }
 
-
-
   uploadFile( event: any ) {
     this.document.name = event.target.files[ 0 ].name;
     this.document.file = event.target.files[ 0 ];

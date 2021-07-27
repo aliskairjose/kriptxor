@@ -27,4 +27,7 @@ export class ClientService {
   createClient(client: Client): Observable<Response<Client>>{
     return this.http.post("clientes", client)
   }
+  updateClient(client: Client):  Observable<Response<Client>>{
+    return this.http.put(`clientes/${client.id}`, client)
+  }
 }

@@ -8,6 +8,8 @@ import { Client } from '../shared/classes/client';
 import { Page } from '../shared/interfaces/pagination';
 import { Location } from '@angular/common';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { EditClientPage } from './edit-client/edit-client.page';
+import { ModalController } from '@ionic/angular';
 
 @Component( {
   selector: 'app-client',
@@ -30,7 +32,8 @@ export class ClientPage implements OnInit {
     public location: Location,
     private call: CallNumber,
     private campaignService: CampaignService,
-    private actionSheetController: ActionSheetController
+    private actionSheetController: ActionSheetController,
+    public modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -48,7 +51,7 @@ export class ClientPage implements OnInit {
        role: 'edit',
        icon: 'pencil-outline',
        handler: () => {
-         console.log('Delete clicked');
+         this.presentModal()
        }
      }, {
        text: 'Copiar',
@@ -66,6 +69,17 @@ export class ClientPage implements OnInit {
    });
    await actionSheet.present();
  }
+ async presentModal() {
+   const modal = await this.modalController.create({
+     component: EditClientPage,
+     cssClass: 'my-custom-class',
+     componentProps: {
+      'client': this.client,
+    }
+   });
+   return await modal.present();
+ }
+
   async updateInterest( interested: number ): Promise<void> {
     const loading = await this.common.presentLoading();
     loading.present();
@@ -86,8 +100,7 @@ export class ClientPage implements OnInit {
       loading.dismiss();
       this.client = { ...response.data.cliente };
       this.campaing = { ...response.data.campaign };
-      console.log("respuesta");
-      console.log(response.data);
+      console.log(response);
     }, () => loading.dismiss() )
 
     this.campaignService.campaignClientHistory( this.clientId ).subscribe( response => {

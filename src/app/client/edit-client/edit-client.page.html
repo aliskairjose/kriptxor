@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="title text-center">{{client.nombre_completo}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon class="document-banner" name="arrow-down-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="container-bordered">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Nombre: </ion-label>
+              <ion-input maxlength="30" [(ngModel)]="client.nombre"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Apellido: </ion-label>
+              <ion-input maxlength="30" [(ngModel)]="client.apellido"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label>Fecha de nacimiento:</ion-label>
+              <ion-datetime
+                [(ngModel)]="birth"
+                min="1960"
+                (ionChange)="setAge($event)"
+                displayFormat="DD/MM/YYYY"></ion-datetime>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-select
+              [(ngModel)]="client.sexo"
+              placeholder="Seleccione sexo">
+                <ion-select-option value="Femenino">Femenino</ion-select-option>
+                <ion-select-option value="Masculino">Masculino</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>Identidad:</ion-label>
+              <ion-input
+              maxlength="16"
+              [(ngModel)]="client.identidad"
+              inputmode="numeric"
+              debounce="100"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Número:</ion-label>
+              <ion-input maxlength="20" [(ngModel)]="client.numero" inputmode="numeric"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Dirección</ion-label>
+              <ion-textarea maxlength="100" [(ngModel)]="client.direccion"></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Número de seguro social:</ion-label>
+              <ion-input maxlength="50" [(ngModel)]="client.seguro_social"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+
+            <ion-button (click)="saveClient()">
+              ACTUALIZAR CLIENTE
+            </ion-button>
+        </ion-row>
+      </ion-grid>
+    </div>
+</ion-content>

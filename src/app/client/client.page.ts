@@ -38,11 +38,13 @@ export class ClientPage implements OnInit {
     } );
   }
 
-  async updateInterest( interested: number ): Promise<void> {
+  async updateInterest( type: string, value: number ): Promise<void> {
     const loading = await this.common.presentLoading();
+    let data: any = {};
+    ( type === 'interest' ) ? data.interest = value : data.unanswered = value;
     loading.present();
     this.campaignService
-      .updateCampaignClientInterest( this.clientId, interested )
+      .updateCampaignClientInterest( this.clientId, data )
       .subscribe( () => {
         loading.dismiss();
         const message = 'Se actualizo con exito';
@@ -58,8 +60,6 @@ export class ClientPage implements OnInit {
       loading.dismiss();
       this.client = { ...response.data.cliente };
       this.campaing = { ...response.data.campaign };
-      console.log("respuesta");
-      console.log(response.data);
     }, () => loading.dismiss() )
 
     this.campaignService.campaignClientHistory( this.clientId ).subscribe( response => {
@@ -71,9 +71,6 @@ export class ClientPage implements OnInit {
 
 
   async nextCall() {
-    console.log('method next call');
-    console.log(this.campaing);
-    console.log(this.campaing.id);
     const loading = await this.common.presentLoading();
     loading.present();
     this.campaignService.callNow( this.campaing.id ).subscribe( response => {
@@ -88,7 +85,7 @@ export class ClientPage implements OnInit {
     this.call.callNumber( client.numero, true );
   }
 
-  backToCampaignClients(){
+  backToCampaignClients() {
     this.router.navigateByUrl( `campaigns/campaign/${this.campaing.id}` );
   }//backToCampaignClients
 

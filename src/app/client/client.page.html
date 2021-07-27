@@ -12,15 +12,22 @@
 
   <app-info-bar [client]="client" [id]="clientId"></app-info-bar>
 
-  <div class="d-flex justify-content-around container-bordered ion-padding-vertical">
-    <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest(2)">
-      <ion-icon name="close-circle-outline">
-      </ion-icon>
-      <ion-label>No interesado</ion-label>
-    </ion-chip>
-    <ion-chip color="success" mode="ios" outline="true" (click)="updateInterest(1)">
+  <div class="d-flex flex-column align-items-center">
+    <div>
+      <ion-chip color="warning" mode="ios" outline="true" (click)="updateInterest('interest', 2)"
+        class="ion-margin-end">
+        <ion-icon name="close-circle-outline">
+        </ion-icon>
+        <ion-label>No interesado</ion-label>
+      </ion-chip>
+      <ion-chip color="success" mode="ios" outline="true" (click)="updateInterest('interest',1)">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <ion-label>Interesado</ion-label>
+      </ion-chip>
+    </div>
+    <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest('unanswered', 2)">
       <ion-icon name="checkmark-circle-outline"></ion-icon>
-      <ion-label>Interesado</ion-label>
+      <ion-label>Sin respuesta</ion-label>
     </ion-chip>
   </div>
 
@@ -76,7 +83,7 @@
   </div>
 
   <div class="d-flex justify-content-around">
-    <ion-button color="warning"  (click)="backToCampaignClients()">Volver al listado</ion-button>
+    <ion-button color="warning" (click)="backToCampaignClients()">Volver al listado</ion-button>
     <ion-button color="primary" fill="outline" (click)="nextCall()">Llamar siguiente</ion-button>
   </div>
 </ion-content>

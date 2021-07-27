@@ -56,17 +56,7 @@ export class CampaignService {
     );
   }
 
-  updateCampaignClientInterest(
-    id: number,
-    interested: number
-  ): Observable<any> {
-    return this.http.put(`campaign-clients/${id}`, { interested });
-  }
-
-  updateCampaignClientNotApply(
-    id: number,
-    data: { condition: number; reason_not_apply: string }
-  ): Observable<any> {
+  updateCampaignClientInterest(id: number, data: any): Observable<any> {
     return this.http.put(`campaign-clients/${id}`, data);
   }
 

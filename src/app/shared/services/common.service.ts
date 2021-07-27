@@ -1,7 +1,17 @@
 import { Injectable } from '@angular/core';
-import { LoadingController, ModalController, ToastController, AlertController } from '@ionic/angular';
+import { LoadingController, ModalController, ToastController, AlertController  } from '@ionic/angular';
 
 export type Color = 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark'
+@Injectable( {
+  providedIn: 'root'
+} )
+export class Button{
+    text: string;
+    role?: string;
+    icon?: string;
+    handler?: string;
+
+}
 @Injectable( {
   providedIn: 'root'
 } )
@@ -22,7 +32,7 @@ export class CommonService {
   }
 
   /**
-   * 
+   *
    * @param component Componente que se mostrará en el modal
    * @param cssClass Clase personalizada
    * @returns Instancia del Modal

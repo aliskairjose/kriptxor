@@ -17,10 +17,10 @@ import { CommonService } from '../shared/services/common.service';
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.page.html',
-  styleUrls: ['./schedule.page.scss'],
-})
+  styleUrls: [ './schedule.page.scss' ],
+} )
 export class SchedulePage implements OnInit {
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  @ViewChild( IonInfiniteScroll ) infiniteScroll: IonInfiniteScroll;
 
   id: number;
   client: Client = {};
@@ -165,7 +165,7 @@ export class SchedulePage implements OnInit {
       if (this.reminders.length == this.page.total) {
         event.target.disabled = true;
       }
-    }, 500);
+    }, 500 );
   }
 
   activateInfiniteScroll() {

@@ -11,11 +11,11 @@ import { CommonService } from '../shared/services/common.service';
 import { HolidayService } from '../shared/services/holiday.service';
 import * as moment from 'moment';
 
-@Component({
+@Component( {
   selector: 'app-calendar',
   templateUrl: './calendar.page.html',
-  styleUrls: ['./calendar.page.scss'],
-})
+  styleUrls: [ './calendar.page.scss' ],
+} )
 export class CalendarPage implements OnInit {
   eventSource: IEvent[] = [];
   selectedDate: string = null;
@@ -42,7 +42,7 @@ export class CalendarPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async initModal() {
     if (this.selectedDate === null) {
@@ -60,32 +60,32 @@ export class CalendarPage implements OnInit {
       return;
     }
 
-    const modal = await this.modal.create({
+    const modal = await this.modal.create( {
       component: AddReminderModalComponent,
       cssClass: 'add-reminder-modal',
       componentProps: {
         date: this.selectedDate,
       },
-    });
+    } );
 
-    modal.onDidDismiss().then(() => {
+    modal.onDidDismiss().then( () => {
       this.getEvents();
-    });
+    } );
 
     return await modal.present();
   }
 
-  async openRemindersModal(reminder) {
-    const modal = await this.modal.create({
+  async openRemindersModal( reminder ) {
+    const modal = await this.modal.create( {
       component: RemindersModalsComponent,
       cssClass: 'view-reminder-modal',
       componentProps: {
-        date: this.parseDate(reminder.startTime),
-        startHour: this.parseHour(reminder.startTime),
-        endHour: this.parseHour(reminder.endTime),
+        date: this.parseDate( reminder.startTime ),
+        startHour: this.parseHour( reminder.startTime ),
+        endHour: this.parseHour( reminder.endTime ),
         reminder: reminder.title,
       },
-    });
+    } );
 
     return await modal.present();
   }
@@ -98,37 +98,37 @@ export class CalendarPage implements OnInit {
   };
 
   public async getEvents() {
-    const userId = ((await this.storage.get(USER)) as any).id;
+    const userId = ( ( await this.storage.get( USER ) ) as any ).id;
 
     this.calendarService
-      .getEvents({
+      .getEvents( {
         userId,
-        from: this.parseDate(this.calendar.currentDate),
-        to: this.parseDate(this.nextWeek()),
-      })
-      .subscribe((response) => {
-        this.eventSource = response.data.map((event) => {
-          const startTime = new Date(event.date);
+        from: this.parseDate( this.calendar.currentDate ),
+        to: this.parseDate( this.nextWeek() ),
+      } )
+      .subscribe( ( response ) => {
+        this.eventSource = response.data.map( ( event ) => {
+          const startTime = new Date( event.date );
 
           const title =
             event.campaign_client.length > 0
-              ? `${event.campaign_client[0].cliente.nombre_completo}: ${event.title}`
+              ? `${event.campaign_client[ 0 ].cliente.nombre_completo}: ${event.title}`
               : event.title;
 
           return {
             title,
             startTime,
-            endTime: this.getEndTime(startTime, 3),
+            endTime: this.getEndTime( startTime, 3 ),
           } as IEvent;
-        });
-      });
+        } );
+      } );
 
-    console.log(this.eventSource);
+    console.log( this.eventSource );
   }
 
-  public getEndTime(startTime: Date, duration: number): Date {
+  public getEndTime( startTime: Date, duration: number ): Date {
     const endTime = new Date();
-    endTime.setTime(startTime.getTime() + duration * 60 * 60 * 1000);
+    endTime.setTime( startTime.getTime() + duration * 60 * 60 * 1000 );
 
     return endTime;
   }
@@ -146,7 +146,7 @@ export class CalendarPage implements OnInit {
   public prevWeek(): Date {
     const date = new Date();
 
-    date.setDate(this.calendar.currentDate.getDate() - 7);
+    date.setDate( this.calendar.currentDate.getDate() - 7 );
 
     return date;
   }
@@ -154,7 +154,7 @@ export class CalendarPage implements OnInit {
   public nextWeek(): Date {
     const date = new Date();
 
-    date.setDate(this.calendar.currentDate.getDate() + 7);
+    date.setDate( this.calendar.currentDate.getDate() + 7 );
 
     return date;
   }
@@ -177,13 +177,13 @@ export class CalendarPage implements OnInit {
     return parsedDate.reverse().join('-');
   }
 
-  private parseHour(date: Date) {
-    return `${this.zeroBased(date.getHours())}:${this.zeroBased(
+  private parseHour( date: Date ) {
+    return `${this.zeroBased( date.getHours() )}:${this.zeroBased(
       date.getMinutes()
     )}`;
   }
 
-  private zeroBased(value: string | number): string {
-    return `0${value}`.slice(-2);
+  private zeroBased( value: string | number ): string {
+    return `0${value}`.slice( -2 );
   }
 }

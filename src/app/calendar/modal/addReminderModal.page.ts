@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { USER } from 'src/app/shared/constants/constants';
 import { CalendarService } from 'src/app/shared/services/calendar.service';
 import { StorageService } from 'src/app/shared/services/storage.service';
+import { CommonService } from '../../shared/services/common.service';
 
-@Component({
+@Component( {
   selector: 'app-reminder-modal',
   templateUrl: './addReminderModal.page.html',
-  styleUrls: ['./styles.scss'],
-})
+  styleUrls: [ './styles.scss' ],
+} )
 export class AddReminderModalComponent implements OnInit {
   public title = '';
   public selectedHour = '';
@@ -18,24 +19,24 @@ export class AddReminderModalComponent implements OnInit {
   constructor(
     private modal: ModalController,
     private calendarService: CalendarService,
-    private alertController: AlertController,
-    private storage: StorageService
-  ) {}
+    private storage: StorageService,
+    private common: CommonService
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  public setHour(date: string) {
-    console.log(date);
-    const newDate = new Date(date);
-    this.selectedHour = `${this.zeroBased(newDate.getHours())}:${this.zeroBased(
+  public setHour( date: string ) {
+    console.log( date );
+    const newDate = new Date( date );
+    this.selectedHour = `${this.zeroBased( newDate.getHours() )}:${this.zeroBased(
       newDate.getMinutes()
     )}:00`;
   }
 
   public async saveReminder(): Promise<void> {
-    if (!(await this.validateDate())) return;
+    if ( !( await this.validateDate() ) ) return;
 
-    const userId = ((await this.storage.get(USER)) as any).id;
+    const userId = ( ( await this.storage.get( USER ) ) as any ).id;
 
     const data = {
       attributes: {
@@ -46,20 +47,12 @@ export class AddReminderModalComponent implements OnInit {
       },
     };
 
-    this.calendarService.setReminder(data).subscribe(async (response) => {
-      console.log(response);
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Exito!',
-        subHeader: '',
-        message: response.message,
-        buttons: ['OK'],
-      });
-
-      await alert.present();
+    this.calendarService.setReminder( data ).subscribe( async ( response ) => {
+      console.log( response );
+      await this.common.presentToast( { message: response.message } );
 
       this.close();
-    });
+    } );
   }
 
   async close() {
@@ -67,47 +60,25 @@ export class AddReminderModalComponent implements OnInit {
   }
 
   private async validateDate(): Promise<boolean> {
-    if (this.title === '') {
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Error',
-        subHeader: '',
-        message: 'El título del recordatorio no debe estar vacío',
-        buttons: ['OK'],
-      });
-
-      await alert.present();
-
+    let message = '';
+    if ( this.title === '' ) {
+      message = 'El título del recordatorio no debe estar vacío';
+      this.common.presentToast( { message } );
       return false;
-    } else if (this.selectedHour === '') {
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Error',
-        subHeader: '',
-        message: 'La hora de inicio del recordatorio no debe estar vacía',
-        buttons: ['OK'],
-      });
-      await alert.present();
-
+    } else if ( this.selectedHour === '' ) {
+      message = 'La hora de inicio del recordatorio no debe estar vacía';
+      this.common.presentToast( { message } );
       return false;
-    } else if (this.duration === null) {
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Error',
-        subHeader: '',
-        message: 'La duración del recordatorio no debe estar vacío',
-        buttons: ['OK'],
-      });
-
-      await alert.present();
-
+    } else if ( this.duration === null ) {
+      message = 'La duración del recordatorio no debe estar vacío';
+      this.common.presentToast( { message } );
       return false;
     }
 
     return true;
   }
 
-  private zeroBased(value: string | number): string {
-    return `0${value}`.slice(-2);
+  private zeroBased( value: string | number ): string {
+    return `0${value}`.slice( -2 );
   }
 }

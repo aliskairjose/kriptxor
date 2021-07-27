@@ -39,9 +39,9 @@ export class DoesNotApplyModalComponent implements OnInit {
     console.log(this.selectedOption);
 
     this.campaignService
-      .updateCampaignClientNotApply(this.clientId, {
+      .updateCampaignClientInterest(this.clientId, {
         condition: 10,
-        reason_not_apply: 'Difunto',
+        reason_not_apply: this.selectedOption,
       })
       .subscribe((res) => {
         this.common.presentToast({

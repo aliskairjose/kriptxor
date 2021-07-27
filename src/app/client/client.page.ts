@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ActionSheetController } from '@ionic/angular';
 import { CommonService } from '../shared/services/common.service';
 import { CampaignService } from '../shared/services/campaign.service';
 import {
@@ -34,7 +35,8 @@ export class ClientPage implements OnInit {
     public location: Location,
     private call: CallNumber,
     private campaignService: CampaignService,
-    private modal: ModalController
+    private modal: ModalController,
+    private actionSheetController: ActionSheetController
   ) {}
 
   ngOnInit() {
@@ -44,11 +46,13 @@ export class ClientPage implements OnInit {
     });
   }
 
-  async updateInterest(interested: number): Promise<void> {
+  async updateInterest(type: string, value: number): Promise<void> {
     const loading = await this.common.presentLoading();
+    let data: any = {};
+    type === 'interest' ? (data.interest = value) : (data.unanswered = value);
     loading.present();
     this.campaignService
-      .updateCampaignClientInterest(this.clientId, interested)
+      .updateCampaignClientInterest(this.clientId, data)
       .subscribe(
         () => {
           loading.dismiss();
@@ -68,8 +72,6 @@ export class ClientPage implements OnInit {
         loading.dismiss();
         this.client = { ...response.data.cliente };
         this.campaing = { ...response.data.campaign };
-        console.log('respuesta');
-        console.log(response.data);
       },
       () => loading.dismiss()
     );
@@ -80,12 +82,16 @@ export class ClientPage implements OnInit {
         this.pagination = { ...response.meta.page };
         this.historical = [...response.data];
       });
+
+    this.campaignService
+      .campaignClientHistory(this.clientId)
+      .subscribe((response) => {
+        this.pagination = { ...response.meta.page };
+        this.historical = [...response.data];
+      });
   }
 
   async nextCall() {
-    console.log('method next call');
-    console.log(this.campaing);
-    console.log(this.campaing.id);
     const loading = await this.common.presentLoading();
     loading.present();
     this.campaignService.callNow(this.campaing.id).subscribe(

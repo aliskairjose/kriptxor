@@ -17,7 +17,6 @@ import { InfoBarComponent } from '../shared/components/info-bar/info-bar.compone
     ClientPageRoutingModule
   ],
   declarations: [ ClientPage, InfoBarComponent ],
-  entryComponents: [ InfoBarComponent ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 
 } )

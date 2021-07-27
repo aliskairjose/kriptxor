@@ -41,8 +41,8 @@ export class CampaignService {
     return this.http.get( `campaign-clients?filter=${filtro}&page=${page}&include=cliente,status&skipCalledClients=1` );
   }
 
-  updateCampaignClientInterest( id: number, interested: number ): Observable<any> {
-    return this.http.put( `campaign-clients/${id}`, { interested } );
+  updateCampaignClientInterest( id: number, data: any ): Observable<any> {
+    return this.http.put( `campaign-clients/${id}`, data );
   }
 
 
@@ -60,8 +60,8 @@ export class CampaignService {
   }
 
   callNow( campaignId: number ): Observable<any> {
-    console.log("campaign id recibido:"+campaignId);
-    const filter = { campaignId:campaignId, order: { field: 'created_at', way: 'ASC' } };
+    console.log( "campaign id recibido:" + campaignId );
+    const filter = { campaignId: campaignId, order: { field: 'created_at', way: 'ASC' } };
     const filtro = JSON.stringify( filter );
     return this.http.get( `campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status` );
   }

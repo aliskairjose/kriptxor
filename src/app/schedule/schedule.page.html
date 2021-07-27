@@ -7,9 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="ion-padding">
-
   <app-info-bar [client]="client" [id]="id"></app-info-bar>
 
   <ion-card>
@@ -22,74 +20,116 @@
       <div class="document">
         <ion-list *ngFor="let reminder of reminders">
           <ion-item class="no-bottom-border-item">
-            <ion-icon slot="start"  src="assets/icon/arrow-icon.svg"></ion-icon>
-            <ion-icon slot="end" (click)="alert(reminder)"  src="assets/icon/points.svg"></ion-icon>
-            <ion-text>
-              {{ reminder.title }}
-            </ion-text>
+            <ion-icon slot="start" src="assets/icon/arrow-icon.svg"></ion-icon>
+            <ion-icon
+              slot="end"
+              (click)="alert(reminder)"
+              src="assets/icon/points.svg"
+            ></ion-icon>
+            <ion-text> {{ reminder.title }} </ion-text>
           </ion-item>
           <ion-item class="no-bottom-border-item">
-            <ion-badge>Creado por {{reminder.user.nombre}} {{reminder.user.apellido}} </ion-badge>
+            <ion-badge
+              >Creado por {{reminder.user.nombre}} {{reminder.user.apellido}}
+            </ion-badge>
           </ion-item>
-          <ion-item class="last">
-            {{reminder.updated_at}}
-          </ion-item>
+          <ion-item class="last"> {{reminder.updated_at}} </ion-item>
         </ion-list>
-
       </div>
 
       <!-- Infinte Scroll -->
       <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando mas recordatorios...">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Cargando mas recordatorios..."
+        >
         </ion-infinite-scroll-content>
       </ion-infinite-scroll>
     </ion-card-content>
   </ion-card>
   <ion-card>
     <ion-card-header>
-      <ion-card-title *ngIf="!updatedReminder else updt" class="card-header-title">Crea una reunion</ion-card-title>
+      <ion-card-title
+        *ngIf="!updatedReminder else updt"
+        class="card-header-title"
+        >Crea una reunion</ion-card-title
+      >
       <ng-template #updt>
-        <ion-card-title class="card-header-title">Actualizar reunion</ion-card-title>
-       </ng-template>
+        <ion-card-title class="card-header-title"
+          >Actualizar reunion</ion-card-title
+        >
+      </ng-template>
     </ion-card-header>
     <ion-card-content>
       <ion-item class="no-bottom-border-item">
-        <ion-textarea [(ngModel)]="reminder.title" auto-grow="true" placeholder="Escribe aquí tu nota"></ion-textarea>
+        <ion-textarea
+          [(ngModel)]="reminder.title"
+          auto-grow="true"
+          placeholder="Escribe aquí tu nota"
+        ></ion-textarea>
       </ion-item>
       <ion-item class="no-bottom-border-item">
-          <ion-label>Fecha de la reunion</ion-label>
-          <ion-datetime [(ngModel)]="date"  min="{{today}}" max="{{maxDate}}" placeholder="Selecciona una Fecha"></ion-datetime>
+        <ion-label>Fecha de la reunion</ion-label>
+        <ion-datetime
+          (ionChange)="validateDate()"
+          [(ngModel)]="date"
+          min="{{today}}"
+          max="{{maxDate}}"
+          placeholder="Selecciona una Fecha"
+        ></ion-datetime>
       </ion-item>
       <ion-item class="no-bottom-border-item">
-          <ion-label>Hora de la reunion</ion-label>
-          <ion-datetime [(ngModel)]="time" display-format="h:mm A" picker-format="h:mm A"></ion-datetime>
+        <ion-label>Hora de la reunion</ion-label>
+        <ion-datetime
+          [(ngModel)]="time"
+          display-format="h:mm A"
+          picker-format="h:mm A"
+        ></ion-datetime>
       </ion-item>
       <ion-item class="no-bottom-border-item">
-      <ion-label>Duracion</ion-label>
-      <ion-select [(ngModel)]="reminder.duration" value="{{reminder.duration}}" placeholder="Selecciona cuantas hora durara la reunion">
-        <ion-select-option *ngFor="let duration of durations" value="{{duration.id}}">{{duration.content}}</ion-select-option>
-      </ion-select>
-    </ion-item>
+        <ion-label>Duracion</ion-label>
+        <ion-select
+          [(ngModel)]="reminder.duration"
+          value="{{reminder.duration}}"
+          placeholder="Selecciona cuantas hora durara la reunion"
+        >
+          <ion-select-option
+            *ngFor="let duration of durations"
+            value="{{duration.id}}"
+            >{{duration.content}}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
     </ion-card-content>
   </ion-card>
   <div class="m-0 row justify-content-center">
-    <ion-button [routerLink]="[ '/campaigns/campaign',id ]" class="col-auto" shape="round" color="light">
-      <ion-text class="card-content-footer-text">
-        Salir
-      </ion-text>
+    <ion-button
+      [routerLink]="[ '/campaigns/campaign',id ]"
+      class="col-auto"
+      shape="round"
+      color="light"
+    >
+      <ion-text class="card-content-footer-text"> Salir </ion-text>
     </ion-button>
     &nbsp;
-    <ion-button class="col-auto" (click)="create()" *ngIf="!updatedReminder else upd" shape="round" color="warning">
-      <ion-text class="card-content-footer-text">
-        Guardar cita
-      </ion-text>
+    <ion-button
+      class="col-auto"
+      (click)="create()"
+      *ngIf="!updatedReminder else upd"
+      shape="round"
+      color="warning"
+    >
+      <ion-text class="card-content-footer-text"> Guardar cita </ion-text>
     </ion-button>
     <ng-template #upd>
-      <ion-button class="col-auto" (click)="update()" shape="round" color="warning">
-        <ion-text class="card-content-footer-text">
-          Actualizar cita
-        </ion-text>
+      <ion-button
+        class="col-auto"
+        (click)="update()"
+        shape="round"
+        color="warning"
+      >
+        <ion-text class="card-content-footer-text"> Actualizar cita </ion-text>
       </ion-button>
-     </ng-template>
+    </ng-template>
   </div>
 </ion-content>

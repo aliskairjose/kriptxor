@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarMode, Step, IEvent } from 'ionic2-calendar/calendar';
 import { CalendarService } from '../shared/services/calendar.service';
-import { AlertController, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { Location } from '@angular/common';
 import { StorageService } from '../shared/services/storage.service';
 import { USER } from '../shared/constants/constants';
 import { AddReminderModalComponent } from './modal/addReminderModal.page';
 import { RemindersModalsComponent } from './modal/remindersModal.page';
+import { CommonService } from '../shared/services/common.service';
+import { HolidayService } from '../shared/services/holiday.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-calendar',
@@ -16,6 +19,7 @@ import { RemindersModalsComponent } from './modal/remindersModal.page';
 export class CalendarPage implements OnInit {
   eventSource: IEvent[] = [];
   selectedDate: string = null;
+  holidays: [] = [];
 
   calendar = {
     mode: 'week' as CalendarMode,
@@ -26,26 +30,33 @@ export class CalendarPage implements OnInit {
 
   constructor(
     private calendarService: CalendarService,
+    private holidayService: HolidayService,
     private location: Location,
     private storage: StorageService,
     private modal: ModalController,
-    private alertController: AlertController
+    private commom: CommonService
   ) {
     this.getEvents();
+    this.holidayService.getHolidays().subscribe((res) => {
+      this.holidays = res.data;
+    });
   }
 
   ngOnInit() {}
 
   async initModal() {
     if (this.selectedDate === null) {
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Error',
-        subHeader: '',
+      return await this.commom.presentToast({
         message: 'Debe seleccionar una fecha del calendario',
-        buttons: ['OK'],
+        color: 'danger',
       });
-      await alert.present();
+    }
+
+    if (this.isHoliday(this.selectedDate)) {
+      await this.commom.presentToast({
+        message: 'La fecha seleccionada es un día festivo',
+        color: 'danger',
+      });
       return;
     }
 
@@ -80,7 +91,6 @@ export class CalendarPage implements OnInit {
   }
 
   public setDate = (selectedDate: Date) => {
-    console.log(selectedDate);
     const date = this.parseDate(selectedDate);
 
     this.selectedDate = date;
@@ -151,6 +161,12 @@ export class CalendarPage implements OnInit {
 
   public goBack(): void {
     this.location.back();
+  }
+
+  public isHoliday(date: string): boolean {
+    return this.holidays.some((h: any) =>
+      moment(date).isSame(h.date.split('-').reverse().join('-'), 'day')
+    );
   }
 
   private parseDate(date: Date): string {

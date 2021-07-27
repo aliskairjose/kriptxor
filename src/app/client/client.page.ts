@@ -100,7 +100,6 @@ export class ClientPage implements OnInit {
       loading.dismiss();
       this.client = { ...response.data.cliente };
       this.campaing = { ...response.data.campaign };
-      console.log(response);
     }, () => loading.dismiss() )
 
     this.campaignService.campaignClientHistory( this.clientId ).subscribe( response => {

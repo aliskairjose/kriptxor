@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../shared/services/common.service';
 import { CampaignService } from '../shared/services/campaign.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Client, MasterClient } from '../shared/classes/client';
 import { Quote, Bank, RequestSalary } from '../shared/classes/quote';
 import { QuoteService } from '../shared/services/quote.service';
 import * as moment from 'moment-timezone';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component( {
   selector: 'app-market-rates',
@@ -29,12 +29,12 @@ export class MarketRatesPage implements OnInit {
   showBanksRequested: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
     private activateRoute: ActivatedRoute,
     private common: CommonService,
     private campaignService: CampaignService,
     private quoteService: QuoteService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private router: Router
   ) {
     this.activateRoute.params.subscribe(
       params => {
@@ -96,10 +96,9 @@ selectBankQuote(){
 quoteClient(){
   this.quoteService.quote(this.quote).subscribe(
     response => {
-      this.successRequest(response.message);
-      this.quote = new Quote;
-    }
-  )
+     this.common.presentToast({message: response.message, color: 'success'})
+     this.router.navigate(['/client', this.id])
+   })
 }
 calculateRequestedSalary(event: any){
   if(event.target.value != null && event.target.value != ""){
@@ -188,13 +187,16 @@ setSex(){
 }
 setWeight(){
   if(this.lastedQuote != null){
-    if(this.lastedQuote.weight){
-      this.quote.weight = this.lastedQuote.weight;
+    if(this.lastedQuote.weight != null){
+        this.quote.type_weight = this.lastedQuote.type_weight;
+        this.quote.weight = this.lastedQuote.weight;
     } else{
       this.quote.weight = null
+      this.quote.type_weight = "kgs";
     }
   } else{
     this.quote.weight = null
+    this.quote.type_weight = "kgs";
   }
 }
 setHeight(){

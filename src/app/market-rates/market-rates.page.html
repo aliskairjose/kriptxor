@@ -57,7 +57,7 @@
               min="1960"
               [(ngModel)]="birth"
               (ionChange)="setAge($event)"
-              displayFormat="DD/MM/YYYY"></ion-datetime>                
+              displayFormat="DD/MM/YYYY"></ion-datetime>
           </ion-item>
         </ion-col>
         <ion-col size="4">
@@ -126,9 +126,9 @@
         </ion-col>
         <ion-col size="3">
           <ion-item>
-            <ion-select value="kg" placeholder="Seleccione sexo">
-              <ion-select-option value="kg">KG</ion-select-option>
-              <ion-select-option value="libs">LIBS</ion-select-option>
+            <ion-select value={quote.type_weight} [(ngModel)]="quote.type_weight">
+              <ion-select-option value="kgs">KG</ion-select-option>
+              <ion-select-option value="libras">LIBS</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>

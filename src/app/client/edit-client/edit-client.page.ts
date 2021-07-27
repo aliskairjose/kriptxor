@@ -21,7 +21,6 @@ export class EditClientPage implements OnInit {
     this.birth = moment(this.client.fecha_nacimiento).format('YYYY-MM-DD')
   }
   saveClient(){
-    console.log(this.client);
     if(this.validators() == true){
       this.clientService.updateClient(this.client).subscribe(
         () => {

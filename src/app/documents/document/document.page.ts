@@ -8,6 +8,7 @@ import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 })
 export class DocumentPage implements OnInit {
   url: string;
+  id: any;
 
 
   constructor(
@@ -15,7 +16,10 @@ export class DocumentPage implements OnInit {
     private previewAnyFile: PreviewAnyFile
   ) {
     this.activateRoute.params.subscribe(
-      params => this.url = params['url']
+      params => {
+        this.url = params['url'];
+        this.id = params['id'];
+      }
     )
    }
 

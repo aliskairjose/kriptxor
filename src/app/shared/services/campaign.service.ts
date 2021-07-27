@@ -60,7 +60,8 @@ export class CampaignService {
   }
 
   callNow( campaignId: number ): Observable<any> {
-    const filter = { campaignId, order: { field: 'created_at', way: 'ASC' } };
+    console.log("campaign id recibido:"+campaignId);
+    const filter = { campaignId:campaignId, order: { field: 'created_at', way: 'ASC' } };
     const filtro = JSON.stringify( filter );
     return this.http.get( `campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status` );
   }

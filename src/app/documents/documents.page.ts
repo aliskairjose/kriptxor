@@ -64,6 +64,13 @@ export class DocumentsPage implements OnInit {
       response => {
         this.documents = response.data as Document[];
         this.pages = response.meta.page as Page;
+        this.documents.forEach( res =>{
+          if(res.file.split('.').pop() == "png" || res.file.split('.').pop() == "jpg"){
+            res.img = true;
+          } else{
+            res.img = false;
+          }
+        })
         this.activateInfiniteScroll();
       }
 

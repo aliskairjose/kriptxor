@@ -75,23 +75,21 @@ export class DocumentsPage implements OnInit {
 
   createDocument() {
     this.document.campaign_client_id = this.id;
-    this.documentService.create( this.document ).subscribe(
-      response => {
-        this.document = new Document;
-        this.isFile = false;
-        this.successRequest( response.message );
-        this.getDocuments();
-      }
+    this.documentService.create( this.document ).subscribe( async ( response ) => {
+      this.document = new Document;
+      this.isFile = false;
+      await this.common.presentToast( { message: response.message } );
+      this.getDocuments();
+    }
     )
   }
 
   deleteDocument( document: Document ) {
-    this.documentService.delete( document.id ).subscribe(
-      response => {
-        this.document = new Document;
-        this.successRequest( response.message );
-        this.getDocuments();
-      }
+    this.documentService.delete( document.id ).subscribe( async ( response ) => {
+      this.document = new Document;
+      await this.common.presentToast( { message: response.message } );
+      this.getDocuments();
+    }
     )
   }
 
@@ -203,17 +201,6 @@ export class DocumentsPage implements OnInit {
     await alert.present();
   }
 
-  async successRequest( text: string ) {
-    const alert = await this.alertController.create( {
-      cssClass: 'my-custom-class',
-      header: 'Exito!',
-      subHeader: '',
-      message: text,
-      buttons: [ 'OK' ]
-    } );
-
-    await alert.present();
-  }
 
 
 }

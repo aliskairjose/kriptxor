@@ -26,6 +26,7 @@ export class InterceptorService {
         // Pasamos al siguiente interceptor de la cadena la petición modificada
         return next.handle( headers ).pipe(
           catchError( ( result ) => {
+            console.log( result )
             const color = 'danger';
             let message = '';
             switch ( result.status ) {
@@ -34,6 +35,10 @@ export class InterceptorService {
                   message = 'Credenciales inválidas';
                   this.common.presentToast( { message, color } );
                 }
+                break;
+              case 404:
+                message = result.error.errors;
+                this.common.presentToast( { message, color } );
                 break;
               default:
                 message = result.error.message;

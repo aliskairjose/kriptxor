@@ -11,12 +11,12 @@
 <ion-content class="ion-padding">
 
   <div class="card-container">
-    <div class="cards container-bordered">
+    <div class="cards container-bordered" [routerLink]="['/campaigns']">
       <img src="assets/icon/assessment.svg">
       <ion-label>{{data.allCampaigns}}</ion-label>
       <p>Campañas</p>
     </div>
-    <div class="cards container-bordered">
+    <div class="cards container-bordered" [routerLink]="['/clients']">
       <img src="/assets/icon/persons-circle.svg" alt="">
       <ion-label>{{data.clients}}</ion-label>
       <p>Clientes</p>
@@ -26,7 +26,7 @@
       <ion-label>{{data.projections}}</ion-label>
       <p>Proyecciones</p>
     </div>
-    <div class="cards container-bordered">
+    <div class="cards container-bordered" [routerLink]="['/calendar']">
       <img src="/assets/icon/calendar.svg" alt="">
       <ion-label>{{data.reminders}}</ion-label>
       <p>Agenda</p>
@@ -51,6 +51,7 @@
       <ion-card-content>
         <div class="d-flex flex-column">
           {{seeMore ? news.content.substring(0,100) + '...' : news.content}}...
+          <ion-img [src]="news.image"></ion-img>
           <div>
             <ion-button (click)="seeMore = !seeMore" color="warning" size="small">
               <ion-icon slot="start" name="eye-outline"></ion-icon>

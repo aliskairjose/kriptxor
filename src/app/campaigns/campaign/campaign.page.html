@@ -73,7 +73,7 @@
 
 <ion-footer class="ion-no-border">
   <div style="flex: 1;">
-    <ion-button class="call2" expand="full" color="warning" (click)="callNow()">
+    <ion-button class="call2" expand="full" color="warning" (click)="callNow()" [disabled]="!clients.length">
       <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
       <ion-text class="card-content-footer-text">
         CONTINUAR LLAMANDO

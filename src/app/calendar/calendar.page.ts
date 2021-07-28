@@ -8,6 +8,8 @@ import { USER } from '../shared/constants/constants';
 import { AddReminderModalComponent } from './modal/addReminderModal.page';
 import { RemindersModalsComponent } from './modal/remindersModal.page';
 import { CommonService } from '../shared/services/common.service';
+import { HolidayService } from '../shared/services/holiday.service';
+import * as moment from 'moment';
 
 @Component( {
   selector: 'app-calendar',
@@ -17,6 +19,7 @@ import { CommonService } from '../shared/services/common.service';
 export class CalendarPage implements OnInit {
   eventSource: IEvent[] = [];
   selectedDate: string = null;
+  holidays: [] = [];
 
   calendar = {
     mode: 'week' as CalendarMode,
@@ -27,20 +30,33 @@ export class CalendarPage implements OnInit {
 
   constructor(
     private calendarService: CalendarService,
+    private holidayService: HolidayService,
     private location: Location,
     private storage: StorageService,
     private modal: ModalController,
-    private common: CommonService,
+    private commom: CommonService
   ) {
     this.getEvents();
+    this.holidayService.getHolidays().subscribe((res) => {
+      this.holidays = res.data;
+    });
   }
 
   ngOnInit() { }
 
   async initModal() {
-    if ( this.selectedDate === null ) {
-      const message = 'Debe seleccionar una fecha del calendario';
-      this.common.presentToast( { message } );
+    if (this.selectedDate === null) {
+      return await this.commom.presentToast({
+        message: 'Debe seleccionar una fecha del calendario',
+        color: 'danger',
+      });
+    }
+
+    if (this.isHoliday(this.selectedDate)) {
+      await this.commom.presentToast({
+        message: 'La fecha seleccionada es un día festivo',
+        color: 'danger',
+      });
       return;
     }
 
@@ -74,9 +90,8 @@ export class CalendarPage implements OnInit {
     return await modal.present();
   }
 
-  public setDate = ( selectedDate: Date ) => {
-    console.log( selectedDate );
-    const date = this.parseDate( selectedDate );
+  public setDate = (selectedDate: Date) => {
+    const date = this.parseDate(selectedDate);
 
     this.selectedDate = date;
     this.initModal();
@@ -148,11 +163,18 @@ export class CalendarPage implements OnInit {
     this.location.back();
   }
 
-  private parseDate( date: Date ): string {
-    const parsedDate = date.toLocaleString().split( ' ' )[ 0 ].split( '/' );
-    parsedDate[ 0 ] = this.zeroBased( parsedDate[ 0 ] );
-    parsedDate[ 1 ] = this.zeroBased( parsedDate[ 1 ] );
-    return parsedDate.reverse().join( '-' );
+  public isHoliday(date: string): boolean {
+    console.log('date: ', date);
+    return this.holidays.some((h: any) =>
+      moment(date).isSame(h.date.split('-').reverse().join('-'), 'day')
+    );
+  }
+
+  private parseDate(date: Date): string {
+    const parsedDate = date.toLocaleString().split(' ')[0].split('/');
+    parsedDate[0] = this.zeroBased(parsedDate[0]);
+    parsedDate[1] = this.zeroBased(parsedDate[1]);
+    return parsedDate.reverse().join('-');
   }
 
   private parseHour( date: Date ) {

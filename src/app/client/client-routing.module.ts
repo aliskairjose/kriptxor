@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: ClientPage
+  },  {
+    path: 'edit-client',
+    loadChildren: () => import('./edit-client/edit-client.module').then( m => m.EditClientPageModule)
   }
+
 ];
 
 @NgModule({

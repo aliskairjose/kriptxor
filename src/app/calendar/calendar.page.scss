@@ -35,3 +35,15 @@ section {
   --padding-bottom: 1rem;
   --padding-left: 0.5rem;
 }
+
+.header-calendar {
+  background-color: var(--ion-color-danger);
+  color: #fff;
+}
+
+.legend-danger {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: var(--ion-color-danger);
+}

@@ -7,51 +7,81 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="ion-padding">
-
   <app-info-bar [client]="client" [id]="clientId"></app-info-bar>
 
-  <ion-grid fixed class="ion-no-padding">
-    <ion-row>
-      <ion-col size="4">
-        <ion-chip color="warning" mode="ios" outline="true" (click)="updateInterest('interest', 2)"
-          class="ion-margin-end">
-          <ion-icon name="thumbs-down-outline"></ion-icon>
-          <ion-label>No interesado</ion-label>
-        </ion-chip>
-      </ion-col>
-      <ion-col size="4">
-        <ion-chip color="success" mode="ios" outline="true" (click)="updateInterest('interest',1)">
-          <ion-icon name="thumbs-up-outline"></ion-icon>
-          <ion-label>Interesado</ion-label>
-        </ion-chip>
-      </ion-col>
-      <ion-col size="4">
-        <ion-chip color="danger" mode="ios" outline="true" (click)="updateInterest('unanswered', 2)">
-          <ion-icon name="hand-left-outline"></ion-icon>
-          <ion-label>Sin respuesta</ion-label>
-        </ion-chip>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="d-flex flex-column align-items-center">
+    <div>
+      <ion-chip
+        color="warning"
+        mode="ios"
+        outline="true"
+        (click)="updateInterest('interest', 2)"
+        class="ion-margin-end"
+      >
+        <ion-icon name="close-circle-outline"> </ion-icon>
+        <ion-label>No interesado</ion-label>
+      </ion-chip>
+      <ion-chip
+        color="success"
+        mode="ios"
+        outline="true"
+        (click)="updateInterest('interest',1)"
+      >
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <ion-label>Interesado</ion-label>
+      </ion-chip>
+    </div>
+    <div>
+      <ion-chip
+        color="danger"
+        mode="ios"
+        outline="true"
+        (click)="updateInterest('unanswered', 2)"
+      >
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <ion-label>Sin respuesta</ion-label>
+      </ion-chip>
+      <ion-chip
+        color="warning"
+        mode="ios"
+        outline="true"
+        (click)="openNotApplyModal()"
+      >
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <ion-label>No aplica</ion-label>
+      </ion-chip>
+    </div>
+  </div>
 
   <div class="d-flex justify-content-around container-bordered">
     <div class="d-flex flex-column">
       <ion-label class="ion-margin-top">Cliente:</ion-label>
       <ion-label>{{client.nombre_completo}}</ion-label>
+      <ion-label class="ion-margin-top">Sexo:</ion-label>
+      <ion-label>{{client.sexo}}</ion-label>
+      <ion-label class="ion-margin-top">Fecha de nacimiento:</ion-label>
+      <ion-label>{{client.fecha_nacimiento}}</ion-label>
+      <ion-label class="ion-margin-top">N° Seguro social:</ion-label>
+      <ion-label>{{client.seguro_social}}</ion-label>
+      <br>
       <ion-chip color="primary" mode="ios" outline="false">
         <ion-label>Actualizado</ion-label>
       </ion-chip>
       <ion-label class="ion-margin-vertical">
-        <small style="font-size: 10px;" class="text-black-50">Última actualización 26 de mayo 2021</small>
+        <small style="font-size: 10px" class="text-black-50"
+          >Última actualización {{client.updated_at | date}}
+          </small
+        >
       </ion-label>
     </div>
     <div class="d-flex flex-column align-items-start">
       <ion-label class="ion-margin-top">Teléfono:</ion-label>
       <ion-label>{{client.numero}}</ion-label>
-      <ion-label class="ion-margin-top">Cédula</ion-label>
+      <ion-label class="ion-margin-top">Cédula:</ion-label>
       <ion-label>{{client.identidad}}</ion-label>
+      <ion-label class="ion-margin-top">Dirección:</ion-label>
+      <ion-label>{{client.direccion}}</ion-label>
     </div>
     <div (click)="openOptions(client)">
       <ion-icon name="ellipsis-vertical" class="ion-margin-vertical"></ion-icon>
@@ -65,30 +95,44 @@
     <ion-list>
       <ng-container *ngFor="let h of historical; let i=index">
         <ion-item>
-          <div style="margin: 1rem 0;" class="w-100">
+          <div style="margin: 1rem 0" class="w-100">
             <ion-label>
-              <ion-icon class="icon" src="assets/icon/cellphone1.svg"></ion-icon>
-              {{h?.user.nombre}} {{h?.user.apellido}}: Ha marcado interesado
+              <ion-icon
+                class="icon"
+                src="assets/icon/cellphone1.svg"
+              ></ion-icon>
+              {{h?.user.nombre}} {{h?.user.apellido}}: {{h?.message}}
             </ion-label>
             <div class="d-flex justify-content-between">
-              <div class="date-badged primary text-center">{{h.created_at | date}}</div>
-              <div class="d-flex align-items-center" *ngIf="h.message === 'Se mostró interesado'">
-                <ion-icon slot="end" name="checkmark-circle-outline" color="success" style="font-size: 2rem;">
+              <div class="date-badged primary text-center">
+                {{h.created_at | date}}
+              </div>
+              <div
+                class="d-flex align-items-center"
+                *ngIf="h.message === 'Se mostró interesado'"
+              >
+                <ion-icon
+                  slot="end"
+                  name="checkmark-circle-outline"
+                  color="success"
+                  style="font-size: 2rem"
+                >
                 </ion-icon>
-                <ion-label>
-                  Interesado
-                </ion-label>
+                <ion-label> Interesado </ion-label>
               </div>
             </div>
           </div>
         </ion-item>
       </ng-container>
     </ion-list>
-
   </div>
 
   <div class="d-flex justify-content-around">
-    <ion-button color="warning" (click)="backToCampaignClients()">Volver al listado</ion-button>
-    <ion-button color="primary" fill="outline" (click)="nextCall()">Llamar siguiente</ion-button>
+    <ion-button color="warning" (click)="backToCampaignClients()"
+      >Volver al listado</ion-button
+    >
+    <ion-button color="primary" fill="outline" (click)="nextCall()"
+      >Llamar siguiente</ion-button
+    >
   </div>
 </ion-content>

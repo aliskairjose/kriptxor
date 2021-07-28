@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../shared/services/dashboard.service';
-import { Dashboard } from '../shared/interfaces/dashboard';
+import { Dashboard, LastNews } from '../shared/interfaces/dashboard';
 import { CommonService } from '../shared/services/common.service';
 
 @Component( {
@@ -11,7 +11,7 @@ import { CommonService } from '../shared/services/common.service';
 export class DashboardPage implements OnInit {
 
   data: Dashboard = {};
-  seeMore = true;
+  lastNews: LastNews[] = [];
 
   constructor(
     private common: CommonService,
@@ -24,6 +24,10 @@ export class DashboardPage implements OnInit {
     this.dashboard.dashboard().subscribe( response => {
       loading.dismiss();
       this.data = { ...response.data };
+      this.lastNews = response.data.lastNews.map( news => {
+        news.seeMore = true;
+        return news;
+      } );
     }, () => loading.dismiss() );
   }
 

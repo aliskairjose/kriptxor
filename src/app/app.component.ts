@@ -49,7 +49,7 @@ export class AppComponent {
     this.platform.ready().then( async () => {
       SplashScreen.hide();
       const isLoggedin = await this.storage.get( TOKEN );
-      const route = isLoggedin ? '/market-rates/874836' : '/login';
+      const route = isLoggedin ? '/dashboard' : '/login';
       this.router.navigate( [ route ] );
     } );
   }

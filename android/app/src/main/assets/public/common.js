@@ -673,6 +673,56 @@ HttpService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
 
 /***/ }),
 
+/***/ 44466:
+/*!*****************************************!*\
+  !*** ./src/app/shared/shared.module.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SharedModule": () => (/* binding */ SharedModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 38583);
+/* harmony import */ var _components_info_bar_info_bar_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/info-bar/info-bar.component */ 83777);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ 39895);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 3679);
+
+
+
+
+
+
+let SharedModule = class SharedModule {
+};
+SharedModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.NgModule)({
+        declarations: [
+            _components_info_bar_info_bar_component__WEBPACK_IMPORTED_MODULE_0__.InfoBarComponent
+        ],
+        exports: [
+            _components_info_bar_info_bar_component__WEBPACK_IMPORTED_MODULE_0__.InfoBarComponent,
+            _angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule,
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__.RouterModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule,
+        ],
+        imports: [
+            _angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule,
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__.RouterModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule,
+            _angular_forms__WEBPACK_IMPORTED_MODULE_5__.ReactiveFormsModule,
+        ],
+        entryComponents: []
+    })
+], SharedModule);
+
+
+
+/***/ }),
+
 /***/ 47150:
 /*!********************************************************************!*\
   !*** ./src/app/shared/components/info-bar/info-bar.component.scss ***!

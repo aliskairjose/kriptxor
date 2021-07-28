@@ -64,13 +64,13 @@ export class DocumentsPage implements OnInit {
       response => {
         this.documents = response.data as Document[];
         this.pages = response.meta.page as Page;
-        this.documents.forEach( res =>{
-          if(res.file.split('.').pop() == "png" || res.file.split('.').pop() == "jpg"){
+        this.documents.forEach( res => {
+          if ( res.file.split( '.' ).pop() == "png" || res.file.split( '.' ).pop() == "jpg" ) {
             res.img = true;
-          } else{
+          } else {
             res.img = false;
           }
-        })
+        } )
         this.activateInfiniteScroll();
       }
 
@@ -194,16 +194,9 @@ export class DocumentsPage implements OnInit {
     await alert.present();
   }
 
-  async invalidDocument() {
-    const alert = await this.alertController.create( {
-      cssClass: 'my-custom-class',
-      header: 'Error',
-      subHeader: '',
-      message: 'El documento es invalido',
-      buttons: [ 'OK' ]
-    } );
-
-    await alert.present();
+  invalidDocument() {
+    const message = 'El documento es invalido';
+    this.common.presentToast( { message } );
   }
 
 

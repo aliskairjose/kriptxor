@@ -95,33 +95,33 @@ export class MarketRatesPage implements OnInit {
   }
 
 
-setBank(id: number){
-  console.log(id);
-}
-selectBankQuote(){
-  this.quote.banks = [];
-  this.banks.forEach( key => {
-    key as Bank;
-    if(key.isChecked == true){
-      this.quote.banks.push(key.bank_id)
-    }
-  })
-}
-quoteClient(){
-  this.quoteService.quote(this.quote).subscribe(
-    response => {
-     this.common.presentToast({message: response.message, color: 'success'})
-     this.router.navigate(['/client', this.id])
-   })
-}
-calculateRequestedSalary(event: any){
-  if(event.target.value != null && event.target.value != ""){
-      this.requestedSalary(event.target.value)
-  } else {
-    this.quote.salary = null;
-    this.showBanksRequested = false;
+  setBank( id: number ) {
+    console.log( id );
   }
-}
+  selectBankQuote() {
+    this.quote.banks = [];
+    this.banks.forEach( key => {
+      key as Bank;
+      if ( key.isChecked == true ) {
+        this.quote.banks.push( key.bank_id )
+      }
+    } )
+  }
+  quoteClient() {
+    this.quoteService.quote( this.quote ).subscribe(
+      response => {
+        this.common.presentToast( { message: response.message, color: 'success' } )
+        this.router.navigate( [ '/client', this.id ] )
+      } )
+  }
+  calculateRequestedSalary( event: any ) {
+    if ( event.target.value != null && event.target.value != "" ) {
+      this.requestedSalary( event.target.value )
+    } else {
+      this.quote.salary = null;
+      this.showBanksRequested = false;
+    }
+  }
 
   requestedSalary( amount: string ) {
     let formData: FormData = new FormData;
@@ -180,35 +180,35 @@ calculateRequestedSalary(event: any){
   }
 
 
-setSex(){
-  if(this.client.sexo != null){
-    this.quote.sex = this.client.sexo
+  setSex() {
+    if ( this.client.sexo != null ) {
+      this.quote.sex = this.client.sexo
+    }
   }
-}
-setWeight(){
-  if(this.lastedQuote != null){
-    if(this.lastedQuote.weight != null){
+  setWeight() {
+    if ( this.lastedQuote != null ) {
+      if ( this.lastedQuote.weight != null ) {
         this.quote.type_weight = this.lastedQuote.type_weight;
         this.quote.weight = this.lastedQuote.weight;
-    } else{
+      } else {
+        this.quote.weight = null
+        this.quote.type_weight = "kgs";
+      }
+    } else {
       this.quote.weight = null
       this.quote.type_weight = "kgs";
     }
-  } else{
-    this.quote.weight = null
-    this.quote.type_weight = "kgs";
   }
-}
-setHeight(){
-  if(this.lastedQuote != null){
-    if(this.lastedQuote.height){
-      this.quote.height = this.lastedQuote.height;
-    } else{
-      this.quote.height = null
+  setHeight() {
+    if ( this.lastedQuote != null ) {
+      if ( this.lastedQuote.height ) {
+        this.quote.height = this.lastedQuote.height;
+      } else {
+        this.quote.height = null
 
-}
-}
-}
+      }
+    }
+  }
 
   calculateAge() {
     if ( this.client.fecha_nacimiento != null ) {
@@ -276,16 +276,8 @@ setHeight(){
   }
 
   // Alerts
-  async successRequest( text: string ) {
-    const alert = await this.alertController.create( {
-      cssClass: 'my-custom-class',
-      header: 'Exito!',
-      subHeader: '',
-      message: text,
-      buttons: [ 'OK' ]
-    } );
-
-    await alert.present();
+  successRequest( message: string ) {
+    this.common.presentToast( { message } );
   }
 
   invalidForm( text: string ) {

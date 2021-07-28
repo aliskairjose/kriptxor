@@ -12,8 +12,10 @@ import { Client } from '../shared/classes/client';
 import { Page } from '../shared/interfaces/pagination';
 import { Location } from '@angular/common';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { EditClientPage } from './edit-client/edit-client.page';
 import { ModalController } from '@ionic/angular';
 import { DoesNotApplyModalComponent } from './modal/doesNotApplyModal.page';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 
 @Component({
   selector: 'app-client',
@@ -32,11 +34,12 @@ export class ClientPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private common: CommonService,
+    private clipboard: Clipboard,
     public location: Location,
     private call: CallNumber,
+    public actionSheetController: ActionSheetController,
     private campaignService: CampaignService,
-    private modal: ModalController,
-    private actionSheetController: ActionSheetController
+    private modal: ModalController
   ) {}
 
   ngOnInit() {
@@ -46,35 +49,105 @@ export class ClientPage implements OnInit {
     });
   }
 
-  async updateInterest(type: string, value: number): Promise<void> {
+  async openOptions( client ) {
+    const actionSheet = await this.actionSheetController.create( {
+      header: '¿Que desea hacer?',
+      buttons: [
+        {
+          text: 'Editar',
+          role: 'edit',
+          icon: 'pencil-outline',
+          handler: () => {
+            this.presentModal()
+          }
+        },
+        {
+          text: 'Copiar datos',
+          handler: async () => {
+            const info = `
+            Hola interesado, estos son los datos del cliente
+            Nombre: ${this.client.nombre_completo}
+            Cédula: ${this.client.identidad}
+            Fecha de nacimiento: ${this.client.fecha_nacimiento}
+            Dirección: ${this.client.direccion}
+            Email: ${this.client.correo}
+            Teléfono: ${this.client.numero}
+            #Seguro: ${this.client.seguro_social}
+            Sexo: ${this.client.sexo}`;
+            this.clipboard.copy( info ).then( () => this.common.presentToast( { message: 'Datos copiados' } ) );
+          }
+        },
+        {
+          text: 'Cancelar',
+          icon: 'close',
+          role: 'cancel'
+        }
+      ]
+    } );
+    await actionSheet.present();
+
+  }
+  async options() {
+   const actionSheet = await this.actionSheetController.create({
+     header: '¿Que accion deberia realizar?',
+     cssClass: 'my-custom-class',
+     buttons: [{
+       text: 'Editar',
+       role: 'edit',
+       icon: 'pencil-outline',
+       handler: () => {
+         this.presentModal()
+       }
+     }, {
+       text: 'Copiar',
+       icon: 'document-text-outline',
+       handler: () => {
+         console.log('Share clicked');
+       }
+     }, {
+       text: 'Cancelar',
+       icon: 'close',
+       role: 'cancel',
+       handler: () => {
+       }
+     }]
+   });
+   await actionSheet.present();
+ }
+ async presentModal() {
+   const modal = await this.modal.create({
+     component: EditClientPage,
+     cssClass: 'my-custom-class',
+     componentProps: {
+      'client': this.client,
+    }
+   });
+   return await modal.present();
+ }
+
+  async updateInterest( type: string, value: number ): Promise<void> {
     const loading = await this.common.presentLoading();
     let data: any = {};
-    type === 'interest' ? (data.interest = value) : (data.unanswered = value);
+    ( type === 'interest' ) ? data.interest = value : data.unanswered = value;
     loading.present();
     this.campaignService
-      .updateCampaignClientInterest(this.clientId, data)
-      .subscribe(
-        () => {
-          loading.dismiss();
-          const message = 'Se actualizo con exito';
-          this.common.presentToast({ message });
-          this.loadData();
-        },
-        () => loading.dismiss()
-      );
+      .updateCampaignClientInterest( this.clientId, data )
+      .subscribe( () => {
+        loading.dismiss();
+        const message = 'Se actualizo con exito';
+        this.common.presentToast( { message } );
+        this.loadData();
+      }, () => loading.dismiss() );
   }
 
   async loadData() {
     const loading = await this.common.presentLoading();
     loading.present();
-    this.campaignService.getCampaignClientById(this.clientId).subscribe(
-      (response) => {
-        loading.dismiss();
-        this.client = { ...response.data.cliente };
-        this.campaing = { ...response.data.campaign };
-      },
-      () => loading.dismiss()
-    );
+    this.campaignService.getCampaignClientById( this.clientId ).subscribe( response => {
+      loading.dismiss();
+      this.client = { ...response.data.cliente };
+      this.campaing = { ...response.data.campaign };
+    }, () => loading.dismiss() )
 
     this.campaignService
       .campaignClientHistory(this.clientId)
@@ -83,12 +156,6 @@ export class ClientPage implements OnInit {
         this.historical = [...response.data];
       });
 
-    this.campaignService
-      .campaignClientHistory(this.clientId)
-      .subscribe((response) => {
-        this.pagination = { ...response.meta.page };
-        this.historical = [...response.data];
-      });
   }
 
   async nextCall() {

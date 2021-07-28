@@ -8,14 +8,17 @@ import { MarketRatesPageRoutingModule } from './market-rates-routing.module';
 
 import { MarketRatesPage } from './market-rates.page';
 import { InfoBarComponent } from '../shared/components/info-bar/info-bar.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule( {
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MarketRatesPageRoutingModule
+    MarketRatesPageRoutingModule,
+    SharedModule
   ],
-  declarations: [ MarketRatesPage, InfoBarComponent ]
+  providers: [ InfoBarComponent ],
+  declarations: [ MarketRatesPage ]
 } )
 export class MarketRatesPageModule { }

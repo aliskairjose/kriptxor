@@ -1,5 +1,5 @@
 
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -38,7 +38,7 @@ registerLocaleData( localeEs );
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     CallNumber,
     PreviewAnyFile,
-    SocialSharing
+    SocialSharing,
   ],
   bootstrap: [ AppComponent ],
 } )

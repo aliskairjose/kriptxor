@@ -60,6 +60,11 @@ export class CampaignService {
     return this.http.put(`campaign-clients/${id}`, data);
   }
 
+  getCampaignClientPdf( id: number ): Observable<any> {
+    return this.http.get( `campaign-client-quotes/${id}/pdf` );
+  }
+
+
   /**
    * @description Muestra el historial del ciente de la campaña
    * @param campaign_client_id

@@ -63,14 +63,15 @@
       <ion-label class="ion-margin-top">Fecha de nacimiento:</ion-label>
       <ion-label>{{client.fecha_nacimiento}}</ion-label>
       <ion-label class="ion-margin-top">N° Seguro social:</ion-label>
-      <ion-label>{{client.social_security_number}}</ion-label>
-      <br />
+      <ion-label>{{client.seguro_social}}</ion-label>
+      <br>
       <ion-chip color="primary" mode="ios" outline="false">
         <ion-label>Actualizado</ion-label>
       </ion-chip>
       <ion-label class="ion-margin-vertical">
         <small style="font-size: 10px" class="text-black-50"
-          >Última actualización 26 de mayo 2021</small
+          >Última actualización {{client.updated_at | date}}
+          </small
         >
       </ion-label>
     </div>
@@ -82,12 +83,8 @@
       <ion-label class="ion-margin-top">Dirección:</ion-label>
       <ion-label>{{client.direccion}}</ion-label>
     </div>
-    <div>
-      <ion-icon
-        (click)="options()"
-        name="ellipsis-vertical"
-        class="ion-margin-vertical"
-      ></ion-icon>
+    <div (click)="openOptions(client)">
+      <ion-icon name="ellipsis-vertical" class="ion-margin-vertical"></ion-icon>
     </div>
   </div>
 
@@ -104,7 +101,7 @@
                 class="icon"
                 src="assets/icon/cellphone1.svg"
               ></ion-icon>
-              {{h?.user.nombre}} {{h?.user.apellido}}: Ha marcado interesado
+              {{h?.user.nombre}} {{h?.user.apellido}}: {{h?.message}}
             </ion-label>
             <div class="d-flex justify-content-between">
               <div class="date-badged primary text-center">

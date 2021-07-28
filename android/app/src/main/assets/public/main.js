@@ -171,7 +171,7 @@ let AppComponent = class AppComponent {
         this.platform.ready().then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             _capacitor_splash_screen__WEBPACK_IMPORTED_MODULE_3__.SplashScreen.hide();
             const isLoggedin = yield this.storage.get(_shared_constants_constants__WEBPACK_IMPORTED_MODULE_4__.TOKEN);
-            const route = isLoggedin ? '/dashboard' : '/login';
+            const route = isLoggedin ? '/market-rates/874836' : '/login';
             this.router.navigate([route]);
         }));
     }
@@ -260,7 +260,7 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
             { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_12__.HTTP_INTERCEPTORS, useClass: _shared_services_interceptor_service__WEBPACK_IMPORTED_MODULE_3__.InterceptorService, multi: true },
             _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_4__.CallNumber,
             _ionic_native_preview_any_file_ngx__WEBPACK_IMPORTED_MODULE_5__.PreviewAnyFile,
-            _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_6__.SocialSharing
+            _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_6__.SocialSharing,
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
     })

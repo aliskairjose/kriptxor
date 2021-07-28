@@ -8,15 +8,17 @@ import { NotesPageRoutingModule } from './notes-routing.module';
 
 import { NotesPage } from './notes.page';
 import { InfoBarComponent } from '../shared/components/info-bar/info-bar.component';
+import { SharedModule } from '../shared/shared.module';
 
-@NgModule({
+@NgModule( {
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModule,
     NotesPageRoutingModule
   ],
-  entryComponents: [ InfoBarComponent ],
-  declarations: [NotesPage,InfoBarComponent]
-})
-export class NotesPageModule {}
+  providers: [ InfoBarComponent ],
+  declarations: [ NotesPage ]
+} )
+export class NotesPageModule { }

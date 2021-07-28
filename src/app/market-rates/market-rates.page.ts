@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../shared/services/common.service';
 import { CampaignService } from '../shared/services/campaign.service';
-import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Client, MasterClient } from '../shared/classes/client';
 import { Quote, Bank, RequestSalary } from '../shared/classes/quote';
 import { QuoteService } from '../shared/services/quote.service';
 import * as moment from 'moment-timezone';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component( {
   selector: 'app-market-rates',
@@ -29,12 +30,13 @@ export class MarketRatesPage implements OnInit {
   showBanksRequested: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
     private activateRoute: ActivatedRoute,
     private common: CommonService,
     private campaignService: CampaignService,
     private quoteService: QuoteService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private router: Router,
+    private socialSharing: SocialSharing
   ) {
     this.activateRoute.params.subscribe(
       params => {
@@ -49,6 +51,16 @@ export class MarketRatesPage implements OnInit {
   }
 
   async calculate() {
+  }
+
+  share( url: string ): void {
+    const options = {
+      message: `Documento de ${this.client.nombre_completo}`,
+      subject: `Documento de ${this.client.nombre_completo}`,
+      files: [ url ],
+      chooserTitle: 'Selecciona una app'
+    }
+    this.socialSharing.shareWithOptions( options );
   }
 
   async getClient() {
@@ -82,10 +94,10 @@ export class MarketRatesPage implements OnInit {
     )
   }
 
+
   setBank( id: number ) {
     console.log( id );
   }
-
   selectBankQuote() {
     this.quote.banks = [];
     this.banks.forEach( key => {
@@ -95,16 +107,13 @@ export class MarketRatesPage implements OnInit {
       }
     } )
   }
-
   quoteClient() {
     this.quoteService.quote( this.quote ).subscribe(
       response => {
-        this.successRequest( response.message );
-        this.quote = new Quote;
-      }
-    )
+        this.common.presentToast( { message: response.message, color: 'success' } )
+        this.router.navigate( [ '/client', this.id ] )
+      } )
   }
-
   calculateRequestedSalary( event: any ) {
     if ( event.target.value != null && event.target.value != "" ) {
       this.requestedSalary( event.target.value )
@@ -170,6 +179,37 @@ export class MarketRatesPage implements OnInit {
     this.client.fecha_nacimiento = birth;
   }
 
+
+  setSex() {
+    if ( this.client.sexo != null ) {
+      this.quote.sex = this.client.sexo
+    }
+  }
+  setWeight() {
+    if ( this.lastedQuote != null ) {
+      if ( this.lastedQuote.weight != null ) {
+        this.quote.type_weight = this.lastedQuote.type_weight;
+        this.quote.weight = this.lastedQuote.weight;
+      } else {
+        this.quote.weight = null
+        this.quote.type_weight = "kgs";
+      }
+    } else {
+      this.quote.weight = null
+      this.quote.type_weight = "kgs";
+    }
+  }
+  setHeight() {
+    if ( this.lastedQuote != null ) {
+      if ( this.lastedQuote.height ) {
+        this.quote.height = this.lastedQuote.height;
+      } else {
+        this.quote.height = null
+
+      }
+    }
+  }
+
   calculateAge() {
     if ( this.client.fecha_nacimiento != null ) {
       let birth = moment( this.client.fecha_nacimiento ).format( 'YYYY-MM-DD' );
@@ -183,11 +223,6 @@ export class MarketRatesPage implements OnInit {
 
   }
 
-  setSex() {
-    if ( this.client.sexo != null ) {
-      this.quote.sex = this.client.sexo
-    }
-  }
 
   validQuote() {
     if ( this.client.fecha_nacimiento != null && this.birth != null ) {
@@ -241,16 +276,8 @@ export class MarketRatesPage implements OnInit {
   }
 
   // Alerts
-  async successRequest( text: string ) {
-    const alert = await this.alertController.create( {
-      cssClass: 'my-custom-class',
-      header: 'Exito!',
-      subHeader: '',
-      message: text,
-      buttons: [ 'OK' ]
-    } );
-
-    await alert.present();
+  successRequest( message: string ) {
+    this.common.presentToast( { message } );
   }
 
   invalidForm( text: string ) {

@@ -11,6 +11,7 @@ export class Quote {
   day: number;
   year: number;
   banks: number[];
+  type_weight: string;
 }
 export class Bank{
   bank_id: number;

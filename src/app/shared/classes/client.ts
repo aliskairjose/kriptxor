@@ -5,6 +5,7 @@ export class Client {
   apellido?: string;
   identidad?: string;
   seguro_social?: string;
+  social_security_number?: number;
   correo?: string;
   direccion?: string;
   numero?: string;

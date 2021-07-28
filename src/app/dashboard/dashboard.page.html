@@ -50,7 +50,7 @@
       </ion-card-header>
       <ion-card-content>
         <div class="d-flex flex-column">
-          {{seeMore ? news.content.substring(0,100) + '...' : news.content}}...
+          {{seeMore ? news.content.substring(0,100) + '...' : news.content}}
           <ion-img [src]="news.image" [hidden]="seeMore"></ion-img>
           <div>
             <ion-button (click)="seeMore = !seeMore" color="warning" size="small">

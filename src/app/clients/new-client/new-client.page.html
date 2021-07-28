@@ -71,6 +71,14 @@
       <ion-row>
         <ion-col>
           <ion-item>
+            <ion-label>N° Seguro Social:</ion-label>
+            <ion-input maxlength="20" [(ngModel)]="client.social_security_number" inputmode="numeric"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
             <ion-label>Dirección</ion-label>
             <ion-textarea maxlength="100" [(ngModel)]="client.direccion"></ion-textarea>
           </ion-item>

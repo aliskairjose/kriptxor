@@ -25,6 +25,13 @@ export class DashboardPage implements OnInit {
       loading.dismiss();
       this.data = { ...response.data };
     }, () => loading.dismiss() );
+
+    this.initPush();
+  }
+
+
+  initPush(){
+    console.log('Init Push');
   }
 
 }

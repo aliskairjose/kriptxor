@@ -8,14 +8,17 @@ import { DocumentsPageRoutingModule } from './documents-routing.module';
 
 import { DocumentsPage } from './documents.page';
 import { InfoBarComponent } from '../shared/components/info-bar/info-bar.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule( {
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModule,
     DocumentsPageRoutingModule
   ],
-  declarations: [ DocumentsPage, InfoBarComponent ]
+  providers: [ InfoBarComponent ],
+  declarations: [ DocumentsPage ]
 } )
 export class DocumentsPageModule { }

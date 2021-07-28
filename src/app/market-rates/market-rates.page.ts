@@ -52,16 +52,14 @@ export class MarketRatesPage implements OnInit {
   async calculate() {
   }
 
-  share( id: number ): void {
-    this.campaignService.getCampaignClientPdf( id ).subscribe( response => {
-      const options = {
-        message: `Documento de ${this.client.nombre_completo}`,
-        subject: `Documento de ${this.client.nombre_completo}`,
-        files: [],
-        chooserTitle: 'Selecciona una app'
-      }
-      this.socialSharing.shareWithOptions( options );
-    } );
+  share( url: string ): void {
+    const options = {
+      message: `Documento de ${this.client.nombre_completo}`,
+      subject: `Documento de ${this.client.nombre_completo}`,
+      files: [ url ],
+      chooserTitle: 'Selecciona una app'
+    }
+    this.socialSharing.shareWithOptions( options );
   }
 
   async getClient() {

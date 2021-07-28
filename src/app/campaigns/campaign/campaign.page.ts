@@ -5,6 +5,8 @@ import { Page } from '../../shared/interfaces/pagination';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { MasterClient, Client } from '../../shared/classes/client';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { ClientService } from '../../shared/services/client.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component( {
@@ -30,9 +32,11 @@ export class CampaignPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private clientService: ClientService,
     private common: CommonService,
     private call: CallNumber,
-    private campaignService: CampaignService
+    private campaignService: CampaignService,
+    private socialSharing: SocialSharing
   ) { }
 
   ngOnInit() {
@@ -76,6 +80,28 @@ export class CampaignPage implements OnInit {
     this.call.callNumber( data.cliente.numero, true )
       .then( res => this.router.navigateByUrl( `/client/${data.id}` ) )
       .catch( err => console.log( 'Error launching dialer', err ) );
+  }
+  async whatsapp(number: string){
+    const loading = await this.common.presentLoading();
+    loading.present();
+    this.clientService.sendMessageWhatsapp().subscribe(
+      response => {
+        this.sendMessageWhatsapp(number, response.data.whatsapp_message)
+        loading.dismiss();
+
+      }, () => loading.dismiss()
+    )
+  }
+  async sendMessageWhatsapp(number: string, message: string){
+    const loading = await this.common.presentLoading();
+    loading.present();
+    this.socialSharing.shareViaWhatsAppToReceiver(number, message).then(() => {
+      loading.dismiss();
+      this.common.presentToast({message: "Mensaje enviado", color: 'success'})
+    }).catch(() => {
+        this.common.presentToast({message: "Hubo un problema al enviar el mensaje", color: 'danger'});
+        loading.dismiss()
+    });
   }
 
   // Busca por nombre de campaña

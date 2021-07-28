@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Observable } from 'rxjs';
-import { ResultReponse, DataResponse, Response } from '../interfaces/response';
+import { ResultReponse, DataResponse, Response, Message } from '../interfaces/response';
 import { Client, MasterClient } from '../classes/client';
 
 @Injectable( {
@@ -29,5 +29,8 @@ export class ClientService {
   }
   updateClient(client: Client):  Observable<Response<Client>>{
     return this.http.put(`clientes/${client.id}`, client)
+  }
+  sendMessageWhatsapp(): Observable<Response<Message>>{
+    return this.http.get(`config`)
   }
 }

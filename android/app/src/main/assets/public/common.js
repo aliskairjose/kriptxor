@@ -522,8 +522,11 @@ let CampaignService = class CampaignService {
         const filtro = JSON.stringify(filter);
         return this.http.get(`campaign-clients?filter=${filtro}&page=${page}&include=cliente,status&skipCalledClients=1`);
     }
-    updateCampaignClientInterest(id, interested) {
-        return this.http.put(`campaign-clients/${id}`, { interested });
+    updateCampaignClientInterest(id, data) {
+        return this.http.put(`campaign-clients/${id}`, data);
+    }
+    getCampaignClientPdf(id) {
+        return this.http.get(`campaign-client-quotes/${id}/pdf`);
     }
     /**
      * @description Muestra el historial del ciente de la campaña
@@ -537,7 +540,8 @@ let CampaignService = class CampaignService {
         return this.http.get(`campaign-clients-histories?filter=${filtro}&page=${page}&include=user`);
     }
     callNow(campaignId) {
-        const filter = { campaignId, order: { field: 'created_at', way: 'ASC' } };
+        console.log("campaign id recibido:" + campaignId);
+        const filter = { campaignId: campaignId, order: { field: 'created_at', way: 'ASC' } };
         const filtro = JSON.stringify(filter);
         return this.http.get(`campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status`);
     }

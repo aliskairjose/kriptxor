@@ -82,12 +82,8 @@
       <ion-label class="ion-margin-top">Dirección:</ion-label>
       <ion-label>{{client.direccion}}</ion-label>
     </div>
-    <div>
-      <ion-icon
-        (click)="options()"
-        name="ellipsis-vertical"
-        class="ion-margin-vertical"
-      ></ion-icon>
+    <div (click)="openOptions(client)">
+      <ion-icon name="ellipsis-vertical" class="ion-margin-vertical"></ion-icon>
     </div>
   </div>
 

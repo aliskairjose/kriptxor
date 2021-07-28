@@ -38,7 +38,7 @@ registerLocaleData( localeEs );
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     CallNumber,
     PreviewAnyFile,
-    SocialSharing
+    SocialSharing,
   ],
   bootstrap: [ AppComponent ],
 } )

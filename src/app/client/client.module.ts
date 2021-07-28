@@ -8,6 +8,7 @@ import { ClientPageRoutingModule } from './client-routing.module';
 
 import { ClientPage } from './client.page';
 import { InfoBarComponent } from '../shared/components/info-bar/info-bar.component';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 
 @NgModule( {
   imports: [
@@ -16,7 +17,8 @@ import { InfoBarComponent } from '../shared/components/info-bar/info-bar.compone
     IonicModule,
     ClientPageRoutingModule
   ],
-  declarations: [ ClientPage, InfoBarComponent ],
+  providers: [ Clipboard ],
+  declarations: [ ClientPage, InfoBarComponent, ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 
 } )

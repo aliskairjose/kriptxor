@@ -8,6 +8,7 @@ import { Quote, Bank, RequestSalary } from '../shared/classes/quote';
 import { QuoteService } from '../shared/services/quote.service';
 import * as moment from 'moment-timezone';
 import { AlertController } from '@ionic/angular';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component( {
   selector: 'app-market-rates',
@@ -34,7 +35,8 @@ export class MarketRatesPage implements OnInit {
     private common: CommonService,
     private campaignService: CampaignService,
     private quoteService: QuoteService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private socialSharing: SocialSharing
   ) {
     this.activateRoute.params.subscribe(
       params => {
@@ -49,6 +51,18 @@ export class MarketRatesPage implements OnInit {
   }
 
   async calculate() {
+  }
+
+  share( id: number ): void {
+    this.campaignService.getCampaignClientPdf( id ).subscribe( response => {
+      const options = {
+        message: `Documento de ${this.client.nombre_completo}`,
+        subject: `Documento de ${this.client.nombre_completo}`,
+        files: [],
+        chooserTitle: 'Selecciona una app'
+      }
+      this.socialSharing.shareWithOptions( options );
+    } );
   }
 
   async getClient() {

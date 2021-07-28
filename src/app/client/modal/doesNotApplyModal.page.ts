@@ -40,7 +40,7 @@ export class DoesNotApplyModalComponent implements OnInit {
 
     this.campaignService
       .updateCampaignClientInterest(this.clientId, {
-        condition: 10,
+        condicion: 10,
         reason_not_apply: this.selectedOption,
       })
       .subscribe((res) => {

@@ -38,7 +38,7 @@
     ULTIMAS NOTIFICACIONES
   </div>
 
-  <ng-container *ngFor="let news of data.lastNews" class="card-content">
+  <ng-container *ngFor="let news of lastNews; let i=index" class="card-content">
     <ion-card>
       <ion-card-header class="bg-ligth-gray">
         <ion-card-subtitle>
@@ -50,12 +50,12 @@
       </ion-card-header>
       <ion-card-content>
         <div class="d-flex flex-column">
-          {{seeMore ? news.content.substring(0,100) + '...' : news.content}}
-          <ion-img [src]="news.image" [hidden]="seeMore"></ion-img>
+          {{news.seeMore ? news.content.substring(0,100) + '...' : news.content}}
+          <ion-img [src]="news.image" [hidden]="news.seeMore"></ion-img>
           <div>
-            <ion-button (click)="seeMore = !seeMore" color="warning" size="small">
+            <ion-button (click)="news.seeMore = !news.seeMore" color="warning" size="small">
               <ion-icon slot="start" name="eye-outline"></ion-icon>
-              {{ seeMore ? 'Leer más' : 'Leer menos'}}
+              {{ news.seeMore ? 'Leer más' : 'Leer menos'}}
             </ion-button>
           </div>
         </div>

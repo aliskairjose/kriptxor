@@ -9,16 +9,18 @@ import { ClientPageRoutingModule } from './client-routing.module';
 import { ClientPage } from './client.page';
 import { InfoBarComponent } from '../shared/components/info-bar/info-bar.component';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule( {
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ClientPageRoutingModule
+    ClientPageRoutingModule,
+    SharedModule,
   ],
-  providers: [ Clipboard ],
-  declarations: [ ClientPage, InfoBarComponent, ],
+  providers: [ Clipboard, InfoBarComponent ],
+  declarations: [ ClientPage ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 
 } )

@@ -1,5 +1,5 @@
 
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { InfoBarComponent } from './shared/components/info-bar/info-bar.component';
 
 registerLocaleData( localeEs );
 

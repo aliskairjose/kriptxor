@@ -8,15 +8,18 @@ import { SchedulePageRoutingModule } from './schedule-routing.module';
 
 import { SchedulePage } from './schedule.page';
 import { InfoBarComponent } from '../shared/components/info-bar/info-bar.component';
+import { SharedModule } from '../shared/shared.module';
 
-@NgModule({
+@NgModule( {
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SchedulePageRoutingModule
+    SchedulePageRoutingModule,
+    SharedModule
   ],
-  declarations: [SchedulePage,InfoBarComponent],
+  providers: [ InfoBarComponent ],
+  declarations: [ SchedulePage ],
   entryComponents: [ InfoBarComponent ]
-})
-export class SchedulePageModule {}
+} )
+export class SchedulePageModule { }

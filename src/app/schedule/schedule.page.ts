@@ -76,6 +76,7 @@ export class SchedulePage implements OnInit {
       }
     )
   }
+
   getReminder( reminder: Schedule ) {
     this.scheduleService.getReminder( reminder.id ).subscribe(
       response => {
@@ -85,6 +86,7 @@ export class SchedulePage implements OnInit {
       }
     )
   }
+
   async create() {
     this.date = this.moment( this.date ).format( 'YYYY-MM-DD' );
     this.reminder.date = this.date + " " + this.moment( this.time ).format( 'HH:mm:ss' );
@@ -93,6 +95,7 @@ export class SchedulePage implements OnInit {
     this.reminder.user_id = user.id;
     this.reminder.title != null ? this.createReminder() : this.common.presentToast( { message: 'El campo de texto no puede estar vacio' } );
   }
+
   createReminder() {
     const data = {
       attributes: this.reminder

@@ -39,7 +39,7 @@ export class ClientPage implements OnInit {
     private call: CallNumber,
     public actionSheetController: ActionSheetController,
     private campaignService: CampaignService,
-    private modal: ModalController,
+    private modal: ModalController
   ) {}
 
   ngOnInit() {
@@ -115,7 +115,7 @@ export class ClientPage implements OnInit {
    await actionSheet.present();
  }
  async presentModal() {
-   const modal = await this.modalController.create({
+   const modal = await this.modal.create({
      component: EditClientPage,
      cssClass: 'my-custom-class',
      componentProps: {

@@ -5,7 +5,6 @@ export class Client {
   apellido?: string;
   identidad?: string;
   seguro_social?: string;
-  social_security_number?: number;
   correo?: string;
   direccion?: string;
   numero?: string;
@@ -13,7 +12,6 @@ export class Client {
   sexo?: string;
   fecha_nacimiento?: string;
   id_user?: number;
-  seguro_social?: string;
   code?: string;
   nombre_completo?: string;
   available?: boolean;

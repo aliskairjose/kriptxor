@@ -12,6 +12,7 @@ export class Client {
   sexo?: string;
   fecha_nacimiento?: string;
   id_user?: number;
+  seguro_social?: string;
   code?: string;
   nombre_completo?: string;
   available?: boolean;

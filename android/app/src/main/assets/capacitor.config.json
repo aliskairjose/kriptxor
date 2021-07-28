@@ -1,7 +1,0 @@
-{
-	"appId": "com.cronapis.appcall",
-	"appName": "app-gelite",
-	"cordova": {},
-	"webDir": "www",
-	"bundledWebRuntime": false
-}

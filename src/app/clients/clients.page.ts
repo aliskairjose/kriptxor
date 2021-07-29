@@ -41,28 +41,28 @@ export class ClientsPage implements OnInit {
       }, () => loading.dismiss()
     )
   }
-async whatsapp(number: string){
-  const loading = await this.common.presentLoading();
-  loading.present();
-  this.clientService.sendMessageWhatsapp().subscribe(
-    response => {
-      this.sendMessageWhatsapp(number, response.data.whatsapp_message)
-      loading.dismiss();
+  async whatsapp(number: string){
+    const loading = await this.common.presentLoading();
+    loading.present();
+    this.clientService.sendMessageWhatsapp().subscribe(
+      response => {
+        this.sendMessageWhatsapp(number, response.data.whatsapp_message)
+        loading.dismiss();
 
-    }, () => loading.dismiss()
-  )
-}
-async sendMessageWhatsapp(number: string, message: string){
-  const loading = await this.common.presentLoading();
-  loading.present();
-  this.socialSharing.shareViaWhatsAppToPhone(number, message, []).then(() => {
-    loading.dismiss();
-    this.common.presentToast({message: "Mensaje enviado", color: 'success'})
-  }).catch(() => {
-      this.common.presentToast({message: "Hubo un problema al enviar el mensaje", color: 'danger'});
-      loading.dismiss()
-  });
-}
+      }, () => loading.dismiss()
+    )
+  }
+  async sendMessageWhatsapp(number: string, message: string){
+    const loading = await this.common.presentLoading();
+    loading.present();
+    this.socialSharing.shareViaWhatsAppToReceiver(number, message).then(() => {
+      loading.dismiss();
+      this.common.presentToast({message: "Mensaje enviado", color: 'success'})
+    }).catch(() => {
+        this.common.presentToast({message: "Hubo un problema al enviar el mensaje", color: 'danger'});
+        loading.dismiss()
+    });
+  }
   //Infinity scroll
    scrollClients(page: number, event: any){
     this.clientService.getClients(page, this.search).subscribe(

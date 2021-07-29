@@ -5,7 +5,7 @@ import { Page } from '../../shared/interfaces/pagination';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { MasterClient, Client } from '../../shared/classes/client';
-import { SocialSharing } from '@ionic-native/social-sharing';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ClientService } from '../../shared/services/client.service';
 import { ActivatedRoute, Router } from '@angular/router';
 

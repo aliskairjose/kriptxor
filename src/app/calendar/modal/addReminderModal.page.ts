@@ -42,7 +42,7 @@ export class AddReminderModalComponent implements OnInit {
       attributes: {
         title: this.title,
         date: `${this.date} ${this.selectedHour}`,
-        duration: this.duration,
+        duration: parseInt(this.duration),
         userId,
       },
     };

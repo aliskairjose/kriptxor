@@ -42,7 +42,7 @@
               <p>{{client.cliente.numero}}</p>
             </div>
             <div>
-              <ion-chip color="success" mode="ios" outline="true">
+              <ion-chip (click)="whatsapp(client.cliente.numero)" color="success" mode="ios" outline="true">
                 <ion-icon name="logo-whatsapp"></ion-icon>
                 <ion-label>Whatsapp</ion-label>
               </ion-chip>

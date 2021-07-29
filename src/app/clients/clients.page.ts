@@ -55,7 +55,7 @@ async whatsapp(number: string){
 async sendMessageWhatsapp(number: string, message: string){
   const loading = await this.common.presentLoading();
   loading.present();
-  this.socialSharing.shareViaWhatsAppToReceiver(number, message).then(() => {
+  this.socialSharing.shareViaWhatsAppToPhone(number, message, []).then(() => {
     loading.dismiss();
     this.common.presentToast({message: "Mensaje enviado", color: 'success'})
   }).catch(() => {

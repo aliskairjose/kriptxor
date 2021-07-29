@@ -63,7 +63,7 @@ const routes = [
     },
     {
         path: 'client/:id',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_client_client_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./client/client.module */ 27808)).then((m) => m.ClientPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_client_client_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./client/client.module */ 27808)).then((m) => m.ClientPageModule),
     },
     {
         path: 'documents/:id',
@@ -75,11 +75,11 @@ const routes = [
     },
     {
         path: 'schedule/:id',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_schedule_schedule_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./schedule/schedule.module */ 47911)).then((m) => m.SchedulePageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_schedule_schedule_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./schedule/schedule.module */ 47911)).then((m) => m.SchedulePageModule),
     },
     {
         path: 'calendar',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_calendar_calendar_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./calendar/calendar.module */ 979)).then((m) => m.CalendarPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_calendar_calendar_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./calendar/calendar.module */ 979)).then((m) => m.CalendarPageModule),
     },
     {
         path: 'clients',
@@ -87,7 +87,7 @@ const routes = [
     },
     {
         path: 'market-rates/:id',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_market-rates_market-rates_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./market-rates/market-rates.module */ 46233)).then(m => m.MarketRatesPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_market-rates_market-rates_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./market-rates/market-rates.module */ 46233)).then(m => m.MarketRatesPageModule)
     },
     {
         path: 'seeker',
@@ -171,7 +171,7 @@ let AppComponent = class AppComponent {
         this.platform.ready().then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             _capacitor_splash_screen__WEBPACK_IMPORTED_MODULE_3__.SplashScreen.hide();
             const isLoggedin = yield this.storage.get(_shared_constants_constants__WEBPACK_IMPORTED_MODULE_4__.TOKEN);
-            const route = isLoggedin ? '/market-rates/874836' : '/login';
+            const route = isLoggedin ? '/client/874836' : '/login';
             this.router.navigate([route]);
         }));
     }
@@ -309,13 +309,22 @@ const ERROR_FORM = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Button": () => (/* binding */ Button),
 /* harmony export */   "CommonService": () => (/* binding */ CommonService)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 64762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/angular */ 80476);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 80476);
 
 
+
+let Button = class Button {
+};
+Button = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
+        providedIn: 'root'
+    })
+], Button);
 
 let CommonService = class CommonService {
     constructor(loading, toastController, modalController, alertController) {
@@ -388,13 +397,13 @@ let CommonService = class CommonService {
     }
 };
 CommonService.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_1__.LoadingController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_1__.ToastController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_1__.ModalController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_1__.AlertController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.LoadingController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.ToastController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.ModalController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.AlertController }
 ];
 CommonService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
         providedIn: 'root'
     })
 ], CommonService);
@@ -441,6 +450,7 @@ let InterceptorService = class InterceptorService {
             const headers = this.addToken(request, `${token}`);
             // Pasamos al siguiente interceptor de la cadena la petición modificada
             return next.handle(headers).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.catchError)((result) => {
+                console.log(result);
                 const color = 'danger';
                 let message = '';
                 switch (result.status) {
@@ -449,6 +459,10 @@ let InterceptorService = class InterceptorService {
                             message = 'Credenciales inválidas';
                             this.common.presentToast({ message, color });
                         }
+                        break;
+                    case 404:
+                        message = result.error.errors;
+                        this.common.presentToast({ message, color });
                         break;
                     default:
                         message = result.error.message;

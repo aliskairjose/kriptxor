@@ -4,7 +4,7 @@ import { MasterClient } from '../shared/classes/client';
 import { ClientService } from '../shared/services/client.service';
 import {Page} from '../shared/interfaces/pagination';
 import { CommonService } from '../shared/services/common.service';
-import { SocialSharing } from '@ionic-native/social-sharing';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 @Component({

@@ -22,7 +22,7 @@
           </ion-col>
           <ion-col size="4">
             <div class="ion-text-end">
-              <ion-label>{{client.fecha_nacimiento | date:'dd/MM/yyyy'}}</ion-label>
+              <ion-label>{{clientQuote.created_at | date:'dd/MM/yyyy'}}</ion-label>
             </div>
             <div class="float-end ion-margin-end ion-margin-top" (click)="share(clientQuote.pdf_url)">
               <ion-icon name="share-social-outline"></ion-icon>

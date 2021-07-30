@@ -94,7 +94,7 @@ export class MarketRatesPage implements OnInit {
         this.banks = response.data;
         if(this.banks.length <= 0){
           this.common.presentToast({message: 'No hay cotizaciones disponibles para esos parámetros.', color: 'warning'})
-        } else{
+        } else {
           this.quote.banks = [];
         }
       }

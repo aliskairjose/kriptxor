@@ -51,6 +51,7 @@ export class CampaignService {
     page: number
   ): Observable<DataResponse<MasterClient[]>> {
     const filtro = JSON.stringify(filter);
+    console.log(filter, filtro)
     return this.http.get(
       `campaign-clients?filter=${filtro}&page=${page}&include=cliente,status&skipCalledClients=1`
     );

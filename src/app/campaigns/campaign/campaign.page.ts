@@ -20,7 +20,7 @@ export class CampaignPage implements OnInit {
   pagination: Page;
   idCampaing: number;
   query = '';
-  filter = {
+  filter: any = {
     auth: 1,
     search: '',
     campaignId: 0,
@@ -43,9 +43,30 @@ export class CampaignPage implements OnInit {
     this.getCampaign( false, '' );
     this.route.params.subscribe( data => this.idCampaing = this.filter.campaignId = data.id );
   }
+  async tab(filter: string){
+    const loading = await this.common.presentLoading();
+    loading.present()
+    if(filter == 'contactedNotInterested'){
+      if(this.filter.notContacted != null){
+        delete this.filter.notContacted
+      }
+      this.filter.contactedNotInterested = 1;
+    }
+    if(filter == 'notContacted'){
+      if(this.filter.contactedNotInterested != null){
+        delete this.filter.contactedNotInterested
+      }
+      this.filter.notContacted = 1;
+    }
+    this.campaignService.getCampaign(this.filter, 1).subscribe(
+      response =>{
+        this.clients = response.data
+        loading.dismiss()
+      }
+    )
+  }
 
   async getCampaign( isFirstLoad, event, page = 1 ) {
-
     const loading = await this.common.presentLoading();
     if ( !isFirstLoad ) { loading.present(); }
 

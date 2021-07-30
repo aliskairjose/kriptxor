@@ -3,6 +3,7 @@ import { ClientService } from '../../shared/services/client.service';
 import { Client } from '../../shared/classes/client';
 import * as moment from 'moment-timezone';
 import { CommonService } from '../../shared/services/common.service';
+import { StorageService } from '../../shared/services/storage.service';
 
 
 @Component( {
@@ -17,11 +18,15 @@ export class NewClientPage implements OnInit {
 
   constructor(
     private common: CommonService,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private storage: StorageService
   ) { }
 
   ngOnInit() {
     this.client.addToDirectory = 1;
+    this.storage.get('sms_user').then( res => {
+      this.client.id_user = res['id'];
+    });
   }
 
   saveClient() {

@@ -171,7 +171,7 @@ let AppComponent = class AppComponent {
         this.platform.ready().then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             _capacitor_splash_screen__WEBPACK_IMPORTED_MODULE_3__.SplashScreen.hide();
             const isLoggedin = yield this.storage.get(_shared_constants_constants__WEBPACK_IMPORTED_MODULE_4__.TOKEN);
-            const route = isLoggedin ? '/client/874836' : '/login';
+            const route = isLoggedin ? 'dashboard' : '/login';
             this.router.navigate([route]);
         }));
     }

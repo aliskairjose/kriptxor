@@ -158,7 +158,7 @@ export class ClientPage implements OnInit {
   async updateInterest( type: string, value: number ): Promise<void> {
     const loading = await this.common.presentLoading();
     let data: any = {};
-    ( type === 'interest' ) ? data.interest = value : data.unanswered = value;
+    ( type === 'interest' ) ? data.interested = value : data.unanswered = value;
     loading.present();
     this.campaignService
       .updateCampaignClientInterest( this.clientId, data )

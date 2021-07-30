@@ -20,6 +20,7 @@ export class CampaignPage implements OnInit {
   pagination: Page;
   idCampaing: number;
   query = '';
+  contactedFilter: boolean = false;
   filter: any = {
     auth: 1,
     search: '',
@@ -51,12 +52,14 @@ export class CampaignPage implements OnInit {
         delete this.filter.notContacted
       }
       this.filter.contactedNotInterested = 1;
+      this.contactedFilter = true;
     }
     if(filter == 'notContacted'){
       if(this.filter.contactedNotInterested != null){
         delete this.filter.contactedNotInterested
       }
       this.filter.notContacted = 1;
+      this.contactedFilter = false;
     }
     this.campaignService.getCampaign(this.filter, 1).subscribe(
       response =>{

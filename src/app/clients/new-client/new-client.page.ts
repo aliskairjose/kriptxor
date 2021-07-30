@@ -21,6 +21,7 @@ export class NewClientPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.client.addToDirectory = 1;
   }
 
   saveClient() {

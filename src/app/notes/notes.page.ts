@@ -19,6 +19,7 @@ export class NotesPage implements OnInit {
 
   id: number;
   client: Client = {};
+  campaignId:0;
   notes: Note[];
   note: Note = new Note;
   pages: Page;
@@ -46,6 +47,7 @@ export class NotesPage implements OnInit {
   getCampaignClient() {
     this.campaignService.getCampaignClientById( this.id ).subscribe( response => {
       this.client = { ...response.data.cliente };
+      this.campaignId=response.data.id_campaign;
     }, () => console.error( "error get campaign client service" ) )
   }//
 

@@ -29,6 +29,7 @@ export class DocumentsPage implements OnInit {
   pages: Page;
   isFile: boolean = false;
   file: any;
+  campaignId:0;
 
   constructor(
     private common: CommonService,
@@ -56,6 +57,7 @@ export class DocumentsPage implements OnInit {
   getCampaignClient() {
     this.campaignService.getCampaignClientById( this.id ).subscribe( response => {
       this.client = { ...response.data.cliente };
+      this.campaignId=response.data.id_campaign;
     }, () => console.error( "error get campaign client service" ) )
   }
 

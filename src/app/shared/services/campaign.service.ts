@@ -11,11 +11,11 @@ import {
 import { map } from 'rxjs/operators';
 import { MasterClient } from '../classes/client';
 
-@Injectable({
+@Injectable( {
   providedIn: 'root',
-})
+} )
 export class CampaignService {
-  constructor(private http: HttpService) {}
+  constructor( private http: HttpService ) { }
 
   /**
    * @description Lista todas las campañas
@@ -26,39 +26,38 @@ export class CampaignService {
     filter: any,
     page = 1
   ): Observable<DataResponse<Campaign[]>> {
-    const filtro = JSON.stringify(filter);
+    const filtro = JSON.stringify( filter );
     return this.http.get(
       `campaigns?sellers=${sellerId}&filter=${filtro}&page=${page}`
     );
   }
 
-  detail(id: number, filter: any, page = 1): Observable<DataResponse<any[]>> {
+  detail( id: number, filter: any, page = 1 ): Observable<DataResponse<any[]>> {
     return this.http.get(
       `campaign-clients?filter${filter}&&page=${page}&include=cliente,status`
     );
   }
 
-  getById(id: number): Observable<ResultReponse<Campaign>> {
-    return this.http.get(`campaign / ${id} `);
+  getById( id: number ): Observable<ResultReponse<Campaign>> {
+    return this.http.get( `campaign / ${id} ` );
   }
 
-  getCampaignClientById(id: number): Observable<DataResponse<any>> {
-    return this.http.get(`campaign-clients/${id}?include=cliente`);
+  getCampaignClientById( id: number ): Observable<DataResponse<any>> {
+    return this.http.get( `campaign-clients/${id}?include=cliente` );
   }
 
   getCampaign(
     filter: any,
     page: number
   ): Observable<DataResponse<MasterClient[]>> {
-    const filtro = JSON.stringify(filter);
-    console.log(filter, filtro)
+    const filtro = JSON.stringify( filter );
     return this.http.get(
       `campaign-clients?filter=${filtro}&page=${page}&include=cliente,status&skipCalledClients=1`
     );
   }
 
-  updateCampaignClientInterest(id: number, data: any): Observable<any> {
-    return this.http.put(`campaign-clients/${id}`, data);
+  updateCampaignClientInterest( id: number, data: any ): Observable<any> {
+    return this.http.put( `campaign-clients/${id}`, data );
   }
 
   getCampaignClientPdf( id: number ): Observable<any> {
@@ -80,37 +79,35 @@ export class CampaignService {
       campaign_client_id,
       order: { field: 'created_at', way: 'DESC' },
     };
-    const filtro = JSON.stringify(filter);
+    const filtro = JSON.stringify( filter );
 
     return this.http.get(
       `campaign-clients-histories?filter=${filtro}&page=${page}&include=user`
     );
   }
 
-  callNow(campaignId: number): Observable<any> {
-    console.log('campaign id recibido:' + campaignId);
+  callNow( campaignId: number ): Observable<any> {
+    console.log( 'campaign id recibido:' + campaignId );
     const filter = {
       campaignId: campaignId,
       order: { field: 'created_at', way: 'ASC' },
     };
-    const filtro = JSON.stringify(filter);
-    return this.http.get(
-      `campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status`
-    );
+    const filtro = JSON.stringify( filter );
+    return this.http.get( `campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status` );
   }
 
-  quoteCalculator(data: any): Observable<any> {
-    return this.http.post(`campaign-client-quotes-calculator`, data);
+  quoteCalculator( data: any ): Observable<any> {
+    return this.http.post( `campaign-client-quotes-calculator`, data );
   }
 
-  clientQuotes(campaignClientId: number): Observable<any> {
+  clientQuotes( campaignClientId: number ): Observable<DataResponse<any[]>> {
     const filter = {
       campaignClientId,
       order: { field: 'created_at', way: 'DESC' },
     };
-    const filtro = JSON.stringify(filter);
-    return this.http.get(
-      `campaign-client-quotes?filter=${filtro}&page=1&include=bank`
-    );
+    const filtro = JSON.stringify( filter );
+    return this.http.get( `campaign-client-quotes?filter=${filtro}&page=1&include=bank` );
   }
+
+
 }

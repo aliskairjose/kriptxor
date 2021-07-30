@@ -39,7 +39,7 @@ export class ClientPage implements OnInit {
     private call: CallNumber,
     public actionSheetController: ActionSheetController,
     private campaignService: CampaignService,
-    private modal: ModalController
+    private modal: ModalController,
   ) { }
 
   ngOnInit() {
@@ -63,17 +63,40 @@ export class ClientPage implements OnInit {
         },
         {
           text: 'Copiar datos',
+          icon: 'copy',
           handler: async () => {
+            let data: any = {};
+
+            const extraInfo: any = await this.getExtraInfo();
+            if ( extraInfo.length ) { data = extraInfo[ 0 ]; };
+
             const info = `
-            Hola interesado, estos son los datos del cliente
-            Nombre: ${this.client.nombre_completo}
-            Cédula: ${this.client.identidad}
-            Fecha de nacimiento: ${this.client.fecha_nacimiento}
-            Dirección: ${this.client.direccion}
-            Email: ${this.client.correo}
-            Teléfono: ${this.client.numero}
-            #Seguro: ${this.client.seguro_social}
-            Sexo: ${this.client.sexo}`;
+              Hola interesado, estos son los datos del cliente
+              Nombre Completo del cliente: ${this.client.nombre_completo}
+              Fecha de Nacimiento: ${this.client.fecha_nacimiento}
+              Sexo: ${this.client.sexo}
+              Salario: ${data.salary}
+              Altura: ${data.height}
+              Peso: ${data.weight} ${data.type_weight}
+              Numero de seguro: ${this.client.seguro_social}
+              Hipoteca: ${data.mortgage}
+              Cédula: ${this.client.identidad}
+              Empresa o Sector: Jubilado
+              Zona donde vive: ${this.client.direccion}
+              Nombre de Promotor: 
+              Casa Promotora:
+              Banco: ${data.bank.name}
+              Sucursal:
+              Oficial Bancario que lo atender:
+              Hora de la cita:
+              Fecha de la cita:
+              Fecha de Ingreso:
+              Monto en mano:
+              Teléfono del cliente: ${this.client.numero}
+              Correo del cliente: ${this.client.correo}
+              Sucursal donde cobro:
+              Fecha de Cobro:
+              `
             this.clipboard.copy( info ).then( () => this.common.presentToast( { message: 'Datos copiados' } ) );
           }
         },
@@ -85,8 +108,14 @@ export class ClientPage implements OnInit {
       ]
     } );
     await actionSheet.present();
-
   }
+
+  private async getExtraInfo(): Promise<any> {
+    return new Promise( resolve => {
+      this.campaignService.clientQuotes( 116 ).subscribe( response => resolve( response.data ) );
+    } );
+  }
+
   async options() {
     const actionSheet = await this.actionSheetController.create( {
       header: '¿Que accion deberia realizar?',
@@ -114,6 +143,7 @@ export class ClientPage implements OnInit {
     } );
     await actionSheet.present();
   }
+
   async presentModal() {
     const modal = await this.modal.create( {
       component: EditClientPage,

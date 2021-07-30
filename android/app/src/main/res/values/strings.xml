@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name">Grupo Global Elite</string>
-    <string name="title_activity_main">app-gelite</string>
+    <string name="title_activity_main">Grupo Global Elite</string>
     <string name="package_name">com.cronapis.appcall</string>
     <string name="custom_url_scheme">com.cronapis.appcall</string>
 </resources>

@@ -25,6 +25,7 @@ export class CampaignPage implements OnInit {
     auth: 1,
     search: '',
     campaignId: 0,
+    notContacted: 1,
     order: { field: 'created_at', way: 'ASC' }
   };
 

@@ -19,6 +19,7 @@ export interface TopSellers {
 }
 
 export interface LastNews {
+  seeMore: boolean;
   id?: number;
   title?: string;
   content?: string;

@@ -535,13 +535,19 @@ let CampaignService = class CampaignService {
      * @returns
      */
     campaignClientHistory(campaign_client_id, page = 1) {
-        const filter = { campaign_client_id, order: { field: 'created_at', way: 'DESC' } };
+        const filter = {
+            campaign_client_id,
+            order: { field: 'created_at', way: 'DESC' },
+        };
         const filtro = JSON.stringify(filter);
         return this.http.get(`campaign-clients-histories?filter=${filtro}&page=${page}&include=user`);
     }
     callNow(campaignId) {
-        console.log("campaign id recibido:" + campaignId);
-        const filter = { campaignId: campaignId, order: { field: 'created_at', way: 'ASC' } };
+        console.log('campaign id recibido:' + campaignId);
+        const filter = {
+            campaignId: campaignId,
+            order: { field: 'created_at', way: 'ASC' },
+        };
         const filtro = JSON.stringify(filter);
         return this.http.get(`campaign-clients-call-now?filter=${filtro}&page=1&include=cliente,status`);
     }
@@ -549,7 +555,10 @@ let CampaignService = class CampaignService {
         return this.http.post(`campaign-client-quotes-calculator`, data);
     }
     clientQuotes(campaignClientId) {
-        const filter = { campaignClientId, order: { field: 'created_at', way: 'DESC' } };
+        const filter = {
+            campaignClientId,
+            order: { field: 'created_at', way: 'DESC' },
+        };
         const filtro = JSON.stringify(filter);
         return this.http.get(`campaign-client-quotes?filter=${filtro}&page=1&include=bank`);
     }
@@ -559,7 +568,7 @@ CampaignService.ctorParameters = () => [
 ];
 CampaignService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
-        providedIn: 'root'
+        providedIn: 'root',
     })
 ], CampaignService);
 
@@ -601,6 +610,9 @@ let ClientService = class ClientService {
     createClient(client) {
         return this.http.post("clientes", client);
     }
+    updateClient(client) {
+        return this.http.put(`clientes/${client.id}`, client);
+    }
 };
 ClientService.ctorParameters = () => [
     { type: _http_service__WEBPACK_IMPORTED_MODULE_0__.HttpService }
@@ -610,6 +622,44 @@ ClientService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
         providedIn: 'root'
     })
 ], ClientService);
+
+
+
+/***/ }),
+
+/***/ 6402:
+/*!****************************************************!*\
+  !*** ./src/app/shared/services/holiday.service.ts ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HolidayService": () => (/* binding */ HolidayService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http.service */ 74691);
+
+
+
+let HolidayService = class HolidayService {
+    constructor(http) {
+        this.http = http;
+    }
+    getHolidays() {
+        return this.http.get('holidays');
+    }
+};
+HolidayService.ctorParameters = () => [
+    { type: _http_service__WEBPACK_IMPORTED_MODULE_0__.HttpService }
+];
+HolidayService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root',
+    })
+], HolidayService);
 
 
 

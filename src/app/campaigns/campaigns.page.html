@@ -13,37 +13,47 @@
     debounce="1000">
   </ion-searchbar>
 
-  <ng-container *ngFor="let campaign of campaigns; let i=index" class="card-content">
-    <ion-card>
-      <ion-card-header class="bg-ligth-gray">
-        <ion-card-subtitle>
-          <div class="campaign-card-header">
-            <p class="campaign-title">{{campaign.nombre}}</p>
-            <ion-label>{{campaign.status_name}}</ion-label>
-            <ion-label>Iniciada el {{campaign.fecha_inicio }}</ion-label>
+  <ng-container *ngIf="campaigns.length; else noData">
+    <ng-container *ngFor="let campaign of campaigns; let i=index" class="card-content">
+      <ion-card>
+        <ion-card-header class="bg-ligth-gray">
+          <ion-card-subtitle>
+            <div class="campaign-card-header">
+              <p class="campaign-title">{{campaign.nombre}}</p>
+              <ion-label>{{campaign.status_name}}</ion-label>
+              <ion-label>Iniciada el {{campaign.fecha_inicio }}</ion-label>
+            </div>
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content class="campaign-card-content">
+          <div>
+            <ion-label>
+              <img src="/assets/icon/persons-circle.svg" alt="" style="margin-right: 5px;">
+              {{campaign.campaign_clientes_count}} clientes
+            </ion-label>
+            <ion-label>
+              <img src="/assets/icon/monetization.svg" alt="" style="margin-right: 5px;"> {{campaign.quotes}} ventas
+            </ion-label>
           </div>
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content class="campaign-card-content">
-        <div>
-          <ion-label>
-            <img src="/assets/icon/persons-circle.svg" alt="" style="margin-right: 5px;">
-            {{campaign.campaign_clientes_count}} clientes
-          </ion-label>
-          <ion-label>
-            <img src="/assets/icon/monetization.svg" alt="" style="margin-right: 5px;"> {{campaign.quotes}} ventas
-          </ion-label>
-        </div>
-        <div>
-          <ion-button color="warning" size="small" [routerLink]="[ '/campaigns/campaign',campaign.id ]">
-            <ion-icon slot="start" name="eye-outline"></ion-icon>
-            Detalles
-          </ion-button>
-        </div>
-      </ion-card-content>
-    </ion-card>
+          <div>
+            <ion-button color="warning" size="small" [routerLink]="[ '/campaigns/campaign',campaign.id ]">
+              <ion-icon slot="start" name="eye-outline"></ion-icon>
+              Detalles
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
   </ng-container>
-
+  <ng-template #noData>
+    <div class="card text-center ion-padding border-0">
+      <div class="card-body">
+        <div class="col text-center alert alert-warning" role="alert">
+          No hay campañas que mostrar en estos momentos.
+        </div>
+      </div>
+    </div>
+  </ng-template>
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más campañas...">
     </ion-infinite-scroll-content>

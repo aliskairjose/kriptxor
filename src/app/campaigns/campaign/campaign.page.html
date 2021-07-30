@@ -11,58 +11,71 @@
   <ion-searchbar class="search-bar" placeholder="Buscar clientes" debounce="1000"
     (ionChange)="find($event.target.value)"></ion-searchbar>
 
-  <ng-container *ngFor="let data of clients; let i=index">
-    <ion-card [disabled]="data?.called">
-      <ion-card-header class="d-flex justify-content-between bg-ligth-gray" style="padding: 5px;">
-        <ion-label class="d-flex align-items-center">
-          <ion-icon slot="start" name="person-circle" color="primary" style="font-size: 2rem"></ion-icon>
-          cliente: <h4> {{data?.cliente?.nombre_completo}} </h4>
-        </ion-label>
 
-        <ion-chip outline="false" class="primary-chip" [routerLink]="['/client', data?.id]"
-          routerLinkActive="router-link-active">
-          <ion-icon name="arrow-forward-circle-outline"></ion-icon>
-          <ion-label>Ver cliente</ion-label>
-        </ion-chip>
-      </ion-card-header>
 
-      <ion-card-content class="ion-no-padding">
-        <div class="d-flex justify-content-around">
-          <div>
-            <p class="text-black-50">Estado</p>
-            <p class="info">{{data?.condicion === 0 ? 'No contactado' : 'Contactado'}}</p>
+  <ng-container *ngIf="clients.length; else noData">
+    <ng-container *ngFor="let data of clients; let i=index">
+      <ion-card [disabled]="data?.called">
+        <ion-card-header class="d-flex justify-content-between bg-ligth-gray" style="padding: 5px;">
+          <ion-label class="d-flex align-items-center">
+            <ion-icon slot="start" name="person-circle" color="primary" style="font-size: 2rem"></ion-icon>
+            cliente: <h4> {{data?.cliente?.nombre_completo}} </h4>
+          </ion-label>
+
+          <ion-chip outline="false" class="primary-chip" [routerLink]="['/client', data?.id]"
+            routerLinkActive="router-link-active">
+            <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+            <ion-label>Ver cliente</ion-label>
+          </ion-chip>
+        </ion-card-header>
+
+        <ion-card-content class="ion-no-padding">
+          <div class="d-flex justify-content-around">
+            <div>
+              <p class="text-black-50">Estado</p>
+              <p class="info">{{data?.condicion === 0 ? 'No contactado' : 'Contactado'}}</p>
+            </div>
+            <div>
+              <p class="text-black-50">Teléfono</p>
+              <p>{{data?.cliente?.numero}}</p>
+            </div>
+            <div>
+            <ion-chip (click)="whatsapp(data?.cliente?.numero)" color="success" mode="ios" outline="true">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+                <ion-label>Whatsapp</ion-label>
+              </ion-chip>
+            </div>
           </div>
           <div>
-            <p class="text-black-50">Teléfono</p>
-            <p>{{data?.cliente?.numero}}</p>
-          </div>
-          <div>
-            <ion-chip color="success" mode="ios" outline="true">
-              <ion-icon name="logo-whatsapp"></ion-icon>
-              <ion-label>Whatsapp</ion-label>
-            </ion-chip>
-          </div>
-        </div>
-        <div>
-          <ion-button *ngIf="data?.called else button" class="call2 disabled" expand="full">
-            <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
-            <ion-text class="card-content-footer-text">
-              LLAMAR AHORA
-            </ion-text>
-          </ion-button>
-          <ng-template #button>
-            <ion-button (click)="callNumber(data)" class="call2" expand="full" color="warning">
+            <ion-button *ngIf="data?.called else button" class="call2 disabled" expand="full">
               <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
               <ion-text class="card-content-footer-text">
                 LLAMAR AHORA
               </ion-text>
             </ion-button>
-          </ng-template>
-        </div>
-      </ion-card-content>
+            <ng-template #button>
+              <ion-button (click)="callNumber(data)" class="call2" expand="full" color="warning">
+                <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
+                <ion-text class="card-content-footer-text">
+                  LLAMAR AHORA
+                </ion-text>
+              </ion-button>
+            </ng-template>
+          </div>
+        </ion-card-content>
 
-    </ion-card>
+      </ion-card>
+    </ng-container>
   </ng-container>
+  <ng-template #noData>
+    <div class="card text-center ion-padding border-0">
+      <div class="card-body">
+        <div class="col text-center alert alert-warning" role="alert">
+          No hay campañas que mostrar en estos momentos.
+        </div>
+      </div>
+    </div>
+  </ng-template>
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más campañas...">
@@ -73,7 +86,7 @@
 
 <ion-footer class="ion-no-border">
   <div style="flex: 1;">
-    <ion-button class="call2" expand="full" color="warning" (click)="callNow()">
+    <ion-button class="call2" expand="full" color="warning" (click)="callNow()" [disabled]="clients.length">
       <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
       <ion-text class="card-content-footer-text">
         CONTINUAR LLAMANDO

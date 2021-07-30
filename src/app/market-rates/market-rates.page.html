@@ -52,7 +52,7 @@
           <ion-item>
             <ion-label>Fecha de nacimiento</ion-label>
             <ion-datetime
-              min="1960"
+              min="1950"
               [(ngModel)]="birth"
               (ionChange)="setAge($event)"
               displayFormat="DD/MM/YYYY"></ion-datetime>
@@ -94,7 +94,7 @@
           <ion-item>
             <ion-label>Solicitado</ion-label>
             <ion-input *ngIf="age != null" inputmode="numeric" (ionChange)="calculateRequestedSalary($event)"
-              debounce="100"></ion-input>
+              debounce="250"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>

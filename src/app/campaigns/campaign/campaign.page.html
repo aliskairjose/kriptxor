@@ -6,8 +6,22 @@
     <ion-title class="title">Campaña #{{idCampaing}}</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+  <ion-tabs style="display: contents;">
+    <ion-tab-bar slot="top">
+      <ion-tab-button (click)="tab('notContacted')">
+        <ion-icon *ngIf="!contactedFilter" color="primary" name="person-circle"></ion-icon>
+        <ion-icon *ngIf="contactedFilter" name="person-circle"></ion-icon>
+        <ion-label>No Contactado</ion-label>
+      </ion-tab-button>
+      <ion-tab-button (click)="tab('contactedNotInterested')">
+        <ion-icon *ngIf="!contactedFilter" name="people-circle"></ion-icon>
+        <ion-icon *ngIf="contactedFilter" src="/assets/icon/persons-circle.svg"></ion-icon>
+        <ion-label>Contactado</ion-label>
+        <!-- <ion-badge>6</ion-badge> -->
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
   <ion-searchbar class="search-bar" placeholder="Buscar clientes" debounce="1000"
     (ionChange)="find($event.target.value)"></ion-searchbar>
 
@@ -71,7 +85,7 @@
     <div class="card text-center ion-padding border-0">
       <div class="card-body">
         <div class="col text-center alert alert-warning" role="alert">
-          No hay campañas que mostrar en estos momentos.
+          No hay clientes que mostrar en estos momentos.
         </div>
       </div>
     </div>

@@ -93,7 +93,9 @@ export class MarketRatesPage implements OnInit {
       response => {
         this.banks = response.data;
         if(this.banks.length <= 0){
-          this.common.presentToast({message: 'El cliente no aplica para una cotización', color: 'warning'})
+          this.common.presentToast({message: 'No hay cotizaciones disponibles para esos parámetros.', color: 'warning'})
+        } else {
+          this.quote.banks = [];
         }
       }
     )
@@ -156,20 +158,28 @@ export class MarketRatesPage implements OnInit {
 
   //Validators
   finishQuote() {
+    if(this.banks.length > 0){
+      if(this.quote.banks.length > 0){
+        if ( this.client.fecha_nacimiento != null && this.birth != null ) {
+          if ( this.quote.salary != null ) {
+            this.validMortgage();
+            this.validHeightWeight();
+            this.validLoan();
+            this.quoteClient();
+          } else {
+            this.invalidForm( "Salario" )
+          }
 
-    if ( this.client.fecha_nacimiento != null && this.birth != null ) {
-      if ( this.quote.salary != null ) {
-        this.validMortgage();
-        this.validHeightWeight();
-        this.validLoan();
-        this.quoteClient();
-      } else {
-        this.invalidForm( "Salario" )
+        } else {
+          this.invalidForm( "Fecha de nacimiento" )
+        }
+      } else{
+        this.common.presentToast({message: 'Debe seleccionar al menos un banco', color: 'warning'})
       }
-
     } else {
-      this.invalidForm( "Fecha de nacimiento" )
+      this.common.presentToast({message: 'No hay cotizaciones disponibles para registrar', color: 'warning'})
     }
+
   }
 
   setAge( event: any ) {

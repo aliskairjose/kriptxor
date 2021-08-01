@@ -286,7 +286,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const USER = 'sms_user';
 const TOKEN = 'sms_token';
-const LOGO = '/assets/img/logo.svg';
+const LOGO = '/assets/img/logo.png';
 const ERROR_FORM = {
     invalidEmail: 'Email inválido.',
     required: 'Campo obligatorio.',

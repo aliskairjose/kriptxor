@@ -18,5 +18,22 @@
       aria-label="Close"
     ></button>
   </div>
-  <span>{{ reminder }}</span>
+  <ion-button
+    size="small"
+    class="button button--font"
+    shape="round"
+    color="warning"
+    (click)="editReminderModal()"
+  >
+    <ion-text> Editar Recordatorio </ion-text> </ion-button
+  ><ion-button
+    size="small"
+    class="button button--font"
+    shape="round"
+    color="danger"
+    (click)="deleteReminder()"
+  >
+    <ion-text> Eliminar Recordatorio </ion-text>
+  </ion-button>
+  <span class="d-block mt-4">{{ reminder }}</span>
 </div>

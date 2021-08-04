@@ -42,7 +42,7 @@
               <p>{{client.cliente.numero}}</p>
             </div>
             <div>
-              <ion-chip color="success" mode="ios" outline="true">
+              <ion-chip (click)="whatsapp(client.cliente.numero)" color="success" mode="ios" outline="true">
                 <ion-icon name="logo-whatsapp"></ion-icon>
                 <ion-label>Whatsapp</ion-label>
               </ion-chip>
@@ -50,7 +50,7 @@
           </div>
 
           <div>
-            <ion-button class="call2" expand="full" color="warning" (click)="callNumber()">
+            <ion-button class="call2" expand="full" color="warning" (click)="callNumber(client.cliente.numero)">
               <ion-icon slot="start" src="assets/icon/cellphone.svg"></ion-icon>
               <ion-text class="card-content-footer-text">
                 LLAMAR AHORA

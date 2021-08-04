@@ -248,6 +248,8 @@ export class MarketRatesPage implements OnInit {
       this.quote.day = +moment( birth ).format( 'DD' );
       this.quote.month = +moment( birth ).format( 'MM' );
       this.quote.year = +moment( birth ).format( 'YYYY' );
+    } else{
+      this.birth = moment("1960").format( 'YYYY-MM-DD' );
     }
 
   }
@@ -257,24 +259,12 @@ export class MarketRatesPage implements OnInit {
     if ( this.client.fecha_nacimiento != null && this.birth != null ) {
       if ( this.quote.sex != null ) {
         if ( this.quote.salary != null ) {
-          if(this.quote.weight != null) {
-            if(this.quote.type_weight != null){
-              if(this.quote.height != null){
                 this.client.sexo = this.quote.sex;
                 this.validMortgage();
                 this.validHeightWeight();
                 this.validLoan();
                 this.getQuotes();
                 //console.log(this.quote);
-              } else{
-                this.invalidForm("Altura")
-              }
-            } else{
-              this.invalidForm("Tipo de unidad de peso")
-            }
-          } else{
-            this.invalidForm("Peso")
-          }
         } else {
           this.invalidForm( "Salario" )
         }

@@ -52,7 +52,8 @@
           <ion-item>
             <ion-label>Fecha de nacimiento</ion-label>
             <ion-datetime
-              min="1950"
+              doneText="Listo"
+              cancelText="Cancelar"
               [(ngModel)]="birth"
               (ionChange)="setAge($event)"
               displayFormat="DD/MM/YYYY"></ion-datetime>

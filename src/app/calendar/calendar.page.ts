@@ -84,7 +84,12 @@ export class CalendarPage implements OnInit {
         startHour: this.parseHour(reminder.startTime),
         endHour: this.parseHour(reminder.endTime),
         reminder: reminder.title,
+        reminderId: reminder.id,
       },
+    });
+
+    modal.onDidDismiss().then(() => {
+      this.getEvents();
     });
 
     return await modal.present();
@@ -116,10 +121,11 @@ export class CalendarPage implements OnInit {
               : event.title;
 
           return {
+            id: event.id,
             title,
             startTime,
             endTime: this.getEndTime(startTime, event.duration),
-          } as IEvent;
+          };
         });
       });
 

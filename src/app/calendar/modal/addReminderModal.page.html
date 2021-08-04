@@ -5,7 +5,9 @@
         <img src="assets/icon/calendar-icon.svg" alt="Icono de calendario" />
       </div>
       <div>
-        <h4>Agregar Recordatorio</h4>
+        <h4>
+          {{ isEditing ? 'Editar Recordatorio' : 'Agregar Recordatorio' }}
+        </h4>
         <span class="d-block">{{ date }}</span>
       </div>
     </div>
@@ -48,6 +50,8 @@
     shape="round"
     color="warning"
   >
-    <ion-text> Agregar Recordatorio </ion-text>
+    <ion-text>
+      {{ isEditing ? 'Editar Recordatorio' : 'Agregar Recordatorio' }}
+    </ion-text>
   </ion-button>
 </div>

@@ -30,16 +30,21 @@ export class AddReminderModalComponent implements OnInit {
 
   ngOnInit() {}
 
-  public setHour(date: string) {
-    console.log(date);
+  public getHour(date: string): string {
     const newDate = new Date(date);
-    this.selectedHour = `${this.zeroBased(newDate.getHours())}:${this.zeroBased(
+    return `${this.zeroBased(newDate.getHours())}:${this.zeroBased(
       newDate.getMinutes()
     )}:00`;
   }
 
   public async saveReminder(): Promise<void> {
     if (!(await this.validateDate())) return;
+
+    console.log('saveReminder: ', this.date);
+
+    this.selectedHour = this.isEditing
+      ? this.selectedHour
+      : this.getHour(this.selectedHour);
 
     let data = {
       title: this.title,
@@ -53,7 +58,6 @@ export class AddReminderModalComponent implements OnInit {
       data = { ...data, userId };
 
       this.calendarService.setReminder(data).subscribe(async (response) => {
-        console.log(response);
         await this.common.presentToast({ message: response.message });
 
         this.close();
@@ -62,7 +66,6 @@ export class AddReminderModalComponent implements OnInit {
       this.calendarService
         .updateReminder(this.reminderId, data)
         .subscribe(async (response) => {
-          console.log(response);
           await this.common.presentToast({ message: response.message });
 
           this.close();

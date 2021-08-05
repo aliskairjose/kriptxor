@@ -26,11 +26,12 @@ export class RemindersModalsComponent implements OnInit {
 
   public editReminderModal() {
     this.calendarService.getReminder(this.reminderId).subscribe(async (res) => {
+      console.log('reminder date: ', this.parseDate(res.data.date));
       const modal = await this.modalStacked.create({
         component: AddReminderModalComponent,
         cssClass: 'add-reminder-modal',
         componentProps: {
-          date: this.date,
+          date: this.parseDate(res.data.date),
           isEditing: true,
           reminderId: this.reminderId,
           title: res.data.title,
@@ -58,5 +59,9 @@ export class RemindersModalsComponent implements OnInit {
 
   async close() {
     await this.modalStacked.dismiss();
+  }
+
+  private parseDate(date: Date): string {
+    return date.toLocaleString().split(' ')[0];
   }
 }

@@ -18,40 +18,42 @@
       aria-label="Close"
     ></button>
   </div>
-  <ion-input
-    [(ngModel)]="title"
-    (ionChange)="title = $event.target.value"
-    class="input my-3"
-    placeholder="Asunto del Recordatorio"
-  ></ion-input>
-  <ion-label>Hora</ion-label>
-  <ion-datetime
-    [(ngModel)]="selectedHour"
-    (ionChange)="setHour($event.target.value)"
-    class="input"
-    minute-values="0,15,30,45"
-    display-format="HH:mm"
-    picker-format="HH:mm"
-    cancel-text="Cancelar"
-    done-text="Seleccionar"
-  ></ion-datetime>
-  <ion-label>Duración</ion-label>
-  <ion-input
-    [(ngModel)]="duration"
-    (ionChange)="duration = $event.target.value"
-    class="input"
-    type="number"
-    inputmode="numeric"
-  ></ion-input>
-  <ion-button
-    (click)="saveReminder()"
-    expand="full"
-    class="button mt-3"
-    shape="round"
-    color="warning"
-  >
-    <ion-text>
-      {{ isEditing ? 'Editar Recordatorio' : 'Agregar Recordatorio' }}
-    </ion-text>
-  </ion-button>
+  <form>
+    <ion-input
+      [value]="title"
+      (ionChange)="title = $event.target.value"
+      class="input my-3"
+      placeholder="Asunto del Recordatorio"
+    ></ion-input>
+    <ion-label>Hora</ion-label>
+    <ion-datetime
+      [value]="selectedHour"
+      (ionChange)="selectedHour = $event.target.value"
+      class="input"
+      minute-values="0,15,30,45"
+      display-format="HH:mm"
+      picker-format="HH:mm"
+      cancel-text="Cancelar"
+      done-text="Seleccionar"
+    ></ion-datetime>
+    <ion-label>Duración</ion-label>
+    <ion-input
+      [value]="duration"
+      (ionChange)="duration = $event.target.value"
+      class="input"
+      type="number"
+      inputmode="numeric"
+    ></ion-input>
+    <ion-button
+      (click)="saveReminder()"
+      expand="full"
+      class="button mt-3"
+      shape="round"
+      color="warning"
+    >
+      <ion-text>
+        {{ isEditing ? 'Editar Recordatorio' : 'Agregar Recordatorio' }}
+      </ion-text>
+    </ion-button>
+  </form>
 </div>

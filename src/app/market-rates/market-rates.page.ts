@@ -82,6 +82,8 @@ export class MarketRatesPage implements OnInit {
     this.campaignService.clientQuotes( this.id ).subscribe(
       response => {
         this.clientQuotes = response.data;
+        this.lastedQuote = this.clientQuotes[0];
+        this.setData();
       }
     )
   }
@@ -90,14 +92,15 @@ export class MarketRatesPage implements OnInit {
     this.quoteService.getQuotes( this.quote ).subscribe(
       response => {
         this.banks = response.data;
+        if(this.banks.length <= 0){
+          this.common.presentToast({message: 'No hay cotizaciones disponibles para esos parámetros.', color: 'warning'})
+        } else {
+          this.quote.banks = [];
+        }
       }
     )
   }
 
-
-  setBank( id: number ) {
-    console.log( id );
-  }
   selectBankQuote() {
     this.quote.banks = [];
     this.banks.forEach( key => {
@@ -130,7 +133,11 @@ export class MarketRatesPage implements OnInit {
     this.quoteService.getRequestedSalary( formData ).subscribe(
       response => {
         this.RequestedBanks = response.data as RequestSalary[];
-        this.showBanksRequested = true;
+        if(this.RequestedBanks.length > 0){
+          this.showBanksRequested = true;
+        } else{
+          this.common.presentToast({message: 'No hay bancos disponibles para este cliente', color: 'warning'})
+        }
       }
     )
   }
@@ -151,21 +158,28 @@ export class MarketRatesPage implements OnInit {
 
   //Validators
   finishQuote() {
-    console.log( this.client.fecha_nacimiento );
+    if(this.banks.length > 0){
+      if(this.quote.banks.length > 0){
+        if ( this.client.fecha_nacimiento != null && this.birth != null ) {
+          if ( this.quote.salary != null ) {
+            this.validMortgage();
+            this.validHeightWeight();
+            this.validLoan();
+            this.quoteClient();
+          } else {
+            this.invalidForm( "Salario" )
+          }
 
-    if ( this.client.fecha_nacimiento != null && this.birth != null ) {
-      if ( this.quote.salary != null ) {
-        this.validMortgage();
-        this.validHeightWeight();
-        this.validLoan();
-        this.quoteClient();
-      } else {
-        this.invalidForm( "Salario" )
+        } else {
+          this.invalidForm( "Fecha de nacimiento" )
+        }
+      } else{
+        this.common.presentToast({message: 'Debe seleccionar al menos un banco', color: 'warning'})
       }
-
     } else {
-      this.invalidForm( "Fecha de nacimiento" )
+      this.common.presentToast({message: 'No hay cotizaciones disponibles para registrar', color: 'warning'})
     }
+
   }
 
   setAge( event: any ) {
@@ -185,6 +199,20 @@ export class MarketRatesPage implements OnInit {
       this.quote.sex = this.client.sexo
     }
   }
+  setData(){
+    this.setSalary();
+    this.setWeight();
+    this.setHeight();
+  }
+  setSalary(){
+    if(this.lastedQuote != null){
+      if(this.lastedQuote.salary != null){
+        this.quote.salary = this.lastedQuote.salary;
+      } else{
+        this.lastedQuote.salary = null;
+      }
+    }
+  }
   setWeight() {
     if ( this.lastedQuote != null ) {
       if ( this.lastedQuote.weight != null ) {
@@ -192,11 +220,11 @@ export class MarketRatesPage implements OnInit {
         this.quote.weight = this.lastedQuote.weight;
       } else {
         this.quote.weight = null
-        this.quote.type_weight = "kgs";
+        this.quote.type_weight = "Kgs";
       }
     } else {
       this.quote.weight = null
-      this.quote.type_weight = "kgs";
+      this.quote.type_weight = "Kgs";
     }
   }
   setHeight() {
@@ -216,9 +244,12 @@ export class MarketRatesPage implements OnInit {
       let today = moment();
       let age = today.diff( birth, "years" );
       this.age = age;
+      this.birth = birth;
       this.quote.day = +moment( birth ).format( 'DD' );
       this.quote.month = +moment( birth ).format( 'MM' );
       this.quote.year = +moment( birth ).format( 'YYYY' );
+    } else{
+      this.birth = moment("1960").format( 'YYYY-MM-DD' );
     }
 
   }
@@ -228,12 +259,12 @@ export class MarketRatesPage implements OnInit {
     if ( this.client.fecha_nacimiento != null && this.birth != null ) {
       if ( this.quote.sex != null ) {
         if ( this.quote.salary != null ) {
-          this.client.sexo = this.quote.sex;
-          this.validMortgage();
-          this.validHeightWeight();
-          this.validLoan();
-          this.getQuotes();
-          //console.log(this.quote);
+                this.client.sexo = this.quote.sex;
+                this.validMortgage();
+                this.validHeightWeight();
+                this.validLoan();
+                this.getQuotes();
+                //console.log(this.quote);
         } else {
           this.invalidForm( "Salario" )
         }
@@ -281,7 +312,6 @@ export class MarketRatesPage implements OnInit {
   }
 
   invalidForm( text: string ) {
-    console.log( this.client.fecha_nacimiento );
     const message = `El campo de ${text} no puede estar vacio`;
     const color = 'warning';
     this.common.presentToast( { message, color } )

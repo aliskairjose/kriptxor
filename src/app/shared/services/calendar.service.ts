@@ -9,13 +9,11 @@ interface GetEventsParams {
   page?: number;
 }
 
-interface SetReminderParams {
-  attributes: {
-    userId: number;
-    title: string;
-    date: string;
-    duration: number;
-  };
+export interface ReminderParams {
+  userId?: number;
+  title: string;
+  date: string;
+  duration: number;
 }
 
 @Injectable({
@@ -35,7 +33,7 @@ export class CalendarService {
       order: {
         field: 'date',
         way: 'ASC',
-      }
+      },
     };
 
     return this.http.get(
@@ -45,7 +43,25 @@ export class CalendarService {
     );
   }
 
-  public setReminder(data: SetReminderParams): Observable<any> {
+  public getReminder(id: number): Observable<any> {
+    return this.http.get(`reminders/${id}`);
+  }
+
+  public setReminder(reminder: ReminderParams): Observable<any> {
+    const data = {
+      attributes: {
+        ...reminder,
+      },
+    };
+
     return this.http.post('reminders', data);
+  }
+
+  public updateReminder(id: number, data: ReminderParams): Observable<any> {
+    return this.http.put(`reminders/${id}`, data);
+  }
+
+  public deleteReminder(id: number): Observable<any> {
+    return this.http.delete(`reminders/${id}`);
   }
 }

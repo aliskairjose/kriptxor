@@ -35,3 +35,9 @@ export interface Status {
   decription?: string;
   created_at?: string;
 }
+export interface Message{
+  id?: number;
+  whatsapp_message?: string;
+  created_at?: string;
+  updated_at?: string;
+}

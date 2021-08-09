@@ -5,6 +5,12 @@ import { AuthService } from '../shared/services/auth.service';
 import { CommonService } from '../shared/services/common.service';
 import { Router } from '@angular/router';
 import { StorageService } from '../shared/services/storage.service';
+import {
+  ActionPerformed,
+  PushNotificationSchema,
+  PushNotifications,
+  Token,
+} from '@capacitor/push-notifications';
 
 @Component( {
   selector: 'app-login',
@@ -15,6 +21,7 @@ export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
   submitted: boolean;
+  tokenFcm : string;
   formError = ERROR_FORM;
   logo = LOGO;
   isPassword = true;
@@ -31,15 +38,37 @@ export class LoginPage implements OnInit {
 
   get f() { return this.loginForm.controls; }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+
+    PushNotifications.requestPermissions().then(result => {
+      if (result.receive === 'granted') {
+        // Register with Apple / Google to receive push via APNS/FCM
+        PushNotifications.register();
+      } else {
+        // Show some error
+      }
+    });
+
+    PushNotifications.addListener('registration',
+        (token: Token) => {
+          this.tokenFcm = token.value;
+        }
+    );
   }
 
   async onSubmit() {
     this.submitted = true;
     if ( this.loginForm.valid ) {
+
+      let data = {
+        password : this.loginForm.value.password,
+        email : this.loginForm.value.email,
+        token : this.tokenFcm
+      };
+      
       const loading = await this.common.presentLoading();
       loading.present();
-      this.auth.login( this.loginForm.value ).subscribe( async ( response ) => {
+      this.auth.login( data ).subscribe( async ( response ) => {
         loading.dismiss();
         const message = 'Bienvenido'
         this.common.presentToast( { message } );

@@ -29,6 +29,13 @@ export class DashboardPage implements OnInit {
         return news;
       } );
     }, () => loading.dismiss() );
+
+    this.initPush();
+  }
+
+
+  initPush(){
+    console.log('Init Push');
   }
 
 }

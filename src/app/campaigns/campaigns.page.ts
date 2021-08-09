@@ -18,7 +18,7 @@ export class CampaignsPage implements OnInit {
 
   campaigns: Campaign[] = [];
   pagination: Page = {};
-  filter = { campaignClientsCount: 1, name: '', quotesCount: 1, condition: 1 };
+  filter = { authCampaignClientsCount: 1, name: '', authCampaignClientsNotContactedCount: 1, condition: 1, sellerIds: [] };
 
   @ViewChild( IonInfiniteScroll ) infiniteScroll: IonInfiniteScroll;
 
@@ -38,6 +38,7 @@ export class CampaignsPage implements OnInit {
     if ( !isFirstLoad ) { loading.present(); }
 
     const user: User = await this.storage.get( USER ) as unknown as User;
+    this.filter.sellerIds=[user.id];
 
     this.campaignService.list( user.id, this.filter, page ).subscribe( response => {
       loading.dismiss();

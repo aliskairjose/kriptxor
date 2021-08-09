@@ -9,7 +9,7 @@
 
 <ion-content>
 
-  <ion-searchbar placeholder="Buscar tu campaña" inputmode="text" (ionChange)="find($event.target.value)"
+  <ion-searchbar placeholder="Buscar tu listado" inputmode="text" (ionChange)="find($event.target.value)"
     debounce="1000">
   </ion-searchbar>
 
@@ -29,10 +29,10 @@
           <div>
             <ion-label>
               <img src="/assets/icon/persons-circle.svg" alt="" style="margin-right: 5px;">
-              {{campaign.campaign_clientes_count}} clientes
+              {{campaign.campaign_clientes_auth_count}} clientes
             </ion-label>
             <ion-label>
-              <img src="/assets/icon/monetization.svg" alt="" style="margin-right: 5px;"> {{campaign.quotes}} ventas
+              <img src="/assets/icon/monetization.svg" alt="" style="margin-right: 5px;"> {{campaign.clients_not_contacted_count}} ventas
             </ion-label>
           </div>
           <div>

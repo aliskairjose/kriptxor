@@ -13,11 +13,7 @@
   <app-info-bar [client]="client" [id]="id"></app-info-bar>
 
   <ion-card>
-    <ion-card-header>
-      <ion-text color="dark" class="bold-text">
-        Mayo 21
-      </ion-text>
-    </ion-card-header>
+
     <ion-card-content class="scrolling-content">
       <div class="document">
         <ion-list *ngFor="let note of notes">
@@ -62,7 +58,7 @@
 
   <div>
     <div class="m-0 row justify-content-center">
-      <ion-button [routerLink]="[ '/campaigns/campaign',id ]" class="col-auto" shape="round" color="light">
+      <ion-button [routerLink]="[ '/campaigns/campaign',campaignId ]" class="col-auto" shape="round" color="light">
         <ion-text>
           Salir
         </ion-text>

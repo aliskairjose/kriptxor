@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { CalendarService } from '../../shared/services/calendar.service';
+import { CommonService } from 'src/app/shared/services/common.service';
+import { AddReminderModalComponent } from './addReminderModal.page';
 
 @Component({
   selector: 'app-reminder-modal',
@@ -11,12 +14,54 @@ export class RemindersModalsComponent implements OnInit {
   public date: '';
   public startHour: '';
   public endHour: '';
+  public reminderId: number;
 
-  constructor(private modal: ModalController) {}
+  constructor(
+    private modalStacked: ModalController,
+    private calendarService: CalendarService,
+    private common: CommonService
+  ) {}
 
   ngOnInit() {}
 
+  public editReminderModal() {
+    this.calendarService.getReminder(this.reminderId).subscribe(async (res) => {
+      console.log('reminder date: ', this.parseDate(res.data.date));
+      const modal = await this.modalStacked.create({
+        component: AddReminderModalComponent,
+        cssClass: 'add-reminder-modal',
+        componentProps: {
+          date: this.parseDate(res.data.date),
+          isEditing: true,
+          reminderId: this.reminderId,
+          title: res.data.title,
+          duration: res.data.duration,
+          selectedHour: res.data.date.split(' ')[1],
+        },
+      });
+
+      modal.onDidDismiss().then(() => {
+        this.close();
+      });
+
+      return await modal.present();
+    });
+  }
+
+  public deleteReminder() {
+    this.calendarService
+      .deleteReminder(this.reminderId)
+      .subscribe(async (res) => {
+        await this.common.presentToast({ message: 'Recordatorio eliminado' });
+        this.close();
+      });
+  }
+
   async close() {
-    await this.modal.dismiss();
+    await this.modalStacked.dismiss();
+  }
+
+  private parseDate(date: Date): string {
+    return date.toLocaleString().split(' ')[0];
   }
 }

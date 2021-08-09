@@ -4,6 +4,7 @@ import { MasterClient } from '../shared/classes/client';
 import { ClientService } from '../shared/services/client.service';
 import {Page} from '../shared/interfaces/pagination';
 import { CommonService } from '../shared/services/common.service';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class ClientsPage implements OnInit {
   pages: Page;
   search: string = "";
 
-  constructor(private call: CallNumber, private clientService: ClientService, private common: CommonService) { }
+  constructor(private call: CallNumber, private clientService: ClientService, private common: CommonService, private socialSharing: SocialSharing) { }
 
   ngOnInit() {
     this.getClients();
@@ -40,7 +41,28 @@ export class ClientsPage implements OnInit {
       }, () => loading.dismiss()
     )
   }
+  async whatsapp(number: string){
+    const loading = await this.common.presentLoading();
+    loading.present();
+    this.clientService.sendMessageWhatsapp().subscribe(
+      response => {
+        this.sendMessageWhatsapp(number, response.data.whatsapp_message)
+        loading.dismiss();
 
+      }, () => loading.dismiss()
+    )
+  }
+  async sendMessageWhatsapp(number: string, message: string){
+    const loading = await this.common.presentLoading();
+    loading.present();
+    this.socialSharing.shareViaWhatsAppToReceiver(number, message).then(() => {
+      loading.dismiss();
+      this.common.presentToast({message: "Mensaje enviado", color: 'success'})
+    }).catch(() => {
+        this.common.presentToast({message: "Hubo un problema al enviar el mensaje", color: 'danger'});
+        loading.dismiss()
+    });
+  }
   //Infinity scroll
    scrollClients(page: number, event: any){
     this.clientService.getClients(page, this.search).subscribe(

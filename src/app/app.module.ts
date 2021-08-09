@@ -17,6 +17,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 registerLocaleData( localeEs );
 
@@ -30,7 +33,8 @@ registerLocaleData( localeEs );
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },
@@ -38,7 +42,7 @@ registerLocaleData( localeEs );
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     CallNumber,
     PreviewAnyFile,
-    SocialSharing,
+    SocialSharing
   ],
   bootstrap: [ AppComponent ],
 } )

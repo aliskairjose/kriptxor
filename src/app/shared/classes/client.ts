@@ -15,6 +15,7 @@ export class Client {
   code?: string;
   nombre_completo?: string;
   available?: boolean;
+  addToDirectory?: number;
 }
 export class MasterClient {
   id?: number;

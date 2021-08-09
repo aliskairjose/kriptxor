@@ -12,6 +12,8 @@ export class Quote {
   year: number;
   banks: number[];
   type_weight: string;
+  created_at: string;
+  updated_at: string;
 }
 export class Bank{
   bank_id: number;

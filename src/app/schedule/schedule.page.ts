@@ -36,6 +36,7 @@ export class SchedulePage implements OnInit {
   date: any;
   time: any;
   holidays: [] = [];
+  campaignId:0;
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -65,7 +66,8 @@ export class SchedulePage implements OnInit {
     this.campaignService.getCampaignClientById( this.id ).subscribe(
       ( response ) => {
         this.client = { ...response.data.cliente };
-      },
+        this.campaignId=response.data.id_campaign;
+    },
       () => console.error( 'error get campaign client service' )
     );
   } //

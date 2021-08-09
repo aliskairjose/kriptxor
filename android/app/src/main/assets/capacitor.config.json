@@ -1,1 +1,16 @@
-{}
+{
+	"appId": "io.ionic.grupo.elite",
+	"appName": "Grupo Global Elite",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "www",
+	"plugins": {
+		"SplashScreen": {
+			"launchAutoHide": false,
+			"androidScaleType": "CENTER_CROP",
+			"splashFullScreen": true,
+			"splashImmersive": false,
+			"backgroundColor": "#ffffff"
+		}
+	}
+}

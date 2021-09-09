@@ -11,9 +11,13 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <ion-item (click)="openUrl()" lines="none">
+          <ion-item (click)="openUrl('https://grupoglobalelite.com/politicas-bancarias/')" lines="none">
             <ion-icon slot="start" name="id-card-outline"></ion-icon>
             <ion-label>Políticas bancarias</ion-label>
+          </ion-item>
+          <ion-item (click)="openUrl('https://grupoglobalelite.com/sucursales-bancarias/')" lines="none">
+            <ion-icon slot="start" name="id-card-outline"></ion-icon>
+            <ion-label>Sucursales bancarias</ion-label>
           </ion-item>
           <ion-item (click)="closeSession()" lines="none">
             <ion-icon slot="start" name="log-out-outline"></ion-icon>

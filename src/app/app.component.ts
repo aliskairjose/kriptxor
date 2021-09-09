@@ -24,7 +24,6 @@ export class AppComponent {
   ];
 
   public labels = [];
-  url = 'https://grupoglobalelite.com/politicas-bancarias/';
 
   constructor(
     private router: Router,
@@ -35,8 +34,8 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  openUrl(): void {
-    window.open( this.url, '_system' );
+  openUrl( url: string ): void {
+    window.open( url, '_system' );
   }
 
   closeSession(): void {

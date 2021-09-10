@@ -33,11 +33,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppRoutingModule": () => (/* binding */ AppRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 64762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 39895);
-/* harmony import */ var _shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shared/services/auth-guard.service */ 45510);
-
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 39895);
 
 
 
@@ -50,71 +48,60 @@ const routes = [
     {
         path: 'folder/:id',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_folder_folder_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./folder/folder.module */ 3412)).then((m) => m.FolderPageModule),
-        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'dashboard',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_dashboard_dashboard_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./dashboard/dashboard.module */ 34814)).then((m) => m.DashboardPageModule),
-        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_dashboard_dashboard_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./dashboard/dashboard.module */ 34814)).then((m) => m.DashboardPageModule),
     },
     {
         path: 'login',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_login_login_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./login/login.module */ 80107)).then((m) => m.LoginPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./login/login.module */ 80107)).then((m) => m.LoginPageModule),
     },
     {
         path: 'campaigns',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_campaigns_campaigns_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./campaigns/campaigns.module */ 66583)).then((m) => m.CampaignsPageModule),
-        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'client/:id',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_client_client_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./client/client.module */ 27808)).then((m) => m.ClientPageModule),
-        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'documents/:id',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_documents_documents_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./documents/documents.module */ 79061)).then((m) => m.DocumentsPageModule),
-        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'notes/:id',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_notes_notes_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./notes/notes.module */ 52172)).then((m) => m.NotesPageModule),
-        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'schedule/:id',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_schedule_schedule_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./schedule/schedule.module */ 47911)).then((m) => m.SchedulePageModule),
-        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'calendar',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_calendar_calendar_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./calendar/calendar.module */ 979)).then((m) => m.CalendarPageModule),
-        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'clients',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_clients_clients_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./clients/clients.module */ 57158)).then((m) => m.ClientsPageModule),
-        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'market-rates/:id',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_market-rates_market-rates_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./market-rates/market-rates.module */ 46233)).then(m => m.MarketRatesPageModule),
-        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_market-rates_market-rates_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./market-rates/market-rates.module */ 46233)).then(m => m.MarketRatesPageModule)
     },
     {
         path: 'seeker',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_seeker_seeker_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./seeker/seeker.module */ 45576)).then(m => m.SeekerPageModule),
-        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_seeker_seeker_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./seeker/seeker.module */ 45576)).then(m => m.SeekerPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
-AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.NgModule)({
+AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.NgModule)({
         imports: [
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule.forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_3__.PreloadAllModules }),
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule.forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_2__.PreloadAllModules }),
         ],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule],
     })
 ], AppRoutingModule);
 
@@ -153,11 +140,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(router, platform, storage, menuCtrl) {
+    constructor(router, platform, storage, menuCtrl, navCtrl) {
         this.router = router;
         this.platform = platform;
         this.storage = storage;
         this.menuCtrl = menuCtrl;
+        this.navCtrl = navCtrl;
         this.appPages = [
             { title: 'Inicio', url: '/dashboard', icon: 'home' },
             { title: 'Listado', url: '/campaigns', icon: 'flag' },
@@ -169,15 +157,35 @@ let AppComponent = class AppComponent {
             //{ title: 'Cotizaciones', url: '/market-rates/116', icon: 'flag' },
         ];
         this.labels = [];
+        this.navigationExtras = {
+            skipLocationChange: true,
+            replaceUrl: true
+        };
         this.initializeApp();
+        this.backButtonEvent();
     }
     openUrl(url) {
         window.open(url, '_system');
     }
     closeSession() {
-        localStorage.clear();
-        this.menuCtrl.close();
-        this.router.navigate(['/login']);
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            yield this.storage.clear();
+            this.menuCtrl.close();
+            this.router.navigate(['/login'], this.navigationExtras);
+            // this.navCtrl.navigateRoot( '/login' );
+        });
+    }
+    backButtonEvent() {
+        this.platform.backButton.subscribe(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
+            this.routerOutlets.forEach((outlet) => {
+                if (outlet && outlet.canGoBack()) {
+                    outlet.pop();
+                }
+                else {
+                    navigator['app'].exitApp();
+                }
+            });
+        }));
     }
     initializeApp() {
         this.platform.ready().then(() => (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
@@ -192,8 +200,12 @@ AppComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__.Router },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.Platform },
     { type: _shared_services_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.MenuController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.MenuController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.NavController }
 ];
+AppComponent.propDecorators = {
+    routerOutlets: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_8__.ViewChildren, args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonRouterOutlet,] }]
+};
 AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
     (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-root',
@@ -317,127 +329,6 @@ const ERROR_FORM = {
 
 /***/ }),
 
-/***/ 45510:
-/*!*******************************************************!*\
-  !*** ./src/app/shared/services/auth-guard.service.ts ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "AuthGuardService": () => (/* binding */ AuthGuardService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ 39895);
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth.service */ 10629);
-
-
-
-
-let AuthGuardService = class AuthGuardService {
-    constructor(router, auth) {
-        this.router = router;
-        this.auth = auth;
-    }
-    canActivate(route) {
-        if (this.auth.isLoggedIn()) {
-            return true;
-        }
-        // Redirecciona al login
-        this.router.navigate(['/login']);
-        return false;
-    }
-};
-AuthGuardService.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__.Router },
-    { type: _auth_service__WEBPACK_IMPORTED_MODULE_0__.AuthService }
-];
-AuthGuardService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
-        providedIn: "root"
-    })
-], AuthGuardService);
-
-
-
-/***/ }),
-
-/***/ 10629:
-/*!*************************************************!*\
-  !*** ./src/app/shared/services/auth.service.ts ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "AuthService": () => (/* binding */ AuthService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 64762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http.service */ 74691);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 79765);
-/* harmony import */ var _storage_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage.service */ 1303);
-/* harmony import */ var _constants_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants/constants */ 52619);
-
-
-
-
-
-
-let AuthService = class AuthService {
-    constructor(storage, http) {
-        this.storage = storage;
-        this.http = http;
-        this.auth$ = new rxjs__WEBPACK_IMPORTED_MODULE_3__.Subject();
-    }
-    /**
-     * @description Inicio de sesión a la app
-     * @param data Objeto { email, password }
-     */
-    login(data) {
-        return this.http.post('login', data);
-    }
-    register(data) {
-        return this.http.post('', data);
-    }
-    recoverPassword(data) {
-        return this.http.post('', data);
-    }
-    isLoggedIn() {
-        return this.storage.get(_constants_constants__WEBPACK_IMPORTED_MODULE_2__.TOKEN) ? true : false;
-    }
-    /**
-     * @description Genera el stream de eventos usando next() para crear el evento
-     */
-    AuthSubject(user) {
-        this.auth$.next(user);
-        this.auth$.complete();
-    }
-    /**
-     * @description Creación del observer mediante el método asObserver(), el cual sera consumido por el componente
-     * @returns Observable
-     */
-    authObserver() {
-        return this.auth$.asObservable();
-    }
-};
-AuthService.ctorParameters = () => [
-    { type: _storage_service__WEBPACK_IMPORTED_MODULE_1__.StorageService },
-    { type: _http_service__WEBPACK_IMPORTED_MODULE_0__.HttpService }
-];
-AuthService = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
-        providedIn: 'root'
-    })
-], AuthService);
-
-
-
-/***/ }),
-
 /***/ 80062:
 /*!***************************************************!*\
   !*** ./src/app/shared/services/common.service.ts ***!
@@ -545,64 +436,6 @@ CommonService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
         providedIn: 'root'
     })
 ], CommonService);
-
-
-
-/***/ }),
-
-/***/ 74691:
-/*!*************************************************!*\
-  !*** ./src/app/shared/services/http.service.ts ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "HttpService": () => (/* binding */ HttpService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 91841);
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
-
-
-
-
-let HttpService = class HttpService {
-    constructor(http) {
-        this.http = http;
-    }
-    post(serviceName, data, options) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        this.http.post(url, data);
-        return this.http.post(url, data, options);
-    }
-    get(serviceName, data) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        return this.http.get(url, { params: data });
-    }
-    put(serviceName, data) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        return this.http.put(url, data);
-    }
-    patch(serviceName, data) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        return this.http.patch(url, data);
-    }
-    delete(serviceName, data) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        return this.http.delete(url, data);
-    }
-};
-HttpService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
-];
-HttpService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
-        providedIn: 'root'
-    })
-], HttpService);
 
 
 

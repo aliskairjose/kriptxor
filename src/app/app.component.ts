@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { Component, QueryList, ViewChildren } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
+import { IonRouterOutlet, NavController, Platform } from '@ionic/angular';
 import { StorageService } from './shared/services/storage.service';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { TOKEN } from './shared/constants/constants';
@@ -24,24 +24,44 @@ export class AppComponent {
   ];
 
   public labels = [];
+  navigationExtras: NavigationExtras = {
+    skipLocationChange: true,
+    replaceUrl: true
+  };
+  @ViewChildren( IonRouterOutlet ) routerOutlets: QueryList<IonRouterOutlet>;
 
   constructor(
     private router: Router,
     private platform: Platform,
     private storage: StorageService,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private navCtrl: NavController
   ) {
     this.initializeApp();
+    this.backButtonEvent();
   }
 
   openUrl( url: string ): void {
     window.open( url, '_system' );
   }
 
-  closeSession(): void {
-    localStorage.clear();
+  async closeSession() {
+    await this.storage.clear();
     this.menuCtrl.close();
-    this.router.navigate( [ '/login' ] );
+    this.navCtrl.navigateRoot( '/login' );
+  }
+
+  backButtonEvent() {
+    this.platform.backButton.subscribe( async () => {
+
+      this.routerOutlets.forEach( ( outlet: IonRouterOutlet ) => {
+        if ( outlet && outlet.canGoBack() ) {
+          outlet.pop();
+        } else {
+          navigator[ 'app' ].exitApp();
+        }
+      } );
+    } );
   }
 
   private initializeApp(): void {

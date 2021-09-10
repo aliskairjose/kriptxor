@@ -33,9 +33,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "AppRoutingModule": () => (/* binding */ AppRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 64762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 39895);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 39895);
+/* harmony import */ var _shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shared/services/auth-guard.service */ 45510);
+
 
 
 
@@ -48,60 +50,71 @@ const routes = [
     {
         path: 'folder/:id',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_folder_folder_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./folder/folder.module */ 3412)).then((m) => m.FolderPageModule),
+        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'dashboard',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_dashboard_dashboard_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./dashboard/dashboard.module */ 34814)).then((m) => m.DashboardPageModule),
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_dashboard_dashboard_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./dashboard/dashboard.module */ 34814)).then((m) => m.DashboardPageModule),
+        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'login',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./login/login.module */ 80107)).then((m) => m.LoginPageModule),
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_login_login_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./login/login.module */ 80107)).then((m) => m.LoginPageModule),
     },
     {
         path: 'campaigns',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_campaigns_campaigns_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./campaigns/campaigns.module */ 66583)).then((m) => m.CampaignsPageModule),
+        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'client/:id',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_client_client_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./client/client.module */ 27808)).then((m) => m.ClientPageModule),
+        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'documents/:id',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_documents_documents_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./documents/documents.module */ 79061)).then((m) => m.DocumentsPageModule),
+        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'notes/:id',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_notes_notes_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./notes/notes.module */ 52172)).then((m) => m.NotesPageModule),
+        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'schedule/:id',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_schedule_schedule_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./schedule/schedule.module */ 47911)).then((m) => m.SchedulePageModule),
+        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'calendar',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_calendar_calendar_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./calendar/calendar.module */ 979)).then((m) => m.CalendarPageModule),
+        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'clients',
         loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_clients_clients_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./clients/clients.module */ 57158)).then((m) => m.ClientsPageModule),
+        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'market-rates/:id',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_market-rates_market-rates_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./market-rates/market-rates.module */ 46233)).then(m => m.MarketRatesPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-node_modules_moment_moment_js"), __webpack_require__.e("default-node_modules_moment-timezone_index_js"), __webpack_require__.e("common"), __webpack_require__.e("src_app_market-rates_market-rates_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./market-rates/market-rates.module */ 46233)).then(m => m.MarketRatesPageModule),
+        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     },
     {
         path: 'seeker',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_seeker_seeker_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./seeker/seeker.module */ 45576)).then(m => m.SeekerPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_seeker_seeker_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./seeker/seeker.module */ 45576)).then(m => m.SeekerPageModule),
+        canActivate: [_shared_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_0__.AuthGuardService]
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
-AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.NgModule)({
+AppRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.NgModule)({
         imports: [
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule.forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_2__.PreloadAllModules }),
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule.forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_3__.PreloadAllModules }),
         ],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule],
     })
 ], AppRoutingModule);
 
@@ -156,11 +169,10 @@ let AppComponent = class AppComponent {
             //{ title: 'Cotizaciones', url: '/market-rates/116', icon: 'flag' },
         ];
         this.labels = [];
-        this.url = 'https://grupoglobalelite.com/politicas-bancarias/';
         this.initializeApp();
     }
-    openUrl() {
-        window.open(this.url, '_system');
+    openUrl(url) {
+        window.open(url, '_system');
     }
     closeSession() {
         localStorage.clear();
@@ -203,12 +215,13 @@ AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "options": () => (/* binding */ options),
 /* harmony export */   "AppModule": () => (/* binding */ AppModule)
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 64762);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 37716);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser */ 39075);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/router */ 39895);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/router */ 39895);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 80476);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component */ 55041);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-routing.module */ 90158);
@@ -222,6 +235,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/call-number/ngx */ 64687);
 /* harmony import */ var _ionic_native_preview_any_file_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/preview-any-file/ngx */ 85838);
 /* harmony import */ var _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/social-sharing/ngx */ 24276);
+/* harmony import */ var ngx_mask__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ngx-mask */ 69129);
 
 
 
@@ -238,6 +252,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+const options = null;
 (0,_angular_common__WEBPACK_IMPORTED_MODULE_7__.registerLocaleData)((_angular_common_locales_es__WEBPACK_IMPORTED_MODULE_2___default()));
 let AppModule = class AppModule {
 };
@@ -252,15 +268,16 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([
             _angular_common_http__WEBPACK_IMPORTED_MODULE_12__.HttpClientModule,
             _angular_forms__WEBPACK_IMPORTED_MODULE_13__.ReactiveFormsModule,
             _angular_forms__WEBPACK_IMPORTED_MODULE_13__.FormsModule,
-            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_14__.BrowserAnimationsModule
+            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_14__.BrowserAnimationsModule,
+            ngx_mask__WEBPACK_IMPORTED_MODULE_15__.NgxMaskModule.forRoot()
         ],
         providers: [
             { provide: _angular_core__WEBPACK_IMPORTED_MODULE_9__.LOCALE_ID, useValue: 'es' },
-            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_15__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.IonicRouteStrategy },
+            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_16__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.IonicRouteStrategy },
             { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_12__.HTTP_INTERCEPTORS, useClass: _shared_services_interceptor_service__WEBPACK_IMPORTED_MODULE_3__.InterceptorService, multi: true },
             _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_4__.CallNumber,
             _ionic_native_preview_any_file_ngx__WEBPACK_IMPORTED_MODULE_5__.PreviewAnyFile,
-            _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_6__.SocialSharing,
+            _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_6__.SocialSharing
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent],
     })
@@ -296,6 +313,127 @@ const ERROR_FORM = {
     onlyDigits: 'Sólo se permiten números',
     minLength: 'El mínimo de caracteres es de '
 };
+
+
+/***/ }),
+
+/***/ 45510:
+/*!*******************************************************!*\
+  !*** ./src/app/shared/services/auth-guard.service.ts ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AuthGuardService": () => (/* binding */ AuthGuardService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ 39895);
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth.service */ 10629);
+
+
+
+
+let AuthGuardService = class AuthGuardService {
+    constructor(router, auth) {
+        this.router = router;
+        this.auth = auth;
+    }
+    canActivate(route) {
+        if (this.auth.isLoggedIn()) {
+            return true;
+        }
+        // Redirecciona al login
+        this.router.navigate(['/login']);
+        return false;
+    }
+};
+AuthGuardService.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__.Router },
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_0__.AuthService }
+];
+AuthGuardService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: "root"
+    })
+], AuthGuardService);
+
+
+
+/***/ }),
+
+/***/ 10629:
+/*!*************************************************!*\
+  !*** ./src/app/shared/services/auth.service.ts ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AuthService": () => (/* binding */ AuthService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http.service */ 74691);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 79765);
+/* harmony import */ var _storage_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storage.service */ 1303);
+/* harmony import */ var _constants_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants/constants */ 52619);
+
+
+
+
+
+
+let AuthService = class AuthService {
+    constructor(storage, http) {
+        this.storage = storage;
+        this.http = http;
+        this.auth$ = new rxjs__WEBPACK_IMPORTED_MODULE_3__.Subject();
+    }
+    /**
+     * @description Inicio de sesión a la app
+     * @param data Objeto { email, password }
+     */
+    login(data) {
+        return this.http.post('login', data);
+    }
+    register(data) {
+        return this.http.post('', data);
+    }
+    recoverPassword(data) {
+        return this.http.post('', data);
+    }
+    isLoggedIn() {
+        return this.storage.get(_constants_constants__WEBPACK_IMPORTED_MODULE_2__.TOKEN) ? true : false;
+    }
+    /**
+     * @description Genera el stream de eventos usando next() para crear el evento
+     */
+    AuthSubject(user) {
+        this.auth$.next(user);
+        this.auth$.complete();
+    }
+    /**
+     * @description Creación del observer mediante el método asObserver(), el cual sera consumido por el componente
+     * @returns Observable
+     */
+    authObserver() {
+        return this.auth$.asObservable();
+    }
+};
+AuthService.ctorParameters = () => [
+    { type: _storage_service__WEBPACK_IMPORTED_MODULE_1__.StorageService },
+    { type: _http_service__WEBPACK_IMPORTED_MODULE_0__.HttpService }
+];
+AuthService = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
+        providedIn: 'root'
+    })
+], AuthService);
+
 
 
 /***/ }),
@@ -407,6 +545,64 @@ CommonService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
         providedIn: 'root'
     })
 ], CommonService);
+
+
+
+/***/ }),
+
+/***/ 74691:
+/*!*************************************************!*\
+  !*** ./src/app/shared/services/http.service.ts ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HttpService": () => (/* binding */ HttpService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 91841);
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
+
+
+
+
+let HttpService = class HttpService {
+    constructor(http) {
+        this.http = http;
+    }
+    post(serviceName, data, options) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        this.http.post(url, data);
+        return this.http.post(url, data, options);
+    }
+    get(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        return this.http.get(url, { params: data });
+    }
+    put(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        return this.http.put(url, data);
+    }
+    patch(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        return this.http.patch(url, data);
+    }
+    delete(serviceName, data) {
+        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
+        return this.http.delete(url, data);
+    }
+};
+HttpService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
+];
+HttpService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root'
+    })
+], HttpService);
 
 
 
@@ -886,7 +1082,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-app>\r\n  <ion-split-pane contentId=\"main-content\">\r\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\r\n      <ion-content>\r\n        <ion-list id=\"inbox-list\">\r\n          <ion-list-header>Grupo Global Elite</ion-list-header>\r\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\r\n            <ion-item routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\"\r\n              routerLinkActive=\"selected\">\r\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\r\n              <ion-label>{{ p.title }}</ion-label>\r\n            </ion-item>\r\n          </ion-menu-toggle>\r\n          <ion-item (click)=\"openUrl()\" lines=\"none\">\r\n            <ion-icon slot=\"start\" name=\"id-card-outline\"></ion-icon>\r\n            <ion-label>Políticas bancarias</ion-label>\r\n          </ion-item>\r\n          <ion-item (click)=\"closeSession()\" lines=\"none\">\r\n            <ion-icon slot=\"start\" name=\"log-out-outline\"></ion-icon>\r\n            <ion-label>Cerrar sesión</ion-label>\r\n          </ion-item>\r\n        </ion-list>\r\n      </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\r\n  </ion-split-pane>\r\n</ion-app>");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-app>\r\n  <ion-split-pane contentId=\"main-content\">\r\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\r\n      <ion-content>\r\n        <ion-list id=\"inbox-list\">\r\n          <ion-list-header>Grupo Global Elite</ion-list-header>\r\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\r\n            <ion-item routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\"\r\n              routerLinkActive=\"selected\">\r\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\r\n              <ion-label>{{ p.title }}</ion-label>\r\n            </ion-item>\r\n          </ion-menu-toggle>\r\n          <ion-item (click)=\"openUrl('https://grupoglobalelite.com/politicas-bancarias/')\" lines=\"none\">\r\n            <ion-icon slot=\"start\" name=\"id-card-outline\"></ion-icon>\r\n            <ion-label>Políticas bancarias</ion-label>\r\n          </ion-item>\r\n          <ion-item (click)=\"openUrl('https://grupoglobalelite.com/sucursales-bancarias/')\" lines=\"none\">\r\n            <ion-icon slot=\"start\" name=\"id-card-outline\"></ion-icon>\r\n            <ion-label>Sucursales bancarias</ion-label>\r\n          </ion-item>\r\n          <ion-item (click)=\"closeSession()\" lines=\"none\">\r\n            <ion-icon slot=\"start\" name=\"log-out-outline\"></ion-icon>\r\n            <ion-label>Cerrar sesión</ion-label>\r\n          </ion-item>\r\n        </ion-list>\r\n      </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\r\n  </ion-split-pane>\r\n</ion-app>");
 
 /***/ })
 

@@ -602,7 +602,7 @@ let ClientService = class ClientService {
     }
     getClients(page, search) {
         search = search.toLowerCase();
-        return this.http.get(`campaign-clients?filter={"interested":1,"auth":1,"doesntQuotes":1,"search":"${search}","order":{"field":"created_at","way":"ASC"}}&page=${page}&include=cliente,status`);
+        return this.http.get(`campaign-clients?filter={"contacted":1,"auth":1,"search":"${search}","order":{"field":"created_at","way":"ASC"}}&page=${page}&include=cliente,status`);
     }
     searchClient(text, page = 1) {
         return this.http.get(`campaign-clients?filter={"auth":1,"search":"${text}","order":{"field":"created_at","way":"ASC"}}&page=${page}&include=cliente,status`);
@@ -612,6 +612,9 @@ let ClientService = class ClientService {
     }
     updateClient(client) {
         return this.http.put(`clientes/${client.id}`, client);
+    }
+    sendMessageWhatsapp() {
+        return this.http.get(`config`);
     }
 };
 ClientService.ctorParameters = () => [
@@ -660,64 +663,6 @@ HolidayService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
         providedIn: 'root',
     })
 ], HolidayService);
-
-
-
-/***/ }),
-
-/***/ 74691:
-/*!*************************************************!*\
-  !*** ./src/app/shared/services/http.service.ts ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "HttpService": () => (/* binding */ HttpService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ 91841);
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 92340);
-
-
-
-
-let HttpService = class HttpService {
-    constructor(http) {
-        this.http = http;
-    }
-    post(serviceName, data, options) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        this.http.post(url, data);
-        return this.http.post(url, data, options);
-    }
-    get(serviceName, data) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        return this.http.get(url, { params: data });
-    }
-    put(serviceName, data) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        return this.http.put(url, data);
-    }
-    patch(serviceName, data) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        return this.http.patch(url, data);
-    }
-    delete(serviceName, data) {
-        const url = src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.api + serviceName;
-        return this.http.delete(url, data);
-    }
-};
-HttpService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpClient }
-];
-HttpService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
-        providedIn: 'root'
-    })
-], HttpService);
 
 
 

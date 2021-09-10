@@ -1,6 +1,6 @@
 {
-"appId": "com.cronapis.appcall",
-  "appName": "Grupo Global Elite",
+	"appId": "com.cronapis.appcall",
+	"appName": "Grupo Global Elite",
 	"bundledWebRuntime": false,
 	"npmClient": "npm",
 	"webDir": "www",
